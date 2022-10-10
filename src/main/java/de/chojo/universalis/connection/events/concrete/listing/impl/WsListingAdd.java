@@ -9,8 +9,8 @@ package de.chojo.universalis.connection.events.concrete.listing.impl;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import de.chojo.universalis.connection.events.concrete.listing.WsListingBase;
 import de.chojo.universalis.connection.events.concrete.listing.views.ListingView;
-import de.chojo.universalis.events.listings.ListingAdd;
-import de.chojo.universalis.items.NameSupplier;
+import de.chojo.universalis.events.listings.impl.ListingAdd;
+import de.chojo.universalis.provider.NameSupplier;
 
 import java.util.List;
 

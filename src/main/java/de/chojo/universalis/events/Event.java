@@ -6,8 +6,8 @@
 
 package de.chojo.universalis.events;
 
-import de.chojo.universalis.entities.Item;
-import de.chojo.universalis.worlds.World;
+import de.chojo.universalis.entities.shared.Item;
+import de.chojo.universalis.entities.shared.World;
 
 public class Event {
     private final World world;

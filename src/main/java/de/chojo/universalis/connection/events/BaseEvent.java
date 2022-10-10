@@ -7,9 +7,9 @@
 package de.chojo.universalis.connection.events;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import de.chojo.universalis.entities.Item;
-import de.chojo.universalis.items.NameSupplier;
-import de.chojo.universalis.worlds.World;
+import de.chojo.universalis.entities.shared.Item;
+import de.chojo.universalis.provider.NameSupplier;
+import de.chojo.universalis.entities.shared.World;
 import de.chojo.universalis.worlds.Worlds;
 
 public class BaseEvent {

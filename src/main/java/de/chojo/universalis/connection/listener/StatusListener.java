@@ -10,7 +10,7 @@ import com.neovisionaries.ws.client.WebSocket;
 import com.neovisionaries.ws.client.WebSocketAdapter;
 import com.neovisionaries.ws.client.WebSocketException;
 import com.neovisionaries.ws.client.WebSocketFrame;
-import de.chojo.universalis.connection.UniversalisWs;
+import de.chojo.universalis.connection.UniversalisWsImpl;
 import de.chojo.universalis.subscriber.Subscription;
 import org.bson.BSONEncoder;
 import org.bson.BasicBSONEncoder;
@@ -25,11 +25,11 @@ import static org.slf4j.LoggerFactory.getLogger;
 public class StatusListener extends WebSocketAdapter {
     private static final Logger log = getLogger(StatusListener.class);
     private final BSONEncoder encoder = new BasicBSONEncoder();
-    private final UniversalisWs universalisWs;
+    private final UniversalisWsImpl universalisWs;
     private final List<Subscription> subscriptions;
     private boolean connected;
 
-    public StatusListener(UniversalisWs universalisWs, List<Subscription> subscriptions) {
+    public StatusListener(UniversalisWsImpl universalisWs, List<Subscription> subscriptions) {
         this.universalisWs = universalisWs;
         this.subscriptions = subscriptions;
     }
@@ -71,13 +71,15 @@ public class StatusListener extends WebSocketAdapter {
     }
 
     private byte[] unsubscribeChannel(String channel) {
-        BasicBSONObject payload = new BasicBSONObject().append("event", "unsubscribe")
-                                                       .append("channel", channel);
-        return encoder.encode(payload);
+        return subscriptionChange(channel, "unsubscribe");
     }
 
     private byte[] subscribeChannel(String channel) {
-        BasicBSONObject payload = new BasicBSONObject().append("event", "subscribe")
+        return subscriptionChange(channel, "subscribe");
+    }
+
+    private byte[] subscriptionChange(String channel, String event){
+        BasicBSONObject payload = new BasicBSONObject().append("event", event)
                                                        .append("channel", channel);
         return encoder.encode(payload);
     }

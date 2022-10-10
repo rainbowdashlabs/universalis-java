@@ -8,23 +8,27 @@ package de.chojo.universalis.connection.listener;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
 import com.neovisionaries.ws.client.WebSocket;
 import com.neovisionaries.ws.client.WebSocketAdapter;
 import com.neovisionaries.ws.client.WebSocketException;
 import de.chojo.universalis.connection.events.concrete.listing.impl.WsListingAdd;
 import de.chojo.universalis.connection.events.concrete.listing.impl.WsListingRemove;
+import de.chojo.universalis.connection.events.concrete.listing.impl.WsListingUpdate;
 import de.chojo.universalis.connection.events.concrete.sales.impl.WsSalesAdd;
 import de.chojo.universalis.connection.events.concrete.sales.impl.WsSalesRemove;
-import de.chojo.universalis.events.listings.ListingAdd;
-import de.chojo.universalis.events.listings.ListingRemove;
-import de.chojo.universalis.events.sales.SalesAdd;
-import de.chojo.universalis.events.sales.SalesRemove;
-import de.chojo.universalis.items.NameSupplier;
+import de.chojo.universalis.events.listings.impl.ListingAdd;
+import de.chojo.universalis.events.listings.impl.ListingRemove;
+import de.chojo.universalis.events.sales.impl.SalesAdd;
+import de.chojo.universalis.events.sales.impl.SalesRemove;
 import de.chojo.universalis.listener.EventListener;
+import de.chojo.universalis.provider.NameSupplier;
 import org.bson.BSONDecoder;
 import org.bson.BasicBSONDecoder;
 import org.slf4j.Logger;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.Map;
 
@@ -36,6 +40,10 @@ public class WebsocketListenerAdapter extends WebSocketAdapter {
     private final List<EventListener> listeners;
     private final NameSupplier itemNameSupplier;
     private final ObjectMapper objectMapper = new JsonMapper();
+
+    private final Cache<Integer, WsListingRemove> removedListings = CacheBuilder.newBuilder()
+                                                                                .expireAfterWrite(Duration.ofSeconds(10))
+                                                                                .build();
 
     public WebsocketListenerAdapter(List<EventListener> listeners, NameSupplier itemNameSupplier) {
         this.listeners = listeners;
@@ -57,13 +65,21 @@ public class WebsocketListenerAdapter extends WebSocketAdapter {
                 SalesRemove remove = objectMapper.convertValue(map, WsSalesRemove.class).toEvent(itemNameSupplier);
                 listeners.forEach(l -> l.onSalesRemove(remove));
             }
-            case "listing/add" -> {
-                ListingAdd add = objectMapper.convertValue(map, WsListingAdd.class).toEvent(itemNameSupplier);
+            case "listings/add" -> {
+                WsListingAdd wsAdd = objectMapper.convertValue(map, WsListingAdd.class);
+                ListingAdd add = wsAdd.toEvent(itemNameSupplier);
                 listeners.forEach(l -> l.onListingAdd(add));
+                WsListingRemove removed = removedListings.getIfPresent(wsAdd.worldId());
+                if (removed == null) break;
+                removedListings.invalidate(wsAdd.worldId());
+                WsListingUpdate wsListingUpdate = removed.toUpdate(wsAdd);
+                wsListingUpdate.toEvent(itemNameSupplier);
             }
-            case "listing/remove" -> {
-                ListingRemove remove = objectMapper.convertValue(map, WsListingRemove.class).toEvent(itemNameSupplier);
+            case "listings/remove" -> {
+                WsListingRemove wsRemove = objectMapper.convertValue(map, WsListingRemove.class);
+                ListingRemove remove = wsRemove.toEvent(itemNameSupplier);
                 listeners.forEach(l -> l.onListingRemove(remove));
+                removedListings.put(wsRemove.worldId(), wsRemove);
             }
         }
     }

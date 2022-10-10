@@ -4,7 +4,7 @@
  *     Copyright (C) 2022 RainbowDashLabs and Contributor
  */
 
-package de.chojo.universalis.entities;
+package de.chojo.universalis.entities.shared;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

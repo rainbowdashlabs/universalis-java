@@ -6,15 +6,30 @@
 
 package de.chojo.universalis;
 
-import de.chojo.universalis.connection.builder.UniversalisBuilder;
+import de.chojo.universalis.connection.builder.UniversalisWsBuilder;
 import de.chojo.universalis.connection.builder.WebsocketFactoryBuilder;
 
+/**
+ * Main class to create instances for accessing universalis
+ */
 public class Universalis {
-    public static WebsocketFactoryBuilder wsBuilder() {
+    /**
+     * Get a websocket builder. Use this if you want more control about the socket itself.
+     * <p>
+     * Use {@link #getDefaultSocket()} if your don't know that this means.
+     *
+     * @return websocket factory builder
+     */
+    public static WebsocketFactoryBuilder websocketBuilder() {
         return new WebsocketFactoryBuilder();
     }
 
-    public static UniversalisBuilder getDefaultWs() {
+    /**
+     * Get a universalis builder for websockets.
+     *
+     * @return universalis websocket builder
+     */
+    public static UniversalisWsBuilder getDefaultSocket() {
         return new WebsocketFactoryBuilder().setConnectionTimeout(10000).build();
     }
 }

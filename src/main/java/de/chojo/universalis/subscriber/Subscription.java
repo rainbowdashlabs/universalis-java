@@ -8,7 +8,7 @@ package de.chojo.universalis.subscriber;
 
 import de.chojo.universalis.worlds.Datacenter;
 import de.chojo.universalis.worlds.Region;
-import de.chojo.universalis.worlds.World;
+import de.chojo.universalis.entities.shared.World;
 import de.chojo.universalis.worlds.WorldProvider;
 
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ import java.util.List;
  * <p>
  * Allows setting world filters and defined the subscribed channel
  *
- * @see Subscribtions
+ * @see Subscriptions
  */
 public class Subscription {
     private final String channel;

@@ -6,10 +6,10 @@
 
 package de.chojo.universalis.listener;
 
-import de.chojo.universalis.events.listings.ListingAdd;
-import de.chojo.universalis.events.listings.ListingRemove;
-import de.chojo.universalis.events.sales.SalesAdd;
-import de.chojo.universalis.events.sales.SalesRemove;
+import de.chojo.universalis.events.listings.impl.ListingAdd;
+import de.chojo.universalis.events.listings.impl.ListingRemove;
+import de.chojo.universalis.events.sales.impl.SalesAdd;
+import de.chojo.universalis.events.sales.impl.SalesRemove;
 
 public class ListenerAdapter implements EventListener {
     @Override

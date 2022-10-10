@@ -7,9 +7,9 @@
 package de.chojo.universalis.connection.events.concrete.sales.views;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import de.chojo.universalis.entities.Price;
+import de.chojo.universalis.entities.shared.Price;
 import de.chojo.universalis.entities.Sale;
-import de.chojo.universalis.worlds.World;
+import de.chojo.universalis.entities.shared.World;
 
 import java.time.Instant;
 

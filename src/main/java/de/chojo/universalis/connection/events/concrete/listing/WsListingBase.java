@@ -9,7 +9,7 @@ package de.chojo.universalis.connection.events.concrete.listing;
 import de.chojo.universalis.connection.events.BaseEvent;
 import de.chojo.universalis.connection.events.concrete.listing.views.ListingView;
 import de.chojo.universalis.entities.Listing;
-import de.chojo.universalis.worlds.World;
+import de.chojo.universalis.entities.shared.World;
 
 import java.util.List;
 

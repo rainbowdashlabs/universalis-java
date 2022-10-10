@@ -6,10 +6,10 @@
 
 package de.chojo.universalis.events.sales;
 
-import de.chojo.universalis.entities.Item;
+import de.chojo.universalis.entities.shared.Item;
 import de.chojo.universalis.entities.Sale;
 import de.chojo.universalis.events.Event;
-import de.chojo.universalis.worlds.World;
+import de.chojo.universalis.entities.shared.World;
 
 import java.util.List;
 

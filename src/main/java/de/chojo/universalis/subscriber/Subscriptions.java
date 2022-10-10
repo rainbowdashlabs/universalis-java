@@ -9,7 +9,7 @@ package de.chojo.universalis.subscriber;
 /**
  * Interface providing valid subscription channels
  */
-public interface Subscribtions {
+public interface Subscriptions {
     static Subscription listingAdd() {
         return new Subscription("listings/add");
     }

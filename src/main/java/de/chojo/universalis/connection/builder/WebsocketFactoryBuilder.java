@@ -164,7 +164,7 @@ public class WebsocketFactoryBuilder {
         return this;
     }
 
-    public UniversalisBuilder build() {
-        return new UniversalisBuilder(factory);
+    public UniversalisWsBuilder build() {
+        return new UniversalisWsBuilder(factory);
     }
 }

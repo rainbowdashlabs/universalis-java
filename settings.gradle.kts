@@ -1,4 +1,4 @@
-rootProject.name = "universalis-java"
+rootProject.name = "universalis"
 
 pluginManagement{
     repositories{

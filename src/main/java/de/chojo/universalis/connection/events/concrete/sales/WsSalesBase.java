@@ -9,7 +9,7 @@ package de.chojo.universalis.connection.events.concrete.sales;
 import de.chojo.universalis.connection.events.BaseEvent;
 import de.chojo.universalis.connection.events.concrete.sales.views.SaleView;
 import de.chojo.universalis.entities.Sale;
-import de.chojo.universalis.worlds.World;
+import de.chojo.universalis.entities.shared.World;
 
 import java.util.List;
 

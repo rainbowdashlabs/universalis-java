@@ -4,7 +4,9 @@
  *     Copyright (C) 2022 RainbowDashLabs and Contributor
  */
 
-package de.chojo.universalis.worlds;
+package de.chojo.universalis.entities.shared;
+
+import de.chojo.universalis.worlds.WorldProvider;
 
 import java.util.Collections;
 import java.util.List;

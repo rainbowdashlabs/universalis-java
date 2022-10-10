@@ -4,10 +4,11 @@
  *     Copyright (C) 2022 RainbowDashLabs and Contributor
  */
 
-package de.chojo.universalis.items;
+package de.chojo.universalis.provider.items;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import de.chojo.universalis.entities.Name;
+import de.chojo.universalis.entities.shared.Name;
+import de.chojo.universalis.provider.NameSupplier;
 
 import java.io.IOException;
 import java.net.URI;

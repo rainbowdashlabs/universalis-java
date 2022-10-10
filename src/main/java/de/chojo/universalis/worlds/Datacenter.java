@@ -6,6 +6,8 @@
 
 package de.chojo.universalis.worlds;
 
+import de.chojo.universalis.entities.shared.World;
+
 import java.util.List;
 
 public interface Datacenter extends WorldProvider {

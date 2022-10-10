@@ -9,8 +9,8 @@ package de.chojo.universalis.connection.events.concrete.sales.impl;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import de.chojo.universalis.connection.events.concrete.sales.WsSalesBase;
 import de.chojo.universalis.connection.events.concrete.sales.views.SaleView;
-import de.chojo.universalis.events.sales.SalesRemove;
-import de.chojo.universalis.items.NameSupplier;
+import de.chojo.universalis.events.sales.impl.SalesRemove;
+import de.chojo.universalis.provider.NameSupplier;
 
 import java.util.List;
 
