@@ -8,9 +8,13 @@ package de.chojo.universalis.listener;
 
 import de.chojo.universalis.events.listings.impl.ListingAdd;
 import de.chojo.universalis.events.listings.impl.ListingRemove;
+import de.chojo.universalis.events.listings.impl.ListingUpdate;
 import de.chojo.universalis.events.sales.impl.SalesAdd;
 import de.chojo.universalis.events.sales.impl.SalesRemove;
 
+/**
+ * Class implementing the {@link EventListener} for easier usage.
+ */
 public class ListenerAdapter implements EventListener {
     @Override
     public void onListingAdd(ListingAdd event) {
@@ -19,6 +23,11 @@ public class ListenerAdapter implements EventListener {
 
     @Override
     public void onListingRemove(ListingRemove event) {
+
+    }
+
+    @Override
+    public void onListingUpdate(ListingUpdate event) {
 
     }
 
