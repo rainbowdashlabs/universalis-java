@@ -16,6 +16,9 @@ import java.net.Socket;
 import java.net.SocketAddress;
 import java.net.URI;
 
+/**
+ * Class to build a {@link WebSocketFactory}. Results in a {@link UniversalisWsBuilder}
+ */
 public class WebsocketFactoryBuilder {
     private final WebSocketFactory factory = new WebSocketFactory();
 

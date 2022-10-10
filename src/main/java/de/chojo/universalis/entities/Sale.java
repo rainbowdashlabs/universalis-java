@@ -6,9 +6,6 @@
 
 package de.chojo.universalis.entities;
 
-import de.chojo.universalis.entities.shared.Price;
-import de.chojo.universalis.entities.shared.World;
-
 import java.time.Instant;
 
 public record Sale(boolean hq,

@@ -9,7 +9,7 @@ package de.chojo.universalis.connection.builder;
 import com.neovisionaries.ws.client.WebSocketFactory;
 import de.chojo.universalis.connection.UniversalisWs;
 import de.chojo.universalis.connection.UniversalisWsImpl;
-import de.chojo.universalis.entities.shared.Name;
+import de.chojo.universalis.entities.Name;
 import de.chojo.universalis.listener.EventListener;
 import de.chojo.universalis.provider.NameSupplier;
 import de.chojo.universalis.subscriber.Subscription;

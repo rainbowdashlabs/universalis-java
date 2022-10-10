@@ -15,6 +15,7 @@ import de.chojo.universalis.provider.NameSupplier;
 import de.chojo.universalis.subscriber.Subscription;
 import org.slf4j.Logger;
 
+import javax.annotation.Nullable;
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -76,16 +77,17 @@ public class UniversalisWsImpl implements UniversalisWs {
         statusListener.unsubscribe(subscription);
     }
 
-    public ExecutorService websocketWorker() {
-        return websocketWorker;
-    }
-
     @Override
     public void disconnect() {
         active = false;
         socket.disconnect();
     }
 
+    /**
+     * The currently active socket
+     * @return socket
+     */
+    @Nullable
     public WebSocket socket() {
         return socket;
     }

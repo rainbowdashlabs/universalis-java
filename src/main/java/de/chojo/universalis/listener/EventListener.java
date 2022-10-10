@@ -6,27 +6,32 @@
 
 package de.chojo.universalis.listener;
 
-import de.chojo.universalis.events.listings.impl.ListingAdd;
-import de.chojo.universalis.events.listings.impl.ListingRemove;
-import de.chojo.universalis.events.listings.impl.ListingUpdate;
-import de.chojo.universalis.events.sales.impl.SalesAdd;
-import de.chojo.universalis.events.sales.impl.SalesRemove;
+import de.chojo.universalis.connection.UniversalisWs;
+import de.chojo.universalis.connection.builder.UniversalisWsBuilder;
+import de.chojo.universalis.events.listings.impl.ListingAddEvent;
+import de.chojo.universalis.events.listings.impl.ListingRemoveEvent;
+import de.chojo.universalis.events.listings.impl.ListingUpdateEvent;
+import de.chojo.universalis.events.sales.impl.SalesAddEvent;
+import de.chojo.universalis.events.sales.impl.SalesRemoveEvent;
 import de.chojo.universalis.subscriber.Subscriptions;
 
+/**
+ * Class to register at a {@link UniversalisWsBuilder} or {@link UniversalisWs} to receive events.
+ */
 public interface EventListener {
     /**
      * Called when a listing was added.
      *
      * @param event add event
      */
-    void onListingAdd(ListingAdd event);
+    void onListingAdd(ListingAddEvent event);
 
     /**
-     * Called when a listing was removed. This usually happens right before a {@link #onListingAdd(ListingAdd)} call.
+     * Called when a listing was removed. This usually happens right before a {@link #onListingAdd(ListingAddEvent)} call.
      *
      * @param event remove event
      */
-    void onListingRemove(ListingRemove event);
+    void onListingRemove(ListingRemoveEvent event);
 
     /**
      * Called when a listing was added after getting removed. This usually means it was updated.
@@ -37,14 +42,14 @@ public interface EventListener {
      *
      * @param event update event
      */
-    void onListingUpdate(ListingUpdate event);
+    void onListingUpdate(ListingUpdateEvent event);
 
     /**
      * Called when sales were added.
      *
      * @param event add event
      */
-    void onSalesAdd(SalesAdd event);
+    void onSalesAdd(SalesAddEvent event);
 
     /**
      * Called when sales were removed.
@@ -53,5 +58,5 @@ public interface EventListener {
      * @deprecated Sales are no longer removed. Therefore, this event will not be called probably
      */
     @Deprecated
-    void onSalesRemove(SalesRemove event);
+    void onSalesRemove(SalesRemoveEvent event);
 }

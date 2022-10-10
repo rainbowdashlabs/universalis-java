@@ -6,7 +6,7 @@
 
 package de.chojo.universalis.worlds;
 
-import de.chojo.universalis.entities.shared.World;
+import de.chojo.universalis.entities.World;
 
 import java.util.List;
 

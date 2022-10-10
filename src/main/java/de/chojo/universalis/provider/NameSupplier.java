@@ -6,8 +6,17 @@
 
 package de.chojo.universalis.provider;
 
-import de.chojo.universalis.entities.shared.Name;
+import de.chojo.universalis.entities.Name;
 
+/**
+ * Interface to supply entity names based on an id
+ */
 public interface NameSupplier {
+    /**
+     * Returns the name based on an id
+     *
+     * @param id id
+     * @return name
+     */
     Name fromId(int id);
 }

@@ -7,13 +7,13 @@
 package de.chojo.universalis.connection.events.concrete.listing.views;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import de.chojo.universalis.entities.shared.City;
-import de.chojo.universalis.entities.shared.Creator;
-import de.chojo.universalis.entities.shared.ItemMeta;
+import de.chojo.universalis.entities.City;
+import de.chojo.universalis.entities.Creator;
+import de.chojo.universalis.entities.ItemMeta;
 import de.chojo.universalis.entities.Listing;
-import de.chojo.universalis.entities.shared.Price;
-import de.chojo.universalis.entities.shared.Retainer;
-import de.chojo.universalis.entities.shared.World;
+import de.chojo.universalis.entities.Price;
+import de.chojo.universalis.entities.Retainer;
+import de.chojo.universalis.entities.World;
 
 import java.time.Instant;
 import java.util.List;
@@ -37,7 +37,13 @@ public record ListingView(@JsonProperty("lastReviewTime") long lastReviewTime,
                           @JsonProperty("retainerName") String retainerName,
                           @JsonProperty("sellerID") String sellerId,
                           @JsonProperty("total") int total) {
-    public Listing toEvent(World world) {
+    /**
+     * Converts the {@link ListingView} to a {@link Listing} object.
+     *
+     * @param world world for the sale
+     * @return list of sales
+     */
+    public Listing toListing(World world) {
         return new Listing(Instant.ofEpochSecond(lastReviewTime),
                 world,
                 new Creator(creatorName, creatorId),

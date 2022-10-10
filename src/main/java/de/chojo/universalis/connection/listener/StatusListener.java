@@ -22,6 +22,9 @@ import java.util.Map;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
+/**
+ * Status listener for the websocket
+ */
 public class StatusListener extends WebSocketAdapter {
     private static final Logger log = getLogger(StatusListener.class);
     private final BSONEncoder encoder = new BasicBSONEncoder();
@@ -50,6 +53,12 @@ public class StatusListener extends WebSocketAdapter {
         }
     }
 
+    /**
+     * Subscripe a route
+     *
+     * @param subscription subscription
+     * @throws IllegalStateException When the socket is not connected
+     */
     public void subscibe(Subscription subscription) {
         if (!isConnected()) {
             throw new IllegalStateException("The socket is not connected.");
@@ -60,6 +69,12 @@ public class StatusListener extends WebSocketAdapter {
         }
     }
 
+    /**
+     * Unsubscripe a route
+     *
+     * @param subscription subscription
+     * @throws IllegalStateException When the socket is not connected
+     */
     public void unsubscribe(Subscription subscription) {
         if (!isConnected()) {
             throw new IllegalStateException("The socket is not connected.");
@@ -78,7 +93,7 @@ public class StatusListener extends WebSocketAdapter {
         return subscriptionChange(channel, "subscribe");
     }
 
-    private byte[] subscriptionChange(String channel, String event){
+    private byte[] subscriptionChange(String channel, String event) {
         BasicBSONObject payload = new BasicBSONObject().append("event", event)
                                                        .append("channel", channel);
         return encoder.encode(payload);
@@ -111,6 +126,11 @@ public class StatusListener extends WebSocketAdapter {
         log.error("Error in websocket", cause);
     }
 
+    /**
+     * True when the socket is connected.
+     *
+     * @return true when connected
+     */
     public boolean isConnected() {
         return connected;
     }

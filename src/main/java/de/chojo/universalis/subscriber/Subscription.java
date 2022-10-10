@@ -8,7 +8,7 @@ package de.chojo.universalis.subscriber;
 
 import de.chojo.universalis.worlds.Datacenter;
 import de.chojo.universalis.worlds.Region;
-import de.chojo.universalis.entities.shared.World;
+import de.chojo.universalis.entities.World;
 import de.chojo.universalis.worlds.WorldProvider;
 
 import java.util.ArrayList;
