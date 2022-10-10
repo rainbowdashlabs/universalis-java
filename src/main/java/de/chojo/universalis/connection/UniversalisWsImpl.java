@@ -57,7 +57,7 @@ public class UniversalisWsImpl implements UniversalisWs {
 
         socket = factory.createSocket(WEBSOCKET_URL);
 
-        socket.setPingInterval(2000);
+        socket.setPingInterval(factory.getSocketTimeout() / 4);
 
         socket.addListener(new WebsocketListenerAdapter(listeners, itemNameSupplier));
         statusListener = new StatusListener(this, subscribers);
