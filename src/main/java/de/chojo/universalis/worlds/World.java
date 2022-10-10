@@ -9,7 +9,7 @@ package de.chojo.universalis.worlds;
 import java.util.Collections;
 import java.util.List;
 
-public record World(String name, int id) implements WorldProvider{
+public record World(String name, int id) implements WorldProvider {
 
     public static World of(String name, int id) {
         return new World(name, id);

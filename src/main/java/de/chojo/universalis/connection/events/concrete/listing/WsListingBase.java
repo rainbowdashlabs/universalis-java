@@ -25,7 +25,7 @@ public class WsListingBase extends BaseEvent {
         return listings;
     }
 
-    public List<Listing> asListing(World world){
+    public List<Listing> asListing(World world) {
         return listings().stream().map(view -> view.toEvent(world)).toList();
     }
 }

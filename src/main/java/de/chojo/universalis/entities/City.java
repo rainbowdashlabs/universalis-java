@@ -20,14 +20,14 @@ public enum City {
         this.id = id;
     }
 
-    public int id() {
-        return id;
-    }
-
     public static City fromId(int id) {
         for (City city : values()) {
             if (city.id() == id) return city;
         }
         throw new IllegalArgumentException("ID " + id + " is unkown.");
+    }
+
+    public int id() {
+        return id;
     }
 }

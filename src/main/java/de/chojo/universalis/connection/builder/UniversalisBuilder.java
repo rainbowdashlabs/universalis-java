@@ -11,8 +11,8 @@ import com.neovisionaries.ws.client.WebSocketFactory;
 import de.chojo.universalis.connection.UniversalisWs;
 import de.chojo.universalis.items.Items;
 import de.chojo.universalis.items.NameSupplier;
-import de.chojo.universalis.subscriber.Subscription;
 import de.chojo.universalis.listener.EventListener;
+import de.chojo.universalis.subscriber.Subscription;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,9 +24,8 @@ import java.util.concurrent.Executors;
 public class UniversalisBuilder {
     private final WebSocketFactory factory;
     private final List<Subscription> subscriptions = new ArrayList<>();
-    private ExecutorService executorService = Executors.newCachedThreadPool();
-
     private final List<EventListener> listeners = new ArrayList<>();
+    private ExecutorService executorService = Executors.newCachedThreadPool();
     private NameSupplier nameSupplier;
 
     public UniversalisBuilder(WebSocketFactory factory) {
@@ -48,16 +47,16 @@ public class UniversalisBuilder {
         return this;
     }
 
-    public UniversalisBuilder itemNameSupplier(NameSupplier nameSupplier){
+    public UniversalisBuilder itemNameSupplier(NameSupplier nameSupplier) {
         this.nameSupplier = nameSupplier;
         return this;
     }
 
     public UniversalisWs build() throws WebSocketException, IOException, InterruptedException {
-        if(nameSupplier == null){
+        if (nameSupplier == null) {
             nameSupplier = Items.create();
         }
-        UniversalisWs universalisWs = new UniversalisWs(factory, executorService, subscriptions, listeners,nameSupplier );
+        UniversalisWs universalisWs = new UniversalisWs(factory, executorService, subscriptions, listeners, nameSupplier);
         universalisWs.ignite();
         return universalisWs;
     }

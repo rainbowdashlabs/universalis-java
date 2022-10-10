@@ -13,7 +13,10 @@ import de.chojo.universalis.events.sales.SalesRemove;
 
 public interface EventListener {
     void onListingAdd(ListingAdd event);
+
     void onListingRemove(ListingRemove event);
+
     void onSalesAdd(SalesAdd event);
+
     void onSalesRemove(SalesRemove event);
 }

@@ -12,7 +12,7 @@ import de.chojo.universalis.worlds.World;
 
 import java.util.List;
 
-public class SalesRemove extends BaseSales{
+public class SalesRemove extends BaseSales {
     public SalesRemove(World world, Item item, List<Sale> sales) {
         super(world, item, sales);
     }

@@ -11,7 +11,7 @@ import de.chojo.universalis.events.listings.ListingRemove;
 import de.chojo.universalis.events.sales.SalesAdd;
 import de.chojo.universalis.events.sales.SalesRemove;
 
-public class ListenerAdapter implements EventListener{
+public class ListenerAdapter implements EventListener {
     @Override
     public void onListingAdd(ListingAdd event) {
 

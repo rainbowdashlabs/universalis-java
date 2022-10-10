@@ -38,6 +38,19 @@ public class Worlds {
         return List.of(europe, northAmerica, oceania, japan);
     }
 
+    public static World byId(int id) {
+        return ids.computeIfAbsent(id, Worlds::findById);
+    }
+
+    private static World findById(int id) {
+        for (Region region : regions()) {
+            for (World world : region.worlds()) {
+                if (world.id() == id) return world;
+            }
+        }
+        return null;
+    }
+
     public static final class Europe implements Region {
         private final Chaos chaos = new Chaos();
         private final Light light = new Light();
@@ -226,6 +239,22 @@ public class Worlds {
             return List.of(elemental, gaia, mana, meteor);
         }
 
+        public Elemental elemental() {
+            return elemental;
+        }
+
+        public Gaia gaia() {
+            return gaia;
+        }
+
+        public Mana mana() {
+            return mana;
+        }
+
+        public Meteor meteor() {
+            return meteor;
+        }
+
         public static final class Elemental implements Datacenter {
             public final World AEGIS = World.of("Aegis", 90);
             public final World ATOMOS = World.of("Atomos", 68);
@@ -301,34 +330,5 @@ public class Worlds {
                 return List.of(BELIAS, MANDRAGORA, RAMUH, SHINRYU, UNICORN, VALEFOR, YOJIMBO, ZEROMUS);
             }
         }
-
-        public Elemental elemental() {
-            return elemental;
-        }
-
-        public Gaia gaia() {
-            return gaia;
-        }
-
-        public Mana mana() {
-            return mana;
-        }
-
-        public Meteor meteor() {
-            return meteor;
-        }
-    }
-
-    public static World byId(int id) {
-        return ids.computeIfAbsent(id, Worlds::findById);
-    }
-
-    private static World findById(int id) {
-        for (Region region : regions()) {
-            for (World world : region.worlds()) {
-                if (world.id() == id) return world;
-            }
-        }
-        return null;
     }
 }

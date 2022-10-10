@@ -6,5 +6,5 @@
 
 package de.chojo.universalis.entities;
 
-public record Retainer(String id, String name, City city){
+public record Retainer(String id, String name, City city) {
 }

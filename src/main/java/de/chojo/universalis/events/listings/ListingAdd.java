@@ -8,7 +8,6 @@ package de.chojo.universalis.events.listings;
 
 import de.chojo.universalis.entities.Item;
 import de.chojo.universalis.entities.Listing;
-import de.chojo.universalis.events.Event;
 import de.chojo.universalis.worlds.World;
 
 import java.util.List;

@@ -6,7 +6,7 @@
 
 package de.chojo.universalis.entities;
 
-public record Price (int pricePerUnit,
-                     int quantity,
-                     int total){
+public record Price(int pricePerUnit,
+                    int quantity,
+                    int total) {
 }
