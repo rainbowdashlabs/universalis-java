@@ -35,6 +35,7 @@ loadScripts(document, 'script');</script>
 <li><a href="package-summary.html">Package</a></li>
 <li class="nav-bar-cell1-rev">Class</li>
 <li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../../../deprecated-list.html">Deprecated</a></li>
 <li><a href="../../../../index-all.html">Index</a></li>
 <li><a href="../../../../help-doc.html#class">Help</a></li>
 </ul>
@@ -92,10 +93,11 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Known Implementing Classes:</dt>
-<dd><code><a href="ListenerAdapter.html" title="class in de.chojo.universalis.listener">ListenerAdapter</a></code></dd>
+<dd><code><a href="ListenerAdapter.html" title="class in de.chojo.universalis.listener">ListenerAdapter</a></code>, <code><a href="../connection/listener/WebsocketListenerAdapter.html" title="class in de.chojo.universalis.connection.listener">WebsocketListenerAdapter</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">EventListener</span></div>
+<div class="block">Class to register at a <a href="../connection/builder/UniversalisWsBuilder.html" title="class in de.chojo.universalis.connection.builder"><code>UniversalisWsBuilder</code></a> or <a href="../connection/UniversalisWs.html" title="interface in de.chojo.universalis.connection"><code>UniversalisWs</code></a> to receive events.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -104,24 +106,39 @@ loadScripts(document, 'script');</script>
 <section class="method-summary" id="method-summary">
 <h2>Method Summary</h2>
 <div id="method-summary-table">
-<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab3" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab3', 3)" class="table-tab">Abstract Methods</button></div>
+<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab3" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab3', 3)" class="table-tab">Abstract Methods</button><button id="method-summary-table-tab6" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab6', 3)" class="table-tab">Deprecated Methods</button></div>
 <div id="method-summary-table.tabpanel" role="tabpanel">
 <div class="summary-table three-column-summary" aria-labelledby="method-summary-table-tab0">
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#onListingAdd(de.chojo.universalis.events.listings.ListingAdd)" class="member-name-link">onListingAdd</a><wbr>(<a href="../events/listings/ListingAdd.html" title="class in de.chojo.universalis.events.listings">ListingAdd</a>&nbsp;event)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#onListingAdd(de.chojo.universalis.events.listings.impl.ListingAddEvent)" class="member-name-link">onListingAdd</a><wbr>(<a href="../events/listings/impl/ListingAddEvent.html" title="class in de.chojo.universalis.events.listings.impl">ListingAddEvent</a>&nbsp;event)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Called when a listing was added.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#onListingRemove(de.chojo.universalis.events.listings.ListingRemove)" class="member-name-link">onListingRemove</a><wbr>(<a href="../events/listings/ListingRemove.html" title="class in de.chojo.universalis.events.listings">ListingRemove</a>&nbsp;event)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#onListingRemove(de.chojo.universalis.events.listings.impl.ListingRemoveEvent)" class="member-name-link">onListingRemove</a><wbr>(<a href="../events/listings/impl/ListingRemoveEvent.html" title="class in de.chojo.universalis.events.listings.impl">ListingRemoveEvent</a>&nbsp;event)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Called when a listing was removed.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#onSalesAdd(de.chojo.universalis.events.sales.SalesAdd)" class="member-name-link">onSalesAdd</a><wbr>(<a href="../events/sales/SalesAdd.html" title="class in de.chojo.universalis.events.sales">SalesAdd</a>&nbsp;event)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#onListingUpdate(de.chojo.universalis.events.listings.impl.ListingUpdateEvent)" class="member-name-link">onListingUpdate</a><wbr>(<a href="../events/listings/impl/ListingUpdateEvent.html" title="class in de.chojo.universalis.events.listings.impl">ListingUpdateEvent</a>&nbsp;event)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Called when a listing was added after getting removed.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#onSalesRemove(de.chojo.universalis.events.sales.SalesRemove)" class="member-name-link">onSalesRemove</a><wbr>(<a href="../events/sales/SalesRemove.html" title="class in de.chojo.universalis.events.sales">SalesRemove</a>&nbsp;event)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#onSalesAdd(de.chojo.universalis.events.sales.impl.SalesAddEvent)" class="member-name-link">onSalesAdd</a><wbr>(<a href="../events/sales/impl/SalesAddEvent.html" title="class in de.chojo.universalis.events.sales.impl">SalesAddEvent</a>&nbsp;event)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Called when sales were added.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="#onSalesRemove(de.chojo.universalis.events.sales.impl.SalesRemoveEvent)" class="member-name-link">onSalesRemove</a><wbr>(<a href="../events/sales/impl/SalesRemoveEvent.html" title="class in de.chojo.universalis.events.sales.impl">SalesRemoveEvent</a>&nbsp;event)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6">
+<div class="block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment">Sales are no longer removed.</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -137,27 +154,66 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="onListingAdd(de.chojo.universalis.events.listings.ListingAdd)">
+<section class="detail" id="onListingAdd(de.chojo.universalis.events.listings.impl.ListingAddEvent)">
 <h3>onListingAdd</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">onListingAdd</span><wbr><span class="parameters">(<a href="../events/listings/ListingAdd.html" title="class in de.chojo.universalis.events.listings">ListingAdd</a>&nbsp;event)</span></div>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">onListingAdd</span><wbr><span class="parameters">(<a href="../events/listings/impl/ListingAddEvent.html" title="class in de.chojo.universalis.events.listings.impl">ListingAddEvent</a>&nbsp;event)</span></div>
+<div class="block">Called when a listing was added.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>event</code> - add event</dd>
+</dl>
 </section>
 </li>
 <li>
-<section class="detail" id="onListingRemove(de.chojo.universalis.events.listings.ListingRemove)">
+<section class="detail" id="onListingRemove(de.chojo.universalis.events.listings.impl.ListingRemoveEvent)">
 <h3>onListingRemove</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">onListingRemove</span><wbr><span class="parameters">(<a href="../events/listings/ListingRemove.html" title="class in de.chojo.universalis.events.listings">ListingRemove</a>&nbsp;event)</span></div>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">onListingRemove</span><wbr><span class="parameters">(<a href="../events/listings/impl/ListingRemoveEvent.html" title="class in de.chojo.universalis.events.listings.impl">ListingRemoveEvent</a>&nbsp;event)</span></div>
+<div class="block">Called when a listing was removed. This usually happens right before a <a href="#onListingAdd(de.chojo.universalis.events.listings.impl.ListingAddEvent)"><code>onListingAdd(ListingAddEvent)</code></a> call.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>event</code> - remove event</dd>
+</dl>
 </section>
 </li>
 <li>
-<section class="detail" id="onSalesAdd(de.chojo.universalis.events.sales.SalesAdd)">
+<section class="detail" id="onListingUpdate(de.chojo.universalis.events.listings.impl.ListingUpdateEvent)">
+<h3>onListingUpdate</h3>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">onListingUpdate</span><wbr><span class="parameters">(<a href="../events/listings/impl/ListingUpdateEvent.html" title="class in de.chojo.universalis.events.listings.impl">ListingUpdateEvent</a>&nbsp;event)</span></div>
+<div class="block">Called when a listing was added after getting removed. This usually means it was updated.
+ <p>
+ This only works when <a href="../subscriber/Subscriptions.html#listingAdd()"><code>Subscriptions.listingAdd()</code></a> and <a href="../subscriber/Subscriptions.html#listingRemove()"><code>Subscriptions.listingRemove()</code></a> are subscribed for this world.
+ <p>
+ This event is created manually. It completely relies on universalis sending the remove event directly before the send event.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>event</code> - update event</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="onSalesAdd(de.chojo.universalis.events.sales.impl.SalesAddEvent)">
 <h3>onSalesAdd</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">onSalesAdd</span><wbr><span class="parameters">(<a href="../events/sales/SalesAdd.html" title="class in de.chojo.universalis.events.sales">SalesAdd</a>&nbsp;event)</span></div>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">onSalesAdd</span><wbr><span class="parameters">(<a href="../events/sales/impl/SalesAddEvent.html" title="class in de.chojo.universalis.events.sales.impl">SalesAddEvent</a>&nbsp;event)</span></div>
+<div class="block">Called when sales were added.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>event</code> - add event</dd>
+</dl>
 </section>
 </li>
 <li>
-<section class="detail" id="onSalesRemove(de.chojo.universalis.events.sales.SalesRemove)">
+<section class="detail" id="onSalesRemove(de.chojo.universalis.events.sales.impl.SalesRemoveEvent)">
 <h3>onSalesRemove</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">onSalesRemove</span><wbr><span class="parameters">(<a href="../events/sales/SalesRemove.html" title="class in de.chojo.universalis.events.sales">SalesRemove</a>&nbsp;event)</span></div>
+<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
+</span><span class="return-type">void</span>&nbsp;<span class="element-name">onSalesRemove</span><wbr><span class="parameters">(<a href="../events/sales/impl/SalesRemoveEvent.html" title="class in de.chojo.universalis.events.sales.impl">SalesRemoveEvent</a>&nbsp;event)</span></div>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment">Sales are no longer removed. Therefore, this event will not be called probably</div>
+</div>
+<div class="block">Called when sales were removed.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>event</code> - remove event</dd>
+</dl>
 </section>
 </li>
 </ul>

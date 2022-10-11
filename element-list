@@ -12,8 +12,11 @@ de.chojo.universalis.connection.listener
 de.chojo.universalis.entities
 de.chojo.universalis.events
 de.chojo.universalis.events.listings
+de.chojo.universalis.events.listings.impl
 de.chojo.universalis.events.sales
-de.chojo.universalis.items
+de.chojo.universalis.events.sales.impl
 de.chojo.universalis.listener
+de.chojo.universalis.provider
+de.chojo.universalis.provider.items
 de.chojo.universalis.subscriber
 de.chojo.universalis.worlds

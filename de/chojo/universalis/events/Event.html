@@ -35,6 +35,7 @@ loadScripts(document, 'script');</script>
 <li><a href="package-summary.html">Package</a></li>
 <li class="nav-bar-cell1-rev">Class</li>
 <li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../../../deprecated-list.html">Deprecated</a></li>
 <li><a href="../../../../index-all.html">Index</a></li>
 <li><a href="../../../../help-doc.html#class">Help</a></li>
 </ul>
@@ -95,11 +96,12 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>Direct Known Subclasses:</dt>
-<dd><code><a href="listings/BaseListing.html" title="class in de.chojo.universalis.events.listings">BaseListing</a></code>, <code><a href="sales/BaseSales.html" title="class in de.chojo.universalis.events.sales">BaseSales</a></code></dd>
+<dd><code><a href="listings/ListingEvent.html" title="class in de.chojo.universalis.events.listings">ListingEvent</a></code>, <code><a href="listings/impl/ListingUpdateEvent.html" title="class in de.chojo.universalis.events.listings.impl">ListingUpdateEvent</a></code>, <code><a href="sales/SalesEvent.html" title="class in de.chojo.universalis.events.sales">SalesEvent</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Event</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Base class for an event.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -111,7 +113,7 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(de.chojo.universalis.worlds.World,de.chojo.universalis.entities.Item)" class="member-name-link">Event</a><wbr>(<a href="../worlds/World.html" title="class in de.chojo.universalis.worlds">World</a>&nbsp;world,
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(de.chojo.universalis.entities.World,de.chojo.universalis.entities.Item)" class="member-name-link">Event</a><wbr>(<a href="../entities/World.html" title="class in de.chojo.universalis.entities">World</a>&nbsp;world,
  <a href="../entities/Item.html" title="class in de.chojo.universalis.entities">Item</a>&nbsp;item)</code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 </div>
@@ -130,10 +132,14 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../entities/Item.html" title="class in de.chojo.universalis.entities">Item</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#item()" class="member-name-link">item</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../worlds/World.html" title="class in de.chojo.universalis.worlds">World</a></code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Event item</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../entities/World.html" title="class in de.chojo.universalis.entities">World</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#world()" class="member-name-link">world</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Event world</div>
+</div>
 </div>
 </div>
 </div>
@@ -152,9 +158,9 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(de.chojo.universalis.worlds.World,de.chojo.universalis.entities.Item)">
+<section class="detail" id="&lt;init&gt;(de.chojo.universalis.entities.World,de.chojo.universalis.entities.Item)">
 <h3>Event</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Event</span><wbr><span class="parameters">(<a href="../worlds/World.html" title="class in de.chojo.universalis.worlds">World</a>&nbsp;world,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Event</span><wbr><span class="parameters">(<a href="../entities/World.html" title="class in de.chojo.universalis.entities">World</a>&nbsp;world,
  <a href="../entities/Item.html" title="class in de.chojo.universalis.entities">Item</a>&nbsp;item)</span></div>
 </section>
 </li>
@@ -169,13 +175,23 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="world()">
 <h3>world</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../worlds/World.html" title="class in de.chojo.universalis.worlds">World</a></span>&nbsp;<span class="element-name">world</span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../entities/World.html" title="class in de.chojo.universalis.entities">World</a></span>&nbsp;<span class="element-name">world</span>()</div>
+<div class="block">Event world</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>world</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="item()">
 <h3>item</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../entities/Item.html" title="class in de.chojo.universalis.entities">Item</a></span>&nbsp;<span class="element-name">item</span>()</div>
+<div class="block">Event item</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>item</dd>
+</dl>
 </section>
 </li>
 </ul>

@@ -15,7 +15,11 @@
 <script type="text/javascript" src="../../../../script-dir/jquery-ui.min.js"></script>
 </head>
 <body class="package-declaration-page">
-<script type="text/javascript">var pathtoroot = "../../../../";
+<script type="text/javascript">var evenRowColor = "even-row-color";
+var oddRowColor = "odd-row-color";
+var tableTab = "table-tab";
+var activeTableTab = "active-table-tab";
+var pathtoroot = "../../../../";
 loadScripts(document, 'script');</script>
 <noscript>
 <div>JavaScript is disabled on your browser.</div>
@@ -31,6 +35,7 @@ loadScripts(document, 'script');</script>
 <li class="nav-bar-cell1-rev">Package</li>
 <li>Class</li>
 <li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../../../deprecated-list.html">Deprecated</a></li>
 <li><a href="../../../../index-all.html">Index</a></li>
 <li><a href="../../../../help-doc.html#package">Help</a></li>
 </ul>
@@ -38,7 +43,7 @@ loadScripts(document, 'script');</script>
 <li>
 <p>Package:</p>
 <ul>
-<li>Description</li>
+<li><a href="#package-description">Description</a></li>
 <li><a href="#related-package-summary">Related Packages</a></li>
 <li><a href="#class-summary">Classes and Interfaces</a></li>
 </ul>
@@ -49,7 +54,7 @@ loadScripts(document, 'script');</script>
 <div id="navbar-sub-list">
 <ul class="sub-nav-list">
 <li>Package:&nbsp;</li>
-<li>Description&nbsp;|&nbsp;</li>
+<li><a href="#package-description">Description</a>&nbsp;|&nbsp;</li>
 <li><a href="#related-package-summary">Related Packages</a>&nbsp;|&nbsp;</li>
 <li><a href="#class-summary">Classes and Interfaces</a></li>
 </ul>
@@ -69,6 +74,9 @@ loadScripts(document, 'script');</script>
 </div>
 <hr>
 <div class="package-signature">package <span class="element-name">de.chojo.universalis.connection</span></div>
+<section class="package-description" id="package-description">
+<div class="block">Package containing the internal websocket logic for connection handling and event parsing</div>
+</section>
 <section class="summary">
 <ul class="summary-list">
 <li>
@@ -78,24 +86,36 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Package</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><a href="../package-summary.html">de.chojo.universalis</a></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Base containing the main class for instance creation</div>
+</div>
 <div class="col-first odd-row-color"><a href="builder/package-summary.html">de.chojo.universalis.connection.builder</a></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Builder to create a <a href="UniversalisWs.html" title="interface in de.chojo.universalis.connection"><code>UniversalisWs</code></a> instance</div>
+</div>
 <div class="col-first even-row-color"><a href="events/package-summary.html">de.chojo.universalis.connection.events</a></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Contains POJOs to parse websocket events</div>
+</div>
 <div class="col-first odd-row-color"><a href="listener/package-summary.html">de.chojo.universalis.connection.listener</a></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Internal listener</div>
+</div>
 </div>
 </div>
 </li>
 <li>
 <div id="class-summary">
-<div class="caption"><span>Classes</span></div>
-<div class="summary-table two-column-summary">
+<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="class-summary-tab0" role="tab" aria-selected="true" aria-controls="class-summary.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('class-summary', 'class-summary', 2)" class="active-table-tab">All Classes and Interfaces</button><button id="class-summary-tab1" role="tab" aria-selected="false" aria-controls="class-summary.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('class-summary', 'class-summary-tab1', 2)" class="table-tab">Interfaces</button><button id="class-summary-tab2" role="tab" aria-selected="false" aria-controls="class-summary.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('class-summary', 'class-summary-tab2', 2)" class="table-tab">Classes</button></div>
+<div id="class-summary.tabpanel" role="tabpanel">
+<div class="summary-table two-column-summary" aria-labelledby="class-summary-tab0">
 <div class="table-header col-first">Class</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color class-summary class-summary-tab2"><a href="UniversalisWs.html" title="class in de.chojo.universalis.connection">UniversalisWs</a></div>
-<div class="col-last even-row-color class-summary class-summary-tab2">&nbsp;</div>
+<div class="col-first even-row-color class-summary class-summary-tab1"><a href="UniversalisWs.html" title="interface in de.chojo.universalis.connection">UniversalisWs</a></div>
+<div class="col-last even-row-color class-summary class-summary-tab1">&nbsp;</div>
+<div class="col-first odd-row-color class-summary class-summary-tab2"><a href="UniversalisWsImpl.html" title="class in de.chojo.universalis.connection">UniversalisWsImpl</a></div>
+<div class="col-last odd-row-color class-summary class-summary-tab2">&nbsp;</div>
+</div>
 </div>
 </div>
 </li>

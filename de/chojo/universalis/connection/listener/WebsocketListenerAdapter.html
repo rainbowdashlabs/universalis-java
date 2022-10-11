@@ -35,6 +35,7 @@ loadScripts(document, 'script');</script>
 <li><a href="package-summary.html">Package</a></li>
 <li class="nav-bar-cell1-rev">Class</li>
 <li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../../../../deprecated-list.html">Deprecated</a></li>
 <li><a href="../../../../../index-all.html">Index</a></li>
 <li><a href="../../../../../help-doc.html#class">Help</a></li>
 </ul>
@@ -97,11 +98,13 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Implemented Interfaces:</dt>
-<dd><code>com.neovisionaries.ws.client.WebSocketListener</code></dd>
+<dd><code>com.neovisionaries.ws.client.WebSocketListener</code>, <code><a href="../../listener/EventListener.html" title="interface in de.chojo.universalis.listener">EventListener</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">WebsocketListenerAdapter</span>
-<span class="extends-implements">extends com.neovisionaries.ws.client.WebSocketAdapter</span></div>
+<span class="extends-implements">extends com.neovisionaries.ws.client.WebSocketAdapter
+implements <a href="../../listener/EventListener.html" title="interface in de.chojo.universalis.listener">EventListener</a></span></div>
+<div class="block">The listener to receive and forward the <a href="../events/WsEvent.html" title="class in de.chojo.universalis.connection.events"><code>WsEvent</code></a>s to the registered <a href="../../listener/EventListener.html" title="interface in de.chojo.universalis.listener"><code>EventListener</code></a>s.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -113,8 +116,8 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.util.List,de.chojo.universalis.items.NameSupplier)" class="member-name-link">WebsocketListenerAdapter</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../../listener/EventListener.html" title="interface in de.chojo.universalis.listener">EventListener</a>&gt;&nbsp;listeners,
- <a href="../../items/NameSupplier.html" title="interface in de.chojo.universalis.items">NameSupplier</a>&nbsp;itemNameSupplier)</code></div>
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.util.List,de.chojo.universalis.provider.NameSupplier)" class="member-name-link">WebsocketListenerAdapter</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../../listener/EventListener.html" title="interface in de.chojo.universalis.listener">EventListener</a>&gt;&nbsp;listeners,
+ <a href="../../provider/NameSupplier.html" title="interface in de.chojo.universalis.provider">NameSupplier</a>&nbsp;itemNameSupplier)</code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 </div>
 </section>
@@ -138,6 +141,31 @@ loadScripts(document, 'script');</script>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onError(com.neovisionaries.ws.client.WebSocket,com.neovisionaries.ws.client.WebSocketException)" class="member-name-link">onError</a><wbr>(com.neovisionaries.ws.client.WebSocket&nbsp;websocket,
  com.neovisionaries.ws.client.WebSocketException&nbsp;cause)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onListingAdd(de.chojo.universalis.events.listings.impl.ListingAddEvent)" class="member-name-link">onListingAdd</a><wbr>(<a href="../../events/listings/impl/ListingAddEvent.html" title="class in de.chojo.universalis.events.listings.impl">ListingAddEvent</a>&nbsp;event)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Called when a listing was added.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onListingRemove(de.chojo.universalis.events.listings.impl.ListingRemoveEvent)" class="member-name-link">onListingRemove</a><wbr>(<a href="../../events/listings/impl/ListingRemoveEvent.html" title="class in de.chojo.universalis.events.listings.impl">ListingRemoveEvent</a>&nbsp;event)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Called when a listing was removed.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onListingUpdate(de.chojo.universalis.events.listings.impl.ListingUpdateEvent)" class="member-name-link">onListingUpdate</a><wbr>(<a href="../../events/listings/impl/ListingUpdateEvent.html" title="class in de.chojo.universalis.events.listings.impl">ListingUpdateEvent</a>&nbsp;event)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Called when a listing was added after getting removed.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onSalesAdd(de.chojo.universalis.events.sales.impl.SalesAddEvent)" class="member-name-link">onSalesAdd</a><wbr>(<a href="../../events/sales/impl/SalesAddEvent.html" title="class in de.chojo.universalis.events.sales.impl">SalesAddEvent</a>&nbsp;event)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Called when sales were added.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onSalesRemove(de.chojo.universalis.events.sales.impl.SalesRemoveEvent)" class="member-name-link">onSalesRemove</a><wbr>(<a href="../../events/sales/impl/SalesRemoveEvent.html" title="class in de.chojo.universalis.events.sales.impl">SalesRemoveEvent</a>&nbsp;event)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Called when sales were removed.</div>
+</div>
 </div>
 </div>
 </div>
@@ -159,10 +187,10 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(java.util.List,de.chojo.universalis.items.NameSupplier)">
+<section class="detail" id="&lt;init&gt;(java.util.List,de.chojo.universalis.provider.NameSupplier)">
 <h3>WebsocketListenerAdapter</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">WebsocketListenerAdapter</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../../listener/EventListener.html" title="interface in de.chojo.universalis.listener">EventListener</a>&gt;&nbsp;listeners,
- <a href="../../items/NameSupplier.html" title="interface in de.chojo.universalis.items">NameSupplier</a>&nbsp;itemNameSupplier)</span></div>
+ <a href="../../provider/NameSupplier.html" title="interface in de.chojo.universalis.provider">NameSupplier</a>&nbsp;itemNameSupplier)</span></div>
 </section>
 </li>
 </ul>
@@ -202,6 +230,80 @@ loadScripts(document, 'script');</script>
 <dd><code>onError</code>&nbsp;in class&nbsp;<code>com.neovisionaries.ws.client.WebSocketAdapter</code></dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Exception.html" title="class or interface in java.lang" class="external-link">Exception</a></code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="onListingAdd(de.chojo.universalis.events.listings.impl.ListingAddEvent)">
+<h3>onListingAdd</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">onListingAdd</span><wbr><span class="parameters">(<a href="../../events/listings/impl/ListingAddEvent.html" title="class in de.chojo.universalis.events.listings.impl">ListingAddEvent</a>&nbsp;event)</span></div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../listener/EventListener.html#onListingAdd(de.chojo.universalis.events.listings.impl.ListingAddEvent)">EventListener</a></code></span></div>
+<div class="block">Called when a listing was added.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="../../listener/EventListener.html#onListingAdd(de.chojo.universalis.events.listings.impl.ListingAddEvent)">onListingAdd</a></code>&nbsp;in interface&nbsp;<code><a href="../../listener/EventListener.html" title="interface in de.chojo.universalis.listener">EventListener</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>event</code> - add event</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="onListingRemove(de.chojo.universalis.events.listings.impl.ListingRemoveEvent)">
+<h3>onListingRemove</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">onListingRemove</span><wbr><span class="parameters">(<a href="../../events/listings/impl/ListingRemoveEvent.html" title="class in de.chojo.universalis.events.listings.impl">ListingRemoveEvent</a>&nbsp;event)</span></div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../listener/EventListener.html#onListingRemove(de.chojo.universalis.events.listings.impl.ListingRemoveEvent)">EventListener</a></code></span></div>
+<div class="block">Called when a listing was removed. This usually happens right before a <a href="../../listener/EventListener.html#onListingAdd(de.chojo.universalis.events.listings.impl.ListingAddEvent)"><code>EventListener.onListingAdd(ListingAddEvent)</code></a> call.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="../../listener/EventListener.html#onListingRemove(de.chojo.universalis.events.listings.impl.ListingRemoveEvent)">onListingRemove</a></code>&nbsp;in interface&nbsp;<code><a href="../../listener/EventListener.html" title="interface in de.chojo.universalis.listener">EventListener</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>event</code> - remove event</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="onListingUpdate(de.chojo.universalis.events.listings.impl.ListingUpdateEvent)">
+<h3>onListingUpdate</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">onListingUpdate</span><wbr><span class="parameters">(<a href="../../events/listings/impl/ListingUpdateEvent.html" title="class in de.chojo.universalis.events.listings.impl">ListingUpdateEvent</a>&nbsp;event)</span></div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../listener/EventListener.html#onListingUpdate(de.chojo.universalis.events.listings.impl.ListingUpdateEvent)">EventListener</a></code></span></div>
+<div class="block">Called when a listing was added after getting removed. This usually means it was updated.
+ <p>
+ This only works when <a href="../../subscriber/Subscriptions.html#listingAdd()"><code>Subscriptions.listingAdd()</code></a> and <a href="../../subscriber/Subscriptions.html#listingRemove()"><code>Subscriptions.listingRemove()</code></a> are subscribed for this world.
+ <p>
+ This event is created manually. It completely relies on universalis sending the remove event directly before the send event.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="../../listener/EventListener.html#onListingUpdate(de.chojo.universalis.events.listings.impl.ListingUpdateEvent)">onListingUpdate</a></code>&nbsp;in interface&nbsp;<code><a href="../../listener/EventListener.html" title="interface in de.chojo.universalis.listener">EventListener</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>event</code> - update event</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="onSalesAdd(de.chojo.universalis.events.sales.impl.SalesAddEvent)">
+<h3>onSalesAdd</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">onSalesAdd</span><wbr><span class="parameters">(<a href="../../events/sales/impl/SalesAddEvent.html" title="class in de.chojo.universalis.events.sales.impl">SalesAddEvent</a>&nbsp;event)</span></div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../listener/EventListener.html#onSalesAdd(de.chojo.universalis.events.sales.impl.SalesAddEvent)">EventListener</a></code></span></div>
+<div class="block">Called when sales were added.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="../../listener/EventListener.html#onSalesAdd(de.chojo.universalis.events.sales.impl.SalesAddEvent)">onSalesAdd</a></code>&nbsp;in interface&nbsp;<code><a href="../../listener/EventListener.html" title="interface in de.chojo.universalis.listener">EventListener</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>event</code> - add event</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="onSalesRemove(de.chojo.universalis.events.sales.impl.SalesRemoveEvent)">
+<h3>onSalesRemove</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">onSalesRemove</span><wbr><span class="parameters">(<a href="../../events/sales/impl/SalesRemoveEvent.html" title="class in de.chojo.universalis.events.sales.impl">SalesRemoveEvent</a>&nbsp;event)</span></div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../listener/EventListener.html#onSalesRemove(de.chojo.universalis.events.sales.impl.SalesRemoveEvent)">EventListener</a></code></span></div>
+<div class="block">Called when sales were removed.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="../../listener/EventListener.html#onSalesRemove(de.chojo.universalis.events.sales.impl.SalesRemoveEvent)">onSalesRemove</a></code>&nbsp;in interface&nbsp;<code><a href="../../listener/EventListener.html" title="interface in de.chojo.universalis.listener">EventListener</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>event</code> - remove event</dd>
 </dl>
 </section>
 </li>

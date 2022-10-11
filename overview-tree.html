@@ -31,6 +31,7 @@ loadScripts(document, 'script');</script>
 <li>Package</li>
 <li>Class</li>
 <li class="nav-bar-cell1-rev">Tree</li>
+<li><a href="deprecated-list.html">Deprecated</a></li>
 <li><a href="index-all.html">Index</a></li>
 <li><a href="help-doc.html#tree">Help</a></li>
 </ul>
@@ -64,9 +65,12 @@ loadScripts(document, 'script');</script>
 <li><a href="de/chojo/universalis/entities/package-tree.html">de.chojo.universalis.entities</a>, </li>
 <li><a href="de/chojo/universalis/events/package-tree.html">de.chojo.universalis.events</a>, </li>
 <li><a href="de/chojo/universalis/events/listings/package-tree.html">de.chojo.universalis.events.listings</a>, </li>
+<li><a href="de/chojo/universalis/events/listings/impl/package-tree.html">de.chojo.universalis.events.listings.impl</a>, </li>
 <li><a href="de/chojo/universalis/events/sales/package-tree.html">de.chojo.universalis.events.sales</a>, </li>
-<li><a href="de/chojo/universalis/items/package-tree.html">de.chojo.universalis.items</a>, </li>
+<li><a href="de/chojo/universalis/events/sales/impl/package-tree.html">de.chojo.universalis.events.sales.impl</a>, </li>
 <li><a href="de/chojo/universalis/listener/package-tree.html">de.chojo.universalis.listener</a>, </li>
+<li><a href="de/chojo/universalis/provider/package-tree.html">de.chojo.universalis.provider</a>, </li>
+<li><a href="de/chojo/universalis/provider/items/package-tree.html">de.chojo.universalis.provider.items</a>, </li>
 <li><a href="de/chojo/universalis/subscriber/package-tree.html">de.chojo.universalis.subscriber</a>, </li>
 <li><a href="de/chojo/universalis/worlds/package-tree.html">de.chojo.universalis.worlds</a></li>
 </ul>
@@ -76,39 +80,24 @@ loadScripts(document, 'script');</script>
 <ul>
 <li class="circle">java.lang.<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Object.html" class="type-name-link external-link" title="class or interface in java.lang">Object</a>
 <ul>
-<li class="circle">de.chojo.universalis.connection.events.<a href="de/chojo/universalis/connection/events/BaseEvent.html" class="type-name-link" title="class in de.chojo.universalis.connection.events">BaseEvent</a>
-<ul>
-<li class="circle">de.chojo.universalis.connection.events.concrete.listing.<a href="de/chojo/universalis/connection/events/concrete/listing/WsListingBase.html" class="type-name-link" title="class in de.chojo.universalis.connection.events.concrete.listing">WsListingBase</a>
-<ul>
-<li class="circle">de.chojo.universalis.connection.events.concrete.listing.impl.<a href="de/chojo/universalis/connection/events/concrete/listing/impl/WsListingAdd.html" class="type-name-link" title="class in de.chojo.universalis.connection.events.concrete.listing.impl">WsListingAdd</a></li>
-<li class="circle">de.chojo.universalis.connection.events.concrete.listing.impl.<a href="de/chojo/universalis/connection/events/concrete/listing/impl/WsListingRemove.html" class="type-name-link" title="class in de.chojo.universalis.connection.events.concrete.listing.impl">WsListingRemove</a></li>
-</ul>
-</li>
-<li class="circle">de.chojo.universalis.connection.events.concrete.sales.<a href="de/chojo/universalis/connection/events/concrete/sales/WsSalesBase.html" class="type-name-link" title="class in de.chojo.universalis.connection.events.concrete.sales">WsSalesBase</a>
-<ul>
-<li class="circle">de.chojo.universalis.connection.events.concrete.sales.impl.<a href="de/chojo/universalis/connection/events/concrete/sales/impl/WsSalesAdd.html" class="type-name-link" title="class in de.chojo.universalis.connection.events.concrete.sales.impl">WsSalesAdd</a></li>
-<li class="circle">de.chojo.universalis.connection.events.concrete.sales.impl.<a href="de/chojo/universalis/connection/events/concrete/sales/impl/WsSalesRemove.html" class="type-name-link" title="class in de.chojo.universalis.connection.events.concrete.sales.impl">WsSalesRemove</a></li>
-</ul>
-</li>
-</ul>
-</li>
 <li class="circle">de.chojo.universalis.events.<a href="de/chojo/universalis/events/Event.html" class="type-name-link" title="class in de.chojo.universalis.events">Event</a>
 <ul>
-<li class="circle">de.chojo.universalis.events.listings.<a href="de/chojo/universalis/events/listings/BaseListing.html" class="type-name-link" title="class in de.chojo.universalis.events.listings">BaseListing</a>
+<li class="circle">de.chojo.universalis.events.listings.<a href="de/chojo/universalis/events/listings/ListingEvent.html" class="type-name-link" title="class in de.chojo.universalis.events.listings">ListingEvent</a>
 <ul>
-<li class="circle">de.chojo.universalis.events.listings.<a href="de/chojo/universalis/events/listings/ListingAdd.html" class="type-name-link" title="class in de.chojo.universalis.events.listings">ListingAdd</a></li>
-<li class="circle">de.chojo.universalis.events.listings.<a href="de/chojo/universalis/events/listings/ListingRemove.html" class="type-name-link" title="class in de.chojo.universalis.events.listings">ListingRemove</a></li>
+<li class="circle">de.chojo.universalis.events.listings.impl.<a href="de/chojo/universalis/events/listings/impl/ListingAddEvent.html" class="type-name-link" title="class in de.chojo.universalis.events.listings.impl">ListingAddEvent</a></li>
+<li class="circle">de.chojo.universalis.events.listings.impl.<a href="de/chojo/universalis/events/listings/impl/ListingRemoveEvent.html" class="type-name-link" title="class in de.chojo.universalis.events.listings.impl">ListingRemoveEvent</a></li>
 </ul>
 </li>
-<li class="circle">de.chojo.universalis.events.sales.<a href="de/chojo/universalis/events/sales/BaseSales.html" class="type-name-link" title="class in de.chojo.universalis.events.sales">BaseSales</a>
+<li class="circle">de.chojo.universalis.events.listings.impl.<a href="de/chojo/universalis/events/listings/impl/ListingUpdateEvent.html" class="type-name-link" title="class in de.chojo.universalis.events.listings.impl">ListingUpdateEvent</a></li>
+<li class="circle">de.chojo.universalis.events.sales.<a href="de/chojo/universalis/events/sales/SalesEvent.html" class="type-name-link" title="class in de.chojo.universalis.events.sales">SalesEvent</a>
 <ul>
-<li class="circle">de.chojo.universalis.events.sales.<a href="de/chojo/universalis/events/sales/SalesAdd.html" class="type-name-link" title="class in de.chojo.universalis.events.sales">SalesAdd</a></li>
-<li class="circle">de.chojo.universalis.events.sales.<a href="de/chojo/universalis/events/sales/SalesRemove.html" class="type-name-link" title="class in de.chojo.universalis.events.sales">SalesRemove</a></li>
+<li class="circle">de.chojo.universalis.events.sales.impl.<a href="de/chojo/universalis/events/sales/impl/SalesAddEvent.html" class="type-name-link" title="class in de.chojo.universalis.events.sales.impl">SalesAddEvent</a></li>
+<li class="circle">de.chojo.universalis.events.sales.impl.<a href="de/chojo/universalis/events/sales/impl/SalesRemoveEvent.html" class="type-name-link" title="class in de.chojo.universalis.events.sales.impl">SalesRemoveEvent</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="circle">de.chojo.universalis.items.<a href="de/chojo/universalis/items/Items.html" class="type-name-link" title="class in de.chojo.universalis.items">Items</a> (implements de.chojo.universalis.items.<a href="de/chojo/universalis/items/NameSupplier.html" title="interface in de.chojo.universalis.items">NameSupplier</a>)</li>
+<li class="circle">de.chojo.universalis.provider.items.<a href="de/chojo/universalis/provider/items/Items.html" class="type-name-link" title="class in de.chojo.universalis.provider.items">Items</a> (implements de.chojo.universalis.provider.<a href="de/chojo/universalis/provider/NameSupplier.html" title="interface in de.chojo.universalis.provider">NameSupplier</a>)</li>
 <li class="circle">de.chojo.universalis.listener.<a href="de/chojo/universalis/listener/ListenerAdapter.html" class="type-name-link" title="class in de.chojo.universalis.listener">ListenerAdapter</a> (implements de.chojo.universalis.listener.<a href="de/chojo/universalis/listener/EventListener.html" title="interface in de.chojo.universalis.listener">EventListener</a>)</li>
 <li class="circle">java.lang.<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Record.html" class="type-name-link external-link" title="class or interface in java.lang">Record</a>
 <ul>
@@ -123,17 +112,17 @@ loadScripts(document, 'script');</script>
 <li class="circle">de.chojo.universalis.entities.<a href="de/chojo/universalis/entities/Retainer.html" class="type-name-link" title="class in de.chojo.universalis.entities">Retainer</a></li>
 <li class="circle">de.chojo.universalis.entities.<a href="de/chojo/universalis/entities/Sale.html" class="type-name-link" title="class in de.chojo.universalis.entities">Sale</a></li>
 <li class="circle">de.chojo.universalis.connection.events.concrete.sales.views.<a href="de/chojo/universalis/connection/events/concrete/sales/views/SaleView.html" class="type-name-link" title="class in de.chojo.universalis.connection.events.concrete.sales.views">SaleView</a></li>
-<li class="circle">de.chojo.universalis.worlds.<a href="de/chojo/universalis/worlds/World.html" class="type-name-link" title="class in de.chojo.universalis.worlds">World</a> (implements de.chojo.universalis.worlds.<a href="de/chojo/universalis/worlds/WorldProvider.html" title="interface in de.chojo.universalis.worlds">WorldProvider</a>)</li>
+<li class="circle">de.chojo.universalis.entities.<a href="de/chojo/universalis/entities/World.html" class="type-name-link" title="class in de.chojo.universalis.entities">World</a> (implements de.chojo.universalis.worlds.<a href="de/chojo/universalis/worlds/WorldProvider.html" title="interface in de.chojo.universalis.worlds">WorldProvider</a>)</li>
 </ul>
 </li>
 <li class="circle">de.chojo.universalis.subscriber.<a href="de/chojo/universalis/subscriber/Subscription.html" class="type-name-link" title="class in de.chojo.universalis.subscriber">Subscription</a></li>
 <li class="circle">de.chojo.universalis.<a href="de/chojo/universalis/Universalis.html" class="type-name-link" title="class in de.chojo.universalis">Universalis</a></li>
-<li class="circle">de.chojo.universalis.connection.builder.<a href="de/chojo/universalis/connection/builder/UniversalisBuilder.html" class="type-name-link" title="class in de.chojo.universalis.connection.builder">UniversalisBuilder</a></li>
-<li class="circle">de.chojo.universalis.connection.<a href="de/chojo/universalis/connection/UniversalisWs.html" class="type-name-link" title="class in de.chojo.universalis.connection">UniversalisWs</a></li>
+<li class="circle">de.chojo.universalis.connection.builder.<a href="de/chojo/universalis/connection/builder/UniversalisWsBuilder.html" class="type-name-link" title="class in de.chojo.universalis.connection.builder">UniversalisWsBuilder</a></li>
+<li class="circle">de.chojo.universalis.connection.<a href="de/chojo/universalis/connection/UniversalisWsImpl.html" class="type-name-link" title="class in de.chojo.universalis.connection">UniversalisWsImpl</a> (implements de.chojo.universalis.connection.<a href="de/chojo/universalis/connection/UniversalisWs.html" title="interface in de.chojo.universalis.connection">UniversalisWs</a>)</li>
 <li class="circle">com.neovisionaries.ws.client.WebSocketAdapter (implements com.neovisionaries.ws.client.WebSocketListener)
 <ul>
 <li class="circle">de.chojo.universalis.connection.listener.<a href="de/chojo/universalis/connection/listener/StatusListener.html" class="type-name-link" title="class in de.chojo.universalis.connection.listener">StatusListener</a></li>
-<li class="circle">de.chojo.universalis.connection.listener.<a href="de/chojo/universalis/connection/listener/WebsocketListenerAdapter.html" class="type-name-link" title="class in de.chojo.universalis.connection.listener">WebsocketListenerAdapter</a></li>
+<li class="circle">de.chojo.universalis.connection.listener.<a href="de/chojo/universalis/connection/listener/WebsocketListenerAdapter.html" class="type-name-link" title="class in de.chojo.universalis.connection.listener">WebsocketListenerAdapter</a> (implements de.chojo.universalis.listener.<a href="de/chojo/universalis/listener/EventListener.html" title="interface in de.chojo.universalis.listener">EventListener</a>)</li>
 </ul>
 </li>
 <li class="circle">de.chojo.universalis.connection.builder.<a href="de/chojo/universalis/connection/builder/WebsocketFactoryBuilder.html" class="type-name-link" title="class in de.chojo.universalis.connection.builder">WebsocketFactoryBuilder</a></li>
@@ -152,6 +141,23 @@ loadScripts(document, 'script');</script>
 <li class="circle">de.chojo.universalis.worlds.<a href="de/chojo/universalis/worlds/Worlds.NorthAmerica.Primal.html" class="type-name-link" title="class in de.chojo.universalis.worlds">Worlds.NorthAmerica.Primal</a> (implements de.chojo.universalis.worlds.<a href="de/chojo/universalis/worlds/Datacenter.html" title="interface in de.chojo.universalis.worlds">Datacenter</a>)</li>
 <li class="circle">de.chojo.universalis.worlds.<a href="de/chojo/universalis/worlds/Worlds.Oceania.html" class="type-name-link" title="class in de.chojo.universalis.worlds">Worlds.Oceania</a> (implements de.chojo.universalis.worlds.<a href="de/chojo/universalis/worlds/Region.html" title="interface in de.chojo.universalis.worlds">Region</a>)</li>
 <li class="circle">de.chojo.universalis.worlds.<a href="de/chojo/universalis/worlds/Worlds.Oceania.Materia.html" class="type-name-link" title="class in de.chojo.universalis.worlds">Worlds.Oceania.Materia</a> (implements de.chojo.universalis.worlds.<a href="de/chojo/universalis/worlds/Datacenter.html" title="interface in de.chojo.universalis.worlds">Datacenter</a>)</li>
+<li class="circle">de.chojo.universalis.connection.events.<a href="de/chojo/universalis/connection/events/WsEvent.html" class="type-name-link" title="class in de.chojo.universalis.connection.events">WsEvent</a>&lt;T&gt; (implements de.chojo.universalis.connection.events.<a href="de/chojo/universalis/connection/events/EventSupplier.html" title="interface in de.chojo.universalis.connection.events">EventSupplier</a>&lt;T&gt;)
+<ul>
+<li class="circle">de.chojo.universalis.connection.events.concrete.listing.<a href="de/chojo/universalis/connection/events/concrete/listing/WsListingEvent.html" class="type-name-link" title="class in de.chojo.universalis.connection.events.concrete.listing">WsListingEvent</a>&lt;T&gt;
+<ul>
+<li class="circle">de.chojo.universalis.connection.events.concrete.listing.impl.<a href="de/chojo/universalis/connection/events/concrete/listing/impl/WsListingAddEvent.html" class="type-name-link" title="class in de.chojo.universalis.connection.events.concrete.listing.impl">WsListingAddEvent</a></li>
+<li class="circle">de.chojo.universalis.connection.events.concrete.listing.impl.<a href="de/chojo/universalis/connection/events/concrete/listing/impl/WsListingRemoveEvent.html" class="type-name-link" title="class in de.chojo.universalis.connection.events.concrete.listing.impl">WsListingRemoveEvent</a></li>
+</ul>
+</li>
+<li class="circle">de.chojo.universalis.connection.events.concrete.listing.impl.<a href="de/chojo/universalis/connection/events/concrete/listing/impl/WsListingUpdateEvent.html" class="type-name-link" title="class in de.chojo.universalis.connection.events.concrete.listing.impl">WsListingUpdateEvent</a></li>
+<li class="circle">de.chojo.universalis.connection.events.concrete.sales.<a href="de/chojo/universalis/connection/events/concrete/sales/WsSalesEvent.html" class="type-name-link" title="class in de.chojo.universalis.connection.events.concrete.sales">WsSalesEvent</a>&lt;T&gt;
+<ul>
+<li class="circle">de.chojo.universalis.connection.events.concrete.sales.impl.<a href="de/chojo/universalis/connection/events/concrete/sales/impl/WsSalesAddEvent.html" class="type-name-link" title="class in de.chojo.universalis.connection.events.concrete.sales.impl">WsSalesAddEvent</a></li>
+<li class="circle">de.chojo.universalis.connection.events.concrete.sales.impl.<a href="de/chojo/universalis/connection/events/concrete/sales/impl/WsSalesRemoveEvent.html" class="type-name-link" title="class in de.chojo.universalis.connection.events.concrete.sales.impl">WsSalesRemoveEvent</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -160,8 +166,10 @@ loadScripts(document, 'script');</script>
 <h2 title="Interface Hierarchy">Interface Hierarchy</h2>
 <ul>
 <li class="circle">de.chojo.universalis.listener.<a href="de/chojo/universalis/listener/EventListener.html" class="type-name-link" title="interface in de.chojo.universalis.listener">EventListener</a></li>
-<li class="circle">de.chojo.universalis.items.<a href="de/chojo/universalis/items/NameSupplier.html" class="type-name-link" title="interface in de.chojo.universalis.items">NameSupplier</a></li>
-<li class="circle">de.chojo.universalis.subscriber.<a href="de/chojo/universalis/subscriber/Subscribtions.html" class="type-name-link" title="interface in de.chojo.universalis.subscriber">Subscribtions</a></li>
+<li class="circle">de.chojo.universalis.connection.events.<a href="de/chojo/universalis/connection/events/EventSupplier.html" class="type-name-link" title="interface in de.chojo.universalis.connection.events">EventSupplier</a>&lt;T&gt;</li>
+<li class="circle">de.chojo.universalis.provider.<a href="de/chojo/universalis/provider/NameSupplier.html" class="type-name-link" title="interface in de.chojo.universalis.provider">NameSupplier</a></li>
+<li class="circle">de.chojo.universalis.subscriber.<a href="de/chojo/universalis/subscriber/Subscriptions.html" class="type-name-link" title="interface in de.chojo.universalis.subscriber">Subscriptions</a></li>
+<li class="circle">de.chojo.universalis.connection.<a href="de/chojo/universalis/connection/UniversalisWs.html" class="type-name-link" title="interface in de.chojo.universalis.connection">UniversalisWs</a></li>
 <li class="circle">de.chojo.universalis.worlds.<a href="de/chojo/universalis/worlds/WorldProvider.html" class="type-name-link" title="interface in de.chojo.universalis.worlds">WorldProvider</a>
 <ul>
 <li class="circle">de.chojo.universalis.worlds.<a href="de/chojo/universalis/worlds/Datacenter.html" class="type-name-link" title="interface in de.chojo.universalis.worlds">Datacenter</a></li>

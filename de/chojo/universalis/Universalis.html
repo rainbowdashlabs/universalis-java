@@ -35,6 +35,7 @@ loadScripts(document, 'script');</script>
 <li><a href="package-summary.html">Package</a></li>
 <li class="nav-bar-cell1-rev">Class</li>
 <li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../../deprecated-list.html">Deprecated</a></li>
 <li><a href="../../../index-all.html">Index</a></li>
 <li><a href="../../../help-doc.html#class">Help</a></li>
 </ul>
@@ -96,6 +97,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Universalis</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Main class to create instances for accessing universalis</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -123,12 +125,16 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="connection/builder/UniversalisBuilder.html" title="class in de.chojo.universalis.connection.builder">UniversalisBuilder</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getDefaultWs()" class="member-name-link">getDefaultWs</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="connection/builder/UniversalisWsBuilder.html" title="class in de.chojo.universalis.connection.builder">UniversalisWsBuilder</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getDefaultSocket()" class="member-name-link">getDefaultSocket</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Get a universalis builder for websockets.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="connection/builder/WebsocketFactoryBuilder.html" title="class in de.chojo.universalis.connection.builder">WebsocketFactoryBuilder</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#wsBuilder()" class="member-name-link">wsBuilder</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#websocketBuilder()" class="member-name-link">websocketBuilder</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Get a websocket builder.</div>
+</div>
 </div>
 </div>
 </div>
@@ -161,15 +167,27 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="wsBuilder()">
-<h3>wsBuilder</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="connection/builder/WebsocketFactoryBuilder.html" title="class in de.chojo.universalis.connection.builder">WebsocketFactoryBuilder</a></span>&nbsp;<span class="element-name">wsBuilder</span>()</div>
+<section class="detail" id="websocketBuilder()">
+<h3>websocketBuilder</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="connection/builder/WebsocketFactoryBuilder.html" title="class in de.chojo.universalis.connection.builder">WebsocketFactoryBuilder</a></span>&nbsp;<span class="element-name">websocketBuilder</span>()</div>
+<div class="block">Get a websocket builder. Use this if you want more control about the socket itself.
+ <p>
+ Use <a href="#getDefaultSocket()"><code>getDefaultSocket()</code></a> if your don't know that this means.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>websocket factory builder</dd>
+</dl>
 </section>
 </li>
 <li>
-<section class="detail" id="getDefaultWs()">
-<h3>getDefaultWs</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="connection/builder/UniversalisBuilder.html" title="class in de.chojo.universalis.connection.builder">UniversalisBuilder</a></span>&nbsp;<span class="element-name">getDefaultWs</span>()</div>
+<section class="detail" id="getDefaultSocket()">
+<h3>getDefaultSocket</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="connection/builder/UniversalisWsBuilder.html" title="class in de.chojo.universalis.connection.builder">UniversalisWsBuilder</a></span>&nbsp;<span class="element-name">getDefaultSocket</span>()</div>
+<div class="block">Get a universalis builder for websockets.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>universalis websocket builder</dd>
+</dl>
 </section>
 </li>
 </ul>
