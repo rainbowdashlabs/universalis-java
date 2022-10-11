@@ -10,5 +10,6 @@ import de.chojo.universalis.connection.events.concrete.listing.views.MateriaView
 
 import java.util.List;
 
-public record ItemMeta(boolean hq, @com.fasterxml.jackson.annotation.JsonProperty("isCrafted") boolean crafted, int stainId, List<MateriaView> materia) {
+public record ItemMeta(boolean hq, @com.fasterxml.jackson.annotation.JsonProperty("isCrafted") boolean crafted,
+                       int stainId, List<MateriaView> materia) {
 }

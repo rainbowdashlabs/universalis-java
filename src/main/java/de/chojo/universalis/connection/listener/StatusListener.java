@@ -10,6 +10,7 @@ import com.neovisionaries.ws.client.WebSocket;
 import com.neovisionaries.ws.client.WebSocketAdapter;
 import com.neovisionaries.ws.client.WebSocketException;
 import com.neovisionaries.ws.client.WebSocketFrame;
+import de.chojo.universalis.connection.UniversalisWsImpl;
 import de.chojo.universalis.subscriber.Subscription;
 import org.bson.BSONEncoder;
 import org.bson.BasicBSONEncoder;
@@ -21,30 +22,81 @@ import java.util.Map;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
+/**
+ * Status listener for the websocket
+ */
 public class StatusListener extends WebSocketAdapter {
     private static final Logger log = getLogger(StatusListener.class);
     private final BSONEncoder encoder = new BasicBSONEncoder();
+    private final UniversalisWsImpl universalisWs;
     private final List<Subscription> subscriptions;
+    private boolean connected;
 
-    public StatusListener(List<Subscription> subscriptions) {
+    public StatusListener(UniversalisWsImpl universalisWs, List<Subscription> subscriptions) {
+        this.universalisWs = universalisWs;
         this.subscriptions = subscriptions;
     }
 
     @Override
     public void onConnected(WebSocket websocket, Map<String, List<String>> headers) throws Exception {
-        log.trace("WebSocket Connected");
+        log.info("WebSocket Connected");
+        connected = true;
         for (var entry : headers.entrySet()) {
             log.trace("{}:{}", entry.getKey(), String.join(", ", entry.getValue()));
         }
 
         for (Subscription subscription : subscriptions) {
             for (String channel : subscription.channel()) {
-                BasicBSONObject payload = new BasicBSONObject().append("event", "subscribe")
-                                                               .append("channel", channel);
-                websocket.sendBinary(encoder.encode(payload));
-                log.trace("Subscribed to channel {}", channel);
+                websocket.sendBinary(subscribeChannel(channel));
+                log.debug("Subscribed to channel {}", channel);
             }
         }
+    }
+
+    /**
+     * Subscripe a route
+     *
+     * @param subscription subscription
+     * @throws IllegalStateException When the socket is not connected
+     */
+    public void subscibe(Subscription subscription) {
+        if (!isConnected()) {
+            throw new IllegalStateException("The socket is not connected.");
+        }
+        for (String channel : subscription.channel()) {
+            universalisWs.socket().sendBinary(subscribeChannel(channel));
+            log.debug("Subscribed to channel {}", channel);
+        }
+    }
+
+    /**
+     * Unsubscripe a route
+     *
+     * @param subscription subscription
+     * @throws IllegalStateException When the socket is not connected
+     */
+    public void unsubscribe(Subscription subscription) {
+        if (!isConnected()) {
+            throw new IllegalStateException("The socket is not connected.");
+        }
+        for (String channel : subscription.channel()) {
+            universalisWs.socket().sendBinary(unsubscribeChannel(channel));
+            log.debug("Subscribed to channel {}", channel);
+        }
+    }
+
+    private byte[] unsubscribeChannel(String channel) {
+        return subscriptionChange(channel, "unsubscribe");
+    }
+
+    private byte[] subscribeChannel(String channel) {
+        return subscriptionChange(channel, "subscribe");
+    }
+
+    private byte[] subscriptionChange(String channel, String event) {
+        BasicBSONObject payload = new BasicBSONObject().append("event", event)
+                                                       .append("channel", channel);
+        return encoder.encode(payload);
     }
 
     @Override
@@ -60,13 +112,26 @@ public class StatusListener extends WebSocketAdapter {
 
     @Override
     public void onDisconnected(WebSocket websocket, WebSocketFrame serverCloseFrame, WebSocketFrame clientCloseFrame, boolean closedByServer) throws Exception {
-        System.out.println(serverCloseFrame);
-        System.out.println(closedByServer);
-        System.out.println("Disconnected");
+        connected = false;
+        if (closedByServer) {
+            log.info("Remote host closed the connection");
+        } else {
+            log.info("Closed connection to remote host");
+        }
+        universalisWs.ignite();
     }
 
     @Override
     public void onUnexpectedError(WebSocket websocket, WebSocketException cause) throws Exception {
-        log.error("Ups", cause);
+        log.error("Error in websocket", cause);
+    }
+
+    /**
+     * True when the socket is connected.
+     *
+     * @return true when connected
+     */
+    public boolean isConnected() {
+        return connected;
     }
 }

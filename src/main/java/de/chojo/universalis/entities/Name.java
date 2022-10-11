@@ -8,6 +8,14 @@ package de.chojo.universalis.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * Name of an entity
+ *
+ * @param english  englisch name
+ * @param german   german name
+ * @param french   french name
+ * @param japanese japanese name
+ */
 public record Name(@JsonProperty("en") String english,
                    @JsonProperty("de") String german,
                    @JsonProperty("fr") String french,

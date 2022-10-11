@@ -6,5 +6,11 @@
 
 package de.chojo.universalis.entities;
 
-public record Creator(String name, @com.fasterxml.jackson.annotation.JsonProperty("creatorID") String id) {
+/**
+ * Represents the creator of a listing
+ *
+ * @param name name of creator
+ * @param id   hashed id of the creator
+ */
+public record Creator(String name, String id) {
 }

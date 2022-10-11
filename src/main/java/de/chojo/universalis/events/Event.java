@@ -7,8 +7,11 @@
 package de.chojo.universalis.events;
 
 import de.chojo.universalis.entities.Item;
-import de.chojo.universalis.worlds.World;
+import de.chojo.universalis.entities.World;
 
+/**
+ * Base class for an event.
+ */
 public class Event {
     private final World world;
     private final Item item;
@@ -18,10 +21,18 @@ public class Event {
         this.item = item;
     }
 
+    /**
+     * Event world
+     * @return world
+     */
     public World world() {
         return world;
     }
 
+    /**
+     * Event item
+     * @return item
+     */
     public Item item() {
         return item;
     }

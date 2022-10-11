@@ -6,5 +6,12 @@
 
 package de.chojo.universalis.entities;
 
-public record Retainer(String id, String name, City city){
+/**
+ * The retainer of this listing
+ *
+ * @param id   retainer id
+ * @param name retainer name
+ * @param city retainer city
+ */
+public record Retainer(String id, String name, City city) {
 }

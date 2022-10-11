@@ -6,12 +6,7 @@
 
 package de.chojo.universalis.entities;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import de.chojo.universalis.connection.events.concrete.listing.views.MateriaView;
-import de.chojo.universalis.worlds.World;
-
 import java.time.Instant;
-import java.util.List;
 
 public record Listing(Instant lastReviewTime,
                       World world,
@@ -22,5 +17,5 @@ public record Listing(Instant lastReviewTime,
                       Retainer retainer,
                       String sellerId,
                       Price price
-                      ) {
+) {
 }

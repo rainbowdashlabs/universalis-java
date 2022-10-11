@@ -9,7 +9,7 @@ package de.chojo.universalis.connection.events.concrete.sales.views;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import de.chojo.universalis.entities.Price;
 import de.chojo.universalis.entities.Sale;
-import de.chojo.universalis.worlds.World;
+import de.chojo.universalis.entities.World;
 
 import java.time.Instant;
 
@@ -23,6 +23,12 @@ public record SaleView(@JsonProperty("hq") boolean hq,
                        @JsonProperty("buyerName") String buyerName,
                        @JsonProperty("total") int total) {
 
+    /**
+     * Converts the {@link SaleView} to a {@link Sale} object.
+     *
+     * @param world world for the sale
+     * @return list of sales
+     */
     public Sale toSale(World world) {
         return new Sale(hq,
                 new Price(pricePerUnit, quantity, total),

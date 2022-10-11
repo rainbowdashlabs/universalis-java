@@ -6,10 +6,12 @@
 
 package de.chojo.universalis.worlds;
 
+import de.chojo.universalis.entities.World;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public interface Region extends WorldProvider{
+public interface Region extends WorldProvider {
     /**
      * Gets a list of all datacenters in this region.
      *

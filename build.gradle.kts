@@ -19,10 +19,13 @@ dependencies {
     api("com.neovisionaries", "nv-websocket-client", "2.14")
     api("com.fasterxml.jackson.core", "jackson-databind", "2.13.4")
     api("org.mongodb", "bson", "4.7.2")
+    api("com.google.guava:guava:31.1-jre")
 
     // Logging
     api("org.slf4j", "slf4j-api", "2.0.3")
 
+    implementation("org.apache.logging.log4j", "log4j-core", "2.19.0")
+    implementation("org.apache.logging.log4j", "log4j-slf4j2-impl", "2.19.0")
     testImplementation("org.apache.logging.log4j", "log4j-core", "2.19.0")
     testImplementation("org.apache.logging.log4j", "log4j-slf4j2-impl", "2.19.0")
 
