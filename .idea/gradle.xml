@@ -9,6 +9,10 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/universalis-core" />
+            <option value="$PROJECT_DIR$/universalis-example" />
+            <option value="$PROJECT_DIR$/universalis-rest" />
+            <option value="$PROJECT_DIR$/universalis-ws" />
           </set>
         </option>
       </GradleProjectSettings>
