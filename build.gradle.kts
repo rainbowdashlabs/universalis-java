@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "de.chojo.universalis"
-version = "1.0"
+version = "1.1.0"
 
 repositories {
     maven("https://eldonexus.de/repository/maven-public")
@@ -66,7 +66,7 @@ allprojects {
             publications.create<MavenPublication>("maven") {
                 publishData.configurePublication(this)
                 pom {
-                    url.set("https://github.com/rainbowdashlabs/sadu")
+                    url.set("https://github.com/rainbowdashlabs/universalis-java")
                     developers {
                         developer {
                             name.set("Florian Fülling")
@@ -76,7 +76,7 @@ allprojects {
                     licenses {
                         license {
                             name.set("GNU Affero General Public License v3.0")
-                            url.set("https://github.com/rainbowdashlabs/sadu/blob/main/LICENSE.md")
+                            url.set("https://github.com/rainbowdashlabs/universalis-java/blob/main/LICENSE.md")
                         }
                     }
                 }
