@@ -71,7 +71,7 @@ class MarketBoardRequestImplTest {
     void statsTime() {
         MarketBoardResponse noGst = defaultReq().statsTime(Duration.ofDays(7)).complete();
         MarketBoardResponse gst = defaultReq().statsTime(Duration.ofHours(1)).complete();
-        Assertions.assertNotEquals(noGst.averagePrice(), gst.averagePrice());
+        Assertions.assertNotEquals(noGst.saleVelocity(), gst.saleVelocity());
     }
 
     private MarketBoardRequest defaultReq() {
