@@ -6,6 +6,7 @@
 
 package de.chojo.universalis.websocket.events.concrete.sales;
 
+import de.chojo.universalis.entities.Item;
 import de.chojo.universalis.websocket.events.WsEvent;
 import de.chojo.universalis.websocket.events.concrete.sales.views.SaleView;
 import de.chojo.universalis.entities.Sale;
@@ -21,7 +22,13 @@ public abstract class WsSalesEvent<T extends Event> extends WsEvent<T> {
 
     private final List<SaleView> saleView;
 
-    public WsSalesEvent(int item, int world, List<SaleView> saleView) {
+    /**
+     * Creates a sales event
+     * @param item item id
+     * @param world world id
+     * @param saleView sale views
+     */
+    public WsSalesEvent(Item item, World world, List<SaleView> saleView) {
         super(item, world);
         this.saleView = saleView;
     }

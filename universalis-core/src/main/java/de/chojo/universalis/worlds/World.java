@@ -9,6 +9,9 @@ package de.chojo.universalis.worlds;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Represents a world.
+ */
 public interface World extends WorldProvider {
 
     /**
@@ -48,7 +51,21 @@ public interface World extends WorldProvider {
         };
     }
 
+    /**
+     * Name of the world.
+     * <p>
+     * The name might be empty if the world was unkown.
+     *
+     * @return name
+     */
     String name();
 
+    /**
+     * ID of the world.
+     * <p>
+     * This id might be -1 if the world was unkown
+     *
+     * @return id
+     */
     int id();
 }

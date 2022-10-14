@@ -20,6 +20,12 @@ import java.util.List;
  */
 @Deprecated
 public class SalesRemoveEvent extends SalesEvent {
+    /**
+     * Creates a new sales remove event
+     * @param world world
+     * @param item item
+     * @param sales sales
+     */
     public SalesRemoveEvent(World world, Item item, List<Sale> sales) {
         super(world, item, sales);
     }

@@ -11,9 +11,17 @@ import de.chojo.universalis.rest.requests.RequestBuilder;
 import de.chojo.universalis.rest.response.DataCentersResponse;
 import de.chojo.universalis.rest.routes.api.DataCentersRequest;
 
+/**
+ * Implementation for a {@link DataCentersRequest}
+ */
 public class DataCentersRequestImpl extends RequestBuilder<DataCentersResponse> implements DataCentersRequest {
-    public DataCentersRequestImpl(UniversalisRestImpl xivapi) {
-        super(xivapi, DataCentersResponse.class);
+    /**
+     * Create a new data centers request
+     *
+     * @param rest rest client
+     */
+    public DataCentersRequestImpl(UniversalisRestImpl rest) {
+        super(rest, DataCentersResponse.class);
         path("data-centers");
     }
 }

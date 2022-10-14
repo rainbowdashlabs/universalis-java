@@ -16,6 +16,12 @@ public class Event {
     private final World world;
     private final Item item;
 
+    /**
+     * Creates a new event
+     *
+     * @param world world
+     * @param item  item
+     */
     public Event(World world, Item item) {
         this.world = world;
         this.item = item;
@@ -23,6 +29,7 @@ public class Event {
 
     /**
      * Event world
+     *
      * @return world
      */
     public World world() {
@@ -31,6 +38,7 @@ public class Event {
 
     /**
      * Event item
+     *
      * @return item
      */
     public Item item() {

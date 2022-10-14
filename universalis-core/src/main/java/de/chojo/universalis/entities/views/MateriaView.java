@@ -8,6 +8,14 @@ package de.chojo.universalis.entities.views;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public record MateriaView(@JsonProperty("slotId") int slotId,
-                          @JsonProperty("materiaId") int materiaId) {
+// TODO: Probably add some richer mapping to type and tier
+
+/**
+ * <a href="https://docs.universalis.app/#schema-materiaview">See on universalis</a>
+ *
+ * @param slotId    The materia slot.
+ * @param materiaId The materia item ID.
+ */
+public record MateriaView(@JsonProperty("slotID") int slotId,
+                          @JsonProperty("materiaID") int materiaId) {
 }

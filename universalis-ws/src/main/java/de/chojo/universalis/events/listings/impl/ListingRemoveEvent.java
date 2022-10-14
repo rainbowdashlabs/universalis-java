@@ -19,6 +19,12 @@ import java.util.List;
  * This event is ideally identical in content to the previous {@link ListingAddEvent} event.
  */
 public class ListingRemoveEvent extends ListingEvent {
+    /**
+     * Create a new listing remove event
+     * @param item item
+     * @param world world
+     * @param listings listings
+     */
     public ListingRemoveEvent(Item item, World world, List<Listing> listings) {
         super(item, world, listings);
     }

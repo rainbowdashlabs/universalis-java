@@ -6,23 +6,24 @@
 
 package de.chojo.universalis.websocket.events;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import de.chojo.universalis.websocket.builder.UniversalisWsBuilder;
 import de.chojo.universalis.entities.Item;
-import de.chojo.universalis.worlds.World;
 import de.chojo.universalis.events.Event;
-import de.chojo.universalis.provider.NameSupplier;
-import de.chojo.universalis.worlds.Worlds;
+import de.chojo.universalis.worlds.World;
 
 /**
  * A websocket event.
  */
 public abstract class WsEvent<T extends Event> implements EventSupplier<T> {
-    private final int item;
-    private final int world;
+    private final Item item;
+    private final World world;
 
-    @JsonCreator
-    public WsEvent(int item, int world) {
+    /**
+     * Create a new websocket event.
+     *
+     * @param item  item
+     * @param world world
+     */
+    public WsEvent(Item item, World world) {
         this.item = item;
         this.world = world;
     }
@@ -32,7 +33,7 @@ public abstract class WsEvent<T extends Event> implements EventSupplier<T> {
      *
      * @return item id
      */
-    public int itemId() {
+    public Item item() {
         return item;
     }
 
@@ -41,26 +42,7 @@ public abstract class WsEvent<T extends Event> implements EventSupplier<T> {
      *
      * @return world id
      */
-    public int worldId() {
-        return world;
-    }
-
-    /**
-     * Maps the {@link #worldId()} to a world via the {@link Worlds} class
-     *
-     * @return world
-     */
     public World world() {
-        return Worlds.worldById(worldId());
-    }
-
-    /**
-     * Maps the {@link #itemId()} to an {@link Item} via the {@link NameSupplier} set in {@link UniversalisWsBuilder#itemNameSupplier(NameSupplier)}
-     *
-     * @param supplier supplier
-     * @return item
-     */
-    public Item item(NameSupplier supplier) {
-        return Item.build(supplier, itemId());
+        return world;
     }
 }

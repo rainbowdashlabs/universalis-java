@@ -4,9 +4,8 @@
  *     Copyright (C) 2022 RainbowDashLabs and Contributor
  */
 
-package de.chojo.universalis.rest.requests.deserializer;
+package de.chojo.universalis.deserializer.response;
 
-import com.fasterxml.jackson.core.JacksonException;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
@@ -22,6 +21,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * Deserializer for {@link HistoryResponse}
+ */
 public class HistoryResponseDeserializer extends JsonDeserializer<HistoryResponse> {
     @Override
     public HistoryResponse deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {

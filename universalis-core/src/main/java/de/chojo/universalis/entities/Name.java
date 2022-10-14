@@ -20,4 +20,14 @@ public record Name(@JsonProperty("en") String english,
                    @JsonProperty("de") String german,
                    @JsonProperty("fr") String french,
                    @JsonProperty("ja") String japanese) {
+    private static final Name EMPTY = new Name("", "", "", "");
+
+    /**
+     * Constant empty name object
+     *
+     * @return empty instance
+     */
+    public static Name empty() {
+        return EMPTY;
+    }
 }

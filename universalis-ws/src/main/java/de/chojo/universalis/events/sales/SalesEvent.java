@@ -19,6 +19,12 @@ import java.util.List;
 public abstract class SalesEvent extends Event {
     private final List<Sale> sales;
 
+    /**
+     * Creates a new sales event
+     * @param world world
+     * @param item item
+     * @param sales sales
+     */
     public SalesEvent(World world, Item item, List<Sale> sales) {
         super(world, item);
         this.sales = sales;

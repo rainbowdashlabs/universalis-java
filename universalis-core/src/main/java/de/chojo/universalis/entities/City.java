@@ -7,11 +7,18 @@
 package de.chojo.universalis.entities;
 
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+
+import static org.slf4j.LoggerFactory.getLogger;
 
 /**
  * An enum representing cities which can have retainers.
  */
 public enum City {
+    /**
+     * Limsa Lominsa
+     */
+    UNKOWN(-1, "Unkown"),
     /**
      * Limsa Lominsa
      */
@@ -36,7 +43,12 @@ public enum City {
      * Crystarium
      */
     CRYSTARIUM(10, "Crystarium"),
-    OLD_SHARLAYAN(-1, "Old Sharlayan");
+    /**
+     * Old Sharlayan
+     */
+    OLD_SHARLAYAN(12, "Old Sharlayan");
+
+    private static final Logger log = getLogger(City.class);
 
     private final int id;
     private final String name;
@@ -57,7 +69,8 @@ public enum City {
         for (City city : values()) {
             if (city.id() == id) return city;
         }
-        throw new IllegalArgumentException("ID " + id + " is unkown.");
+        log.error("ID {} is unkown.", id);
+        return UNKOWN;
     }
 
     /**
@@ -71,9 +84,15 @@ public enum City {
         for (City city : values()) {
             if (city.cityName().equalsIgnoreCase(name)) return city;
         }
-        throw new IllegalArgumentException("City " + name + " is unkown.");
+        log.error("Name {} is unkown.", name);
+        return UNKOWN;
     }
 
+    /**
+     * Name of the city
+     *
+     * @return name
+     */
     @NotNull
     public String cityName() {
         return name;

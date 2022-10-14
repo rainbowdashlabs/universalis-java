@@ -6,11 +6,13 @@
 
 package de.chojo.universalis.entities;
 
+import javax.annotation.Nullable;
+
 /**
  * Represents the creator of a listing
  *
  * @param name name of creator
  * @param id   hashed id of the creator
  */
-public record Creator(String name, String id) {
+public record Creator(@Nullable String name, String id) {
 }

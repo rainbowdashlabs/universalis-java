@@ -9,10 +9,22 @@ package de.chojo.universalis.rest.routes.api;
 import de.chojo.universalis.rest.requests.Request;
 import de.chojo.universalis.rest.response.MarketBoardResponse;
 import de.chojo.universalis.rest.routes.api.marketboard.RegionMarketBoardRequest;
+import de.chojo.universalis.rest.routes.requests.MarketBoardRequestImpl;
 
+import javax.annotation.CheckReturnValue;
 import java.time.Duration;
 
+/**
+ * Base implementation for a {@link MarketBoardRequestImpl}
+ */
 public interface MarketBoardRequest extends Request<MarketBoardResponse>, RegionMarketBoardRequest {
+    /**
+     * The number of entries to return. By defaultall listings will be returned.
+     *
+     * @param limit limit
+     * @return request
+     */
+    @CheckReturnValue
     MarketBoardRequest listingsLimit(int limit);
 
     /**
@@ -21,6 +33,7 @@ public interface MarketBoardRequest extends Request<MarketBoardResponse>, Region
      * @param limit limit
      * @return request
      */
+    @CheckReturnValue
     MarketBoardRequest historyLimit(int limit);
 
     /**
@@ -30,6 +43,7 @@ public interface MarketBoardRequest extends Request<MarketBoardResponse>, Region
      *
      * @return request
      */
+    @CheckReturnValue
     MarketBoardRequest noGst();
 
     /**
@@ -40,6 +54,7 @@ public interface MarketBoardRequest extends Request<MarketBoardResponse>, Region
      * @param noGst set to true to disable GST
      * @return request
      */
+    @CheckReturnValue
     MarketBoardRequest noGst(boolean noGst);
 
     /**
@@ -47,6 +62,7 @@ public interface MarketBoardRequest extends Request<MarketBoardResponse>, Region
      *
      * @return request
      */
+    @CheckReturnValue
     default MarketBoardRequest highQuality() {
         return highQuality(true);
     }
@@ -56,6 +72,7 @@ public interface MarketBoardRequest extends Request<MarketBoardResponse>, Region
      *
      * @return request
      */
+    @CheckReturnValue
     default MarketBoardRequest normalQuality() {
         return highQuality(false);
     }
@@ -66,6 +83,7 @@ public interface MarketBoardRequest extends Request<MarketBoardResponse>, Region
      * @param highQuality set to true to only receive hq listings
      * @return request
      */
+    @CheckReturnValue
     MarketBoardRequest highQuality(boolean highQuality);
 
     /**
@@ -74,6 +92,7 @@ public interface MarketBoardRequest extends Request<MarketBoardResponse>, Region
      * @param duration duration
      * @return request
      */
+    @CheckReturnValue
     MarketBoardRequest historyTime(Duration duration);
 
     /**
@@ -84,5 +103,6 @@ public interface MarketBoardRequest extends Request<MarketBoardResponse>, Region
      * @param duration duration
      * @return request
      */
+    @CheckReturnValue
     MarketBoardRequest statsTime(Duration duration);
 }

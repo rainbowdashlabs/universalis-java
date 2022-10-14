@@ -8,17 +8,17 @@ package de.chojo.universalis.websocket.listener;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.neovisionaries.ws.client.WebSocket;
 import com.neovisionaries.ws.client.WebSocketAdapter;
 import com.neovisionaries.ws.client.WebSocketException;
-import de.chojo.universalis.websocket.events.EventSupplier;
-import de.chojo.universalis.websocket.events.WsEvent;
-import de.chojo.universalis.websocket.events.concrete.listing.impl.WsListingAddEvent;
-import de.chojo.universalis.websocket.events.concrete.listing.impl.WsListingRemoveEvent;
-import de.chojo.universalis.websocket.events.concrete.sales.impl.WsSalesAddEvent;
-import de.chojo.universalis.websocket.events.concrete.sales.impl.WsSalesRemoveEvent;
+import de.chojo.universalis.deserializer.CityDeserializer;
+import de.chojo.universalis.deserializer.ItemDeserializer;
+import de.chojo.universalis.deserializer.WorldDeserializer;
+import de.chojo.universalis.entities.City;
+import de.chojo.universalis.entities.Item;
 import de.chojo.universalis.events.Event;
 import de.chojo.universalis.events.listings.impl.ListingAddEvent;
 import de.chojo.universalis.events.listings.impl.ListingRemoveEvent;
@@ -27,6 +27,13 @@ import de.chojo.universalis.events.sales.impl.SalesAddEvent;
 import de.chojo.universalis.events.sales.impl.SalesRemoveEvent;
 import de.chojo.universalis.listener.EventListener;
 import de.chojo.universalis.provider.NameSupplier;
+import de.chojo.universalis.websocket.events.EventSupplier;
+import de.chojo.universalis.websocket.events.WsEvent;
+import de.chojo.universalis.websocket.events.concrete.listing.impl.WsListingAddEvent;
+import de.chojo.universalis.websocket.events.concrete.listing.impl.WsListingRemoveEvent;
+import de.chojo.universalis.websocket.events.concrete.sales.impl.WsSalesAddEvent;
+import de.chojo.universalis.websocket.events.concrete.sales.impl.WsSalesRemoveEvent;
+import de.chojo.universalis.worlds.World;
 import org.bson.BSONDecoder;
 import org.bson.BasicBSONDecoder;
 import org.slf4j.Logger;
@@ -44,15 +51,25 @@ public class WebsocketListenerAdapter extends WebSocketAdapter implements EventL
     private static final Logger log = getLogger(WebsocketListenerAdapter.class);
     private final BSONDecoder decoder = new BasicBSONDecoder();
     private final List<EventListener> listeners;
-    private final NameSupplier itemNameSupplier;
-    private final ObjectMapper objectMapper = new JsonMapper();
-    private final Cache<Integer, WsListingRemoveEvent> removedListings = CacheBuilder.newBuilder()
-                                                                                     .expireAfterWrite(Duration.ofSeconds(10))
-                                                                                     .build();
+    private final ObjectMapper objectMapper;
+    private final Cache<World, WsListingRemoveEvent> removedListings = CacheBuilder.newBuilder()
+                                                                                   .expireAfterWrite(Duration.ofSeconds(10))
+                                                                                   .build();
 
+    /**
+     * Creates a new websocket listener adapter
+     *
+     * @param listeners        listeners to register
+     * @param itemNameSupplier item name supplier
+     */
     public WebsocketListenerAdapter(List<EventListener> listeners, NameSupplier itemNameSupplier) {
         this.listeners = listeners;
-        this.itemNameSupplier = itemNameSupplier;
+        SimpleModule module = new SimpleModule();
+        module.addDeserializer(World.class, new WorldDeserializer())
+              .addDeserializer(Item.class, new ItemDeserializer(itemNameSupplier))
+//              .addDeserializer(Instant.class, new SecondsDateTimeConverter())
+              .addDeserializer(City.class, new CityDeserializer());
+        objectMapper = new JsonMapper().registerModule(module);
     }
 
     @Override
@@ -70,30 +87,36 @@ public class WebsocketListenerAdapter extends WebSocketAdapter implements EventL
             }
             case "listings/add" -> {
                 WsListingAddEvent wsAdd = map(map, WsListingAddEvent.class);
-                onListingAdd(wsAdd.toEvent(itemNameSupplier));
+                onListingAdd(wsAdd.toEvent());
                 handleAdd(wsAdd);
             }
             case "listings/remove" -> {
                 WsListingRemoveEvent wsRemove = map(map, WsListingRemoveEvent.class);
-                onListingRemove(wsRemove.toEvent(itemNameSupplier));
-                removedListings.put(wsRemove.worldId(), wsRemove);
+                onListingRemove(wsRemove.toEvent());
+                removedListings.put(wsRemove.world(), wsRemove);
             }
         }
     }
 
     private void handleAdd(WsListingAddEvent wsAdd) {
-        WsListingRemoveEvent removed = removedListings.getIfPresent(wsAdd.worldId());
+        WsListingRemoveEvent removed = removedListings.getIfPresent(wsAdd.world());
         if (removed == null) return;
-        removedListings.invalidate(wsAdd.worldId());
-        onListingUpdate(removed.toUpdate(wsAdd).toEvent(itemNameSupplier));
+        removedListings.invalidate(wsAdd.world());
+        onListingUpdate(removed.toUpdate(wsAdd).toEvent());
     }
 
     private <V extends Event, T extends EventSupplier<V>> V mapToEvent(Map<?, ?> map, Class<T> clazz) {
-        return map(map, clazz).toEvent(itemNameSupplier);
+        return map(map, clazz).toEvent();
     }
 
     private <V extends Event, T extends EventSupplier<V>> T map(Map<?, ?> map, Class<T> clazz) {
-        return objectMapper.convertValue(map, clazz);
+        try {
+
+            return objectMapper.convertValue(map, clazz);
+        } catch (IllegalArgumentException e) {
+            log.error("Failed to map event", e);
+            throw new RuntimeException("", e);
+        }
     }
 
     @Override

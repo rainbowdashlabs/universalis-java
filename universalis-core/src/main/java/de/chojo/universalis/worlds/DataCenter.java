@@ -8,9 +8,12 @@ package de.chojo.universalis.worlds;
 
 import java.util.List;
 
+/**
+ * Represetns a data center container multiple worlds
+ */
 public interface DataCenter extends WorldProvider {
     /**
-     * Get a list of all worlds in this datacenter.
+     * Get a list of all worlds in this data center.
      *
      * @return unmodifiable world list
      */
@@ -18,7 +21,7 @@ public interface DataCenter extends WorldProvider {
     List<World> worlds();
 
     /**
-     * ID of the datacenter
+     * ID of the data center
      *
      * @return id
      */

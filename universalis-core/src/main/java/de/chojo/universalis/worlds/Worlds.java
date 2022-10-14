@@ -91,6 +91,12 @@ public class Worlds {
         return ids.computeIfAbsent(id, Worlds::findWorldById);
     }
 
+    /**
+     * Retrieves a data center by name
+     *
+     * @param name data center name case-insensitive
+     * @return data center
+     */
     @Nullable
     @Contract("null -> null")
     public static DataCenter datacenterByName(@Nullable String name) {
@@ -102,6 +108,12 @@ public class Worlds {
         return null;
     }
 
+    /**
+     * Retrieves a region by name
+     *
+     * @param name region name case-insensitive
+     * @return region
+     */
     @Nullable
     @Contract("null -> null")
     public static Region regionByName(@Nullable String name) {
@@ -123,6 +135,14 @@ public class Worlds {
         return World.of("", id);
     }
 
+    /**
+     * Retrieve a world by its name
+     *
+     * @param name name case-insensitive
+     * @return world
+     */
+    @Nullable
+    @Contract("null -> null")
     public static World worldByName(@Nullable String name) {
         if (name == null) return null;
         return names.computeIfAbsent(name.toLowerCase(), Worlds::findWorldByName);
@@ -140,6 +160,12 @@ public class Worlds {
         return World.of(name, -1);
     }
 
+    /**
+     * Transforms a world entity to an internal richer world model
+     *
+     * @param world world entity
+     * @return world
+     */
     public static World toWorld(de.chojo.universalis.entities.World world) {
         World iWorld = World.of(world.name(), world.id());
         World worldByName = findWorldByName(world.name());
@@ -174,18 +200,18 @@ public class Worlds {
         }
 
         /**
-         * The chaos datacenter
+         * The chaosdate center
          *
-         * @return chaos datacenter
+         * @return chaosdate center
          */
         public Chaos chaos() {
             return chaos;
         }
 
         /**
-         * The light datacenter
+         * The lightdate center
          *
-         * @return light datacenter
+         * @return lightdate center
          */
         public Light light() {
             return light;
@@ -202,7 +228,7 @@ public class Worlds {
         }
 
         /**
-         * The chaos datacenter
+         * The chaosdate center
          */
         public static final class Chaos implements DataCenter {
             /**
@@ -253,7 +279,7 @@ public class Worlds {
         }
 
         /**
-         * The light datacenter
+         * The lightdate center
          */
         public static final class Light implements DataCenter {
             /**
@@ -316,27 +342,27 @@ public class Worlds {
         }
 
         /**
-         * The aether datacenter
+         * The aetherdate center
          *
-         * @return aether datacenter
+         * @return aetherdate center
          */
         public Aether aether() {
             return aether;
         }
 
         /**
-         * The crystal datacenter
+         * The crystaldate center
          *
-         * @return crystal datacenter
+         * @return crystaldate center
          */
         public Crystal crystal() {
             return crystal;
         }
 
         /**
-         * The primal datacenter
+         * The primaldate center
          *
-         * @return primal datacenter
+         * @return primaldate center
          */
         public Primal primal() {
             return primal;
@@ -353,7 +379,7 @@ public class Worlds {
         }
 
         /**
-         * The aether datacenter
+         * The aetherdate center
          */
         public static final class Aether implements DataCenter {
             /**
@@ -404,7 +430,7 @@ public class Worlds {
         }
 
         /**
-         * The crystal datacenter
+         * The crystaldate center
          */
         public static final class Crystal implements DataCenter {
             /**
@@ -455,7 +481,7 @@ public class Worlds {
         }
 
         /**
-         * The primal datacenter
+         * The primaldate center
          */
         public static final class Primal implements DataCenter {
             /**
@@ -516,9 +542,9 @@ public class Worlds {
         }
 
         /**
-         * The materia datacenter
+         * The materiadate center
          *
-         * @return materia datacenter
+         * @return materiadate center
          */
         public Materia materia() {
             return materia;
@@ -535,7 +561,7 @@ public class Worlds {
         }
 
         /**
-         * The materia datacenter
+         * The materiadate center
          */
         public static final class Materia implements DataCenter {
             /**
@@ -598,43 +624,43 @@ public class Worlds {
 
 
         /**
-         * The elemental datacenter
+         * The elementaldate center
          *
-         * @return elemental datacenter
+         * @return elementaldate center
          */
         public Elemental elemental() {
             return elemental;
         }
 
         /**
-         * The gaia datacenter
+         * The gaiadate center
          *
-         * @return gaia datacenter
+         * @return gaiadate center
          */
         public Gaia gaia() {
             return gaia;
         }
 
         /**
-         * The mana datacenter
+         * The manadate center
          *
-         * @return mana datacenter
+         * @return manadate center
          */
         public Mana mana() {
             return mana;
         }
 
         /**
-         * The meteor datacenter
+         * The meteordate center
          *
-         * @return meteor datacenter
+         * @return meteordate center
          */
         public Meteor meteor() {
             return meteor;
         }
 
         /**
-         * The elemental datacenter
+         * The elementaldate center
          */
         public static final class Elemental implements DataCenter {
             /**
@@ -685,7 +711,7 @@ public class Worlds {
         }
 
         /**
-         * The gaia datacenter
+         * The gaiadate center
          */
         public static final class Gaia implements DataCenter {
             /**
@@ -736,7 +762,7 @@ public class Worlds {
         }
 
         /**
-         * The mana datacenter
+         * The manadate center
          */
         public static final class Mana implements DataCenter {
             /**
@@ -787,7 +813,7 @@ public class Worlds {
         }
 
         /**
-         * The elemental datacenter
+         * The elementaldate center
          */
         public static final class Meteor implements DataCenter {
             /**
@@ -858,45 +884,43 @@ public class Worlds {
         }
 
         /**
-         * The 陆行鸟 datacenter
+         * The 陆行鸟date center
          *
-         * @return 陆行鸟 datacenter
+         * @return 陆行鸟date center
          */
         public 陆行鸟 陆行鸟() {
             return 陆行鸟;
         }
 
         /**
-         * The 莫古力 datacenter
+         * The 莫古力date center
          *
-         * @return 莫古力 datacenter
+         * @return 莫古力date center
          */
         public 莫古力 莫古力() {
             return 莫古力;
         }
 
         /**
-         * The 猫小胖 datacenter
+         * The 猫小胖date center
          *
-         * @return 猫小胖 datacenter
+         * @return 猫小胖date center
          */
         public 猫小胖 猫小胖() {
             return 猫小胖;
         }
 
         /**
-         * The 豆豆柴 datacenter
+         * The 豆豆柴date center
          *
-         * @return 豆豆柴 datacenter
+         * @return 豆豆柴date center
          */
         public 豆豆柴 豆豆柴() {
             return 豆豆柴;
         }
 
         /**
-         * The 陆行鸟 datacenter
-         *
-         * @return 豆豆柴 datacenter
+         * The 陆行鸟date center
          */
         public static final class 陆行鸟 implements DataCenter {
             /**
@@ -945,9 +969,7 @@ public class Worlds {
         }
 
         /**
-         * The 莫古力 datacenter
-         *
-         * @return 豆豆柴 datacenter
+         * The 莫古力date center
          */
         public static final class 莫古力 implements DataCenter {
             /**
@@ -996,9 +1018,7 @@ public class Worlds {
         }
 
         /**
-         * The 猫小胖 datacenter
-         *
-         * @return 猫小胖 datacenter
+         * The 猫小胖date center
          */
         public static final class 猫小胖 implements DataCenter {
             /**
@@ -1043,9 +1063,7 @@ public class Worlds {
         }
 
         /**
-         * The 豆豆柴 datacenter
-         *
-         * @return 豆豆柴 datacenter
+         * The 豆豆柴date center
          */
         public static final class 豆豆柴 implements DataCenter {
             /**

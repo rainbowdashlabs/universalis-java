@@ -8,12 +8,23 @@ package de.chojo.universalis.entities;
 
 import de.chojo.universalis.worlds.World;
 
-import java.time.Instant;
+import javax.annotation.Nullable;
+import java.time.LocalDateTime;
 
+/**
+ * A sale object
+ *
+ * @param hq          hq
+ * @param price       price
+ * @param timestamp   timestamp
+ * @param onMannequin Whether this was purchased from a mannequin.
+ * @param world       world
+ * @param buyerName   The buyer's character name. This may be null.
+ */
 public record Sale(boolean hq,
                    Price price,
-                   Instant timestamp,
+                   LocalDateTime timestamp,
                    boolean onMannequin,
                    World world,
-                   String buyerName) {
+                   @Nullable String buyerName) {
 }

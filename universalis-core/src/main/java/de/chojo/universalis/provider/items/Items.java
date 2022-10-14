@@ -18,6 +18,9 @@ import java.net.http.HttpResponse;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * A class which is able to act as a {@link NameSupplier} for items
+ */
 public class Items implements NameSupplier {
     private final Map<Integer, Name> names;
 
@@ -25,6 +28,13 @@ public class Items implements NameSupplier {
         this.names = names;
     }
 
+    /**
+     * Create a new items instance which will load the items from a GitHub dump.
+     *
+     * @return item instance
+     * @throws IOException          if the response could not be read
+     * @throws InterruptedException if the current thread gets interrupted
+     */
     public static Items create() throws IOException, InterruptedException {
         HttpClient client = HttpClient.newBuilder().build();
         HttpResponse<String> response = client.send(HttpRequest.newBuilder()

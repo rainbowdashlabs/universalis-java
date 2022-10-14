@@ -18,7 +18,8 @@ class LeastRecentlyUpdatedRequestImplTest {
 
     @Test
     public void test() {
-        LeastRecentlyUpdatedResponse complete = rest.extra().stats().leastRecentlyUpdated().world(Worlds.europe().light().ODIN).complete();
+        LeastRecentlyUpdatedResponse complete = rest.extra().stats().leastRecentlyUpdated()
+                                                    .world(Worlds.europe().light().ODIN).complete();
         Assertions.assertFalse(complete.items().isEmpty());
     }
 

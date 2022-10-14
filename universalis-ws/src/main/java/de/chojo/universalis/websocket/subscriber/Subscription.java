@@ -4,7 +4,7 @@
  *     Copyright (C) 2022 RainbowDashLabs and Contributor
  */
 
-package de.chojo.universalis.subscriber;
+package de.chojo.universalis.websocket.subscriber;
 
 import de.chojo.universalis.worlds.DataCenter;
 import de.chojo.universalis.worlds.Region;
@@ -26,6 +26,11 @@ public class Subscription {
     private final String channel;
     private final List<World> worlds = new ArrayList<>();
 
+    /**
+     * Create a new subscription for a channel
+     *
+     * @param channel channel
+     */
     protected Subscription(String channel) {
         this.channel = channel;
     }

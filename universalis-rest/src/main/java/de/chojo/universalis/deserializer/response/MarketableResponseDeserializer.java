@@ -4,9 +4,8 @@
  *     Copyright (C) 2022 RainbowDashLabs and Contributor
  */
 
-package de.chojo.universalis.rest.requests.deserializer;
+package de.chojo.universalis.deserializer.response;
 
-import com.fasterxml.jackson.core.JacksonException;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
@@ -16,6 +15,9 @@ import de.chojo.universalis.rest.response.MarketableResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Deserializer for {@link MarketableResponse}
+ */
 public class MarketableResponseDeserializer extends JsonDeserializer<MarketableResponse> {
     @Override
     public MarketableResponse deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {

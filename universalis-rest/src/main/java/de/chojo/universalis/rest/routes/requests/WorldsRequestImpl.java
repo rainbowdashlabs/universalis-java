@@ -11,9 +11,17 @@ import de.chojo.universalis.rest.requests.RequestBuilder;
 import de.chojo.universalis.rest.response.WorldsResponse;
 import de.chojo.universalis.rest.routes.api.WorldsRequest;
 
+/**
+ * Implementation for a {@link WorldsRequest}
+ */
 public class WorldsRequestImpl extends RequestBuilder<WorldsResponse> implements WorldsRequest {
-    public WorldsRequestImpl(UniversalisRestImpl xivapi) {
-        super(xivapi, WorldsResponse.class);
+    /**
+     * Create a new worlds request
+     *
+     * @param rest rest client
+     */
+    public WorldsRequestImpl(UniversalisRestImpl rest) {
+        super(rest, WorldsResponse.class);
         path("worlds");
     }
 }

@@ -4,7 +4,7 @@
  *     Copyright (C) 2022 RainbowDashLabs and Contributor
  */
 
-package de.chojo.universalis.subscriber;
+package de.chojo.universalis.websocket.subscriber;
 
 import de.chojo.universalis.events.listings.impl.ListingAddEvent;
 import de.chojo.universalis.events.listings.impl.ListingRemoveEvent;

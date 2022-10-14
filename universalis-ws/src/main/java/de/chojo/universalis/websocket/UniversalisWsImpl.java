@@ -8,11 +8,11 @@ package de.chojo.universalis.websocket;
 
 import com.neovisionaries.ws.client.WebSocket;
 import com.neovisionaries.ws.client.WebSocketFactory;
-import de.chojo.universalis.websocket.listener.StatusListener;
-import de.chojo.universalis.websocket.listener.WebsocketListenerAdapter;
 import de.chojo.universalis.listener.EventListener;
 import de.chojo.universalis.provider.NameSupplier;
-import de.chojo.universalis.subscriber.Subscription;
+import de.chojo.universalis.websocket.subscriber.Subscription;
+import de.chojo.universalis.websocket.listener.StatusListener;
+import de.chojo.universalis.websocket.listener.WebsocketListenerAdapter;
 import org.slf4j.Logger;
 
 import javax.annotation.Nullable;
@@ -22,6 +22,9 @@ import java.util.concurrent.ExecutorService;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
+/**
+ * Class to handle websocket connection to universalis.
+ */
 public class UniversalisWsImpl implements UniversalisWs {
     private static final Logger log = getLogger(UniversalisWsImpl.class);
     private static final String WEBSOCKET_URL = "wss://universalis.app/api/ws";
@@ -34,6 +37,15 @@ public class UniversalisWsImpl implements UniversalisWs {
     private StatusListener statusListener;
     private boolean active = true;
 
+    /**
+     * Creates an universalis websocket implementation.
+     *
+     * @param factory          factory for websocket creation
+     * @param websocketWorker  worker for event handling
+     * @param subscribers      subscriptions
+     * @param listeners        listeners
+     * @param itemNameSupplier item name supplier
+     */
     public UniversalisWsImpl(WebSocketFactory factory, ExecutorService websocketWorker, List<Subscription> subscribers, List<EventListener> listeners, NameSupplier itemNameSupplier) {
         this.factory = factory;
         this.websocketWorker = websocketWorker;
@@ -85,6 +97,7 @@ public class UniversalisWsImpl implements UniversalisWs {
 
     /**
      * The currently active socket
+     *
      * @return socket
      */
     @Nullable

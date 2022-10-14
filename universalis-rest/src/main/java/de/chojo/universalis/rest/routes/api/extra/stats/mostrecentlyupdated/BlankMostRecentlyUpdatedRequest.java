@@ -6,12 +6,12 @@
 
 package de.chojo.universalis.rest.routes.api.extra.stats.mostrecentlyupdated;
 
-import de.chojo.universalis.entities.DataCenter;
-import de.chojo.universalis.worlds.World;
+import de.chojo.universalis.rest.routes.api.base.DataCenterScope;
+import de.chojo.universalis.rest.routes.api.base.WorldScope;
 import de.chojo.universalis.rest.routes.api.extra.stats.MostRecentlyUpdatedRequest;
 
-public interface BlankMostRecentlyUpdatedRequest {
-    MostRecentlyUpdatedRequest world(World world);
-
-    MostRecentlyUpdatedRequest dataCenter(DataCenter dataCenter);
+/**
+ * Base implementation for a {@link MostRecentlyUpdatedRequest}
+ */
+public interface BlankMostRecentlyUpdatedRequest extends DataCenterScope<MostRecentlyUpdatedRequest>, WorldScope<MostRecentlyUpdatedRequest> {
 }

@@ -18,8 +18,7 @@ public interface EventSupplier<T extends Event> {
     /**
      * Converts the websocket event into an internal event
      *
-     * @param itemNameSupplier item name supplier
      * @return event
      */
-    T toEvent(NameSupplier itemNameSupplier);
+    T toEvent();
 }

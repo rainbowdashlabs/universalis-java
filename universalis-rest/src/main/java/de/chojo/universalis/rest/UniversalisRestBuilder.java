@@ -10,10 +10,14 @@ import de.chojo.universalis.entities.Name;
 import de.chojo.universalis.provider.NameSupplier;
 import de.chojo.universalis.provider.items.Items;
 
+import javax.annotation.CheckReturnValue;
 import java.net.http.HttpClient;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
+/**
+ * Class to build a universalis rest client
+ */
 public class UniversalisRestBuilder {
     private HttpClient http = HttpClient.newBuilder().version(HttpClient.Version.HTTP_2).build();
     private ScheduledExecutorService executorService = Executors.newScheduledThreadPool(2);
@@ -25,6 +29,7 @@ public class UniversalisRestBuilder {
      * @param http client
      * @return builder
      */
+    @CheckReturnValue
     public UniversalisRestBuilder setHttp(HttpClient http) {
         this.http = http;
         return this;
@@ -36,6 +41,7 @@ public class UniversalisRestBuilder {
      * @param executorService executor service
      * @return builder
      */
+    @CheckReturnValue
     public UniversalisRestBuilder setExecutorService(ScheduledExecutorService executorService) {
         this.executorService = executorService;
         return this;
@@ -47,6 +53,7 @@ public class UniversalisRestBuilder {
      * @param nameSupplier name supplier
      * @return builder
      */
+    @CheckReturnValue
     public UniversalisRestBuilder setItemNameSupplier(NameSupplier nameSupplier) {
         this.nameSupplier = nameSupplier;
         return this;
@@ -57,6 +64,7 @@ public class UniversalisRestBuilder {
      *
      * @return api instance
      */
+    @CheckReturnValue
     public UniversalisRest build() {
         return new UniversalisRestImpl(http, executorService, nameSupplier);
     }

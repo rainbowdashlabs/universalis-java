@@ -13,7 +13,7 @@ import de.chojo.universalis.events.listings.impl.ListingRemoveEvent;
 import de.chojo.universalis.events.listings.impl.ListingUpdateEvent;
 import de.chojo.universalis.events.sales.impl.SalesAddEvent;
 import de.chojo.universalis.events.sales.impl.SalesRemoveEvent;
-import de.chojo.universalis.subscriber.Subscriptions;
+import de.chojo.universalis.websocket.subscriber.Subscriptions;
 
 /**
  * Class to register at a {@link UniversalisWsBuilder} or {@link UniversalisWs} to receive events.

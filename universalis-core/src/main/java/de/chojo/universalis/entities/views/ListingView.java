@@ -7,6 +7,8 @@
 package de.chojo.universalis.entities.views;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import de.chojo.universalis.deserializer.SecondsDateTimeConverter;
 import de.chojo.universalis.entities.City;
 import de.chojo.universalis.entities.Creator;
 import de.chojo.universalis.entities.ItemMeta;
@@ -16,28 +18,52 @@ import de.chojo.universalis.entities.Retainer;
 import de.chojo.universalis.worlds.World;
 import de.chojo.universalis.worlds.Worlds;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
-public record ListingView(@JsonProperty("lastReviewTime") long lastReviewTime,
-                          @JsonProperty("pricePerUnit") int pricePerUnit,
-                          @JsonProperty("quantity") int quantity,
-                          @JsonProperty("stainID") int stainId,
-                          @JsonProperty("worldName") String worldName,
-                          @JsonProperty("worldID") int worldId,
-                          @JsonProperty("creatorName") String creatorName,
-                          @JsonProperty("creatorID") String creatorId,
-                          @JsonProperty("hq") boolean hq,
-                          @JsonProperty("isCrafted") boolean isCrafted,
-                          @JsonProperty("listingID") String listingId,
-                          @JsonProperty("materia") List<MateriaView> materia,
-                          @JsonProperty("onMannequin") boolean onManequin,
-                          @JsonProperty("retainerCity") int retainerCity,
-                          @JsonProperty("retainerID") String retainerId,
-                          @JsonProperty("retainerName") String retainerName,
-                          @JsonProperty("sellerID") String sellerId,
-                          @JsonProperty("total") int total) {
+/**
+ * <a href="https://docs.universalis.app/#schema-listingview">See on Universalis</a>
+ *
+ * @param lastReviewTime The time that this listing was posted, in seconds since the UNIX epoch.
+ * @param pricePerUnit   The price per unit sold.
+ * @param quantity       The stack size sold.
+ *                       //TODO: Add some richer mapping for stains
+ * @param stainId        The ID of the dye on this item.
+ * @param worldName      The world name, if applicable.
+ * @param worldId        The world ID, if applicable.
+ * @param creatorName    The creator's character name.
+ * @param creatorId      A SHA256 hash of the creator's ID.
+ * @param hq             Whether the item is high-quality.
+ * @param isCrafted      Whether the item is crafted.
+ * @param listingId      A SHA256 hash of the ID of this listing. Due to some current client-side bugs, this will almost always be null.
+ * @param materia        The materia on this item.
+ * @param onManequin     Whether the item is being sold on a mannequin.
+ * @param retainerCity   The city ID of the retainer.
+ * @param retainerId     A SHA256 hash of the retainer's ID.
+ * @param retainerName   The retainer's name.
+ * @param sellerId       A SHA256 hash of the seller's ID.
+ * @param total          The total price.
+ */
+public record ListingView(
+        @JsonProperty("lastReviewTime") @JsonDeserialize(converter = SecondsDateTimeConverter.class) LocalDateTime lastReviewTime,
+        @JsonProperty("pricePerUnit") int pricePerUnit,
+        @JsonProperty("quantity") int quantity,
+        @JsonProperty("stainID") int stainId,
+        @JsonProperty("worldName") String worldName,
+        @JsonProperty("worldID") int worldId,
+        @JsonProperty("creatorName") String creatorName,
+        @JsonProperty("creatorID") String creatorId,
+        @JsonProperty("hq") boolean hq,
+        @JsonProperty("isCrafted") boolean isCrafted,
+        @JsonProperty("listingID") String listingId,
+        @JsonProperty("materia") List<MateriaView> materia,
+        @JsonProperty("onMannequin") boolean onManequin,
+        @JsonProperty("retainerCity") City retainerCity,
+        @JsonProperty("retainerID") String retainerId,
+        @JsonProperty("retainerName") String retainerName,
+        @JsonProperty("sellerID") String sellerId,
+        @JsonProperty("total") int total) {
     /**
      * Converts the {@link ListingView} to a {@link Listing} object.
      *
@@ -54,13 +80,13 @@ public record ListingView(@JsonProperty("lastReviewTime") long lastReviewTime,
      * @return list of sales
      */
     public Listing toListing(World world) {
-        return new Listing(Instant.ofEpochSecond(lastReviewTime),
+        return new Listing(lastReviewTime,
                 world,
                 new Creator(creatorName, creatorId),
                 new ItemMeta(hq, isCrafted, stainId, materia),
                 listingId,
                 onManequin,
-                new Retainer(retainerId, retainerName, City.fromId(retainerCity)),
+                new Retainer(retainerId, retainerName, retainerCity),
                 sellerId,
                 new Price(pricePerUnit, quantity, total));
     }
@@ -95,7 +121,7 @@ public record ListingView(@JsonProperty("lastReviewTime") long lastReviewTime,
         result = 31 * result + (isCrafted() ? 1 : 0);
         result = 31 * result + (materia != null ? materia.hashCode() : 0);
         result = 31 * result + (onManequin ? 1 : 0);
-        result = 31 * result + retainerCity;
+        result = 31 * result + retainerCity.ordinal();
         result = 31 * result + (retainerId != null ? retainerId.hashCode() : 0);
         result = 31 * result + (retainerName != null ? retainerName.hashCode() : 0);
         result = 31 * result + (sellerId != null ? sellerId.hashCode() : 0);

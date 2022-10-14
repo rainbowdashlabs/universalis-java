@@ -17,6 +17,11 @@ import java.util.function.Consumer;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
+/**
+ * A request builder used to build, execute requests and parse the response
+ *
+ * @param <T> type of response
+ */
 public class RequestBuilder<T> implements Request<T> {
     private static final Logger log = getLogger(RequestBuilder.class);
     protected final UniversalisRestImpl rest;
@@ -24,11 +29,24 @@ public class RequestBuilder<T> implements Request<T> {
     private final Class<T> result;
     private final Consumer<T> postRetrievalHook;
 
+    /**
+     * Create a new request builder
+     *
+     * @param rest   rest client
+     * @param result result of the request
+     */
     public RequestBuilder(UniversalisRestImpl rest, Class<T> result) {
         this(rest, result, r -> {
         });
     }
 
+    /**
+     * Creates a new request builder
+     *
+     * @param rest              rest client
+     * @param result            result of the request
+     * @param postRetrievalHook modification of the result
+     */
     public RequestBuilder(UniversalisRestImpl rest, Class<T> result, Consumer<T> postRetrievalHook) {
         this.rest = rest;
         uriBuilder = rest.uri();
@@ -36,25 +54,41 @@ public class RequestBuilder<T> implements Request<T> {
         this.postRetrievalHook = postRetrievalHook;
     }
 
-    public URIBuilder uriBuilder() {
+    private URIBuilder uriBuilder() {
         return uriBuilder;
     }
 
+    /**
+     * Adds a parameter to the uri
+     *
+     * @param key    parameter key
+     * @param object parameter value
+     */
     public void parameter(String key, Object object) {
         uriBuilder.addParameter(key, String.valueOf(object));
     }
 
+    /**
+     * Adds an element to the path.
+     *
+     * @param path path
+     */
     public void path(String... path) {
         uriBuilder.appendPathSegments(path);
     }
 
+    /**
+     * Adds an element to the path.
+     *
+     * @param path path
+     */
     public void path(Object... path) {
         for (Object o : path) {
             uriBuilder.appendPath(String.valueOf(o));
         }
     }
 
-    protected URI uri() {
+    private URI uri() {
         try {
             return uriBuilder.build();
         } catch (URISyntaxException e) {

@@ -10,14 +10,14 @@ import de.chojo.universalis.rest.UniversalisRest;
 import de.chojo.universalis.rest.response.extra.stats.UploadHistoryResponse;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class UploadHistoryRequestImplTest {
 
     UniversalisRest rest = UniversalisRest.defaultApi();
 
     @Test
-    public void test(){
+    public void test() {
         UploadHistoryResponse complete = rest.extra().stats().uploadHistory().complete();
         assertFalse(complete.uploadCountByDay().isEmpty());
     }

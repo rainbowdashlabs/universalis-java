@@ -9,15 +9,20 @@ import de.chojo.universalis.rest.UniversalisRest;
 import de.chojo.universalis.rest.response.DataCentersResponse;
 import de.chojo.universalis.rest.response.WorldsResponse;
 import de.chojo.universalis.worlds.World;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.Locale;
 import java.util.StringJoiner;
 
 public class CreateWorlds {
-    UniversalisRest rest = UniversalisRest.defaultApi();
 
+    // Ugly class creating dummy code for the worlds class
     @Test
+    @Disabled
     public void createWorlds() {
         UniversalisRest universalisRest = UniversalisRest.defaultApi();
 
@@ -43,22 +48,22 @@ public class CreateWorlds {
                                     */
                                    public final World %s = World.of("%s", %s);
                                                """.formatted(world.name(), world.name()
-                                                                  .toUpperCase(Locale.ROOT), world.name(), world.id())
+                                                                                .toUpperCase(Locale.ROOT), world.name(), world.id())
                                                   .stripIndent();
                 System.out.printf(worldCode);
                 worldJoiner.add(world.name().toUpperCase());
             }
             String end = """
-                                           @Override
-                                           public List<World> worlds() {
-                                               return List.of(%s);
-                                           }
-                                           
-                                           @Override
-                                           public int id() {
-                                               return %d;
-                                           }
-                               """.formatted(worldJoiner.toString(), -1);
+                                     @Override
+                                     public List<World> worlds() {
+                                         return List.of(%s);
+                                     }
+                                     
+                                     @Override
+                                     public int id() {
+                                         return %d;
+                                     }
+                         """.formatted(worldJoiner.toString(), -1);
             System.out.println(end);
             System.out.println("}");
         }

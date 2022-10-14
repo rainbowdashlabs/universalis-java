@@ -4,9 +4,8 @@
  *     Copyright (C) 2022 RainbowDashLabs and Contributor
  */
 
-package de.chojo.universalis.rest.requests.deserializer;
+package de.chojo.universalis.deserializer.response;
 
-import com.fasterxml.jackson.core.JacksonException;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
@@ -16,6 +15,9 @@ import de.chojo.universalis.rest.response.extra.stats.UploaderUploadCountRespons
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Deserializer for {@link UploaderUploadCountResponse}
+ */
 public class UploaderUploadCountsResponseDeserializer extends JsonDeserializer<UploaderUploadCountResponse> {
     @Override
     public UploaderUploadCountResponse deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {

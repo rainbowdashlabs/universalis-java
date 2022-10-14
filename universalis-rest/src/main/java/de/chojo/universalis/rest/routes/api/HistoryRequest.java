@@ -9,17 +9,24 @@ package de.chojo.universalis.rest.routes.api;
 import de.chojo.universalis.rest.requests.Request;
 import de.chojo.universalis.rest.response.HistoryResponse;
 import de.chojo.universalis.rest.response.MarketBoardResponse;
+import de.chojo.universalis.rest.routes.api.base.LimitedRequest;
 import de.chojo.universalis.rest.routes.api.history.RegionHistoryRequest;
+import de.chojo.universalis.rest.routes.requests.HistoryRequestImpl;
 
+import javax.annotation.CheckReturnValue;
 import java.time.Duration;
 
-public interface HistoryRequest extends Request<HistoryResponse>, RegionHistoryRequest {
+/**
+ * Base implementation for a {@link HistoryRequestImpl}
+ */
+public interface HistoryRequest extends Request<HistoryResponse>, RegionHistoryRequest, LimitedRequest<HistoryRequest> {
     /**
-     * The number of entries to return. By default, this is set to 1800, but may be set to a maximum of 999999.
-     *
-     * @param limit limit
-     * @return request
+     * {@inheritDoc}
+     * <p>
+     * Default: 1800 Max: 999999
      */
+    @Override
+    @CheckReturnValue
     HistoryRequest limit(int limit);
 
     /**
@@ -28,6 +35,7 @@ public interface HistoryRequest extends Request<HistoryResponse>, RegionHistoryR
      * @param duration duration
      * @return request
      */
+    @CheckReturnValue
     HistoryRequest historyTime(Duration duration);
 
     /**
@@ -38,5 +46,6 @@ public interface HistoryRequest extends Request<HistoryResponse>, RegionHistoryR
      * @param duration duration
      * @return request
      */
+    @CheckReturnValue
     HistoryRequest statsTime(Duration duration);
 }

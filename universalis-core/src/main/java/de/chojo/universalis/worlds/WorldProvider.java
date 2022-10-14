@@ -14,6 +14,7 @@ import java.util.List;
 public interface WorldProvider {
     /**
      * The world provided by this entity
+     *
      * @return list of worlds
      */
     List<World> worlds();

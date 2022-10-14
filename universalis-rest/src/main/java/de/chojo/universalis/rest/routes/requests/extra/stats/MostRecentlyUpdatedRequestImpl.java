@@ -6,50 +6,49 @@
 
 package de.chojo.universalis.rest.routes.requests.extra.stats;
 
-import de.chojo.universalis.entities.DataCenter;
-import de.chojo.universalis.worlds.World;
 import de.chojo.universalis.rest.UniversalisRestImpl;
 import de.chojo.universalis.rest.requests.RequestBuilder;
 import de.chojo.universalis.rest.response.extra.stats.MostRecentlyUpdatedResponse;
 import de.chojo.universalis.rest.routes.api.extra.stats.MostRecentlyUpdatedRequest;
+import de.chojo.universalis.worlds.World;
 
+import javax.annotation.CheckReturnValue;
+
+/**
+ * Implementation for a {@link MostRecentlyUpdatedRequest}
+ */
 public class MostRecentlyUpdatedRequestImpl extends RequestBuilder<MostRecentlyUpdatedResponse> implements MostRecentlyUpdatedRequest {
-    public MostRecentlyUpdatedRequestImpl(UniversalisRestImpl xivapi) {
-        super(xivapi, MostRecentlyUpdatedResponse.class);
+    /**
+     * Create a new most restently updated request
+     *
+     * @param rest rest client
+     */
+    public MostRecentlyUpdatedRequestImpl(UniversalisRestImpl rest) {
+        super(rest, MostRecentlyUpdatedResponse.class);
         path("extra", "stats", "most-recently-updated");
     }
 
-    /**
-     * The world to request data for.
-     *
-     * @param world world
-     * @return request
-     */
     @Override
+    @CheckReturnValue
     public MostRecentlyUpdatedRequest world(World world) {
         parameter("world", world.id());
         return this;
     }
 
-    /**
-     * The data center to request data for.
-     *
-     * @param dataCenter datacenter
-     * @return request
-     */
     @Override
-    public MostRecentlyUpdatedRequest dataCenter(DataCenter dataCenter) {
+    @CheckReturnValue
+    public MostRecentlyUpdatedRequest dataCenter(de.chojo.universalis.worlds.DataCenter dataCenter) {
         parameter("dcName", dataCenter.name());
         return this;
     }
 
     /**
-     * The number of entries to return (default 50, max 200).
-     *
-     * @param limit limit
-     * @return request
+     * {@inheritDoc}
+     * <p>
+     * Default 50, Max 200
      */
     @Override
+    @CheckReturnValue
     public MostRecentlyUpdatedRequest limit(int limit) {
         parameter("entries", Math.min(200, limit));
         return this;

@@ -6,17 +6,11 @@
 
 package de.chojo.universalis.rest.routes.api.marketboard;
 
-import de.chojo.universalis.entities.Item;
 import de.chojo.universalis.rest.routes.api.MarketBoardRequest;
+import de.chojo.universalis.rest.routes.api.base.ItemScope;
 
-import java.util.Collection;
-
-public interface RegionMarketBoardRequest extends BlankMarketBoardRequest {
-    MarketBoardRequest items(Item... items);
-
-    MarketBoardRequest items(Collection<Item> items);
-
-    MarketBoardRequest itemsIds(Integer... itemIds);
-
-    MarketBoardRequest itemsIds(Collection<Integer> itemIds);
+/**
+ * Base for a {@link MarketBoardRequest}
+ */
+public interface RegionMarketBoardRequest extends BlankMarketBoardRequest, ItemScope<MarketBoardRequest> {
 }

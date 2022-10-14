@@ -12,7 +12,7 @@ import de.chojo.universalis.websocket.UniversalisWsImpl;
 import de.chojo.universalis.entities.Name;
 import de.chojo.universalis.listener.EventListener;
 import de.chojo.universalis.provider.NameSupplier;
-import de.chojo.universalis.subscriber.Subscription;
+import de.chojo.universalis.websocket.subscriber.Subscription;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,6 +21,9 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * Builder to create a {@link UniversalisWs} instance.
+ */
 public class UniversalisWsBuilder {
     private final WebSocketFactory factory;
     private final List<Subscription> subscriptions = new ArrayList<>();
@@ -28,6 +31,10 @@ public class UniversalisWsBuilder {
     private ExecutorService executorService = Executors.newCachedThreadPool();
     private NameSupplier nameSupplier = id -> new Name("", "", "", "");
 
+    /**
+     * Create a new universalis websocket builder
+     * @param factory factory to create a websocket
+     */
     public UniversalisWsBuilder(WebSocketFactory factory) {
         this.factory = factory;
     }

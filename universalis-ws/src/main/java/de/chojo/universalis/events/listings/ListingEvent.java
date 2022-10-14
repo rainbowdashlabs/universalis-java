@@ -19,6 +19,13 @@ import java.util.List;
 public abstract class ListingEvent extends Event {
     private final List<Listing> listings;
 
+    /**
+     * Creates a new listing event
+     *
+     * @param item     item
+     * @param world    world
+     * @param listings listings
+     */
     public ListingEvent(Item item, World world, List<Listing> listings) {
         super(world, item);
         this.listings = listings;
@@ -26,6 +33,7 @@ public abstract class ListingEvent extends Event {
 
     /**
      * Listings of this event
+     *
      * @return unmodifiable list
      */
     public List<Listing> listings() {

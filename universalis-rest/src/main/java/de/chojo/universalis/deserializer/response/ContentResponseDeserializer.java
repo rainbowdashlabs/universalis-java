@@ -4,7 +4,7 @@
  *     Copyright (C) 2022 RainbowDashLabs and Contributor
  */
 
-package de.chojo.universalis.rest.requests.deserializer;
+package de.chojo.universalis.deserializer.response;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
@@ -15,6 +15,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Deserializer for {@link ContentResponse}
+ */
 public class ContentResponseDeserializer extends JsonDeserializer<ContentResponse> {
     @Override
     public ContentResponse deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {

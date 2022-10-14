@@ -13,9 +13,19 @@ import de.chojo.universalis.rest.routes.api.extra.stats.UploaderUploadCountsRequ
 import de.chojo.universalis.rest.routes.api.extra.stats.leastrecentlyupdated.BlankLeastRecentlyUpdatedRequest;
 import de.chojo.universalis.rest.routes.api.extra.stats.mostrecentlyupdated.BlankMostRecentlyUpdatedRequest;
 
+import javax.annotation.CheckReturnValue;
+
+/**
+ * Class providing access to stats requests
+ */
 public class Stats {
     private final UniversalisRestImpl rest;
 
+    /**
+     * Create a new stat route
+     *
+     * @param rest rest client
+     */
     public Stats(UniversalisRestImpl rest) {
         this.rest = rest;
     }
@@ -25,6 +35,7 @@ public class Stats {
      *
      * @return request builder
      */
+    @CheckReturnValue
     public BlankLeastRecentlyUpdatedRequest leastRecentlyUpdated() {
         return new LeastRecentlyUpdatedRequestImpl(rest);
     }
@@ -34,6 +45,7 @@ public class Stats {
      *
      * @return request builder
      */
+    @CheckReturnValue
     public BlankMostRecentlyUpdatedRequest mostRecentlyUpdated() {
         return new MostRecentlyUpdatedRequestImpl(rest);
     }
@@ -43,6 +55,7 @@ public class Stats {
      *
      * @return request builder
      */
+    @CheckReturnValue
     public UploaderUploadCountsRequest uploaderUploadCounts() {
         return new UploaderUploadCountsRequestImpl(rest);
     }
@@ -52,6 +65,7 @@ public class Stats {
      *
      * @return request builder
      */
+    @CheckReturnValue
     public WorldUploadCountsRequest worldUploadCounts() {
         return new WorldUploadCountsRequestImpl(rest);
     }
@@ -61,6 +75,7 @@ public class Stats {
      *
      * @return request builder
      */
+    @CheckReturnValue
     public UploadHistoryRequest uploadHistory() {
         return new UploadHistoryRequestImpl(rest);
     }

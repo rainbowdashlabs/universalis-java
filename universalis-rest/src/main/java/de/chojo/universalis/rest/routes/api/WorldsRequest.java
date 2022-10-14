@@ -8,6 +8,10 @@ package de.chojo.universalis.rest.routes.api;
 
 import de.chojo.universalis.rest.requests.Request;
 import de.chojo.universalis.rest.response.WorldsResponse;
+import de.chojo.universalis.rest.routes.requests.WorldsRequestImpl;
 
+/**
+ * Base implementation for a {@link WorldsRequestImpl}
+ */
 public interface WorldsRequest extends Request<WorldsResponse> {
 }

@@ -14,12 +14,18 @@ import de.chojo.universalis.rest.routes.api.marketboard.BlankMarketBoardRequest;
 import de.chojo.universalis.rest.routes.api.taxrates.BlankTaxRatesRequest;
 import de.chojo.universalis.rest.routes.requests.extra.Extra;
 
+import javax.annotation.CheckReturnValue;
+
+/**
+ * Class to access the universalis api.
+ */
 public interface UniversalisRest {
     /**
      * Get a api with default settings.
      *
      * @return api instance
      */
+    @CheckReturnValue
     static UniversalisRest defaultApi() {
         return new UniversalisRestBuilder().build();
     }
@@ -29,6 +35,7 @@ public interface UniversalisRest {
      *
      * @return builder
      */
+    @CheckReturnValue
     static UniversalisRestBuilder builder() {
         return new UniversalisRestBuilder();
     }
@@ -38,6 +45,7 @@ public interface UniversalisRest {
      *
      * @return request builder
      */
+    @CheckReturnValue
     BlankMarketBoardRequest marketBoard();
 
     /**
@@ -45,6 +53,7 @@ public interface UniversalisRest {
      *
      * @return request builder
      */
+    @CheckReturnValue
     WorldsRequest worlds();
 
     /**
@@ -52,6 +61,7 @@ public interface UniversalisRest {
      *
      * @return request builder
      */
+    @CheckReturnValue
     DataCentersRequest dataCenters();
 
     /**
@@ -59,6 +69,7 @@ public interface UniversalisRest {
      *
      * @return request builder
      */
+    @CheckReturnValue
     BlankHistoryRequest history();
 
     /**
@@ -66,6 +77,7 @@ public interface UniversalisRest {
      *
      * @return request builder
      */
+    @CheckReturnValue
     BlankTaxRatesRequest taxRates();
 
     /**
@@ -73,6 +85,7 @@ public interface UniversalisRest {
      *
      * @return request builder
      */
+    @CheckReturnValue
     MarketableRequest marketable();
 
     /**
@@ -80,5 +93,6 @@ public interface UniversalisRest {
      *
      * @return extra route
      */
+    @CheckReturnValue
     Extra extra();
 }

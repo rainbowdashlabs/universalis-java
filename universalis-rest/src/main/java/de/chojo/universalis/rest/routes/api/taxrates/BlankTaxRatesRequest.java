@@ -6,10 +6,11 @@
 
 package de.chojo.universalis.rest.routes.api.taxrates;
 
-import de.chojo.universalis.worlds.World;
 import de.chojo.universalis.rest.routes.api.TaxRatesRequest;
+import de.chojo.universalis.rest.routes.api.base.WorldScope;
 
-public interface BlankTaxRatesRequest {
-
-    TaxRatesRequest world(World world);
+/**
+ * Base implementation for a {@link TaxRatesRequest}
+ */
+public interface BlankTaxRatesRequest extends WorldScope<TaxRatesRequest> {
 }

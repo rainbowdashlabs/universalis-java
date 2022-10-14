@@ -6,14 +6,12 @@
 
 package de.chojo.universalis.rest.routes.api.history;
 
-import de.chojo.universalis.worlds.World;
-import de.chojo.universalis.worlds.DataCenter;
-import de.chojo.universalis.worlds.Region;
+import de.chojo.universalis.rest.routes.api.base.DataCenterScope;
+import de.chojo.universalis.rest.routes.api.base.RegionScope;
+import de.chojo.universalis.rest.routes.api.base.WorldScope;
 
-public interface BlankHistoryRequest {
-    RegionHistoryRequest region(Region region);
-
-    RegionHistoryRequest dataCenter(DataCenter dataCenter);
-
-    RegionHistoryRequest world(World world);
+/**
+ * Base for a {@link RegionHistoryRequest}
+ */
+public interface BlankHistoryRequest extends RegionScope<RegionHistoryRequest>, DataCenterScope<RegionHistoryRequest>, WorldScope<RegionHistoryRequest> {
 }

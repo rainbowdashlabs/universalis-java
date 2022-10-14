@@ -8,9 +8,22 @@ package de.chojo.universalis.entities;
 
 import de.chojo.universalis.worlds.World;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 
-public record Listing(Instant lastReviewTime,
+/**
+ * A listing.
+ *
+ * @param lastReviewTime The time that this listing was posted.
+ * @param world          the world
+ * @param creator        the creator
+ * @param meta           item meta
+ * @param retainer       the retainer data
+ * @param price          the price
+ * @param listingId      A SHA256 hash of the ID of this listing. Due to some current client-side bugs, this will almost always be null.
+ * @param onManequin     Whether the item is being sold on a mannequin.
+ * @param sellerId       A SHA256 hash of the seller's ID.
+ */
+public record Listing(LocalDateTime lastReviewTime,
                       World world,
                       Creator creator,
                       ItemMeta meta,

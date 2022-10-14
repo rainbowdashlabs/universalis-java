@@ -21,6 +21,12 @@ import java.util.List;
  * Eventually a {@link ListingRemoveEvent} event will be called beforehand removing all current listings.
  */
 public class ListingAddEvent extends ListingEvent {
+    /**
+     * Create a new listing add event
+     * @param item item
+     * @param world world
+     * @param listings listings
+     */
     public ListingAddEvent(Item item, World world, List<Listing> listings) {
         super(item, world, listings);
     }

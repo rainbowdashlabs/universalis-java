@@ -10,7 +10,7 @@
 
 Allows to connect to universalis via websockets. Events can be filtered by world, datacenter and regions.
 
-Support for the rest api itself is coming soon™
+Additionally access to non-user routes is supported as well via a rest client.
 
 ## Gradle
 ```kts

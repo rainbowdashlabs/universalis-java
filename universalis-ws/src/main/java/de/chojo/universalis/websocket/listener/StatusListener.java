@@ -11,7 +11,7 @@ import com.neovisionaries.ws.client.WebSocketAdapter;
 import com.neovisionaries.ws.client.WebSocketException;
 import com.neovisionaries.ws.client.WebSocketFrame;
 import de.chojo.universalis.websocket.UniversalisWsImpl;
-import de.chojo.universalis.subscriber.Subscription;
+import de.chojo.universalis.websocket.subscriber.Subscription;
 import org.bson.BSONEncoder;
 import org.bson.BasicBSONEncoder;
 import org.bson.BasicBSONObject;
@@ -32,6 +32,11 @@ public class StatusListener extends WebSocketAdapter {
     private final List<Subscription> subscriptions;
     private boolean connected;
 
+    /**
+     * Creates a new status listener
+     * @param universalisWs socket
+     * @param subscriptions subscriptions
+     */
     public StatusListener(UniversalisWsImpl universalisWs, List<Subscription> subscriptions) {
         this.universalisWs = universalisWs;
         this.subscriptions = subscriptions;

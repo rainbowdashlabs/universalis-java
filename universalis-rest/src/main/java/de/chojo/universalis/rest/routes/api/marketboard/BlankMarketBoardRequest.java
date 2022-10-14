@@ -6,14 +6,12 @@
 
 package de.chojo.universalis.rest.routes.api.marketboard;
 
-import de.chojo.universalis.worlds.World;
-import de.chojo.universalis.worlds.DataCenter;
-import de.chojo.universalis.worlds.Region;
+import de.chojo.universalis.rest.routes.api.base.DataCenterScope;
+import de.chojo.universalis.rest.routes.api.base.RegionScope;
+import de.chojo.universalis.rest.routes.api.base.WorldScope;
 
-public interface BlankMarketBoardRequest {
-    RegionMarketBoardRequest region(Region region);
-
-    RegionMarketBoardRequest dataCenter(DataCenter dataCenter);
-
-    RegionMarketBoardRequest world(World world);
+/**
+ * Base for a {@link RegionMarketBoardRequest}
+ */
+public interface BlankMarketBoardRequest extends RegionScope<RegionMarketBoardRequest>, DataCenterScope<RegionMarketBoardRequest>, WorldScope<RegionMarketBoardRequest> {
 }

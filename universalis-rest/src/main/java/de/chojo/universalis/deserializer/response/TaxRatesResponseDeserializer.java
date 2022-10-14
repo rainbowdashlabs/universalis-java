@@ -4,9 +4,8 @@
  *     Copyright (C) 2022 RainbowDashLabs and Contributor
  */
 
-package de.chojo.universalis.rest.requests.deserializer;
+package de.chojo.universalis.deserializer.response;
 
-import com.fasterxml.jackson.core.JacksonException;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
@@ -17,6 +16,9 @@ import java.io.IOException;
 import java.util.EnumMap;
 import java.util.Map;
 
+/**
+ * Deserializer for {@link TaxRatesResponse}
+ */
 public class TaxRatesResponseDeserializer extends JsonDeserializer<TaxRatesResponse> {
     @Override
     public TaxRatesResponse deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {

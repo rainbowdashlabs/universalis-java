@@ -6,10 +6,13 @@
 
 package de.chojo.universalis.websocket;
 
-import de.chojo.universalis.subscriber.Subscription;
+import de.chojo.universalis.websocket.subscriber.Subscription;
 import de.chojo.universalis.websocket.builder.UniversalisWsBuilder;
 import de.chojo.universalis.websocket.builder.WebsocketFactoryBuilder;
 
+/**
+ * Interface for universalis websocket implementation.
+ */
 public interface UniversalisWs {
     /**
      * Add a subscription.

@@ -33,6 +33,7 @@ class HistoryRequestImplTest {
         HistoryResponse gst = defaultReq().historyTime(Duration.ofHours(1)).complete();
         Assertions.assertNotEquals(noGst.sales().size(), gst.sales().size());
     }
+
     @Test
     void statsTime() {
         HistoryResponse noGst = defaultReq().statsTime(Duration.ofDays(7)).complete();

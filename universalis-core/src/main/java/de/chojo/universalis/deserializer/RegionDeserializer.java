@@ -4,19 +4,24 @@
  *     Copyright (C) 2022 RainbowDashLabs and Contributor
  */
 
-package de.chojo.universalis.rest.requests.deserializer;
+package de.chojo.universalis.deserializer;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
-import de.chojo.universalis.worlds.DataCenter;
+import de.chojo.universalis.worlds.Region;
 import de.chojo.universalis.worlds.Worlds;
 
 import java.io.IOException;
 
-public class DataCenterDeserializer extends JsonDeserializer<DataCenter> {
+/**
+ * Deserializer for {@link Region}
+ */
+public class RegionDeserializer extends JsonDeserializer<Region> {
+
+
     @Override
-    public DataCenter deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
-        return Worlds.datacenterByName(p.getText());
+    public Region deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        return Worlds.regionByName(p.getText());
     }
 }
