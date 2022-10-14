@@ -7,9 +7,15 @@
 package de.chojo.universalis.rest.response.extra.stats;
 
 import de.chojo.universalis.entities.WorldItemRecently;
+import org.jetbrains.annotations.NotNull;
 
+import java.util.Iterator;
 import java.util.List;
 
-public record LeastRecentlyUpdatedResponse(List<WorldItemRecently> items) {
-
+public record LeastRecentlyUpdatedResponse(List<WorldItemRecently> items) implements Iterable<WorldItemRecently> {
+    @NotNull
+    @Override
+    public Iterator<WorldItemRecently> iterator() {
+        return items.iterator();
+    }
 }

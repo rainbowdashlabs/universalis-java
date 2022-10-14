@@ -6,20 +6,17 @@
 
 package de.chojo.universalis.rest.requests.deserializer;
 
-import com.fasterxml.jackson.core.JacksonException;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
-import de.chojo.universalis.worlds.Datacenter;
+import de.chojo.universalis.worlds.DataCenter;
 import de.chojo.universalis.worlds.Worlds;
 
 import java.io.IOException;
 
-public class DataCenterDeserializer extends JsonDeserializer<Datacenter> {
-
-
+public class DataCenterDeserializer extends JsonDeserializer<DataCenter> {
     @Override
-    public Datacenter deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JacksonException {
+    public DataCenter deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
         return Worlds.datacenterByName(p.getText());
     }
 }

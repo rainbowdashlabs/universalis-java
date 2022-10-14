@@ -9,7 +9,7 @@ package de.chojo.universalis.websocket.events.concrete.listing;
 import de.chojo.universalis.websocket.events.WsEvent;
 import de.chojo.universalis.entities.views.ListingView;
 import de.chojo.universalis.entities.Listing;
-import de.chojo.universalis.entities.World;
+import de.chojo.universalis.worlds.World;
 import de.chojo.universalis.events.Event;
 
 import java.util.List;

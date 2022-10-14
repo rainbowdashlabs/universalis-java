@@ -6,13 +6,13 @@
 
 package de.chojo.universalis.worlds;
 
-import de.chojo.universalis.entities.World;
 import org.jetbrains.annotations.Contract;
 
 import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -20,10 +20,12 @@ import java.util.Map;
  */
 public class Worlds {
     private static final Map<Integer, World> ids = new HashMap<>();
+    private static final Map<String, World> names = new HashMap<>();
     private static final Europe europe = new Europe();
     private static final NorthAmerica northAmerica = new NorthAmerica();
     private static final Oceania oceania = new Oceania();
     private static final Japan japan = new Japan();
+    private static final 中国 中国 = new 中国();
 
     /**
      * The european region
@@ -62,6 +64,15 @@ public class Worlds {
     }
 
     /**
+     * The 中国 region
+     *
+     * @return 中国 region
+     */
+    public static 中国 中国() {
+        return 中国;
+    }
+
+    /**
      * Returns all valid regions
      *
      * @return unmodifiable list of regions
@@ -82,9 +93,9 @@ public class Worlds {
 
     @Nullable
     @Contract("null -> null")
-    public static Datacenter datacenterByName(@Nullable String name) {
+    public static DataCenter datacenterByName(@Nullable String name) {
         for (Region region : regions()) {
-            for (Datacenter datacenter : region.datacenters()) {
+            for (DataCenter datacenter : region.datacenters()) {
                 if (datacenter.name().equalsIgnoreCase(name)) return datacenter;
             }
         }
@@ -106,7 +117,50 @@ public class Worlds {
                 if (world.id() == id) return world;
             }
         }
+        for (World value : names.values()) {
+            if (value.id() == id) return value;
+        }
         return World.of("", id);
+    }
+
+    public static World worldByName(@Nullable String name) {
+        if (name == null) return null;
+        return names.computeIfAbsent(name.toLowerCase(), Worlds::findWorldByName);
+    }
+
+    private static World findWorldByName(String name) {
+        for (Region region : regions()) {
+            for (World world : region.worlds()) {
+                if (world.name().equalsIgnoreCase(name)) return world;
+            }
+        }
+        for (World world : ids.values()) {
+            if (world.name().equalsIgnoreCase(name)) return world;
+        }
+        return World.of(name, -1);
+    }
+
+    public static World toWorld(de.chojo.universalis.entities.World world) {
+        World iWorld = World.of(world.name(), world.id());
+        World worldByName = findWorldByName(world.name());
+        if (worldByName.id() != -1) {
+            iWorld = worldByName;
+        }
+
+        World worldById = findWorldById(world.id());
+        if (!worldById.name().isBlank()) {
+            iWorld = worldById;
+        }
+
+        if (worldById.name().isBlank()) {
+            ids.put(iWorld.id(), iWorld);
+        }
+
+        if (worldByName.id() == -1) {
+            names.put(iWorld.name().toLowerCase(Locale.ROOT), iWorld);
+        }
+
+        return iWorld;
     }
 
     /**
@@ -138,7 +192,7 @@ public class Worlds {
         }
 
         @Override
-        public List<Datacenter> datacenters() {
+        public List<DataCenter> datacenters() {
             return List.of(chaos, light);
         }
 
@@ -150,7 +204,7 @@ public class Worlds {
         /**
          * The chaos datacenter
          */
-        public static final class Chaos implements Datacenter {
+        public static final class Chaos implements DataCenter {
             /**
              * The world Cerberus
              */
@@ -201,7 +255,7 @@ public class Worlds {
         /**
          * The light datacenter
          */
-        public static final class Light implements Datacenter {
+        public static final class Light implements DataCenter {
             /**
              * The world Alpha
              */
@@ -289,7 +343,7 @@ public class Worlds {
         }
 
         @Override
-        public List<Datacenter> datacenters() {
+        public List<DataCenter> datacenters() {
             return List.of(aether, crystal, primal);
         }
 
@@ -301,7 +355,7 @@ public class Worlds {
         /**
          * The aether datacenter
          */
-        public static final class Aether implements Datacenter {
+        public static final class Aether implements DataCenter {
             /**
              * The world Adamantoise
              */
@@ -352,7 +406,7 @@ public class Worlds {
         /**
          * The crystal datacenter
          */
-        public static final class Crystal implements Datacenter {
+        public static final class Crystal implements DataCenter {
             /**
              * The world Balmung
              */
@@ -403,7 +457,7 @@ public class Worlds {
         /**
          * The primal datacenter
          */
-        public static final class Primal implements Datacenter {
+        public static final class Primal implements DataCenter {
             /**
              * The world Behemoth
              */
@@ -471,7 +525,7 @@ public class Worlds {
         }
 
         @Override
-        public List<Datacenter> datacenters() {
+        public List<DataCenter> datacenters() {
             return Collections.singletonList(materia);
         }
 
@@ -483,7 +537,7 @@ public class Worlds {
         /**
          * The materia datacenter
          */
-        public static final class Materia implements Datacenter {
+        public static final class Materia implements DataCenter {
             /**
              * The world Bismarck
              */
@@ -533,7 +587,7 @@ public class Worlds {
         }
 
         @Override
-        public List<Datacenter> datacenters() {
+        public List<DataCenter> datacenters() {
             return List.of(elemental, gaia, mana, meteor);
         }
 
@@ -582,7 +636,7 @@ public class Worlds {
         /**
          * The elemental datacenter
          */
-        public static final class Elemental implements Datacenter {
+        public static final class Elemental implements DataCenter {
             /**
              * The world Aegis
              */
@@ -633,7 +687,7 @@ public class Worlds {
         /**
          * The gaia datacenter
          */
-        public static final class Gaia implements Datacenter {
+        public static final class Gaia implements DataCenter {
             /**
              * The world Alexander
              */
@@ -684,7 +738,7 @@ public class Worlds {
         /**
          * The mana datacenter
          */
-        public static final class Mana implements Datacenter {
+        public static final class Mana implements DataCenter {
             /**
              * The world Anima
              */
@@ -735,7 +789,7 @@ public class Worlds {
         /**
          * The elemental datacenter
          */
-        public static final class Meteor implements Datacenter {
+        public static final class Meteor implements DataCenter {
             /**
              * The world Belias
              */
@@ -780,6 +834,261 @@ public class Worlds {
             @Override
             public int id() {
                 return 10;
+            }
+        }
+    }
+
+    /**
+     * The 中国 region
+     */
+    public static class 中国 implements Region {
+        private final 陆行鸟 陆行鸟 = new 陆行鸟();
+        private final 莫古力 莫古力 = new 莫古力();
+        private final 猫小胖 猫小胖 = new 猫小胖();
+        private final 豆豆柴 豆豆柴 = new 豆豆柴();
+
+        @Override
+        public List<DataCenter> datacenters() {
+            return List.of(陆行鸟, 莫古力, 猫小胖, 豆豆柴);
+        }
+
+        @Override
+        public String name() {
+            return "中国";
+        }
+
+        /**
+         * The 陆行鸟 datacenter
+         *
+         * @return 陆行鸟 datacenter
+         */
+        public 陆行鸟 陆行鸟() {
+            return 陆行鸟;
+        }
+
+        /**
+         * The 莫古力 datacenter
+         *
+         * @return 莫古力 datacenter
+         */
+        public 莫古力 莫古力() {
+            return 莫古力;
+        }
+
+        /**
+         * The 猫小胖 datacenter
+         *
+         * @return 猫小胖 datacenter
+         */
+        public 猫小胖 猫小胖() {
+            return 猫小胖;
+        }
+
+        /**
+         * The 豆豆柴 datacenter
+         *
+         * @return 豆豆柴 datacenter
+         */
+        public 豆豆柴 豆豆柴() {
+            return 豆豆柴;
+        }
+
+        /**
+         * The 陆行鸟 datacenter
+         *
+         * @return 豆豆柴 datacenter
+         */
+        public static final class 陆行鸟 implements DataCenter {
+            /**
+             * The world 红玉海
+             */
+            public final World 红玉海 = World.of("红玉海", 1167);
+            /**
+             * The world 神意之地
+             */
+            public final World 神意之地 = World.of("神意之地", 1081);
+            /**
+             * The world 拉诺西亚
+             */
+            public final World 拉诺西亚 = World.of("拉诺西亚", 1042);
+            /**
+             * The world 幻影群岛
+             */
+            public final World 幻影群岛 = World.of("幻影群岛", 1044);
+            /**
+             * The world 萌芽池
+             */
+            public final World 萌芽池 = World.of("萌芽池", 1060);
+            /**
+             * The world 宇宙和音
+             */
+            public final World 宇宙和音 = World.of("宇宙和音", 1173);
+            /**
+             * The world 沃仙曦染
+             */
+            public final World 沃仙曦染 = World.of("沃仙曦染", 1174);
+            /**
+             * The world 晨曦王座
+             */
+            public final World 晨曦王座 = World.of("晨曦王座", 1175);
+
+            @Override
+            public List<World> worlds() {
+                return List.of(红玉海, 神意之地, 拉诺西亚, 幻影群岛, 萌芽池, 宇宙和音, 沃仙曦染, 晨曦王座);
+            }
+
+            @Override
+            public int id() {
+                return -1;
+            }
+
+        }
+
+        /**
+         * The 莫古力 datacenter
+         *
+         * @return 豆豆柴 datacenter
+         */
+        public static final class 莫古力 implements DataCenter {
+            /**
+             * The world 白银乡
+             */
+            public final World 白银乡 = World.of("白银乡", 1172);
+            /**
+             * The world 白金幻象
+             */
+            public final World 白金幻象 = World.of("白金幻象", 1076);
+            /**
+             * The world 神拳痕
+             */
+            public final World 神拳痕 = World.of("神拳痕", 1171);
+            /**
+             * The world 潮风亭
+             */
+            public final World 潮风亭 = World.of("潮风亭", 1170);
+            /**
+             * The world 旅人栈桥
+             */
+            public final World 旅人栈桥 = World.of("旅人栈桥", 1113);
+            /**
+             * The world 拂晓之间
+             */
+            public final World 拂晓之间 = World.of("拂晓之间", 1121);
+            /**
+             * The world 龙巢神殿
+             */
+            public final World 龙巢神殿 = World.of("龙巢神殿", 1166);
+            /**
+             * The world 梦羽宝境
+             */
+            public final World 梦羽宝境 = World.of("梦羽宝境", 1176);
+
+            @Override
+            public List<World> worlds() {
+                return List.of(白银乡, 白金幻象, 神拳痕, 潮风亭, 旅人栈桥, 拂晓之间, 龙巢神殿, 梦羽宝境);
+            }
+
+            @Override
+            public int id() {
+                return -1;
+            }
+
+        }
+
+        /**
+         * The 猫小胖 datacenter
+         *
+         * @return 猫小胖 datacenter
+         */
+        public static final class 猫小胖 implements DataCenter {
+            /**
+             * The world 紫水栈桥
+             */
+            public final World 紫水栈桥 = World.of("紫水栈桥", 1043);
+            /**
+             * The world 延夏
+             */
+            public final World 延夏 = World.of("延夏", 1169);
+            /**
+             * The world 静语庄园
+             */
+            public final World 静语庄园 = World.of("静语庄园", 1106);
+            /**
+             * The world 摩杜纳
+             */
+            public final World 摩杜纳 = World.of("摩杜纳", 1045);
+            /**
+             * The world 海猫茶屋
+             */
+            public final World 海猫茶屋 = World.of("海猫茶屋", 1177);
+            /**
+             * The world 柔风海湾
+             */
+            public final World 柔风海湾 = World.of("柔风海湾", 1178);
+            /**
+             * The world 琥珀原
+             */
+            public final World 琥珀原 = World.of("琥珀原", 1179);
+
+            @Override
+            public List<World> worlds() {
+                return List.of(紫水栈桥, 延夏, 静语庄园, 摩杜纳, 海猫茶屋, 柔风海湾, 琥珀原);
+            }
+
+            @Override
+            public int id() {
+                return -1;
+            }
+
+        }
+
+        /**
+         * The 豆豆柴 datacenter
+         *
+         * @return 豆豆柴 datacenter
+         */
+        public static final class 豆豆柴 implements DataCenter {
+            /**
+             * The world 水晶塔
+             */
+            public final World 水晶塔 = World.of("水晶塔", 1192);
+            /**
+             * The world 银泪湖
+             */
+            public final World 银泪湖 = World.of("银泪湖", 1183);
+            /**
+             * The world 太阳海岸
+             */
+            public final World 太阳海岸 = World.of("太阳海岸", 1180);
+            /**
+             * The world 伊修加德
+             */
+            public final World 伊修加德 = World.of("伊修加德", 1186);
+            /**
+             * The world 红茶川
+             */
+            public final World 红茶川 = World.of("红茶川", 1201);
+            /**
+             * The world 黄金谷
+             */
+            public final World 黄金谷 = World.of("黄金谷", 1068);
+            /**
+             * The world 月牙湾
+             */
+            public final World 月牙湾 = World.of("月牙湾", 1064);
+            /**
+             * The world 雪松原
+             */
+            public final World 雪松原 = World.of("雪松原", 1187);
+
+            @Override
+            public List<World> worlds() {
+                return List.of(水晶塔, 银泪湖, 太阳海岸, 伊修加德, 红茶川, 黄金谷, 月牙湾, 雪松原);
+            }
+
+            @Override
+            public int id() {
+                return -1;
             }
         }
     }

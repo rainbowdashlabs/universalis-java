@@ -9,7 +9,7 @@ package de.chojo.universalis.entities.views;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import de.chojo.universalis.entities.MinimizedSale;
 import de.chojo.universalis.entities.MinizedPrice;
-import de.chojo.universalis.entities.World;
+import de.chojo.universalis.worlds.World;
 
 import javax.annotation.Nullable;
 import java.time.Instant;

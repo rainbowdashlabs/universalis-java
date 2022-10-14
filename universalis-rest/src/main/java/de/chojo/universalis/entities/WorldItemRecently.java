@@ -7,6 +7,7 @@
 package de.chojo.universalis.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import de.chojo.universalis.worlds.World;
 
 import java.time.Instant;
 

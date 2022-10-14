@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 
 public class HistoryResponseDeserializer extends JsonDeserializer<HistoryResponse> {
     @Override
-    public HistoryResponse deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JacksonException {
+    public HistoryResponse deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
         var view = ctxt.readValue(p, HistoryView.class);
         var item = view.item();
         var world = view.world();

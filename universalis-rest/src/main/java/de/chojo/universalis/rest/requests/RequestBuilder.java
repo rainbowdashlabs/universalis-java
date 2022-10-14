@@ -66,9 +66,9 @@ public class RequestBuilder<T> implements Request<T> {
     public CompletableFuture<T> queue() {
         return rest.getAsyncAndMap(uri(), this.result)
                    .thenApply(res -> {
-                         postRetrievalHook.accept(res);
-                         return res;
-                     });
+                       postRetrievalHook.accept(res);
+                       return res;
+                   });
     }
 
     @Override

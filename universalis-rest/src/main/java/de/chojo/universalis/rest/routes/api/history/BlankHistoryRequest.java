@@ -6,14 +6,14 @@
 
 package de.chojo.universalis.rest.routes.api.history;
 
-import de.chojo.universalis.entities.World;
-import de.chojo.universalis.worlds.Datacenter;
+import de.chojo.universalis.worlds.World;
+import de.chojo.universalis.worlds.DataCenter;
 import de.chojo.universalis.worlds.Region;
 
 public interface BlankHistoryRequest {
     RegionHistoryRequest region(Region region);
 
-    RegionHistoryRequest dataCenter(Datacenter dataCenter);
+    RegionHistoryRequest dataCenter(DataCenter dataCenter);
 
     RegionHistoryRequest world(World world);
 }

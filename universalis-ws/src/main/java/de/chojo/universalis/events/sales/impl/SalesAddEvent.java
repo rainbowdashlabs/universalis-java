@@ -8,7 +8,7 @@ package de.chojo.universalis.events.sales.impl;
 
 import de.chojo.universalis.entities.Sale;
 import de.chojo.universalis.entities.Item;
-import de.chojo.universalis.entities.World;
+import de.chojo.universalis.worlds.World;
 import de.chojo.universalis.events.sales.SalesEvent;
 
 import java.util.List;

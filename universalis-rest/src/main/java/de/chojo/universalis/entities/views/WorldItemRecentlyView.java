@@ -7,7 +7,7 @@
 package de.chojo.universalis.entities.views;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import de.chojo.universalis.entities.World;
+import de.chojo.universalis.worlds.World;
 
 public record WorldItemRecentlyView(@JsonProperty("itemID") int id,
                                     @JsonProperty("lastUploadTime") long updated,

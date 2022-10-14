@@ -111,10 +111,18 @@ allprojects {
         javadoc {
             applyJavaDocOptions(options)
         }
+
+        compileJava {
+            options.encoding = "UTF-8"
+        }
+
+        javadoc {
+            options.encoding = "UTF-8"
+        }
     }
 }
 
-fun applyJavaDocOptions(options: MinimalJavadocOptions){
+fun applyJavaDocOptions(options: MinimalJavadocOptions) {
     val javaDocOptions = options as StandardJavadocDocletOptions
     javaDocOptions.links(
         "https://javadoc.io/doc/com.google.code.findbugs/jsr305/latest/",

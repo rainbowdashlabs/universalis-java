@@ -23,7 +23,7 @@ public class ItemDeserializer extends JsonDeserializer<Item> {
     }
 
     @Override
-    public Item deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JacksonException {
+    public Item deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
         return Item.build(itemSupplier, p.getValueAsInt());
     }
 }

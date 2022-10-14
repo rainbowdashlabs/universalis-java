@@ -8,7 +8,6 @@ package de.chojo.universalis.rest.routes.api.history;
 
 import de.chojo.universalis.entities.Item;
 import de.chojo.universalis.rest.routes.api.HistoryRequest;
-import de.chojo.universalis.rest.routes.api.MarketBoardRequest;
 
 import java.util.Collection;
 

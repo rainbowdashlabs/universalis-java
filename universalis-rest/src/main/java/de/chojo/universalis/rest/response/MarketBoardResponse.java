@@ -10,8 +10,8 @@ import de.chojo.universalis.entities.Item;
 import de.chojo.universalis.entities.Listing;
 import de.chojo.universalis.entities.QualityIndicator;
 import de.chojo.universalis.entities.Sale;
-import de.chojo.universalis.entities.World;
-import de.chojo.universalis.worlds.Datacenter;
+import de.chojo.universalis.worlds.World;
+import de.chojo.universalis.worlds.DataCenter;
 import de.chojo.universalis.worlds.Region;
 
 import javax.annotation.Nullable;
@@ -21,7 +21,7 @@ import java.util.Map;
 
 public record MarketBoardResponse(Item item,
                                   @Nullable World world,
-                                  @Nullable Datacenter dataCenter,
+                                  @Nullable DataCenter dataCenter,
                                   @Nullable Region region,
                                   Instant lastUploadTime,
                                   List<Listing> listings,

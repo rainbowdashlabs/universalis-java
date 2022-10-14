@@ -16,7 +16,7 @@ import java.io.IOException;
 
 public class CityDeserializer extends JsonDeserializer<City> {
     @Override
-    public City deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JacksonException {
+    public City deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
         return City.fromName(p.getValueAsString());
     }
 }

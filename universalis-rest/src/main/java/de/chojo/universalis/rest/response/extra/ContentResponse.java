@@ -6,8 +6,8 @@
 
 package de.chojo.universalis.rest.response.extra;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Map;
 
-//TODO: Largely volatile
-public record ContentResponse(@JsonProperty("id") int id) {
+//TODO: Probably a no fix. Dunno what it does and I dont need the data as it seems ¯\_(ツ)_/¯
+public record ContentResponse(Map<String, Object> content) {
 }

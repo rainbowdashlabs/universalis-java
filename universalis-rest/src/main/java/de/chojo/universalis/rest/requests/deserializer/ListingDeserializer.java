@@ -17,7 +17,7 @@ import java.io.IOException;
 
 public class ListingDeserializer extends JsonDeserializer<Listing> {
     @Override
-    public Listing deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JacksonException {
+    public Listing deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
         return ctxt.readValue(p, ListingView.class).toListing();
     }
 }

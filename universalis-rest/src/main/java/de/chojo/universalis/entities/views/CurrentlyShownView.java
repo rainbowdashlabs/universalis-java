@@ -8,8 +8,8 @@ package de.chojo.universalis.entities.views;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import de.chojo.universalis.entities.Item;
-import de.chojo.universalis.entities.World;
-import de.chojo.universalis.worlds.Datacenter;
+import de.chojo.universalis.worlds.World;
+import de.chojo.universalis.worlds.DataCenter;
 import de.chojo.universalis.worlds.Region;
 
 import javax.annotation.Nullable;
@@ -23,7 +23,7 @@ public record CurrentlyShownView(@JsonProperty("itemID") Item item,
                                  @JsonProperty("lastUploadTime") Instant lastUploadTime,
                                  @JsonProperty("listings") List<ListingView> listingViews,
                                  @JsonProperty("recentHistory") List<SaleView> recentHistory,
-                                 @JsonProperty("dcName") Datacenter datacenter,
+                                 @JsonProperty("dcName") DataCenter datacenter,
                                  @JsonProperty("regionName") Region region,
                                  @JsonProperty("currentAveragePrice") float currentAveragePrice,
                                  @JsonProperty("currentAveragePriceNQ") float currentAveragePriceNQ,

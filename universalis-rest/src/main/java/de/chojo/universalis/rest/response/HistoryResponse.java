@@ -9,8 +9,8 @@ package de.chojo.universalis.rest.response;
 import de.chojo.universalis.entities.Item;
 import de.chojo.universalis.entities.MinimizedSale;
 import de.chojo.universalis.entities.QualityIndicator;
-import de.chojo.universalis.entities.World;
-import de.chojo.universalis.worlds.Datacenter;
+import de.chojo.universalis.worlds.World;
+import de.chojo.universalis.worlds.DataCenter;
 import de.chojo.universalis.worlds.Region;
 
 import javax.annotation.Nullable;
@@ -20,7 +20,7 @@ import java.util.Map;
 
 public record HistoryResponse(Item item,
                               @Nullable World world,
-                              @Nullable Datacenter datacenter,
+                              @Nullable DataCenter datacenter,
                               @Nullable Region region,
                               Instant lastUploadTime,
                               List<MinimizedSale> sales,

@@ -9,7 +9,7 @@ package de.chojo.universalis.websocket.events.concrete.sales;
 import de.chojo.universalis.websocket.events.WsEvent;
 import de.chojo.universalis.websocket.events.concrete.sales.views.SaleView;
 import de.chojo.universalis.entities.Sale;
-import de.chojo.universalis.entities.World;
+import de.chojo.universalis.worlds.World;
 import de.chojo.universalis.events.Event;
 
 import java.util.List;

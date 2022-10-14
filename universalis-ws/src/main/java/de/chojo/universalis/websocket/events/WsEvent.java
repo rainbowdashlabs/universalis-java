@@ -9,7 +9,7 @@ package de.chojo.universalis.websocket.events;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import de.chojo.universalis.websocket.builder.UniversalisWsBuilder;
 import de.chojo.universalis.entities.Item;
-import de.chojo.universalis.entities.World;
+import de.chojo.universalis.worlds.World;
 import de.chojo.universalis.events.Event;
 import de.chojo.universalis.provider.NameSupplier;
 import de.chojo.universalis.worlds.Worlds;

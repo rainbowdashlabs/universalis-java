@@ -6,6 +6,8 @@
 
 package de.chojo.universalis.entities;
 
+import de.chojo.universalis.worlds.World;
+
 import java.time.Instant;
 
 public record Listing(Instant lastReviewTime,

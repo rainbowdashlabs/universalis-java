@@ -6,7 +6,6 @@
 
 package de.chojo.universalis.rest.requests.deserializer;
 
-import com.fasterxml.jackson.core.JacksonException;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
@@ -18,9 +17,8 @@ import java.util.List;
 
 public class DataCenterResponseDeserializer extends JsonDeserializer<DataCentersResponse> {
     @Override
-    public DataCentersResponse deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JacksonException {
-        List<DataCenter> contentType = ctxt.readValue(p,
-                ctxt.getTypeFactory().constructCollectionType(List.class, DataCenter.class));
+    public DataCentersResponse deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        List<DataCenter> contentType = ctxt.readValue(p, ctxt.getTypeFactory().constructCollectionType(List.class, DataCenter.class));
         return new DataCentersResponse(contentType);
     }
 }

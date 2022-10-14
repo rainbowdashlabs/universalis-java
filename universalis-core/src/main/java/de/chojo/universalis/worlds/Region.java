@@ -6,8 +6,6 @@
 
 package de.chojo.universalis.worlds;
 
-import de.chojo.universalis.entities.World;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +15,7 @@ public interface Region extends WorldProvider {
      *
      * @return unmodifiable datecenter list
      */
-    List<Datacenter> datacenters();
+    List<DataCenter> datacenters();
 
     /**
      * Name of the region
@@ -33,7 +31,7 @@ public interface Region extends WorldProvider {
     @Override
     default List<World> worlds() {
         List<World> worlds = new ArrayList<>();
-        for (Datacenter datacenter : datacenters()) {
+        for (DataCenter datacenter : datacenters()) {
             worlds.addAll(datacenter.worlds());
         }
         return worlds;

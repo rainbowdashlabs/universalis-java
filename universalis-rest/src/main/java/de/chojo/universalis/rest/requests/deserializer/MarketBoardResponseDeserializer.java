@@ -6,12 +6,11 @@
 
 package de.chojo.universalis.rest.requests.deserializer;
 
-import com.fasterxml.jackson.core.JacksonException;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import de.chojo.universalis.entities.QualityIndicator;
-import de.chojo.universalis.entities.World;
+import de.chojo.universalis.worlds.World;
 import de.chojo.universalis.entities.views.CurrentlyShownView;
 import de.chojo.universalis.entities.views.ListingView;
 import de.chojo.universalis.entities.views.SaleView;
@@ -25,7 +24,7 @@ import java.util.stream.Collectors;
 
 public class MarketBoardResponseDeserializer extends JsonDeserializer<MarketBoardResponse> {
     @Override
-    public MarketBoardResponse deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JacksonException {
+    public MarketBoardResponse deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
         var view = ctxt.readValue(p, CurrentlyShownView.class);
         var item = view.item();
         var world = view.world();

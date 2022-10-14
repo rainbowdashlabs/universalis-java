@@ -7,11 +7,12 @@
 package de.chojo.universalis.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import de.chojo.universalis.worlds.Datacenter;
-import de.chojo.universalis.worlds.Region;
+import de.chojo.universalis.worlds.World;
 
 import java.util.List;
 
-public record DataCenter(@JsonProperty("name") Datacenter name, @JsonProperty("region") Region region, @JsonProperty("worlds") List<World> worlds) {
+public record DataCenter(@JsonProperty("name") String name,
+                         @JsonProperty("region") String region,
+                         @JsonProperty("worlds") List<World> worlds) {
 
 }

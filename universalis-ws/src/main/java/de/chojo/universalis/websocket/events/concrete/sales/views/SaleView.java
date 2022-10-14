@@ -9,7 +9,7 @@ package de.chojo.universalis.websocket.events.concrete.sales.views;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import de.chojo.universalis.entities.Price;
 import de.chojo.universalis.entities.Sale;
-import de.chojo.universalis.entities.World;
+import de.chojo.universalis.worlds.World;
 
 import java.time.Instant;
 

@@ -16,6 +16,7 @@ import java.time.Duration;
 public interface HistoryRequest extends Request<HistoryResponse>, RegionHistoryRequest {
     /**
      * The number of entries to return. By default, this is set to 1800, but may be set to a maximum of 999999.
+     *
      * @param limit limit
      * @return request
      */

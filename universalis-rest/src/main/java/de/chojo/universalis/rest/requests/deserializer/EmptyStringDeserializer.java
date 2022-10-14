@@ -16,7 +16,7 @@ import java.io.IOException;
 
 public class EmptyStringDeserializer extends JsonDeserializer<String> {
     @Override
-    public String deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JacksonException {
+    public String deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
         String deserialize = StringDeserializer.instance.deserialize(p, ctxt);
         if (deserialize == null || deserialize.isBlank()) {
             return null;

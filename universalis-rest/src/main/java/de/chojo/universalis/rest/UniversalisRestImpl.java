@@ -7,19 +7,20 @@
 package de.chojo.universalis.rest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import de.chojo.universalis.entities.Name;
 import de.chojo.universalis.provider.NameSupplier;
-import de.chojo.universalis.provider.items.Items;
 import de.chojo.universalis.rest.requests.Buckets;
 import de.chojo.universalis.rest.requests.Mapper;
-import de.chojo.universalis.rest.routes.HistoryRequestImpl;
-import de.chojo.universalis.rest.routes.TaxRatesRequestImpl;
 import de.chojo.universalis.rest.routes.api.DataCentersRequest;
-import de.chojo.universalis.rest.routes.DataCentersRequestImpl;
-import de.chojo.universalis.rest.routes.MarketBoardRequestImpl;
+import de.chojo.universalis.rest.routes.api.MarketableRequest;
 import de.chojo.universalis.rest.routes.api.WorldsRequest;
-import de.chojo.universalis.rest.routes.WorldsRequestImpl;
 import de.chojo.universalis.rest.routes.api.history.BlankHistoryRequest;
+import de.chojo.universalis.rest.routes.requests.DataCentersRequestImpl;
+import de.chojo.universalis.rest.routes.requests.HistoryRequestImpl;
+import de.chojo.universalis.rest.routes.requests.MarketBoardRequestImpl;
+import de.chojo.universalis.rest.routes.requests.MarketableRequestImpl;
+import de.chojo.universalis.rest.routes.requests.TaxRatesRequestImpl;
+import de.chojo.universalis.rest.routes.requests.WorldsRequestImpl;
+import de.chojo.universalis.rest.routes.requests.extra.Extra;
 import io.github.bucket4j.Bucket;
 import org.apache.hc.core5.net.URIBuilder;
 import org.slf4j.Logger;
@@ -31,26 +32,23 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
 public class UniversalisRestImpl implements UniversalisRest {
-    private final Bucket xivapi = Buckets.newUniversalisBucket();
     private static final Logger log = getLogger(UniversalisRestImpl.class);
-    private final HttpClient http = HttpClient.newBuilder().version(HttpClient.Version.HTTP_2).build();
+    private final Bucket xivapi = Buckets.newUniversalisBucket();
+    private final HttpClient http;// = HttpClient.newBuilder().version(HttpClient.Version.HTTP_2).build();
     private final ObjectMapper objectMapper;
-    private final ScheduledExecutorService executorService = Executors.newScheduledThreadPool(2);
+    private final ScheduledExecutorService executorService;// = Executors.newScheduledThreadPool(2);
+    private final Extra extra;
 
-
-    public UniversalisRestImpl() {
-        NameSupplier items = id -> new Name("", "", "", "");
-        try {
-            items = Items.create();
-        } catch (IOException | InterruptedException ignored) {
-        }
-        objectMapper = Mapper.create(items);
+    public UniversalisRestImpl(HttpClient http, ScheduledExecutorService executorService, NameSupplier nameSupplier) {
+        this.http = http;
+        this.executorService = executorService;
+        this.objectMapper = Mapper.create(nameSupplier);
+        this.extra = new Extra(this);
     }
 
     public HttpClient http() {
@@ -88,6 +86,16 @@ public class UniversalisRestImpl implements UniversalisRest {
     @Override
     public TaxRatesRequestImpl taxRates() {
         return new TaxRatesRequestImpl(this);
+    }
+
+    @Override
+    public MarketableRequest marketable() {
+        return new MarketableRequestImpl(this);
+    }
+
+    @Override
+    public Extra extra() {
+        return extra;
     }
 
     public <T> CompletableFuture<T> getAsyncAndMap(URIBuilder uri, Class<T> result) {

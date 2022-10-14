@@ -6,9 +6,9 @@
 
 package de.chojo.universalis.subscriber;
 
-import de.chojo.universalis.worlds.Datacenter;
+import de.chojo.universalis.worlds.DataCenter;
 import de.chojo.universalis.worlds.Region;
-import de.chojo.universalis.entities.World;
+import de.chojo.universalis.worlds.World;
 import de.chojo.universalis.worlds.WorldProvider;
 
 import java.util.ArrayList;
@@ -57,7 +57,7 @@ public class Subscription {
      * @param world world to add
      * @return subcription instance for chaining.
      */
-    public Subscription forWorld(World world) {
+    public Subscription restrict(World world) {
         return provideWorld(world);
     }
 
@@ -67,7 +67,7 @@ public class Subscription {
      * @param datacenter datacenter to add
      * @return subcription instance for chaining.
      */
-    public Subscription forDatacenter(Datacenter datacenter) {
+    public Subscription restrict(DataCenter datacenter) {
         return provideWorld(datacenter);
     }
 

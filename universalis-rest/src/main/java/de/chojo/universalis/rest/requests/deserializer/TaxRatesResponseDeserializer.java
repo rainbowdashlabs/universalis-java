@@ -19,7 +19,7 @@ import java.util.Map;
 
 public class TaxRatesResponseDeserializer extends JsonDeserializer<TaxRatesResponse> {
     @Override
-    public TaxRatesResponse deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JacksonException {
+    public TaxRatesResponse deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
         Map<City, Integer> taxRates = ctxt.readValue(p, ctxt.getTypeFactory()
                                                             .constructMapType(EnumMap.class, City.class, Integer.class));
         return new TaxRatesResponse(taxRates);

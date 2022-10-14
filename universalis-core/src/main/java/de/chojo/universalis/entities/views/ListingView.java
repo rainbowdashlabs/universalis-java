@@ -13,7 +13,7 @@ import de.chojo.universalis.entities.ItemMeta;
 import de.chojo.universalis.entities.Listing;
 import de.chojo.universalis.entities.Price;
 import de.chojo.universalis.entities.Retainer;
-import de.chojo.universalis.entities.World;
+import de.chojo.universalis.worlds.World;
 import de.chojo.universalis.worlds.Worlds;
 
 import java.time.Instant;

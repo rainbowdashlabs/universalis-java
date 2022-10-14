@@ -7,7 +7,7 @@
 package de.chojo.universalis.events;
 
 import de.chojo.universalis.entities.Item;
-import de.chojo.universalis.entities.World;
+import de.chojo.universalis.worlds.World;
 
 /**
  * Base class for an event.
