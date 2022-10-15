@@ -15,8 +15,8 @@ repositories {
 }
 
 dependencies {
-    implementation(project(":universalis-rest"))
-    implementation(project(":universalis-ws"))
+    api(project(":universalis-rest"))
+    api(project(":universalis-ws"))
 }
 
 subprojects {
