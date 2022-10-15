@@ -18,6 +18,7 @@ import java.util.Map;
 /**
  * Class containing the currently valid regions, datacenters and worlds.
  */
+@SuppressWarnings("unused")
 public class Worlds {
     private static final Map<Integer, World> ids = new HashMap<>();
     private static final Map<String, World> names = new HashMap<>();
@@ -25,7 +26,7 @@ public class Worlds {
     private static final NorthAmerica northAmerica = new NorthAmerica();
     private static final Oceania oceania = new Oceania();
     private static final Japan japan = new Japan();
-    private static final 中国 中国 = new 中国();
+    private static final China china = new China();
 
     /**
      * The european region
@@ -68,8 +69,8 @@ public class Worlds {
      *
      * @return 中国 region
      */
-    public static 中国 中国() {
-        return 中国;
+    public static China china() {
+        return china;
     }
 
     /**
@@ -78,7 +79,7 @@ public class Worlds {
      * @return unmodifiable list of regions
      */
     public static List<Region> regions() {
-        return List.of(europe, northAmerica, oceania, japan);
+        return List.of(europe, northAmerica, oceania, japan, china);
     }
 
     /**
@@ -132,7 +133,7 @@ public class Worlds {
         for (World value : names.values()) {
             if (value.id() == id) return value;
         }
-        return World.of("", id);
+        return World.of("", id, null);
     }
 
     /**
@@ -157,7 +158,7 @@ public class Worlds {
         for (World world : ids.values()) {
             if (world.name().equalsIgnoreCase(name)) return world;
         }
-        return World.of(name, -1);
+        return World.of(name, -1, null);
     }
 
     /**
@@ -167,7 +168,7 @@ public class Worlds {
      * @return world
      */
     public static World toWorld(de.chojo.universalis.entities.World world) {
-        World iWorld = World.of(world.name(), world.id());
+        World iWorld = World.of(world.name(), world.id(), null);
         World worldByName = findWorldByName(world.name());
         if (worldByName.id() != -1) {
             iWorld = worldByName;
@@ -200,18 +201,18 @@ public class Worlds {
         }
 
         /**
-         * The chaosdate center
+         * The chaos data center
          *
-         * @return chaosdate center
+         * @return chaos data center
          */
         public Chaos chaos() {
             return chaos;
         }
 
         /**
-         * The lightdate center
+         * The light data center
          *
-         * @return lightdate center
+         * @return light data center
          */
         public Light light() {
             return light;
@@ -228,104 +229,108 @@ public class Worlds {
         }
 
         /**
-         * The chaosdate center
+         * The chaos data center
          */
         public static final class Chaos implements DataCenter {
             /**
              * The world Cerberus
              */
-            public final World CERBERUS = World.of("Cerberus", 80);
+            public final World cerberus = World.of("Cerberus", 80, this);
             /**
              * The world Louisoix
              */
-            public final World LOUISOIX = World.of("Louisoix", 83);
+            public final World louisoix = World.of("Louisoix", 83, this);
             /**
              * The world Moogle
              */
-            public final World MOOGLE = World.of("Moogle", 71);
+            public final World moogle = World.of("Moogle", 71, this);
             /**
              * The world Omega
              */
-            public final World OMEGA = World.of("Omega", 39);
+            public final World omega = World.of("Omega", 39, this);
             /**
              * The world Phantom
              */
-            public final World PHANTOM = World.of("Phantom", 401);
+            public final World phantom = World.of("Phantom", 401, this);
             /**
              * The world Ragnarok
              */
-            public final World RAGNAROK = World.of("Ragnarok", 97);
+            public final World ragnarok = World.of("Ragnarok", 97, this);
             /**
              * The world Sagittarius
              */
-            public final World SAGITTARIUS = World.of("Sagittarius", 400);
+            public final World sagittarius = World.of("Sagittarius", 400, this);
             /**
              * The world Spriggan
              */
-            public final World SPRIGGAN = World.of("Spriggan", 85);
-
-            private Chaos() {
-            }
+            public final World spriggan = World.of("Spriggan", 85, this);
 
             @Override
             public List<World> worlds() {
-                return List.of(CERBERUS, LOUISOIX, MOOGLE, OMEGA, PHANTOM, RAGNAROK, SAGITTARIUS, SPRIGGAN);
+                return List.of(cerberus, louisoix, moogle, omega, phantom, ragnarok, sagittarius, spriggan);
             }
 
             @Override
             public int id() {
                 return 6;
             }
+
+            @Override
+            public Region region() {
+                return europe;
+            }
         }
 
         /**
-         * The lightdate center
+         * The light data center
          */
         public static final class Light implements DataCenter {
             /**
              * The world Alpha
              */
-            public final World ALPHA = World.of("Alpha", 402);
+            public final World alpha = World.of("Alpha", 402, this);
             /**
              * The world Lich
              */
-            public final World LICH = World.of("Lich", 36);
+            public final World lich = World.of("Lich", 36, this);
             /**
              * The world Odin
              */
-            public final World ODIN = World.of("Odin", 66);
+            public final World odin = World.of("Odin", 66, this);
             /**
              * The world Phoenix
              */
-            public final World PHOENIX = World.of("Phoenix", 56);
+            public final World phoenix = World.of("Phoenix", 56, this);
             /**
              * The world Raiden
              */
-            public final World RAIDEN = World.of("Raiden", 403);
+            public final World raiden = World.of("Raiden", 403, this);
             /**
              * The world Shiva
              */
-            public final World SHIVA = World.of("Shiva", 67);
+            public final World shiva = World.of("Shiva", 67, this);
             /**
              * The world Twintania
              */
-            public final World TWINTANIA = World.of("Twintania", 33);
+            public final World twintania = World.of("Twintania", 33, this);
             /**
              * The world Zodiark
              */
-            public final World ZODIARK = World.of("Zodiark", 42);
-
-            private Light() {
-            }
+            public final World zodiark = World.of("Zodiark", 42, this);
 
             @Override
             public List<World> worlds() {
-                return List.of(ALPHA, LICH, ODIN, PHOENIX, RAIDEN, SHIVA, TWINTANIA, ZODIARK);
+                return List.of(alpha, lich, odin, phoenix, raiden, shiva, twintania, zodiark);
             }
 
             @Override
             public int id() {
                 return 7;
+            }
+
+            @Override
+            public Region region() {
+                return europe;
             }
         }
     }
@@ -342,27 +347,27 @@ public class Worlds {
         }
 
         /**
-         * The aetherdate center
+         * The aether data center
          *
-         * @return aetherdate center
+         * @return aether data center
          */
         public Aether aether() {
             return aether;
         }
 
         /**
-         * The crystaldate center
+         * The crystal data center
          *
-         * @return crystaldate center
+         * @return crystal data center
          */
         public Crystal crystal() {
             return crystal;
         }
 
         /**
-         * The primaldate center
+         * The primal data center
          *
-         * @return primaldate center
+         * @return primal data center
          */
         public Primal primal() {
             return primal;
@@ -379,155 +384,161 @@ public class Worlds {
         }
 
         /**
-         * The aetherdate center
+         * The aether data center
          */
         public static final class Aether implements DataCenter {
             /**
              * The world Adamantoise
              */
-            public final World ADAMANTOISE = World.of("Adamantoise", 73);
+            public final World adamantoise = World.of("Adamantoise", 73, this);
             /**
              * The world Cactuar
              */
-            public final World CACTUAR = World.of("Cactuar", 79);
+            public final World cactuar = World.of("Cactuar", 79, this);
             /**
              * The world Faerie
              */
-            public final World FAERIE = World.of("Faerie", 54);
+            public final World faerie = World.of("Faerie", 54, this);
             /**
              * The world Gilgamesh
              */
-            public final World GILGAMESH = World.of("Gilgamesh", 63);
+            public final World gilgamesh = World.of("Gilgamesh", 63, this);
             /**
              * The world Jenova
              */
-            public final World JENOVA = World.of("Jenova", 40);
+            public final World jenova = World.of("Jenova", 40, this);
             /**
              * The world Midgardsormr
              */
-            public final World MIDGARDSORMR = World.of("Midgardsormr", 65);
+            public final World midgardsormr = World.of("Midgardsormr", 65, this);
             /**
              * The world Sargatanas
              */
-            public final World SARGATANAS = World.of("Sargatanas", 99);
+            public final World sargatanas = World.of("Sargatanas", 99, this);
             /**
              * The world Siren
              */
-            public final World SIREN = World.of("Siren", 57);
-
-            private Aether() {
-            }
+            public final World siren = World.of("Siren", 57, this);
 
             @Override
             public List<World> worlds() {
-                return List.of(ADAMANTOISE, CACTUAR, FAERIE, GILGAMESH, JENOVA, MIDGARDSORMR, SARGATANAS, SIREN);
+                return List.of(adamantoise, cactuar, faerie, gilgamesh, jenova, midgardsormr, sargatanas, siren);
             }
 
             @Override
             public int id() {
                 return 4;
             }
+
+            @Override
+            public Region region() {
+                return northAmerica;
+            }
         }
 
         /**
-         * The crystaldate center
+         * The crystal data center
          */
         public static final class Crystal implements DataCenter {
             /**
              * The world Balmung
              */
-            public final World BALMUNG = World.of("Balmung", 91);
+            public final World balmung = World.of("Balmung", 91, this);
             /**
              * The world Brynhildr
              */
-            public final World BRYNHILDR = World.of("Brynhildr", 34);
+            public final World brynhildr = World.of("Brynhildr", 34, this);
             /**
              * The world Coeurl
              */
-            public final World COEURL = World.of("Coeurl", 74);
+            public final World coeurl = World.of("Coeurl", 74, this);
             /**
              * The world Diabolos
              */
-            public final World DIABOLOS = World.of("Diabolos", 62);
+            public final World diabolos = World.of("Diabolos", 62, this);
             /**
              * The world Goblin
              */
-            public final World GOBLIN = World.of("Goblin", 81);
+            public final World goblin = World.of("Goblin", 81, this);
             /**
              * The world Malboro
              */
-            public final World MALBORO = World.of("Malboro", 75);
+            public final World malboro = World.of("Malboro", 75, this);
             /**
              * The world Mateus
              */
-            public final World MATEUS = World.of("Mateus", 37);
+            public final World mateus = World.of("Mateus", 37, this);
             /**
              * The world Zalera
              */
-            public final World ZALERA = World.of("Zalera", 41);
-
-            private Crystal() {
-            }
+            public final World zalera = World.of("Zalera", 41, this);
 
             @Override
             public List<World> worlds() {
-                return List.of(BALMUNG, BRYNHILDR, COEURL, DIABOLOS, GOBLIN, MALBORO, MATEUS, ZALERA);
+                return List.of(balmung, brynhildr, coeurl, diabolos, goblin, malboro, mateus, zalera);
             }
 
             @Override
             public int id() {
                 return 8;
             }
+
+            @Override
+            public Region region() {
+                return northAmerica;
+            }
         }
 
         /**
-         * The primaldate center
+         * The primal data center
          */
         public static final class Primal implements DataCenter {
             /**
              * The world Behemoth
              */
-            public final World BEHEMOTH = World.of("Behemoth", 78);
+            public final World behemoth = World.of("Behemoth", 78, this);
             /**
              * The world Excalibur
              */
-            public final World EXCALIBUR = World.of("Excalibur", 93);
+            public final World excalibur = World.of("Excalibur", 93, this);
             /**
              * The world Exodus
              */
-            public final World EXODUS = World.of("Exodus", 53);
+            public final World exodus = World.of("Exodus", 53, this);
             /**
              * The world Famfrit
              */
-            public final World FAMFRIT = World.of("Famfrit", 35);
+            public final World famfrit = World.of("Famfrit", 35, this);
             /**
              * The world Hyperion
              */
-            public final World HYPERION = World.of("Hyperion", 95);
+            public final World hyperion = World.of("Hyperion", 95, this);
             /**
              * The world Lamia
              */
-            public final World LAMIA = World.of("Lamia", 55);
+            public final World lamia = World.of("Lamia", 55, this);
             /**
              * The world Leviathan
              */
-            public final World LEVIATHAN = World.of("Leviathan", 64);
+            public final World leviathan = World.of("Leviathan", 64, this);
             /**
              * The world Ultros
              */
-            public final World ULTROS = World.of("Ultros", 77);
-
-            private Primal() {
-            }
+            public final World ultros = World.of("Ultros", 77, this);
 
             @Override
             public List<World> worlds() {
-                return List.of(BEHEMOTH, EXCALIBUR, EXODUS, FAMFRIT, HYPERION, LAMIA, LEVIATHAN, ULTROS);
+                return List.of(behemoth, excalibur, exodus, famfrit, hyperion, lamia, leviathan, ultros);
             }
 
             @Override
             public int id() {
                 return 5;
+            }
+
+            @Override
+            public Region region() {
+                return northAmerica;
             }
         }
     }
@@ -542,9 +553,9 @@ public class Worlds {
         }
 
         /**
-         * The materiadate center
+         * The materia data center
          *
-         * @return materiadate center
+         * @return materia data center
          */
         public Materia materia() {
             return materia;
@@ -561,41 +572,43 @@ public class Worlds {
         }
 
         /**
-         * The materiadate center
+         * The materia data center
          */
         public static final class Materia implements DataCenter {
             /**
              * The world Bismarck
              */
-            public final World BISMARCK = World.of("Bismarck", 22);
+            public final World bismarck = World.of("Bismarck", 22, this);
             /**
              * The world Ravana
              */
-            public final World RAVANA = World.of("Ravana", 21);
+            public final World ravana = World.of("Ravana", 21, this);
             /**
              * The world Sephirot
              */
-            public final World SEPHIROT = World.of("Sephirot", 86);
+            public final World sephirot = World.of("Sephirot", 86, this);
             /**
              * The world Sophia
              */
-            public final World SOPHIA = World.of("Sophia", 87);
+            public final World sophia = World.of("Sophia", 87, this);
             /**
              * The world Zurvan
              */
-            public final World ZURVAN = World.of("Zurvan", 88);
-
-            private Materia() {
-            }
+            public final World zurvan = World.of("Zurvan", 88, this);
 
             @Override
             public List<World> worlds() {
-                return List.of(BISMARCK, RAVANA, SEPHIROT, SOPHIA, ZURVAN);
+                return List.of(bismarck, ravana, sephirot, sophia, zurvan);
             }
 
             @Override
             public int id() {
                 return 9;
+            }
+
+            @Override
+            public Region region() {
+                return oceania;
             }
         }
     }
@@ -624,242 +637,250 @@ public class Worlds {
 
 
         /**
-         * The elementaldate center
+         * The elemental data center
          *
-         * @return elementaldate center
+         * @return elementaldata center
          */
         public Elemental elemental() {
             return elemental;
         }
 
         /**
-         * The gaiadate center
+         * The gaia data center
          *
-         * @return gaiadate center
+         * @return gaia data center
          */
         public Gaia gaia() {
             return gaia;
         }
 
         /**
-         * The manadate center
+         * The mana data center
          *
-         * @return manadate center
+         * @return mana data center
          */
         public Mana mana() {
             return mana;
         }
 
         /**
-         * The meteordate center
+         * The meteor data center
          *
-         * @return meteordate center
+         * @return meteor data center
          */
         public Meteor meteor() {
             return meteor;
         }
 
         /**
-         * The elementaldate center
+         * The elemental data center
          */
         public static final class Elemental implements DataCenter {
             /**
              * The world Aegis
              */
-            public final World AEGIS = World.of("Aegis", 90);
+            public final World aegis = World.of("Aegis", 90, this);
             /**
              * The world Atomos
              */
-            public final World ATOMOS = World.of("Atomos", 68);
+            public final World atomos = World.of("Atomos", 68, this);
             /**
              * The world Carbuncle
              */
-            public final World CARBUNCLE = World.of("Carbuncle", 45);
+            public final World carbuncle = World.of("Carbuncle", 45, this);
             /**
              * The world Garuda
              */
-            public final World GARUDA = World.of("Garuda", 58);
+            public final World garuda = World.of("Garuda", 58, this);
             /**
              * The world Gungnir
              */
-            public final World GUNGNIR = World.of("Gungnir", 94);
+            public final World gungnir = World.of("Gungnir", 94, this);
             /**
              * The world Kujata
              */
-            public final World KUJATA = World.of("Kujata", 49);
+            public final World kujata = World.of("Kujata", 49, this);
             /**
              * The world Tonberry
              */
-            public final World TONBERRY = World.of("Tonberry", 72);
+            public final World tonberry = World.of("Tonberry", 72, this);
             /**
              * The world Typhon
              */
-            public final World TYPHON = World.of("Typhon", 50);
-
-            private Elemental() {
-            }
+            public final World typhon = World.of("Typhon", 50, this);
 
             @Override
             public List<World> worlds() {
-                return List.of(AEGIS, ATOMOS, CARBUNCLE, GARUDA, GUNGNIR, KUJATA, TONBERRY, TYPHON);
+                return List.of(aegis, atomos, carbuncle, garuda, gungnir, kujata, tonberry, typhon);
             }
 
             @Override
             public int id() {
                 return 1;
             }
+
+            @Override
+            public Region region() {
+                return japan;
+            }
         }
 
         /**
-         * The gaiadate center
+         * The gaia data center
          */
         public static final class Gaia implements DataCenter {
             /**
              * The world Alexander
              */
-            public final World ALEXANDER = World.of("Alexander", 43);
+            public final World alexander = World.of("Alexander", 43, this);
             /**
              * The world Bahamut
              */
-            public final World BAHAMUT = World.of("Bahamut", 69);
+            public final World bahamut = World.of("Bahamut", 69, this);
             /**
              * The world Durandal
              */
-            public final World DURANDAL = World.of("Durandal", 92);
+            public final World DURANDAL = World.of("Durandal", 92, this);
             /**
              * The world Fenrir
              */
-            public final World FENRIR = World.of("Fenrir", 46);
+            public final World fenrir = World.of("Fenrir", 46, this);
             /**
              * The world Ifrit
              */
-            public final World IFRIT = World.of("Ifrit", 59);
+            public final World ifrit = World.of("Ifrit", 59, this);
             /**
              * The world Ridill
              */
-            public final World RIDILL = World.of("Ridill", 98);
+            public final World ridill = World.of("Ridill", 98, this);
             /**
              * The world Tiamat
              */
-            public final World TIAMAT = World.of("Tiamat", 76);
+            public final World tiamat = World.of("Tiamat", 76, this);
             /**
              * The world Ultima
              */
-            public final World ULTIMA = World.of("Ultima", 51);
-
-            private Gaia() {
-            }
+            public final World ultima = World.of("Ultima", 51, this);
 
             @Override
             public List<World> worlds() {
-                return List.of(ALEXANDER, BAHAMUT, DURANDAL, FENRIR, IFRIT, RIDILL, TIAMAT, ULTIMA);
+                return List.of(alexander, bahamut, DURANDAL, fenrir, ifrit, ridill, tiamat, ultima);
             }
 
             @Override
             public int id() {
                 return 2;
             }
+
+            @Override
+            public Region region() {
+                return japan;
+            }
         }
 
         /**
-         * The manadate center
+         * The mana data center
          */
         public static final class Mana implements DataCenter {
             /**
              * The world Anima
              */
-            public final World ANIMA = World.of("Anima", 44);
+            public final World anima = World.of("Anima", 44, this);
             /**
              * The world Asura
              */
-            public final World ASURA = World.of("Asura", 23);
+            public final World asura = World.of("Asura", 23, this);
             /**
              * The world Chocobo
              */
-            public final World CHOCOBO = World.of("Chocobo", 70);
+            public final World chocobo = World.of("Chocobo", 70, this);
             /**
              * The world Hades
              */
-            public final World HADES = World.of("Hades", 47);
+            public final World hades = World.of("Hades", 47, this);
             /**
              * The world Ixion
              */
-            public final World IXION = World.of("Ixion", 48);
+            public final World ixion = World.of("Ixion", 48, this);
             /**
              * The world Masamune
              */
-            public final World MASAMUNE = World.of("Masamune", 96);
+            public final World masamune = World.of("Masamune", 96, this);
             /**
              * The world Pandaemonium
              */
-            public final World PANDAEMONIUM = World.of("Pandaemonium", 28);
+            public final World pandaemonium = World.of("Pandaemonium", 28, this);
             /**
              * The world Titan
              */
-            public final World TITAN = World.of("Titan", 61);
-
-            private Mana() {
-            }
+            public final World titan = World.of("Titan", 61, this);
 
             @Override
             public List<World> worlds() {
-                return List.of(ANIMA, ASURA, CHOCOBO, HADES, IXION, MASAMUNE, PANDAEMONIUM, TITAN);
+                return List.of(anima, asura, chocobo, hades, ixion, masamune, pandaemonium, titan);
             }
 
             @Override
             public int id() {
                 return 3;
             }
+
+            @Override
+            public Region region() {
+                return japan;
+            }
         }
 
         /**
-         * The elementaldate center
+         * The elemental data center
          */
         public static final class Meteor implements DataCenter {
             /**
              * The world Belias
              */
-            public final World BELIAS = World.of("Belias", 24);
+            public final World belias = World.of("Belias", 24, this);
             /**
              * The world Mandragora
              */
-            public final World MANDRAGORA = World.of("Mandragora", 82);
+            public final World mandragora = World.of("Mandragora", 82, this);
             /**
              * The world Ramuh
              */
-            public final World RAMUH = World.of("Ramuh", 60);
+            public final World ramuh = World.of("Ramuh", 60, this);
             /**
              * The world Shinryu
              */
-            public final World SHINRYU = World.of("Shinryu", 29);
+            public final World shinryu = World.of("Shinryu", 29, this);
             /**
              * The world Unicorn
              */
-            public final World UNICORN = World.of("Unicorn", 30);
+            public final World unicorn = World.of("Unicorn", 30, this);
             /**
              * The world Valefor
              */
-            public final World VALEFOR = World.of("Valefor", 52);
+            public final World valefor = World.of("Valefor", 52, this);
             /**
              * The world Yojimbo
              */
-            public final World YOJIMBO = World.of("Yojimbo", 31);
+            public final World yojimbo = World.of("Yojimbo", 31, this);
             /**
              * The world Zeromus
              */
-            public final World ZEROMUS = World.of("Zeromus", 32);
-
-            private Meteor() {
-            }
+            public final World zeromus = World.of("Zeromus", 32, this);
 
             @Override
             public List<World> worlds() {
-                return List.of(BELIAS, MANDRAGORA, RAMUH, SHINRYU, UNICORN, VALEFOR, YOJIMBO, ZEROMUS);
+                return List.of(belias, mandragora, ramuh, shinryu, unicorn, valefor, yojimbo, zeromus);
             }
 
             @Override
             public int id() {
                 return 10;
+            }
+
+            @Override
+            public Region region() {
+                return japan;
             }
         }
     }
@@ -867,15 +888,15 @@ public class Worlds {
     /**
      * The 中国 region
      */
-    public static class 中国 implements Region {
-        private final 陆行鸟 陆行鸟 = new 陆行鸟();
-        private final 莫古力 莫古力 = new 莫古力();
-        private final 猫小胖 猫小胖 = new 猫小胖();
-        private final 豆豆柴 豆豆柴 = new 豆豆柴();
+    public static class China implements Region {
+        private final Chocobo chocobo = new Chocobo();
+        private final Moguli moguli = new Moguli();
+        private final FatCat fatCat = new FatCat();
+        private final DoDoChai doDoChai = new DoDoChai();
 
         @Override
         public List<DataCenter> datacenters() {
-            return List.of(陆行鸟, 莫古力, 猫小胖, 豆豆柴);
+            return List.of(chocobo, moguli, fatCat, doDoChai);
         }
 
         @Override
@@ -884,229 +905,246 @@ public class Worlds {
         }
 
         /**
-         * The 陆行鸟date center
+         * The 陆行鸟 data center
          *
-         * @return 陆行鸟date center
+         * @return 陆行鸟 data center
          */
-        public 陆行鸟 陆行鸟() {
-            return 陆行鸟;
+        public Chocobo chocobo() {
+            return chocobo;
         }
 
         /**
-         * The 莫古力date center
+         * The 莫古力 data center
          *
-         * @return 莫古力date center
+         * @return 莫古力 data center
          */
-        public 莫古力 莫古力() {
-            return 莫古力;
+        public Moguli moguli() {
+            return moguli;
         }
 
         /**
-         * The 猫小胖date center
+         * The 猫小胖 data center
          *
-         * @return 猫小胖date center
+         * @return 猫小胖 data center
          */
-        public 猫小胖 猫小胖() {
-            return 猫小胖;
+        public FatCat fatCat() {
+            return fatCat;
         }
 
         /**
-         * The 豆豆柴date center
+         * The 豆豆柴 data center
          *
-         * @return 豆豆柴date center
+         * @return 豆豆柴 data center
          */
-        public 豆豆柴 豆豆柴() {
-            return 豆豆柴;
+        public DoDoChai doDoChai() {
+            return doDoChai;
         }
 
         /**
-         * The 陆行鸟date center
+         * The 陆行鸟 data center
          */
-        public static final class 陆行鸟 implements DataCenter {
+        public static final class Chocobo implements DataCenter {
             /**
              * The world 红玉海
              */
-            public final World 红玉海 = World.of("红玉海", 1167);
+            public final World hongYuHai = World.of("红玉海", 1167, this);
             /**
              * The world 神意之地
              */
-            public final World 神意之地 = World.of("神意之地", 1081);
+            public final World shenYiZhiDi = World.of("神意之地", 1081, this);
             /**
              * The world 拉诺西亚
              */
-            public final World 拉诺西亚 = World.of("拉诺西亚", 1042);
+            public final World laNuoXiYa = World.of("拉诺西亚", 1042, this);
             /**
              * The world 幻影群岛
              */
-            public final World 幻影群岛 = World.of("幻影群岛", 1044);
+            public final World huanYingQunDao = World.of("幻影群岛", 1044, this);
             /**
              * The world 萌芽池
              */
-            public final World 萌芽池 = World.of("萌芽池", 1060);
+            public final World mengYaChi = World.of("萌芽池", 1060, this);
             /**
              * The world 宇宙和音
              */
-            public final World 宇宙和音 = World.of("宇宙和音", 1173);
+            public final World yuZhouHeYin = World.of("宇宙和音", 1173, this);
             /**
              * The world 沃仙曦染
              */
-            public final World 沃仙曦染 = World.of("沃仙曦染", 1174);
+            public final World woXianXiRan = World.of("沃仙曦染", 1174, this);
             /**
              * The world 晨曦王座
              */
-            public final World 晨曦王座 = World.of("晨曦王座", 1175);
+            public final World chenXiWangZuo = World.of("晨曦王座", 1175, this);
 
             @Override
             public List<World> worlds() {
-                return List.of(红玉海, 神意之地, 拉诺西亚, 幻影群岛, 萌芽池, 宇宙和音, 沃仙曦染, 晨曦王座);
+                return List.of(hongYuHai, shenYiZhiDi, laNuoXiYa, huanYingQunDao, mengYaChi, yuZhouHeYin, woXianXiRan, chenXiWangZuo);
             }
 
             @Override
             public int id() {
-                return -1;
+                return 0;
             }
 
+            @Override
+            public Region region() {
+                return china;
+            }
         }
 
         /**
-         * The 莫古力date center
+         * The 莫古力 data center
          */
-        public static final class 莫古力 implements DataCenter {
+        public static final class Moguli implements DataCenter {
             /**
              * The world 白银乡
              */
-            public final World 白银乡 = World.of("白银乡", 1172);
+            public final World baiYinXiang = World.of("白银乡", 1172, this);
             /**
              * The world 白金幻象
              */
-            public final World 白金幻象 = World.of("白金幻象", 1076);
+            public final World baiJinHuanXiang = World.of("白金幻象", 1076, this);
             /**
              * The world 神拳痕
              */
-            public final World 神拳痕 = World.of("神拳痕", 1171);
+            public final World shenQuanHen = World.of("神拳痕", 1171, this);
             /**
              * The world 潮风亭
              */
-            public final World 潮风亭 = World.of("潮风亭", 1170);
+            public final World chaoFengTing = World.of("潮风亭", 1170, this);
             /**
              * The world 旅人栈桥
              */
-            public final World 旅人栈桥 = World.of("旅人栈桥", 1113);
+            public final World lvRenZhanQiao = World.of("旅人栈桥", 1113, this);
             /**
              * The world 拂晓之间
              */
-            public final World 拂晓之间 = World.of("拂晓之间", 1121);
+            public final World fuXiaoZhiJian = World.of("拂晓之间", 1121, this);
             /**
              * The world 龙巢神殿
              */
-            public final World 龙巢神殿 = World.of("龙巢神殿", 1166);
+            public final World longchaoshendian = World.of("龙巢神殿", 1166, this);
             /**
              * The world 梦羽宝境
              */
-            public final World 梦羽宝境 = World.of("梦羽宝境", 1176);
+            public final World mengYuBaoJing = World.of("梦羽宝境", 1176, this);
 
             @Override
             public List<World> worlds() {
-                return List.of(白银乡, 白金幻象, 神拳痕, 潮风亭, 旅人栈桥, 拂晓之间, 龙巢神殿, 梦羽宝境);
+                return List.of(baiYinXiang, baiJinHuanXiang, shenQuanHen, chaoFengTing, lvRenZhanQiao, fuXiaoZhiJian, longchaoshendian, mengYuBaoJing);
             }
 
             @Override
             public int id() {
-                return -1;
+                return 0;
             }
 
+            @Override
+            public Region region() {
+                return china;
+            }
         }
 
         /**
-         * The 猫小胖date center
+         * The 猫小胖 data center
          */
-        public static final class 猫小胖 implements DataCenter {
+        public static final class FatCat implements DataCenter {
             /**
              * The world 紫水栈桥
              */
-            public final World 紫水栈桥 = World.of("紫水栈桥", 1043);
+            public final World ziShuiZhanQiao = World.of("紫水栈桥", 1043, this);
             /**
              * The world 延夏
              */
-            public final World 延夏 = World.of("延夏", 1169);
+            public final World yanXia = World.of("延夏", 1169, this);
             /**
              * The world 静语庄园
              */
-            public final World 静语庄园 = World.of("静语庄园", 1106);
+            public final World jingYuZhuangYuan = World.of("静语庄园", 1106, this);
             /**
              * The world 摩杜纳
              */
-            public final World 摩杜纳 = World.of("摩杜纳", 1045);
+            public final World moDuNa = World.of("摩杜纳", 1045, this);
             /**
              * The world 海猫茶屋
              */
-            public final World 海猫茶屋 = World.of("海猫茶屋", 1177);
+            public final World haiMaoChaWu = World.of("海猫茶屋", 1177, this);
             /**
              * The world 柔风海湾
              */
-            public final World 柔风海湾 = World.of("柔风海湾", 1178);
+            public final World rouFengHaiWan = World.of("柔风海湾", 1178, this);
             /**
              * The world 琥珀原
              */
-            public final World 琥珀原 = World.of("琥珀原", 1179);
+            public final World huPoYuan = World.of("琥珀原", 1179, this);
 
             @Override
             public List<World> worlds() {
-                return List.of(紫水栈桥, 延夏, 静语庄园, 摩杜纳, 海猫茶屋, 柔风海湾, 琥珀原);
+                return List.of(ziShuiZhanQiao, yanXia, jingYuZhuangYuan, moDuNa, haiMaoChaWu, rouFengHaiWan, huPoYuan);
             }
 
             @Override
             public int id() {
-                return -1;
+                return 0;
             }
 
+            @Override
+            public Region region() {
+                return china;
+            }
         }
 
         /**
-         * The 豆豆柴date center
+         * The 豆豆柴 data center
          */
-        public static final class 豆豆柴 implements DataCenter {
+        public static final class DoDoChai implements DataCenter {
             /**
              * The world 水晶塔
              */
-            public final World 水晶塔 = World.of("水晶塔", 1192);
+            public final World shuiJingTa2 = World.of("水晶塔", 1192, this);
             /**
              * The world 银泪湖
              */
-            public final World 银泪湖 = World.of("银泪湖", 1183);
+            public final World yinLeiHu = World.of("银泪湖", 1183, this);
             /**
              * The world 太阳海岸
              */
-            public final World 太阳海岸 = World.of("太阳海岸", 1180);
+            public final World taiYangHaiAn2 = World.of("太阳海岸", 1180, this);
             /**
              * The world 伊修加德
              */
-            public final World 伊修加德 = World.of("伊修加德", 1186);
+            public final World yiXiuJiaDe2 = World.of("伊修加德", 1186, this);
             /**
              * The world 红茶川
              */
-            public final World 红茶川 = World.of("红茶川", 1201);
+            public final World hongChaChuan2 = World.of("红茶川", 1201, this);
             /**
              * The world 黄金谷
              */
-            public final World 黄金谷 = World.of("黄金谷", 1068);
+            public final World huangJinGu = World.of("黄金谷", 1068, this);
             /**
              * The world 月牙湾
              */
-            public final World 月牙湾 = World.of("月牙湾", 1064);
+            public final World YueYaWan = World.of("月牙湾", 1064, this);
             /**
              * The world 雪松原
              */
-            public final World 雪松原 = World.of("雪松原", 1187);
+            public final World XueSongYuan = World.of("雪松原", 1187, this);
 
             @Override
             public List<World> worlds() {
-                return List.of(水晶塔, 银泪湖, 太阳海岸, 伊修加德, 红茶川, 黄金谷, 月牙湾, 雪松原);
+                return List.of(shuiJingTa2, yinLeiHu, taiYangHaiAn2, yiXiuJiaDe2, hongChaChuan2, huangJinGu, YueYaWan, XueSongYuan);
             }
 
             @Override
             public int id() {
-                return -1;
+                return 0;
+            }
+
+            @Override
+            public Region region() {
+                return china;
             }
         }
     }

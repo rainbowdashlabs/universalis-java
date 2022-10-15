@@ -18,7 +18,7 @@ class MostRecentlyUpdatedRequestImplTest {
 
     @Test
     public void test() {
-        var complete = rest.extra().stats().mostRecentlyUpdated().world(Worlds.europe().light().ODIN).complete();
+        var complete = rest.extra().stats().mostRecentlyUpdated().world(Worlds.europe().light().odin).complete();
         assertFalse(complete.items().isEmpty());
     }
 

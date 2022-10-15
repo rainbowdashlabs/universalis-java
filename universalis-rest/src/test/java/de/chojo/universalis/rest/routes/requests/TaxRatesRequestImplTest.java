@@ -19,7 +19,7 @@ class TaxRatesRequestImplTest {
 
     @Test
     public void test() {
-        TaxRatesResponse complete = rest.taxRates().world(Worlds.europe().light().ODIN).complete();
+        TaxRatesResponse complete = rest.taxRates().world(Worlds.europe().light().odin).complete();
         assertEquals(7, complete.rates().size());
     }
 }

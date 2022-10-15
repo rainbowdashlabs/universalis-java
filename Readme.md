@@ -32,7 +32,7 @@ public class WebsocketExample {
         // Create a new default websocket
         UniversalisWs.getDefault()
                      // Subscribe to sales add channel of odin
-                     .subscribe(Subscriptions.salesAdd().restrict(Worlds.europe().light().ODIN))
+                     .subscribe(Subscriptions.salesAdd().restrict(Worlds.europe().light().odin))
                      // Subscribe to listing add for all worlds on light and the one world on chaos
                      .subscribe(Subscriptions.listingAdd().restrict(Worlds.europe().light()).restrict(Worlds.europe().chaos().OMEGA))
                      // subcribe to the remove channel on all worlds

@@ -35,4 +35,11 @@ public interface DataCenter extends WorldProvider {
     default String name() {
         return getClass().getSimpleName();
     }
+
+    /**
+     * Region of the datacenter
+     *
+     * @return region
+     */
+    Region region();
 }

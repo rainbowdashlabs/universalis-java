@@ -21,7 +21,7 @@ public interface World extends WorldProvider {
      * @param id   world id
      * @return new world instance
      */
-    static World of(String name, int id) {
+    static World of(String name, int id, DataCenter dataCenter) {
         return new World() {
             @Override
             public String name() {
@@ -42,6 +42,11 @@ public interface World extends WorldProvider {
             public boolean equals(Object obj) {
                 if (!(obj instanceof World world)) return false;
                 return id == world.id();
+            }
+
+            @Override
+            public DataCenter dataCenter() {
+                return dataCenter;
             }
 
             @Override
@@ -68,4 +73,11 @@ public interface World extends WorldProvider {
      * @return id
      */
     int id();
+
+    /**
+     * The data center of the world
+     *
+     * @return data center
+     */
+    DataCenter dataCenter();
 }

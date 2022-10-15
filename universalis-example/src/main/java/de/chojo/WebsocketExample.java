@@ -26,10 +26,10 @@ public class WebsocketExample {
                      // Set the item name supplier
                      .itemNameSupplier(items)
                      // Subscribe to sales add channel of odin
-                     .subscribe(Subscriptions.salesAdd().restrict(Worlds.europe().light().ODIN))
+                     .subscribe(Subscriptions.salesAdd().restrict(Worlds.europe().light().odin))
                      // Subscribe to listing add for all worlds on light and the one world on chaos
                      .subscribe(Subscriptions.listingAdd().restrict(Worlds.europe().light())
-                                             .restrict(Worlds.europe().chaos().OMEGA))
+                                             .restrict(Worlds.europe().chaos().omega))
                      // subcribe to the remove channel on all worlds
                      .subscribe(Subscriptions.listingRemove())
                      // Register listener to handle evens
