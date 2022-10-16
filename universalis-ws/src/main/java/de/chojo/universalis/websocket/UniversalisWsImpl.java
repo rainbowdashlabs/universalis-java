@@ -7,18 +7,21 @@
 package de.chojo.universalis.websocket;
 
 import com.neovisionaries.ws.client.WebSocket;
+import com.neovisionaries.ws.client.WebSocketException;
 import com.neovisionaries.ws.client.WebSocketFactory;
 import de.chojo.universalis.listener.EventListener;
 import de.chojo.universalis.provider.NameSupplier;
-import de.chojo.universalis.websocket.subscriber.Subscription;
 import de.chojo.universalis.websocket.listener.StatusListener;
 import de.chojo.universalis.websocket.listener.WebsocketListenerAdapter;
+import de.chojo.universalis.websocket.subscriber.Subscription;
 import org.slf4j.Logger;
 
 import javax.annotation.Nullable;
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
@@ -57,10 +60,18 @@ public class UniversalisWsImpl implements UniversalisWs {
 
     /**
      * Attempts to create the socket and connect it
-     *
-     * @throws IOException Failed to create a socket. Or, HTTP proxy handshake or SSL handshake failed.
      */
-    public void ignite() throws IOException {
+    public void ignite() {
+        try {
+            internalIgnite();
+        } catch (Throwable e) {
+            log.error("Failed to create a socket", e);
+            log.info("Trying again in 5 seconds");
+            CompletableFuture.delayedExecutor(5, TimeUnit.SECONDS).execute(this::ignite);
+        }
+    }
+
+    private void internalIgnite() {
         if (!active) return;
 
         if (socket != null) {
@@ -68,7 +79,14 @@ public class UniversalisWsImpl implements UniversalisWs {
             log.info("Trying to reconnect");
         }
 
-        socket = factory.createSocket(WEBSOCKET_URL);
+        try {
+            socket = factory.createSocket(WEBSOCKET_URL, 10000);
+        } catch (IOException e) {
+            log.error("Failed to create a socket", e);
+            log.info("Trying again in 5 seconds");
+            CompletableFuture.delayedExecutor(5, TimeUnit.SECONDS).execute(this::ignite);
+            return;
+        }
 
         socket.setPingInterval(factory.getSocketTimeout() / 4);
 
@@ -76,7 +94,16 @@ public class UniversalisWsImpl implements UniversalisWs {
         statusListener = new StatusListener(this, subscribers);
         socket.addListener(statusListener);
 
-        socket.connect(websocketWorker);
+        CompletableFuture.runAsync(() -> {
+            try {
+                socket.connect();
+            } catch (WebSocketException e) {
+                log.error("Failed to create a connection", e);
+                log.info("Trying again in 5 seconds");
+                CompletableFuture.delayedExecutor(5, TimeUnit.SECONDS).execute(this::ignite);
+            }
+        }, websocketWorker);
+
     }
 
     @Override
