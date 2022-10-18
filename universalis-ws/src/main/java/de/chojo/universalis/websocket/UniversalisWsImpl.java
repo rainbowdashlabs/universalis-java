@@ -76,6 +76,7 @@ public class UniversalisWsImpl implements UniversalisWs {
 
         if (socket != null) {
             disconnect();
+            active = true;
             log.info("Trying to reconnect");
         }
 
