@@ -17,6 +17,7 @@ import org.bson.BasicBSONEncoder;
 import org.bson.BasicBSONObject;
 import org.slf4j.Logger;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
@@ -121,7 +122,9 @@ public class StatusListener extends WebSocketAdapter {
         if (closedByServer) {
             log.info("Remote host closed the connection");
         } else {
-            log.info("Closed connection to remote host");
+            int code = clientCloseFrame != null ? clientCloseFrame.getCloseCode() : -1;
+            String reason = clientCloseFrame != null ? clientCloseFrame.getCloseReason() : "none";
+            log.info("Closed connection to remote host\nCode: {}\nReason: {}", code, reason);
         }
         universalisWs.ignite();
     }

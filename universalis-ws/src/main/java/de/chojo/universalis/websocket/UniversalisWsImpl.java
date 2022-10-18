@@ -75,8 +75,11 @@ public class UniversalisWsImpl implements UniversalisWs {
         if (!active) return;
 
         if (socket != null) {
-            log.info("Found old socket. Disconnecting");
-            socket.disconnect(0);
+            log.info("Found old socket. Checking");
+            if (socket.isOpen()) {
+                log.info("Socket is open. Closing");
+                socket.disconnect(0);
+            }
             log.info("Trying to reconnect");
         }
 
