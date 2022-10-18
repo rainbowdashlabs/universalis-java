@@ -93,8 +93,7 @@ public class UniversalisWsImpl implements UniversalisWs {
             return;
         }
 
-        socket.setPingInterval(factory.getSocketTimeout() / 4);
-        socket.setPongInterval(factory.getSocketTimeout() / 4);
+        socket.setPingInterval(5);
 
         socket.addListener(new WebsocketListenerAdapter(listeners, itemNameSupplier));
         statusListener = new StatusListener(this, subscribers);
