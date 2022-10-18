@@ -75,12 +75,13 @@ public class UniversalisWsImpl implements UniversalisWs {
         if (!active) return;
 
         if (socket != null) {
-            disconnect();
-            active = true;
+            log.info("Found old socket. Disconnecting");
+            socket.disconnect(0);
             log.info("Trying to reconnect");
         }
 
         try {
+            log.info("Creating a new socket");
             socket = factory.createSocket(WEBSOCKET_URL, 10000);
         } catch (IOException e) {
             log.error("Failed to create a socket", e);
@@ -90,6 +91,7 @@ public class UniversalisWsImpl implements UniversalisWs {
         }
 
         socket.setPingInterval(factory.getSocketTimeout() / 4);
+        socket.setPongInterval(factory.getSocketTimeout() / 4);
 
         socket.addListener(new WebsocketListenerAdapter(listeners, itemNameSupplier));
         statusListener = new StatusListener(this, subscribers);
@@ -97,6 +99,7 @@ public class UniversalisWsImpl implements UniversalisWs {
 
         CompletableFuture.runAsync(() -> {
             try {
+                log.info("Attempting to establish socket connection.");
                 socket.connect();
             } catch (WebSocketException e) {
                 log.error("Failed to create a connection", e);
@@ -120,7 +123,9 @@ public class UniversalisWsImpl implements UniversalisWs {
     @Override
     public void disconnect() {
         active = false;
-        socket.disconnect();
+        log.info("Attempting to disconnect socket");
+        socket.disconnect(0);
+        log.info("Socket disconnected");
     }
 
     /**
