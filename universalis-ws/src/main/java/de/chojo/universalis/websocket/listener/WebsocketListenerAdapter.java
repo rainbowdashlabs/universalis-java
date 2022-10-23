@@ -6,6 +6,7 @@
 
 package de.chojo.universalis.websocket.listener;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
@@ -69,7 +70,8 @@ public class WebsocketListenerAdapter extends WebSocketAdapter implements EventL
               .addDeserializer(Item.class, new ItemDeserializer(itemNameSupplier))
 //              .addDeserializer(Instant.class, new SecondsDateTimeConverter())
               .addDeserializer(City.class, new CityDeserializer());
-        objectMapper = new JsonMapper().registerModule(module);
+        objectMapper = new JsonMapper().registerModule(module)
+                                       .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
 
     @Override
