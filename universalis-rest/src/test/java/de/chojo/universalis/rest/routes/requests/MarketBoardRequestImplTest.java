@@ -63,7 +63,7 @@ class MarketBoardRequestImplTest {
 
     @Test
     void historyTime() {
-        MarketBoardResponse noGst = defaultReq().historyTime(Duration.ofDays(1)).complete();
+        MarketBoardResponse noGst = defaultReq().historyTime(Duration.ofDays(7)).complete();
         MarketBoardResponse gst = defaultReq().historyTime(Duration.ofHours(1)).complete();
         Assertions.assertNotEquals(noGst.recentHistory().size(), gst.recentHistory().size());
     }
