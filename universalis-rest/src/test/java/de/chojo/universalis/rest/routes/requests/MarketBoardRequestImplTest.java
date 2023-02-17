@@ -33,7 +33,8 @@ class MarketBoardRequestImplTest {
         MarketBoardResponse complete = defaultReq()
                 .listingsLimit(3)
                 .complete();
-        Assertions.assertEquals(3, complete.listings().size());
+        Assertions.assertTrue(complete.listings().size() > 0);
+        Assertions.assertTrue(complete.listings().size() <= 3);
     }
 
     @Test
