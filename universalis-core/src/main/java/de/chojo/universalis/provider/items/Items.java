@@ -38,7 +38,7 @@ public class Items implements NameSupplier {
     public static Items create() throws IOException, InterruptedException {
         HttpClient client = HttpClient.newBuilder().build();
         HttpResponse<String> response = client.send(HttpRequest.newBuilder()
-                                                               .uri(URI.create("https://raw.githubusercontent.com/ffxiv-teamcraft/ffxiv-teamcraft/master/apps/client/src/assets/data/items.json"))
+                                                               .uri(URI.create("https://raw.githubusercontent.com/ffxiv-teamcraft/ffxiv-teamcraft/staging/libs/data/src/lib/json/items.json"))
                                                                .GET()
                                                                .build(), HttpResponse.BodyHandlers.ofString());
         ObjectMapper mapper = new ObjectMapper();
