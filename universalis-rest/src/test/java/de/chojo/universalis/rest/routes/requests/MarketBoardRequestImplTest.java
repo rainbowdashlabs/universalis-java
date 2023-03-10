@@ -78,7 +78,7 @@ class MarketBoardRequestImplTest {
 
     private MarketBoardRequest defaultReq() {
         return rest.marketBoard()
-                   .world(Worlds.europe().light().ODIN)
+                   .world(Worlds.europe().light().odin)
                    .itemsIds(33927);
     }
 }
