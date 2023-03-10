@@ -1,5 +1,5 @@
 dependencies {
-    api("com.fasterxml.jackson.core", "jackson-databind", "2.13.4")
+    api("com.fasterxml.jackson.core", "jackson-databind", "2.14.2")
     // Logging
     api("org.slf4j", "slf4j-api", "2.0.6")
 
