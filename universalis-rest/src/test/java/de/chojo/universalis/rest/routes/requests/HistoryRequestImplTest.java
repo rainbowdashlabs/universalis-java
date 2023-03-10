@@ -44,6 +44,6 @@ class HistoryRequestImplTest {
     private HistoryRequest defaultReq() {
         return rest.history()
                    .world(Worlds.europe().light().ODIN)
-                   .itemsIds(36113);
+                   .itemsIds(33927);
     }
 }
