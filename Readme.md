@@ -1,5 +1,5 @@
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/RainbowDashLabs/universalis-java/Verify%20state?style=for-the-badge&label=Build)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/RainbowDashLabs/universalis-java/Publish%20to%20Nexus?style=for-the-badge&label=Publish)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/rainbowdashlabs/universalis-java/verify.yml?style=for-the-badge&label=Build)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/rainbowdashlabs/universalis-java/publish_to_nexus.yml?style=for-the-badge&label=Publish)
 [![Sonatype Nexus (Releases)](https://img.shields.io/nexus/maven-releases/de.chojo.universalis/universalis?label=Release&logo=Release&server=https%3A%2F%2Feldonexus.de&style=for-the-badge)][nexus_releases]
 [![Sonatype Nexus (Development)](https://img.shields.io/nexus/maven-dev/de.chojo.universalis/universalis?label=DEV&logo=Release&server=https%3A%2F%2Feldonexus.de&style=for-the-badge)][nexus_dev]
 [![Sonatype Nexus (Snapshots)](https://img.shields.io/nexus/s/de.chojo.universalis/universalis?color=orange&label=Snapshot&server=https%3A%2F%2Feldonexus.de&style=for-the-badge)][nexus_releases]
