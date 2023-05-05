@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "de.chojo.universalis"
-version = "1.3.0"
+version = "1.3.1"
 
 repositories {
     maven("https://eldonexus.de/repository/maven-public")
