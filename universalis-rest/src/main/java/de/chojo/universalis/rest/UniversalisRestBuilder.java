@@ -12,6 +12,9 @@ import de.chojo.universalis.provider.items.Items;
 
 import javax.annotation.CheckReturnValue;
 import java.net.http.HttpClient;
+import java.util.Collections;
+import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
@@ -21,10 +24,10 @@ import java.util.concurrent.ScheduledExecutorService;
 public class UniversalisRestBuilder {
     private HttpClient http = HttpClient.newBuilder().version(HttpClient.Version.HTTP_2).build();
     private ScheduledExecutorService executorService = Executors.newScheduledThreadPool(2);
-    private NameSupplier nameSupplier = id -> new Name("", "", "", "");
+    private NameSupplier nameSupplier = NameSupplier.EMPTY;
 
     /**
-     * Set the http client used to send requests to univeralis
+     * Set the http client used to send requests to universalis
      *
      * @param http client
      * @return builder
