@@ -15,17 +15,31 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * A class which is able to act as a {@link NameSupplier} for items
  */
 public class Items implements NameSupplier {
-    private final Map<Integer, Name> names;
+    private final Map<Integer, Name> ids;
+    private final Map<String, Integer> en = new HashMap<>();
+    private final Map<String, Integer> de = new HashMap<>();
+    private final Map<String, Integer> fr = new HashMap<>();
+    private final Map<String, Integer> jp = new HashMap<>();
 
-    private Items(Map<Integer, Name> names) {
-        this.names = names;
+    private Items(Map<Integer, Name> ids) {
+        this.ids = ids;
+        for (var entry : ids.entrySet()) {
+            en.put(entry.getValue().english().toLowerCase(Locale.ROOT), entry.getKey());
+            de.put(entry.getValue().german().toLowerCase(Locale.ROOT), entry.getKey());
+            fr.put(entry.getValue().french().toLowerCase(Locale.ROOT), entry.getKey());
+            jp.put(entry.getValue().japanese().toLowerCase(Locale.ROOT), entry.getKey());
+        }
     }
 
     /**
@@ -38,13 +52,13 @@ public class Items implements NameSupplier {
     public static Items create() throws IOException, InterruptedException {
         HttpClient client = HttpClient.newBuilder().build();
         HttpResponse<String> response = client.send(HttpRequest.newBuilder()
-                                                               .uri(URI.create("https://raw.githubusercontent.com/ffxiv-teamcraft/ffxiv-teamcraft/staging/libs/data/src/lib/json/items.json"))
-                                                               .GET()
-                                                               .build(), HttpResponse.BodyHandlers.ofString());
+                .uri(URI.create("https://raw.githubusercontent.com/ffxiv-teamcraft/ffxiv-teamcraft/staging/libs/data/src/lib/json/items.json"))
+                .GET()
+                .build(), HttpResponse.BodyHandlers.ofString());
         ObjectMapper mapper = new ObjectMapper();
         String body = response.body();
         Map<String, Name> names = mapper.readValue(body, mapper.getTypeFactory()
-                                                               .constructMapType(Map.class, String.class, Name.class));
+                .constructMapType(Map.class, String.class, Name.class));
 
         Map<Integer, Name> idNames = new HashMap<>();
 
@@ -56,6 +70,41 @@ public class Items implements NameSupplier {
 
     @Override
     public Name fromId(int id) {
-        return names.get(id);
+        return ids.get(id);
+    }
+
+    @Override
+    public Optional<Integer> fromName(String name) {
+        for (var map : List.of(en, de, fr, jp)) {
+            if (map.containsKey(name.toLowerCase(Locale.ROOT))) {
+                return Optional.ofNullable(map.get(name.toLowerCase(Locale.ROOT)));
+            }
+        }
+        return Optional.empty();
+    }
+
+    @Override
+    public Map<Integer, Name> ids() {
+        return Collections.unmodifiableMap(ids);
+    }
+
+    @Override
+    public Map<String, Integer> en() {
+        return Collections.unmodifiableMap(en);
+    }
+
+    @Override
+    public Map<String, Integer> de() {
+        return Collections.unmodifiableMap(de);
+    }
+
+    @Override
+    public Map<String, Integer> fr() {
+        return Collections.unmodifiableMap(fr);
+    }
+
+    @Override
+    public Map<String, Integer> jp() {
+        return Collections.unmodifiableMap(jp);
     }
 }
