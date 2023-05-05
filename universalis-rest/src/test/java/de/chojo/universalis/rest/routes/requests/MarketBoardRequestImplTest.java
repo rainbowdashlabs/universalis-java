@@ -1,7 +1,7 @@
 /*
  *     SPDX-License-Identifier: AGPL-3.0-only
  *
- *     Copyright (C) 2022 RainbowDashLabs and Contributor
+ *     Copyright (C) Rainbowdashlabs and Contributor
  */
 
 package de.chojo.universalis.rest.routes.requests;
@@ -79,6 +79,6 @@ class MarketBoardRequestImplTest {
     private MarketBoardRequest defaultReq() {
         return rest.marketBoard()
                    .world(Worlds.europe().light().odin)
-                   .itemsIds(36113);
+                   .itemsIds(33927);
     }
 }

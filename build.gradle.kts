@@ -1,13 +1,15 @@
+import com.diffplug.gradle.spotless.SpotlessPlugin
+
 plugins {
     java
     `maven-publish`
     `java-library`
-    id("de.chojo.publishdata") version "1.0.8"
-    id("org.cadixdev.licenser") version "0.6.1"
+    id("de.chojo.publishdata") version "1.2.4"
+    id("com.diffplug.spotless") version "6.18.0"
 }
 
 group = "de.chojo.universalis"
-version = "1.2.8"
+version = "1.3.0"
 
 repositories {
     maven("https://eldonexus.de/repository/maven-public")
@@ -23,10 +25,10 @@ subprojects {
     apply {
         // We want to apply several plugins to subprojects
         plugin<JavaPlugin>()
-        plugin<org.cadixdev.gradle.licenser.Licenser>()
         plugin<de.chojo.PublishData>()
         plugin<JavaLibraryPlugin>()
         plugin<MavenPublishPlugin>()
+        plugin<SpotlessPlugin>()
     }
 }
 
@@ -35,6 +37,13 @@ allprojects {
         mavenCentral()
         maven("https://eldonexus.de/repository/maven-public/")
         maven("https://eldonexus.de/repository/maven-proxies/")
+    }
+
+    spotless {
+        java {
+            licenseHeaderFile(rootProject.file("HEADER.txt"))
+            target("**/*.java")
+        }
     }
 
     java {
@@ -46,18 +55,13 @@ allprojects {
     }
 
     dependencies {
-        testImplementation("org.junit.jupiter", "junit-jupiter-api", "5.9.1")
-        testRuntimeOnly("org.junit.jupiter", "junit-jupiter-engine", "5.9.1")
+        testImplementation("org.junit.jupiter", "junit-jupiter-api", "5.9.3")
+        testRuntimeOnly("org.junit.jupiter", "junit-jupiter-engine", "5.9.3")
         testImplementation("org.mockito", "mockito-core", "3.+")
     }
 
-    license {
-        header(rootProject.file("HEADER.txt"))
-        include("**/*.java")
-    }
-
     publishData {
-        useEldoNexusRepos(true)
+        useEldoNexusRepos()
         publishComponent("java")
     }
 
@@ -101,7 +105,6 @@ allprojects {
     // We configure some general tasks for our modules
     tasks {
         test {
-            dependsOn(licenseCheck)
             useJUnitPlatform()
             testLogging {
                 events("passed", "skipped", "failed")

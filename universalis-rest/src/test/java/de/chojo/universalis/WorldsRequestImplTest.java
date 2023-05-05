@@ -1,10 +1,10 @@
 /*
  *     SPDX-License-Identifier: AGPL-3.0-only
  *
- *     Copyright (C) 2022 RainbowDashLabs and Contributor
+ *     Copyright (C) Rainbowdashlabs and Contributor
  */
 
-package de.chojo.universalis.rest.routes.requests;
+package de.chojo.universalis;
 
 import de.chojo.universalis.rest.UniversalisRest;
 import de.chojo.universalis.rest.response.WorldsResponse;
