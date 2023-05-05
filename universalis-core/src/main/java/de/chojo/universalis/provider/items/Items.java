@@ -17,10 +17,8 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Optional;
 
 /**
  * A class which is able to act as a {@link NameSupplier} for items
@@ -66,21 +64,6 @@ public class Items implements NameSupplier {
             idNames.put(Integer.parseInt(entry.getKey()), entry.getValue());
         }
         return new Items(idNames);
-    }
-
-    @Override
-    public Name fromId(int id) {
-        return ids.get(id);
-    }
-
-    @Override
-    public Optional<Integer> fromName(String name) {
-        for (var map : List.of(en, de, fr, jp)) {
-            if (map.containsKey(name.toLowerCase(Locale.ROOT))) {
-                return Optional.ofNullable(map.get(name.toLowerCase(Locale.ROOT)));
-            }
-        }
-        return Optional.empty();
     }
 
     @Override

@@ -30,4 +30,13 @@ public record Name(@JsonProperty("en") String english,
     public static Name empty() {
         return EMPTY;
     }
+
+    public String get(Language language) {
+        return switch (language) {
+            case ENGLISH -> english;
+            case GERMAN -> german;
+            case FRENCH -> french;
+            case JAPANESE -> japanese;
+        };
+    }
 }
