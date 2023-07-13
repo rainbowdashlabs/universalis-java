@@ -3,6 +3,6 @@ dependencies {
 
     // Websockets
     api("com.neovisionaries", "nv-websocket-client", "2.14")
-    api("org.mongodb", "bson", "4.9.1")
+    api("org.mongodb", "bson", "4.10.2")
     api("com.google.guava", "guava", "31.1-jre")
 }
