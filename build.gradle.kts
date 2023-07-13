@@ -5,11 +5,11 @@ plugins {
     `maven-publish`
     `java-library`
     id("de.chojo.publishdata") version "1.2.4"
-    id("com.diffplug.spotless") version "6.18.0"
+    id("com.diffplug.spotless") version "6.19.0"
 }
 
 group = "de.chojo.universalis"
-version = "1.3.0"
+version = "1.3.1"
 
 repositories {
     maven("https://eldonexus.de/repository/maven-public")
