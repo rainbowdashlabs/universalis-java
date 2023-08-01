@@ -4,7 +4,7 @@ plugins {
     java
     `maven-publish`
     `java-library`
-    id("de.chojo.publishdata") version "1.2.4"
+    id("de.chojo.publishdata") version "1.2.5"
     id("com.diffplug.spotless") version "6.20.0"
 }
 
