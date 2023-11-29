@@ -5,7 +5,7 @@ plugins {
     `maven-publish`
     `java-library`
     id("de.chojo.publishdata") version "1.2.5"
-    id("com.diffplug.spotless") version "6.23.0"
+    id("com.diffplug.spotless") version "6.23.1"
 }
 
 group = "de.chojo.universalis"
