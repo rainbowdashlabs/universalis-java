@@ -21,7 +21,7 @@ import java.util.Map;
 
 public record CurrentlyShownView(@JsonProperty("itemID") Item item,
                                  @JsonProperty("worldID") World world,
-                                 @JsonProperty("worldUploadTimes") @Nullable Map<String, Integer> worldUploadTimes,
+                                 @JsonProperty("worldUploadTimes") @Nullable Map<String, Long> worldUploadTimes,
                                  @JsonProperty("lastUploadTime") @JsonDeserialize(converter = MillisDateTimeConverter.class) LocalDateTime lastUploadTime,
                                  @JsonProperty("listings") List<ListingView> listingViews,
                                  @JsonProperty("recentHistory") List<SaleView> recentHistory,
