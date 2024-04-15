@@ -38,13 +38,6 @@ class MarketBoardRequestImplTest {
     }
 
     @Test
-    void noGst() {
-        MarketBoardResponse noGst = defaultReq().noGst().complete();
-        MarketBoardResponse gst = defaultReq().complete();
-        Assertions.assertNotEquals(noGst.listings().get(0).price(), gst.listings().get(0).price());
-    }
-
-    @Test
     void highQuality() {
         var complete = defaultReq().highQuality().complete();
         for (Listing listing : complete.listings()) {

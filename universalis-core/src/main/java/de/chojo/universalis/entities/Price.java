@@ -10,7 +10,7 @@ package de.chojo.universalis.entities;
  * Price of a listing
  *
  * @param pricePerUnit unit price
- * @param quantity     quanity
+ * @param quantity     quantity
  * @param total        total
  */
 public record Price(int pricePerUnit,

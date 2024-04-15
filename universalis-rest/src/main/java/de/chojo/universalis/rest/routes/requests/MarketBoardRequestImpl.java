@@ -100,12 +100,14 @@ public class MarketBoardRequestImpl extends RequestBuilder<MarketBoardResponse> 
 
     @Override
     @CheckReturnValue
+    @Deprecated(forRemoval = true)
     public MarketBoardRequest noGst() {
         return noGst(true);
     }
 
     @Override
     @CheckReturnValue
+    @Deprecated(forRemoval = true)
     public MarketBoardRequest noGst(boolean noGst) {
         parameter("noGst", noGst);
         return this;

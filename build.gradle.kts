@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "de.chojo.universalis"
-version = "1.3.1"
+version = "1.4.0"
 
 repositories {
     maven("https://eldonexus.de/repository/maven-public")
@@ -50,7 +50,7 @@ allprojects {
         withSourcesJar()
         withJavadocJar()
         toolchain {
-            languageVersion.set(JavaLanguageVersion.of(16))
+            languageVersion.set(JavaLanguageVersion.of(17))
         }
     }
 
