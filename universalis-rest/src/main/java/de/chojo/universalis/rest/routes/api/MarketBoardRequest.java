@@ -20,7 +20,7 @@ import java.time.Duration;
  */
 public interface MarketBoardRequest extends Request<MarketBoardResponse>, RegionMarketBoardRequest {
     /**
-     * The number of entries to return. By defaultall listings will be returned.
+     * The number of entries to return. By default, all listings will be returned.
      *
      * @param limit limit
      * @return request
