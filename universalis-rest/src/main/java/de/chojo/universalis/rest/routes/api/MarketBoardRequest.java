@@ -6,6 +6,7 @@
 
 package de.chojo.universalis.rest.routes.api;
 
+import de.chojo.universalis.entities.Listing;
 import de.chojo.universalis.rest.requests.Request;
 import de.chojo.universalis.rest.response.MarketBoardResponse;
 import de.chojo.universalis.rest.routes.api.marketboard.RegionMarketBoardRequest;
@@ -42,8 +43,10 @@ public interface MarketBoardRequest extends Request<MarketBoardResponse>, Region
      * By default, GST is factored in.
      *
      * @return request
+     * @deprecated Tax is no longer included in pricing. Tax is provided via {@link Listing#tax()}
      */
     @CheckReturnValue
+    @Deprecated(forRemoval = true)
     MarketBoardRequest noGst();
 
     /**
@@ -53,8 +56,10 @@ public interface MarketBoardRequest extends Request<MarketBoardResponse>, Region
      *
      * @param noGst set to true to disable GST
      * @return request
+     * @deprecated Tax is no longer included in pricing. Tax is provided via {@link Listing#tax()}
      */
     @CheckReturnValue
+    @Deprecated(forRemoval = true)
     MarketBoardRequest noGst(boolean noGst);
 
     /**
