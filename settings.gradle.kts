@@ -1,5 +1,10 @@
 rootProject.name = "universalis"
 
+include("universalis-ws")
+include("universalis-rest")
+include("universalis-core")
+include("universalis-example")
+
 pluginManagement{
     repositories{
         mavenLocal()
@@ -11,7 +16,3 @@ pluginManagement{
         }
     }
 }
-include("universalis-ws")
-include("universalis-rest")
-include("universalis-core")
-include("universalis-example")

@@ -44,6 +44,9 @@ public record CurrentlyShownView(@JsonProperty("itemID") Item item,
                                  @JsonProperty("maxPriceHQ") int maxPriceHQ,
                                  @JsonProperty("stackSizeHistogram") Map<String, Integer> stackSizeHistogram,
                                  @JsonProperty("stackSizeHistogramNQ") Map<String, Integer> stackSizeHistogramNQ,
-                                 @JsonProperty("stackSizeHistogramHQ") Map<String, Integer> stackSizeHistogramHQ
+                                 @JsonProperty("stackSizeHistogramHQ") Map<String, Integer> stackSizeHistogramHQ,
+                                 @JsonProperty("listingsCount") int listingsCount,
+                                 @JsonProperty("recentHistoryCount") int recentHistoryCount,
+                                 @JsonProperty("unitsSold") int unitsSold
 ) {
 }

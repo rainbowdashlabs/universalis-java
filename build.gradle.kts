@@ -4,12 +4,12 @@ plugins {
     java
     `maven-publish`
     `java-library`
-    id("de.chojo.publishdata") version "1.2.4"
-    id("com.diffplug.spotless") version "6.19.0"
+    id("de.chojo.publishdata") version "1.4.0"
+    id("com.diffplug.spotless") version "6.25.0"
 }
 
 group = "de.chojo.universalis"
-version = "1.3.1"
+version = "1.4.0"
 
 repositories {
     maven("https://eldonexus.de/repository/maven-public")
@@ -50,14 +50,14 @@ allprojects {
         withSourcesJar()
         withJavadocJar()
         toolchain {
-            languageVersion.set(JavaLanguageVersion.of(16))
+            languageVersion.set(JavaLanguageVersion.of(17))
         }
     }
 
     dependencies {
-        testImplementation("org.junit.jupiter", "junit-jupiter-api", "5.9.3")
-        testRuntimeOnly("org.junit.jupiter", "junit-jupiter-engine", "5.9.3")
-        testImplementation("org.mockito", "mockito-core", "3.+")
+        testImplementation("org.junit.jupiter", "junit-jupiter-api", "5.10.2")
+        testRuntimeOnly("org.junit.jupiter", "junit-jupiter-engine", "5.10.2")
+        testImplementation("org.mockito", "mockito-core", "5.+")
     }
 
     publishData {

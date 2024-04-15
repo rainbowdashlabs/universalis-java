@@ -1,6 +1,6 @@
 dependencies {
     api(project(":universalis-core"))
     // Rest
-    api("com.bucket4j", "bucket4j-core", "8.3.0")
-    api("org.apache.httpcomponents.client5", "httpclient5", "5.2.1")
+    api("com.bucket4j", "bucket4j-core", "8.10.1")
+    api("org.apache.httpcomponents.client5", "httpclient5", "5.3.1")
 }

@@ -38,12 +38,13 @@ import java.util.Objects;
  * @param isCrafted      Whether the item is crafted.
  * @param listingId      A SHA256 hash of the ID of this listing. Due to some current client-side bugs, this will almost always be null.
  * @param materia        The materia on this item.
- * @param onManequin     Whether the item is being sold on a mannequin.
+ * @param onMannequin    Whether the item is being sold on a mannequin.
  * @param retainerCity   The city ID of the retainer.
  * @param retainerId     A SHA256 hash of the retainer's ID.
  * @param retainerName   The retainer's name.
  * @param sellerId       A SHA256 hash of the seller's ID.
  * @param total          The total price.
+ * @param tax            The Gil sales tax (GST) to be added to the total price during purchase.
  */
 public record ListingView(
         @JsonProperty("lastReviewTime") @JsonDeserialize(converter = SecondsDateTimeConverter.class) LocalDateTime lastReviewTime,
@@ -58,12 +59,13 @@ public record ListingView(
         @JsonProperty("isCrafted") boolean isCrafted,
         @JsonProperty("listingID") String listingId,
         @JsonProperty("materia") List<MateriaView> materia,
-        @JsonProperty("onMannequin") boolean onManequin,
+        @JsonProperty("onMannequin") boolean onMannequin,
         @JsonProperty("retainerCity") City retainerCity,
         @JsonProperty("retainerID") String retainerId,
         @JsonProperty("retainerName") String retainerName,
         @JsonProperty("sellerID") String sellerId,
-        @JsonProperty("total") int total) {
+        @JsonProperty("total") int total,
+        @JsonProperty("tax") int tax) {
     /**
      * Converts the {@link ListingView} to a {@link Listing} object.
      *
@@ -85,10 +87,11 @@ public record ListingView(
                 new Creator(creatorName, creatorId),
                 new ItemMeta(hq, isCrafted, stainId, materia),
                 listingId,
-                onManequin,
+                onMannequin,
                 new Retainer(retainerId, retainerName, retainerCity),
                 sellerId,
-                new Price(pricePerUnit, quantity, total));
+                new Price(pricePerUnit, quantity, total),
+                tax);
     }
 
     @Override
@@ -101,13 +104,14 @@ public record ListingView(
         if (stainId != that.stainId) return false;
         if (hq != that.hq) return false;
         if (isCrafted() != that.isCrafted()) return false;
-        if (onManequin != that.onManequin) return false;
+        if (onMannequin != that.onMannequin) return false;
         if (retainerCity != that.retainerCity) return false;
         if (total != that.total) return false;
         if (!Objects.equals(creatorId, that.creatorId)) return false;
         if (!Objects.equals(materia, that.materia)) return false;
         if (!Objects.equals(retainerId, that.retainerId)) return false;
         if (!Objects.equals(retainerName, that.retainerName)) return false;
+        if (!Objects.equals(tax, that.tax)) return false;
         return Objects.equals(sellerId, that.sellerId);
     }
 
@@ -120,12 +124,13 @@ public record ListingView(
         result = 31 * result + (hq ? 1 : 0);
         result = 31 * result + (isCrafted() ? 1 : 0);
         result = 31 * result + (materia != null ? materia.hashCode() : 0);
-        result = 31 * result + (onManequin ? 1 : 0);
+        result = 31 * result + (onMannequin ? 1 : 0);
         result = 31 * result + retainerCity.ordinal();
         result = 31 * result + (retainerId != null ? retainerId.hashCode() : 0);
         result = 31 * result + (retainerName != null ? retainerName.hashCode() : 0);
         result = 31 * result + (sellerId != null ? sellerId.hashCode() : 0);
         result = 31 * result + total;
+        result = 31 * result + tax;
         return result;
     }
 }

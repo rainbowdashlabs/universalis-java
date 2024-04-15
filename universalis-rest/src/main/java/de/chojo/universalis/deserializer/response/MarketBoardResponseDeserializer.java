@@ -45,9 +45,9 @@ public class MarketBoardResponseDeserializer extends JsonDeserializer<MarketBoar
         var maxPrice = QualityIndicator.of(view.maxPrice(), view.maxPriceNQ(), view.maxPriceHQ());
         var stackSizeHistorgramG = view.stackSizeHistogram().entrySet().stream()
                                        .collect(Collectors.toMap(e -> Integer.valueOf(e.getKey()), Map.Entry::getValue));
-        var stacksizeHistorgramNQ = view.stackSizeHistogram().entrySet().stream()
+        var stacksizeHistorgramNQ = view.stackSizeHistogramNQ().entrySet().stream()
                                         .collect(Collectors.toMap(e -> Integer.valueOf(e.getKey()), Map.Entry::getValue));
-        var stacksizeHistorgramHQ = view.stackSizeHistogram().entrySet().stream()
+        var stacksizeHistorgramHQ = view.stackSizeHistogramHQ().entrySet().stream()
                                         .collect(Collectors.toMap(e -> Integer.valueOf(e.getKey()), Map.Entry::getValue));
         var stackSizeHistogram = QualityIndicator.of(stackSizeHistorgramG, stacksizeHistorgramNQ, stacksizeHistorgramHQ);
         Map<World, LocalDateTime> worldUploadTimes = null;
@@ -57,7 +57,7 @@ public class MarketBoardResponseDeserializer extends JsonDeserializer<MarketBoar
                                    .stream()
                                    .collect(Collectors.toMap(
                                            e -> Worlds.worldById(Integer.parseInt(e.getKey())),
-                                           e -> Instant.ofEpochSecond(e.getValue()).atOffset(ZoneOffset.UTC)
+                                           e -> Instant.ofEpochMilli(e.getValue()).atOffset(ZoneOffset.UTC)
                                                        .toLocalDateTime())
                                    );
         }
