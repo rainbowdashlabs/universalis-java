@@ -20,17 +20,19 @@ import java.time.LocalDateTime;
  * @param retainer       the retainer data
  * @param price          the price
  * @param listingId      A SHA256 hash of the ID of this listing. Due to some current client-side bugs, this will almost always be null.
- * @param onManequin     Whether the item is being sold on a mannequin.
+ * @param onMannequin    Whether the item is being sold on a mannequin.
  * @param sellerId       A SHA256 hash of the seller's ID.
+ * @param tax            The tax that will be added on top of the price.
  */
 public record Listing(LocalDateTime lastReviewTime,
                       World world,
                       Creator creator,
                       ItemMeta meta,
                       String listingId,
-                      boolean onManequin,
+                      boolean onMannequin,
                       Retainer retainer,
                       String sellerId,
-                      Price price
+                      Price price,
+                      int tax
 ) {
 }
