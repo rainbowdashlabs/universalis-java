@@ -15,7 +15,7 @@ import de.chojo.universalis.worlds.DataCenter;
 import de.chojo.universalis.worlds.Region;
 import de.chojo.universalis.worlds.World;
 
-import javax.annotation.CheckReturnValue;
+import org.jetbrains.annotations.CheckReturnValue;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.Collection;

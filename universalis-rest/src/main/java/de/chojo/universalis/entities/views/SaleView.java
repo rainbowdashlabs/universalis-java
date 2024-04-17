@@ -13,7 +13,7 @@ import de.chojo.universalis.entities.Price;
 import de.chojo.universalis.entities.Sale;
 import de.chojo.universalis.worlds.World;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 import java.time.LocalDateTime;
 
 /**

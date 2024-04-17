@@ -26,7 +26,7 @@ import io.github.bucket4j.Bucket;
 import org.apache.hc.core5.net.URIBuilder;
 import org.slf4j.Logger;
 
-import javax.annotation.CheckReturnValue;
+import org.jetbrains.annotations.CheckReturnValue;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;

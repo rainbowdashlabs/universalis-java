@@ -11,7 +11,7 @@ import java.util.concurrent.CompletableFuture;
 /**
  * A request allowing to retrieve a response
  *
- * @param <T> type of respone
+ * @param <T> type of response
  */
 public interface Request<T> {
     /**
@@ -24,7 +24,7 @@ public interface Request<T> {
     /**
      * Sends the request and handles the response on the current thread
      *
-     * @return respone
+     * @return response
      */
     T complete();
 }

@@ -13,7 +13,7 @@ import de.chojo.universalis.rest.routes.api.extra.stats.LeastRecentlyUpdatedRequ
 import de.chojo.universalis.worlds.DataCenter;
 import de.chojo.universalis.worlds.World;
 
-import javax.annotation.CheckReturnValue;
+import org.jetbrains.annotations.CheckReturnValue;
 
 /**
  * Implementation for a {@link LeastRecentlyUpdatedRequest}

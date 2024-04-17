@@ -14,7 +14,7 @@ import de.chojo.universalis.rest.routes.api.marketboard.BlankMarketBoardRequest;
 import de.chojo.universalis.rest.routes.api.taxrates.BlankTaxRatesRequest;
 import de.chojo.universalis.rest.routes.requests.extra.Extra;
 
-import javax.annotation.CheckReturnValue;
+import org.jetbrains.annotations.CheckReturnValue;
 
 /**
  * Class to access the universalis api.

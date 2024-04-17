@@ -112,4 +112,9 @@ public class RequestBuilder<T> implements Request<T> {
         postRetrievalHook.accept(result);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "%s: %s".formatted(getClass().getSimpleName(), uri());
+    }
 }

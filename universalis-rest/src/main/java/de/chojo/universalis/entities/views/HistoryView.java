@@ -15,7 +15,7 @@ import de.chojo.universalis.worlds.DataCenter;
 import de.chojo.universalis.worlds.Region;
 import de.chojo.universalis.worlds.World;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.List;

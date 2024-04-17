@@ -13,7 +13,7 @@ import de.chojo.universalis.rest.routes.api.base.LimitedRequest;
 import de.chojo.universalis.rest.routes.api.history.RegionHistoryRequest;
 import de.chojo.universalis.rest.routes.requests.HistoryRequestImpl;
 
-import javax.annotation.CheckReturnValue;
+import org.jetbrains.annotations.CheckReturnValue;
 import java.time.Duration;
 
 /**

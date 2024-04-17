@@ -8,7 +8,7 @@ package de.chojo.universalis.rest.routes.api.base;
 
 import de.chojo.universalis.entities.Item;
 
-import javax.annotation.CheckReturnValue;
+import org.jetbrains.annotations.CheckReturnValue;
 import java.util.Collection;
 
 /**

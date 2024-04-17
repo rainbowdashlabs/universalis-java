@@ -6,7 +6,7 @@
 
 package de.chojo.universalis.entities;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Represents the creator of a listing

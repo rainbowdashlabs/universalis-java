@@ -6,7 +6,7 @@
 
 package de.chojo.universalis.rest.routes.api.base;
 
-import javax.annotation.CheckReturnValue;
+import org.jetbrains.annotations.CheckReturnValue;
 
 /**
  * Interface for requests using limits

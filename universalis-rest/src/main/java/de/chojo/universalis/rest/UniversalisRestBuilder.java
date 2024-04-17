@@ -10,7 +10,7 @@ import de.chojo.universalis.entities.Name;
 import de.chojo.universalis.provider.NameSupplier;
 import de.chojo.universalis.provider.items.Items;
 
-import javax.annotation.CheckReturnValue;
+import org.jetbrains.annotations.CheckReturnValue;
 import java.net.http.HttpClient;
 import java.util.Collections;
 import java.util.Map;

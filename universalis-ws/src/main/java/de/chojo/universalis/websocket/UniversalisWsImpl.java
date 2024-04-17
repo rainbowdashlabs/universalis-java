@@ -16,7 +16,7 @@ import de.chojo.universalis.websocket.listener.WebsocketListenerAdapter;
 import de.chojo.universalis.websocket.subscriber.Subscription;
 import org.slf4j.Logger;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;

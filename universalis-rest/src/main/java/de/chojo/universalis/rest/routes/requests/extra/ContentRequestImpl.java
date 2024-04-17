@@ -11,7 +11,7 @@ import de.chojo.universalis.rest.requests.RequestBuilder;
 import de.chojo.universalis.rest.response.extra.ContentResponse;
 import de.chojo.universalis.rest.routes.api.extra.ContentRequest;
 
-import javax.annotation.CheckReturnValue;
+import org.jetbrains.annotations.CheckReturnValue;
 
 /**
  * Implementation of a {@link ContentRequest}
