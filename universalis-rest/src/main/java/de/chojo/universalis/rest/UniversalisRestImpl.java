@@ -7,6 +7,9 @@
 package de.chojo.universalis.rest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import de.chojo.universalis.exceptions.ErrorResponseException;
+import de.chojo.universalis.exceptions.RequestException;
+import de.chojo.universalis.exceptions.ResponseException;
 import de.chojo.universalis.provider.NameSupplier;
 import de.chojo.universalis.rest.requests.Buckets;
 import de.chojo.universalis.rest.requests.Mapper;
@@ -24,9 +27,9 @@ import de.chojo.universalis.rest.routes.requests.WorldsRequestImpl;
 import de.chojo.universalis.rest.routes.requests.extra.Extra;
 import io.github.bucket4j.Bucket;
 import org.apache.hc.core5.net.URIBuilder;
+import org.jetbrains.annotations.CheckReturnValue;
 import org.slf4j.Logger;
 
-import javax.annotation.CheckReturnValue;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -39,7 +42,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import static org.slf4j.LoggerFactory.getLogger;
 
 /**
- * Implementation of a universalis rest client
+ * Implementation of an universalis rest client
  */
 public class UniversalisRestImpl implements UniversalisRest {
     private static final Logger log = getLogger(UniversalisRestImpl.class);
@@ -54,7 +57,7 @@ public class UniversalisRestImpl implements UniversalisRest {
      *
      * @param http             http client
      * @param executorService  executor service
-     * @param itemNameSupplier item name suppplier
+     * @param itemNameSupplier item name supplier
      */
     public UniversalisRestImpl(HttpClient http, ScheduledExecutorService executorService, NameSupplier itemNameSupplier) {
         this.http = http;
@@ -144,7 +147,7 @@ public class UniversalisRestImpl implements UniversalisRest {
         try {
             return getAsyncAndMap(uri.build(), result);
         } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
+            throw new RequestException("Error while parsing URI", e);
         }
     }
 
@@ -160,7 +163,7 @@ public class UniversalisRestImpl implements UniversalisRest {
         try {
             return getAndMap(uri.build(), result);
         } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
+            throw new RequestException("Error while parsing URI", e);
         }
     }
 
@@ -200,7 +203,7 @@ public class UniversalisRestImpl implements UniversalisRest {
      */
     public <T> CompletableFuture<T> getAsyncAndMap(HttpRequest request, Class<T> result) {
         return xivapi.asScheduler().consume(1, executorService)
-                     .thenApplyAsync(v -> getAndMapInternal(request, result), executorService);
+                .thenApplyAsync(v -> getAndMapInternal(request, result), executorService);
     }
 
     /**
@@ -215,21 +218,29 @@ public class UniversalisRestImpl implements UniversalisRest {
         try {
             xivapi.asBlocking().consume(1);
         } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+            throw new RequestException("Interrupted while waiting for token", e);
         }
         return getAndMapInternal(request, result);
     }
 
     private <T> T getAndMapInternal(HttpRequest request, Class<T> result) {
+        HttpResponse<String> response;
         try {
             log.trace("Requesting {}", request.uri());
-            System.out.println(request.uri().toString());
-            HttpResponse<String> response = http().send(request, HttpResponse.BodyHandlers.ofString());
+            response = http().send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (InterruptedException | IOException e) {
+            throw new ResponseException("Error during reading the request", e);
+        }
+
+        try {
+            if (response.statusCode() >= 400) {
+                log.error("Received error {} during request: {}", response.statusCode(), response.body());
+                throw new ErrorResponseException(response.statusCode(), response.body());
+            }
             log.trace("Received\n{}", response.body());
-            System.out.println(response.body());
             return objectMapper().readValue(response.body(), result);
-        } catch (IOException | InterruptedException e) {
-            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new ResponseException("Error during request mapping", e);
         }
     }
 }

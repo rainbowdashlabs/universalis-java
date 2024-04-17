@@ -13,11 +13,11 @@ import de.chojo.universalis.entities.Price;
 import de.chojo.universalis.entities.Sale;
 import de.chojo.universalis.worlds.World;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 import java.time.LocalDateTime;
 
 /**
- * <a href="https://docs.universalis.app/#schema-saleview">See on unversalis</a>
+ * <a href="https://docs.universalis.app/#schema-saleview">See on universalis</a>
  *
  * @param hq           Whether the item was high-quality.
  * @param pricePerUnit The price per unit sold.

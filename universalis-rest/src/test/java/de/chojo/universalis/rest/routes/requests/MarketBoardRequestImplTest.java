@@ -36,7 +36,7 @@ class MarketBoardRequestImplTest {
         MarketBoardResponse complete = request
                 .listingsLimit(3)
                 .complete();
-        Assertions.assertTrue(complete.listings().size() > 0);
+        Assertions.assertFalse(complete.listings().isEmpty());
         Assertions.assertTrue(complete.listings().size() <= 3);
     }
 
@@ -63,9 +63,14 @@ class MarketBoardRequestImplTest {
     @ParameterizedTest
     @MethodSource("inputs")
     void historyTime(MarketBoardRequest request) {
-        MarketBoardResponse days = request.historyTime(Duration.ofDays(7)).complete();
-        MarketBoardResponse hours = request.historyTime(Duration.ofHours(1)).complete();
-        Assertions.assertNotEquals(days.recentHistory().size(), hours.recentHistory().size());
+        request.historyLimit(100);
+        request.historyTime(Duration.ofDays(7));
+        System.out.println(request);
+        MarketBoardResponse days = request.complete();
+        request.historyTime(Duration.ofHours(1));
+        System.out.println(request);
+        MarketBoardResponse hours = request.complete();
+        Assertions.assertNotEquals(days.recentHistory().size(), hours.recentHistory().size(), "Received same results for %s and %s".formatted(days, hours));
     }
 
     @ParameterizedTest

@@ -13,7 +13,7 @@ import de.chojo.universalis.rest.routes.api.extra.stats.UploaderUploadCountsRequ
 import de.chojo.universalis.rest.routes.api.extra.stats.leastrecentlyupdated.BlankLeastRecentlyUpdatedRequest;
 import de.chojo.universalis.rest.routes.api.extra.stats.mostrecentlyupdated.BlankMostRecentlyUpdatedRequest;
 
-import javax.annotation.CheckReturnValue;
+import org.jetbrains.annotations.CheckReturnValue;
 
 /**
  * Class providing access to stats requests

@@ -12,7 +12,7 @@ import io.github.bucket4j.Bucket;
 import java.time.Duration;
 
 /**
- * Provides buckets for ratelimiting
+ * Provides buckets for rate limiting
  */
 public final class Buckets {
     private Buckets() {
@@ -25,6 +25,6 @@ public final class Buckets {
      * @return bucket
      */
     public static Bucket newUniversalisBucket() {
-        return Bucket.builder().addLimit(Bandwidth.simple(50, Duration.ofSeconds(2))).build();
+        return Bucket.builder().addLimit(Bandwidth.builder().capacity(50).refillIntervally(50, Duration.ofSeconds(2)).build()).build();
     }
 }

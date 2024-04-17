@@ -61,7 +61,7 @@ dependencyResolutionManagement {
             library("mockito-core", "org.mockito", "mockito-core").versionRef("mockito")
 
             version("slf4j", "2.0.12")
-            library("slf4j-noop", "org.slf4j", "slf4j-nop").versionRef("slf4j")
+            library("slf4j-noop", "org.slf4j", "slf4j-simple").versionRef("slf4j")
         }
     }
 }

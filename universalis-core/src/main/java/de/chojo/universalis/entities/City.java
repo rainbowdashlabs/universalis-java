@@ -16,9 +16,9 @@ import static org.slf4j.LoggerFactory.getLogger;
  */
 public enum City {
     /**
-     * Limsa Lominsa
+     * Unknown city
      */
-    UNKOWN(-1, "Unkown"),
+    UNKNOWN(-1, "Unknown"),
     /**
      * Limsa Lominsa
      */
@@ -69,8 +69,8 @@ public enum City {
         for (City city : values()) {
             if (city.id() == id) return city;
         }
-        log.error("ID {} is unkown.", id);
-        return UNKOWN;
+        log.error("ID {} is unknown.", id);
+        return UNKNOWN;
     }
 
     /**
@@ -84,8 +84,8 @@ public enum City {
         for (City city : values()) {
             if (city.cityName().equalsIgnoreCase(name)) return city;
         }
-        log.error("Name {} is unkown.", name);
-        return UNKOWN;
+        log.error("Name {} is unknown.", name);
+        return UNKNOWN;
     }
 
     /**

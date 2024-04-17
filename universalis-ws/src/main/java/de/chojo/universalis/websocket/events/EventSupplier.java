@@ -7,10 +7,9 @@
 package de.chojo.universalis.websocket.events;
 
 import de.chojo.universalis.events.Event;
-import de.chojo.universalis.provider.NameSupplier;
 
 /**
- * Interface used to mark clases which can provide an interface out of their data
+ * Interface used to mark classes which can provide an interface out of their data
  *
  * @param <T> type of event
  */

@@ -8,7 +8,7 @@ package de.chojo.universalis.rest.routes.api.base;
 
 import de.chojo.universalis.worlds.World;
 
-import javax.annotation.CheckReturnValue;
+import org.jetbrains.annotations.CheckReturnValue;
 
 /**
  * Interface for requests using worlds

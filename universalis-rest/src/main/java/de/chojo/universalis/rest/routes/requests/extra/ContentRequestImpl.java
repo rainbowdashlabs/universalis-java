@@ -11,7 +11,7 @@ import de.chojo.universalis.rest.requests.RequestBuilder;
 import de.chojo.universalis.rest.response.extra.ContentResponse;
 import de.chojo.universalis.rest.routes.api.extra.ContentRequest;
 
-import javax.annotation.CheckReturnValue;
+import org.jetbrains.annotations.CheckReturnValue;
 
 /**
  * Implementation of a {@link ContentRequest}
@@ -20,7 +20,7 @@ public class ContentRequestImpl extends RequestBuilder<ContentResponse> implemen
     /**
      * Create a new content request
      *
-     * @param rest rest clietn
+     * @param rest rest client
      */
     public ContentRequestImpl(UniversalisRestImpl rest) {
         super(rest, ContentResponse.class);
