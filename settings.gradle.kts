@@ -20,7 +20,7 @@ pluginManagement {
 dependencyResolutionManagement {
     versionCatalogs {
         create("libs") {
-            version("jackson", "2.16.1")
+            version("jackson", "2.17.0")
             library("jackson-core", "com.fasterxml.jackson.core", "jackson-core").versionRef("jackson")
             library("jackson-databind", "com.fasterxml.jackson.core", "jackson-databind").versionRef("jackson")
             library("jackson-annotations", "com.fasterxml.jackson.core", "jackson-annotations").versionRef("jackson")
