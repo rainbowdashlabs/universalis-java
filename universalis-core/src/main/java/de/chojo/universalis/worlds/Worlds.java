@@ -110,6 +110,22 @@ public class Worlds {
     }
 
     /**
+     * Retrieves a data center by id
+     *
+     * @param id data center id
+     * @return data center
+     */
+    @Nullable
+    public static DataCenter datacenterById(int id) {
+        for (Region region : regions()) {
+            for (DataCenter datacenter : region.datacenters()) {
+                if (datacenter.id() == id) return datacenter;
+            }
+        }
+        return null;
+    }
+
+    /**
      * Retrieves a region by name
      *
      * @param name region name case-insensitive

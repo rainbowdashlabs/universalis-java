@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "de.chojo.universalis"
-version = "1.4.0"
+version = "1.4.1"
 
 repositories {
     maven("https://eldonexus.de/repository/maven-public")
@@ -55,9 +55,9 @@ allprojects {
     }
 
     dependencies {
-        testImplementation("org.junit.jupiter", "junit-jupiter-api", "5.10.2")
-        testRuntimeOnly("org.junit.jupiter", "junit-jupiter-engine", "5.10.2")
-        testImplementation("org.mockito", "mockito-core", "5.+")
+        val testlibs = rootProject.testlibs
+        testImplementation(testlibs.bundles.junit)
+        testImplementation(testlibs.mockito.core)
     }
 
     publishData {
@@ -138,9 +138,9 @@ tasks {
     register<Javadoc>("alljavadoc") {
         applyJavaDocOptions(options)
 
-        setDestinationDir(file("${buildDir}/docs/javadoc"))
+        setDestinationDir(file("${layout.buildDirectory.get()}/docs/javadoc"))
         val projects = project.rootProject.allprojects.filter { p -> !p.name.contains("example") }
-        setSource(projects.map { p -> p.sourceSets.main.get().allJava })
+        setSource(projects.map { p -> p.sourceSets.main.get().allJava.filter{ p -> p.name != "module-info.java"} })
         classpath = files(projects.map { p -> p.sourceSets.main.get().compileClasspath })
     }
 }

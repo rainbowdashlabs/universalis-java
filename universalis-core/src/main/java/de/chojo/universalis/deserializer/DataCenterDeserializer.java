@@ -20,6 +20,9 @@ import java.io.IOException;
 public class DataCenterDeserializer extends JsonDeserializer<DataCenter> {
     @Override
     public DataCenter deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
-        return Worlds.datacenterByName(p.getText());
+        if (p.isExpectedNumberIntToken()) {
+            return Worlds.datacenterById(p.getValueAsInt());
+        }
+        return Worlds.datacenterByName(p.getValueAsString());
     }
 }

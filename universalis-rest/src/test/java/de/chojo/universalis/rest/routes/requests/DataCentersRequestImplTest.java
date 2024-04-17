@@ -6,17 +6,17 @@
 
 package de.chojo.universalis.rest.routes.requests;
 
-import de.chojo.universalis.rest.UniversalisRest;
 import de.chojo.universalis.rest.response.DataCentersResponse;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static de.chojo.universalis.rest.ClientWrapper.client;
+
 class DataCentersRequestImplTest {
-    UniversalisRest rest = UniversalisRest.defaultApi();
 
     @Test
     public void test() {
-        DataCentersResponse complete = rest.dataCenters().complete();
+        DataCentersResponse complete = client().dataCenters().complete();
         Assertions.assertFalse(complete.dataCenters().isEmpty());
     }
 
