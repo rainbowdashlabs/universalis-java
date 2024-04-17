@@ -1,7 +1,7 @@
 /*
- *     SPDX-License-Identifier: AGPL-3.0-only
+ *     SPDX-License-Identifier: LGPL-3.0-or-later
  *
- *     Copyright (C) Rainbowdashlabs and Contributor
+ *     Copyright (C) RainbowDashLabs and Contributor
  */
 
 package de.chojo.universalis.websocket.builder;
@@ -9,7 +9,6 @@ package de.chojo.universalis.websocket.builder;
 import com.neovisionaries.ws.client.WebSocketFactory;
 import de.chojo.universalis.websocket.UniversalisWs;
 import de.chojo.universalis.websocket.UniversalisWsImpl;
-import de.chojo.universalis.entities.Name;
 import de.chojo.universalis.listener.EventListener;
 import de.chojo.universalis.provider.NameSupplier;
 import de.chojo.universalis.websocket.subscriber.Subscription;
@@ -29,7 +28,7 @@ public class UniversalisWsBuilder {
     private final List<Subscription> subscriptions = new ArrayList<>();
     private final List<EventListener> listeners = new ArrayList<>();
     private ExecutorService executorService = Executors.newCachedThreadPool();
-    private NameSupplier nameSupplier = NameSupplier.EMPTY;;
+    private NameSupplier nameSupplier = NameSupplier.EMPTY;
 
     /**
      * Create a new universalis websocket builder
@@ -42,7 +41,7 @@ public class UniversalisWsBuilder {
     /**
      * Registers a listener.
      *
-     * @param eventListener eventlistener
+     * @param eventListener event listener
      * @return builder instance
      */
     public UniversalisWsBuilder registerListener(EventListener... eventListener) {
@@ -89,9 +88,8 @@ public class UniversalisWsBuilder {
      * Use {@link UniversalisWs#awaitReady()} to wait until the socket is connected.
      *
      * @return Universalis websocket instance
-     * @throws IOException Failed to create a socket. Or, HTTP proxy handshake or SSL handshake failed.
      */
-    public UniversalisWs build() throws IOException {
+    public UniversalisWs build() {
         UniversalisWsImpl universalisWs = new UniversalisWsImpl(factory, executorService, subscriptions, listeners, nameSupplier);
         universalisWs.ignite();
         return universalisWs;

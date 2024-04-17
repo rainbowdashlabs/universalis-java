@@ -1,7 +1,7 @@
 /*
- *     SPDX-License-Identifier: AGPL-3.0-only
+ *     SPDX-License-Identifier: LGPL-3.0-or-later
  *
- *     Copyright (C) Rainbowdashlabs and Contributor
+ *     Copyright (C) RainbowDashLabs and Contributor
  */
 
 package de.chojo.universalis.rest.routes.requests.extra;
@@ -11,7 +11,7 @@ import de.chojo.universalis.rest.requests.RequestBuilder;
 import de.chojo.universalis.rest.response.extra.ContentResponse;
 import de.chojo.universalis.rest.routes.api.extra.ContentRequest;
 
-import javax.annotation.CheckReturnValue;
+import org.jetbrains.annotations.CheckReturnValue;
 
 /**
  * Implementation of a {@link ContentRequest}
@@ -20,7 +20,7 @@ public class ContentRequestImpl extends RequestBuilder<ContentResponse> implemen
     /**
      * Create a new content request
      *
-     * @param rest rest clietn
+     * @param rest rest client
      */
     public ContentRequestImpl(UniversalisRestImpl rest) {
         super(rest, ContentResponse.class);

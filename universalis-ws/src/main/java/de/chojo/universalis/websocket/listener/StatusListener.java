@@ -1,7 +1,7 @@
 /*
- *     SPDX-License-Identifier: AGPL-3.0-only
+ *     SPDX-License-Identifier: LGPL-3.0-or-later
  *
- *     Copyright (C) Rainbowdashlabs and Contributor
+ *     Copyright (C) RainbowDashLabs and Contributor
  */
 
 package de.chojo.universalis.websocket.listener;
@@ -17,7 +17,6 @@ import org.bson.BasicBSONEncoder;
 import org.bson.BasicBSONObject;
 import org.slf4j.Logger;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
@@ -44,7 +43,7 @@ public class StatusListener extends WebSocketAdapter {
     }
 
     @Override
-    public void onConnected(WebSocket websocket, Map<String, List<String>> headers) throws Exception {
+    public void onConnected(WebSocket websocket, Map<String, List<String>> headers) {
         log.info("WebSocket Connected");
         connected = true;
         for (var entry : headers.entrySet()) {
@@ -52,20 +51,17 @@ public class StatusListener extends WebSocketAdapter {
         }
 
         for (Subscription subscription : subscriptions) {
-            for (String channel : subscription.channel()) {
-                websocket.sendBinary(subscribeChannel(channel));
-                log.debug("Subscribed to channel {}", channel);
-            }
+            subscribe(subscription);
         }
     }
 
     /**
-     * Subscripe a route
+     * Subscribe a route
      *
      * @param subscription subscription
      * @throws IllegalStateException When the socket is not connected
      */
-    public void subscibe(Subscription subscription) {
+    public void subscribe(Subscription subscription) {
         if (!isConnected()) {
             throw new IllegalStateException("The socket is not connected.");
         }
@@ -76,7 +72,7 @@ public class StatusListener extends WebSocketAdapter {
     }
 
     /**
-     * Unsubscripe a route
+     * Unsubscribe a route
      *
      * @param subscription subscription
      * @throws IllegalStateException When the socket is not connected
@@ -87,7 +83,7 @@ public class StatusListener extends WebSocketAdapter {
         }
         for (String channel : subscription.channel()) {
             universalisWs.socket().sendBinary(unsubscribeChannel(channel));
-            log.debug("Subscribed to channel {}", channel);
+            log.debug("Unsubscribed from channel {}", channel);
         }
     }
 
@@ -106,18 +102,18 @@ public class StatusListener extends WebSocketAdapter {
     }
 
     @Override
-    public void handleCallbackError(WebSocket websocket, Throwable cause) throws Exception {
+    public void handleCallbackError(WebSocket websocket, Throwable cause) {
         log.error("Callback error", cause);
     }
 
     @Override
-    public void onError(WebSocket websocket, WebSocketException cause) throws Exception {
+    public void onError(WebSocket websocket, WebSocketException cause) {
         log.error("Error in websocket", cause);
         log.error("Reason: {}", cause.getError());
     }
 
     @Override
-    public void onDisconnected(WebSocket websocket, WebSocketFrame serverCloseFrame, WebSocketFrame clientCloseFrame, boolean closedByServer) throws Exception {
+    public void onDisconnected(WebSocket websocket, WebSocketFrame serverCloseFrame, WebSocketFrame clientCloseFrame, boolean closedByServer) {
         connected = false;
         if (closedByServer) {
             log.info("Remote host closed the connection");
@@ -130,7 +126,7 @@ public class StatusListener extends WebSocketAdapter {
     }
 
     @Override
-    public void onUnexpectedError(WebSocket websocket, WebSocketException cause) throws Exception {
+    public void onUnexpectedError(WebSocket websocket, WebSocketException cause) {
         log.error("Error in websocket", cause);
     }
 

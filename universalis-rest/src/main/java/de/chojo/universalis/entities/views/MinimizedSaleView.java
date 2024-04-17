@@ -1,7 +1,7 @@
 /*
- *     SPDX-License-Identifier: AGPL-3.0-only
+ *     SPDX-License-Identifier: LGPL-3.0-or-later
  *
- *     Copyright (C) Rainbowdashlabs and Contributor
+ *     Copyright (C) RainbowDashLabs and Contributor
  */
 
 package de.chojo.universalis.entities.views;
@@ -13,7 +13,7 @@ import de.chojo.universalis.entities.MinimizedPrice;
 import de.chojo.universalis.entities.MinimizedSale;
 import de.chojo.universalis.worlds.World;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 import java.time.LocalDateTime;
 
 /**

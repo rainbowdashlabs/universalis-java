@@ -1,10 +1,8 @@
 dependencies {
-    api("com.fasterxml.jackson.core", "jackson-databind", "2.17.0")
+    api(libs.jackson.databind)
     // Logging
-    api("org.slf4j", "slf4j-api", "2.0.13")
+    api(libs.slf4j.api)
 
     // code
-    api("org.jetbrains", "annotations", "24.1.0")
-    api("com.google.code.findbugs", "jsr305", "3.0.2")
-
+    api(libs.jetbrains.annotations)
 }

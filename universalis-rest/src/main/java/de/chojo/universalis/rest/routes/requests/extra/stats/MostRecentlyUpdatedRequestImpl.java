@@ -1,7 +1,7 @@
 /*
- *     SPDX-License-Identifier: AGPL-3.0-only
+ *     SPDX-License-Identifier: LGPL-3.0-or-later
  *
- *     Copyright (C) Rainbowdashlabs and Contributor
+ *     Copyright (C) RainbowDashLabs and Contributor
  */
 
 package de.chojo.universalis.rest.routes.requests.extra.stats;
@@ -12,14 +12,14 @@ import de.chojo.universalis.rest.response.extra.stats.MostRecentlyUpdatedRespons
 import de.chojo.universalis.rest.routes.api.extra.stats.MostRecentlyUpdatedRequest;
 import de.chojo.universalis.worlds.World;
 
-import javax.annotation.CheckReturnValue;
+import org.jetbrains.annotations.CheckReturnValue;
 
 /**
  * Implementation for a {@link MostRecentlyUpdatedRequest}
  */
 public class MostRecentlyUpdatedRequestImpl extends RequestBuilder<MostRecentlyUpdatedResponse> implements MostRecentlyUpdatedRequest {
     /**
-     * Create a new most restently updated request
+     * Create a new most recently updated request
      *
      * @param rest rest client
      */

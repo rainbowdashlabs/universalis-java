@@ -1,25 +1,21 @@
 /*
- *     SPDX-License-Identifier: AGPL-3.0-only
+ *     SPDX-License-Identifier: LGPL-3.0-or-later
  *
- *     Copyright (C) Rainbowdashlabs and Contributor
+ *     Copyright (C) RainbowDashLabs and Contributor
  */
 
 package de.chojo.universalis.rest;
 
-import de.chojo.universalis.entities.Name;
 import de.chojo.universalis.provider.NameSupplier;
 import de.chojo.universalis.provider.items.Items;
 
-import javax.annotation.CheckReturnValue;
+import org.jetbrains.annotations.CheckReturnValue;
 import java.net.http.HttpClient;
-import java.util.Collections;
-import java.util.Map;
-import java.util.Optional;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
 /**
- * Class to build a universalis rest client
+ * Class to build an universalis rest client
  */
 public class UniversalisRestBuilder {
     private HttpClient http = HttpClient.newBuilder().version(HttpClient.Version.HTTP_2).build();

@@ -1,7 +1,7 @@
 /*
- *     SPDX-License-Identifier: AGPL-3.0-only
+ *     SPDX-License-Identifier: LGPL-3.0-or-later
  *
- *     Copyright (C) Rainbowdashlabs and Contributor
+ *     Copyright (C) RainbowDashLabs and Contributor
  */
 
 package de.chojo.universalis.deserializer;
@@ -17,7 +17,7 @@ import java.io.IOException;
  */
 public class DataCenterKeyDeserializer extends KeyDeserializer {
     @Override
-    public Object deserializeKey(String key, DeserializationContext ctxt) throws IOException {
+    public Object deserializeKey(String key, DeserializationContext ctxt) {
         try {
             return Worlds.datacenterById(Integer.parseInt(key));
         } catch (NumberFormatException e) {

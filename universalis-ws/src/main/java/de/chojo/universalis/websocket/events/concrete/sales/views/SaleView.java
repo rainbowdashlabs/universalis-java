@@ -1,7 +1,7 @@
 /*
- *     SPDX-License-Identifier: AGPL-3.0-only
+ *     SPDX-License-Identifier: LGPL-3.0-or-later
  *
- *     Copyright (C) Rainbowdashlabs and Contributor
+ *     Copyright (C) RainbowDashLabs and Contributor
  */
 
 package de.chojo.universalis.websocket.events.concrete.sales.views;
@@ -13,7 +13,6 @@ import de.chojo.universalis.entities.Price;
 import de.chojo.universalis.entities.Sale;
 import de.chojo.universalis.worlds.World;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
 
 /**

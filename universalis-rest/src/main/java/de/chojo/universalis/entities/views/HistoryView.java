@@ -1,7 +1,7 @@
 /*
- *     SPDX-License-Identifier: AGPL-3.0-only
+ *     SPDX-License-Identifier: LGPL-3.0-or-later
  *
- *     Copyright (C) Rainbowdashlabs and Contributor
+ *     Copyright (C) RainbowDashLabs and Contributor
  */
 
 package de.chojo.universalis.entities.views;
@@ -9,15 +9,14 @@ package de.chojo.universalis.entities.views;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import de.chojo.universalis.deserializer.MillisDateTimeConverter;
-import de.chojo.universalis.deserializer.SecondsDateTimeConverter;
 import de.chojo.universalis.entities.Item;
 import de.chojo.universalis.worlds.DataCenter;
 import de.chojo.universalis.worlds.Region;
 import de.chojo.universalis.worlds.World;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nullable;
-import java.time.Instant;
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -39,7 +38,7 @@ import java.util.Map;
  */
 public record HistoryView(@JsonProperty("itemID") Item item,
                           @JsonProperty("worldID") @Nullable World world,
-                          @JsonProperty("lastUploadTime")  @JsonDeserialize(converter = MillisDateTimeConverter.class) LocalDateTime lastUploadTime,
+                          @JsonProperty("lastUploadTime") @JsonDeserialize(converter = MillisDateTimeConverter.class) LocalDateTime lastUploadTime,
                           @JsonProperty("entries") @Nullable List<MinimizedSaleView> entries,
                           @JsonProperty("dcName") @Nullable DataCenter datacenter,
                           @JsonProperty("region") @Nullable Region region,
@@ -50,4 +49,19 @@ public record HistoryView(@JsonProperty("itemID") Item item,
                           @JsonProperty("nqSaleVelocity") float nqSaleVelocity,
                           @JsonProperty("hqSaleVelocity") float hqSaleVelocity
 ) {
+
+    @Override
+    public Map<String, Integer> stackSizeHistogram() {
+        return stackSizeHistogram == null ? Collections.emptyMap() : stackSizeHistogram;
+    }
+
+    @Override
+    public Map<String, Integer> stackSizeHistogramNQ() {
+        return stackSizeHistogramNQ == null ? Collections.emptyMap() : stackSizeHistogramNQ;
+    }
+
+    @Override
+    public Map<String, Integer> stackSizeHistogramHQ() {
+        return stackSizeHistogramHQ == null ? Collections.emptyMap() : stackSizeHistogramHQ;
+    }
 }

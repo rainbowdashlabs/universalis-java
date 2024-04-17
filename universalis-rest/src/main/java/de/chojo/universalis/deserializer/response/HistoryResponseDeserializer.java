@@ -1,7 +1,7 @@
 /*
- *     SPDX-License-Identifier: AGPL-3.0-only
+ *     SPDX-License-Identifier: LGPL-3.0-or-later
  *
- *     Copyright (C) Rainbowdashlabs and Contributor
+ *     Copyright (C) RainbowDashLabs and Contributor
  */
 
 package de.chojo.universalis.deserializer.response;
@@ -38,14 +38,14 @@ public class HistoryResponseDeserializer extends JsonDeserializer<HistoryRespons
             sales = view.entries().stream().map(MinimizedSaleView::toSale).toList();
         }
         var saleVelocity = QualityIndicator.of(view.regularSaleVelocity(), view.nqSaleVelocity(), view.hqSaleVelocity());
-        var stackSizeHistorgramG = view.stackSizeHistogram().entrySet().stream()
+        var histogramG = view.stackSizeHistogram().entrySet().stream()
                                        .collect(Collectors.toMap(e -> Integer.valueOf(e.getKey()), Map.Entry::getValue));
-        var stacksizeHistorgramNQ = view.stackSizeHistogram().entrySet().stream()
+        var histogramNQ = view.stackSizeHistogram().entrySet().stream()
                                         .collect(Collectors.toMap(e -> Integer.valueOf(e.getKey()), Map.Entry::getValue));
-        var stacksizeHistorgramHQ = view.stackSizeHistogram().entrySet().stream()
+        var histogramHQ = view.stackSizeHistogram().entrySet().stream()
                                         .collect(Collectors.toMap(e -> Integer.valueOf(e.getKey()), Map.Entry::getValue));
-        var stackSizeHistogram = QualityIndicator.of(stackSizeHistorgramG, stacksizeHistorgramNQ, stacksizeHistorgramHQ);
+        var histogram = QualityIndicator.of(histogramG, histogramNQ, histogramHQ);
         return new HistoryResponse(item, world, datacenter, region, lastUploadTime, sales, saleVelocity,
-                stackSizeHistogram);
+                histogram);
     }
 }

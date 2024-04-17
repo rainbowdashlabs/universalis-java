@@ -1,7 +1,7 @@
 /*
- *     SPDX-License-Identifier: AGPL-3.0-only
+ *     SPDX-License-Identifier: LGPL-3.0-or-later
  *
- *     Copyright (C) Rainbowdashlabs and Contributor
+ *     Copyright (C) RainbowDashLabs and Contributor
  */
 
 package de.chojo.universalis.websocket.events.concrete.listing.impl;
@@ -11,7 +11,6 @@ import de.chojo.universalis.entities.Item;
 import de.chojo.universalis.websocket.events.concrete.listing.WsListingEvent;
 import de.chojo.universalis.entities.views.ListingView;
 import de.chojo.universalis.events.listings.impl.ListingAddEvent;
-import de.chojo.universalis.provider.NameSupplier;
 import de.chojo.universalis.worlds.World;
 
 import java.util.List;

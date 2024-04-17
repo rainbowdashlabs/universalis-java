@@ -1,7 +1,7 @@
 /*
- *     SPDX-License-Identifier: AGPL-3.0-only
+ *     SPDX-License-Identifier: LGPL-3.0-or-later
  *
- *     Copyright (C) Rainbowdashlabs and Contributor
+ *     Copyright (C) RainbowDashLabs and Contributor
  */
 
 package de.chojo.universalis.rest.requests;
@@ -11,7 +11,7 @@ import java.util.concurrent.CompletableFuture;
 /**
  * A request allowing to retrieve a response
  *
- * @param <T> type of respone
+ * @param <T> type of response
  */
 public interface Request<T> {
     /**
@@ -24,7 +24,7 @@ public interface Request<T> {
     /**
      * Sends the request and handles the response on the current thread
      *
-     * @return respone
+     * @return response
      */
     T complete();
 }

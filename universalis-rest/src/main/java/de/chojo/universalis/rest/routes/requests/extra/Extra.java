@@ -1,7 +1,7 @@
 /*
- *     SPDX-License-Identifier: AGPL-3.0-only
+ *     SPDX-License-Identifier: LGPL-3.0-or-later
  *
- *     Copyright (C) Rainbowdashlabs and Contributor
+ *     Copyright (C) RainbowDashLabs and Contributor
  */
 
 package de.chojo.universalis.rest.routes.requests.extra;
@@ -10,7 +10,7 @@ import de.chojo.universalis.rest.UniversalisRestImpl;
 import de.chojo.universalis.rest.routes.api.extra.stats.content.BlankContentRequest;
 import de.chojo.universalis.rest.routes.requests.extra.stats.Stats;
 
-import javax.annotation.CheckReturnValue;
+import org.jetbrains.annotations.CheckReturnValue;
 
 /**
  * Class providing requests for the extra route

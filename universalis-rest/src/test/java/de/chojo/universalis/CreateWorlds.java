@@ -1,7 +1,7 @@
 /*
- *     SPDX-License-Identifier: AGPL-3.0-only
+ *     SPDX-License-Identifier: LGPL-3.0-or-later
  *
- *     Copyright (C) Rainbowdashlabs and Contributor
+ *     Copyright (C) RainbowDashLabs and Contributor
  */
 
 package de.chojo.universalis;
@@ -38,7 +38,7 @@ public class CreateWorlds {
 
         for (DataCenter dataCenter : dataCenters) {
             System.out.println("// Region " + dataCenter.region());
-            System.out.println("public static final class %s implements DataCenter".formatted(dataCenter.name()));
+            System.out.printf("public static final class %s implements DataCenter%n", dataCenter.name());
             StringJoiner worldJoiner = new StringJoiner(",");
             for (World world : dataCenter.worlds()) {
                 String worldCode = """
@@ -46,7 +46,7 @@ public class CreateWorlds {
                                     * The world %s
                                     */
                                    public final World %s = World.of("%s", %s);
-                                               """.formatted(world.name(), world.name()
+                                   """.formatted(world.name(), world.name()
                                                                                 .toUpperCase(Locale.ROOT), world.name(), world.id())
                                                   .stripIndent();
                 System.out.printf(worldCode);
@@ -57,7 +57,7 @@ public class CreateWorlds {
                                      public List<World> worlds() {
                                          return List.of(%s);
                                      }
-                                     
+                         
                                      @Override
                                      public int id() {
                                          return %d;

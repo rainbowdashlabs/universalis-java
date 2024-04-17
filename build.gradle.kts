@@ -4,8 +4,8 @@ plugins {
     java
     `maven-publish`
     `java-library`
+    alias(libs.plugins.spotless)
     id("de.chojo.publishdata") version "1.4.0"
-    id("com.diffplug.spotless") version "6.25.0"
 }
 
 group = "de.chojo.universalis"
@@ -58,6 +58,7 @@ allprojects {
         val testlibs = rootProject.testlibs
         testImplementation(testlibs.bundles.junit)
         testImplementation(testlibs.mockito.core)
+        testImplementation(testlibs.slf4j.noop)
     }
 
     publishData {

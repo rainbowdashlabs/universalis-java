@@ -1,24 +1,22 @@
 /*
- *     SPDX-License-Identifier: AGPL-3.0-only
+ *     SPDX-License-Identifier: LGPL-3.0-or-later
  *
- *     Copyright (C) Rainbowdashlabs and Contributor
+ *     Copyright (C) RainbowDashLabs and Contributor
  */
 
 package de.chojo.universalis;
 
-import de.chojo.universalis.rest.UniversalisRest;
 import de.chojo.universalis.rest.response.WorldsResponse;
 import org.junit.jupiter.api.Test;
 
+import static de.chojo.universalis.rest.ClientWrapper.client;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class WorldsRequestImplTest {
 
-    UniversalisRest rest = UniversalisRest.defaultApi();
-
     @Test
     public void test() {
-        WorldsResponse complete = rest.worlds().complete();
+        WorldsResponse complete = client().worlds().complete();
         assertFalse(complete.worlds().isEmpty());
     }
 

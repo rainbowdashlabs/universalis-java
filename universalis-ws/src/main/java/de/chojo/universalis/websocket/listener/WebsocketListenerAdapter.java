@@ -1,7 +1,7 @@
 /*
- *     SPDX-License-Identifier: AGPL-3.0-only
+ *     SPDX-License-Identifier: LGPL-3.0-or-later
  *
- *     Copyright (C) Rainbowdashlabs and Contributor
+ *     Copyright (C) RainbowDashLabs and Contributor
  */
 
 package de.chojo.universalis.websocket.listener;
@@ -81,12 +81,8 @@ public class WebsocketListenerAdapter extends WebSocketAdapter implements EventL
         log.trace("Received event {}", event);
         log.trace("{}", objectMapper.writeValueAsString(map));
         switch (event) {
-            case "sales/add" -> {
-                onSalesAdd(mapToEvent(map, WsSalesAddEvent.class));
-            }
-            case "sales/remove" -> {
-                onSalesRemove(mapToEvent(map, WsSalesRemoveEvent.class));
-            }
+            case "sales/add" -> onSalesAdd(mapToEvent(map, WsSalesAddEvent.class));
+            case "sales/remove" -> onSalesRemove(mapToEvent(map, WsSalesRemoveEvent.class));
             case "listings/add" -> {
                 WsListingAddEvent wsAdd = map(map, WsListingAddEvent.class);
                 onListingAdd(wsAdd.toEvent());
@@ -117,38 +113,37 @@ public class WebsocketListenerAdapter extends WebSocketAdapter implements EventL
             return objectMapper.convertValue(map, clazz);
         } catch (IllegalArgumentException e) {
             log.error("Failed to map event", e);
-            throw new RuntimeException("", e);
+            throw new RuntimeException("Failed to map event", e);
         }
     }
 
     @Override
-    public void onError(WebSocket websocket, WebSocketException cause) throws Exception {
-        log.error("Error in websocket", cause);
-        log.error("Reason: {}", cause.getError());
+    public void onError(WebSocket websocket, WebSocketException cause) {
+        log.error("Error in websocket. Reason: {}", cause.getError(), cause);
     }
 
     @Override
     public void onListingAdd(ListingAddEvent event) {
-        listeners.forEach(listenet -> listenet.onListingAdd(event));
+        listeners.forEach(listener -> listener.onListingAdd(event));
     }
 
     @Override
     public void onListingRemove(ListingRemoveEvent event) {
-        listeners.forEach(listenet -> listenet.onListingRemove(event));
+        listeners.forEach(listener -> listener.onListingRemove(event));
     }
 
     @Override
     public void onListingUpdate(ListingUpdateEvent event) {
-        listeners.forEach(listenet -> listenet.onListingUpdate(event));
+        listeners.forEach(listener -> listener.onListingUpdate(event));
     }
 
     @Override
     public void onSalesAdd(SalesAddEvent event) {
-        listeners.forEach(listenet -> listenet.onSalesAdd(event));
+        listeners.forEach(listener -> listener.onSalesAdd(event));
     }
 
     @Override
     public void onSalesRemove(SalesRemoveEvent event) {
-        listeners.forEach(listenet -> listenet.onSalesRemove(event));
+        listeners.forEach(listener -> listener.onSalesRemove(event));
     }
 }

@@ -1,7 +1,7 @@
 /*
- *     SPDX-License-Identifier: AGPL-3.0-only
+ *     SPDX-License-Identifier: LGPL-3.0-or-later
  *
- *     Copyright (C) Rainbowdashlabs and Contributor
+ *     Copyright (C) RainbowDashLabs and Contributor
  */
 
 package de.chojo.universalis.deserializer.response;
@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
+import java.util.Collections;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -43,14 +44,14 @@ public class MarketBoardResponseDeserializer extends JsonDeserializer<MarketBoar
         var averagePrice = QualityIndicator.of(view.averagePrice(), view.averagePriceNQ(), view.averagePriceHQ());
         var minPrice = QualityIndicator.of(view.minPrice(), view.minPriceNQ(), view.minPriceHQ());
         var maxPrice = QualityIndicator.of(view.maxPrice(), view.maxPriceNQ(), view.maxPriceHQ());
-        var stackSizeHistorgramG = view.stackSizeHistogram().entrySet().stream()
+        var histogramG = view.stackSizeHistogram().entrySet().stream()
                                        .collect(Collectors.toMap(e -> Integer.valueOf(e.getKey()), Map.Entry::getValue));
-        var stacksizeHistorgramNQ = view.stackSizeHistogramNQ().entrySet().stream()
+        var histogramNQ = view.stackSizeHistogramNQ().entrySet().stream()
                                         .collect(Collectors.toMap(e -> Integer.valueOf(e.getKey()), Map.Entry::getValue));
-        var stacksizeHistorgramHQ = view.stackSizeHistogramHQ().entrySet().stream()
+        var histogramHQ = view.stackSizeHistogramHQ().entrySet().stream()
                                         .collect(Collectors.toMap(e -> Integer.valueOf(e.getKey()), Map.Entry::getValue));
-        var stackSizeHistogram = QualityIndicator.of(stackSizeHistorgramG, stacksizeHistorgramNQ, stacksizeHistorgramHQ);
-        Map<World, LocalDateTime> worldUploadTimes = null;
+        var stackSizeHistogram = QualityIndicator.of(histogramG, histogramNQ, histogramHQ);
+        Map<World, LocalDateTime> worldUploadTimes = Collections.emptyMap();
         if (view.worldUploadTimes() != null) {
             worldUploadTimes = view.worldUploadTimes()
                                    .entrySet()

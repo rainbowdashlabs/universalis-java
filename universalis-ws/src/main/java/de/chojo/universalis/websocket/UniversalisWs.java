@@ -1,7 +1,7 @@
 /*
- *     SPDX-License-Identifier: AGPL-3.0-only
+ *     SPDX-License-Identifier: LGPL-3.0-or-later
  *
- *     Copyright (C) Rainbowdashlabs and Contributor
+ *     Copyright (C) RainbowDashLabs and Contributor
  */
 
 package de.chojo.universalis.websocket;
@@ -45,7 +45,7 @@ public interface UniversalisWs {
      *
      * @return websocket factory builder
      */
-    public static WebsocketFactoryBuilder websocketBuilder() {
+    static WebsocketFactoryBuilder websocketBuilder() {
         return new WebsocketFactoryBuilder();
     }
 
@@ -54,7 +54,7 @@ public interface UniversalisWs {
      *
      * @return universalis websocket builder
      */
-    public static UniversalisWsBuilder getDefault() {
+    static UniversalisWsBuilder getDefault() {
         return new WebsocketFactoryBuilder().setConnectionTimeout(10000).build();
     }
 }

@@ -1,7 +1,7 @@
 /*
- *     SPDX-License-Identifier: AGPL-3.0-only
+ *     SPDX-License-Identifier: LGPL-3.0-or-later
  *
- *     Copyright (C) Rainbowdashlabs and Contributor
+ *     Copyright (C) RainbowDashLabs and Contributor
  */
 
 package de.chojo.universalis.rest;
@@ -14,7 +14,7 @@ import de.chojo.universalis.rest.routes.api.marketboard.BlankMarketBoardRequest;
 import de.chojo.universalis.rest.routes.api.taxrates.BlankTaxRatesRequest;
 import de.chojo.universalis.rest.routes.requests.extra.Extra;
 
-import javax.annotation.CheckReturnValue;
+import org.jetbrains.annotations.CheckReturnValue;
 
 /**
  * Class to access the universalis api.
@@ -69,7 +69,7 @@ public interface UniversalisRest {
      *
      * @return request builder
      */
-    @CheckReturnValue
+    @org.jetbrains.annotations.CheckReturnValue
     BlankHistoryRequest history();
 
     /**

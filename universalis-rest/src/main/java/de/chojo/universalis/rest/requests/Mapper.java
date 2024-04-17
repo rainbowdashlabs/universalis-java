@@ -1,7 +1,7 @@
 /*
- *     SPDX-License-Identifier: AGPL-3.0-only
+ *     SPDX-License-Identifier: LGPL-3.0-or-later
  *
- *     Copyright (C) Rainbowdashlabs and Contributor
+ *     Copyright (C) RainbowDashLabs and Contributor
  */
 
 package de.chojo.universalis.rest.requests;
@@ -56,7 +56,7 @@ public final class Mapper {
     }
 
     /**
-     * A mapper able to map items and everything used in rest responsed
+     * A mapper able to map items and everything used in rest response
      *
      * @param itemNameSupplier item name supplier
      * @return object mapper

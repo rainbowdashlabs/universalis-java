@@ -1,7 +1,7 @@
 /*
- *     SPDX-License-Identifier: AGPL-3.0-only
+ *     SPDX-License-Identifier: LGPL-3.0-or-later
  *
- *     Copyright (C) Rainbowdashlabs and Contributor
+ *     Copyright (C) RainbowDashLabs and Contributor
  */
 
 package de.chojo;
@@ -29,13 +29,9 @@ public class RestExample {
             .itemsIds(36113)
             // only retrieve high quality prices
             .highQuality()
-            // exclude taxes
-            .noGst()
             // send the request async
             .queue()
             // handle the result
-            .whenComplete((res, err) -> {
-                System.out.println("Min hq price is" + res.minPrice().highQuality());
-            });
+            .whenComplete((res, err) -> System.out.println("Min hq price is" + res.minPrice().highQuality()));
     }
 }

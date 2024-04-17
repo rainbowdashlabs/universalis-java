@@ -1,7 +1,7 @@
 /*
- *     SPDX-License-Identifier: AGPL-3.0-only
+ *     SPDX-License-Identifier: LGPL-3.0-or-later
  *
- *     Copyright (C) Rainbowdashlabs and Contributor
+ *     Copyright (C) RainbowDashLabs and Contributor
  */
 
 package de.chojo.universalis.rest.routes.requests;
@@ -14,8 +14,8 @@ import de.chojo.universalis.rest.routes.api.MarketBoardRequest;
 import de.chojo.universalis.worlds.DataCenter;
 import de.chojo.universalis.worlds.Region;
 import de.chojo.universalis.worlds.World;
+import org.jetbrains.annotations.CheckReturnValue;
 
-import javax.annotation.CheckReturnValue;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.Collection;

@@ -1,7 +1,7 @@
 /*
- *     SPDX-License-Identifier: AGPL-3.0-only
+ *     SPDX-License-Identifier: LGPL-3.0-or-later
  *
- *     Copyright (C) Rainbowdashlabs and Contributor
+ *     Copyright (C) RainbowDashLabs and Contributor
  */
 
 package de.chojo.universalis.entities.views;
@@ -13,11 +13,11 @@ import de.chojo.universalis.entities.Price;
 import de.chojo.universalis.entities.Sale;
 import de.chojo.universalis.worlds.World;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 import java.time.LocalDateTime;
 
 /**
- * <a href="https://docs.universalis.app/#schema-saleview">See on unversalis</a>
+ * <a href="https://docs.universalis.app/#schema-saleview">See on universalis</a>
  *
  * @param hq           Whether the item was high-quality.
  * @param pricePerUnit The price per unit sold.
