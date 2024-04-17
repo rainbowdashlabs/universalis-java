@@ -92,7 +92,7 @@ public interface MarketBoardRequest extends Request<MarketBoardResponse>, Region
     MarketBoardRequest highQuality(boolean highQuality);
 
     /**
-     * The amount of time before now to take entries within the listings data returned by {@link MarketBoardResponse#listings()}.
+     * The amount of time before now to take entries within the history data returned by {@link MarketBoardResponse#recentHistory()}.
      *
      * @param duration duration
      * @return request
