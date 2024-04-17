@@ -60,7 +60,7 @@ public class Subscription {
      * Adds a world filter. Already set filters persist.
      *
      * @param world world to add
-     * @return subcription instance for chaining.
+     * @return subscription instance for chaining.
      */
     public Subscription restrict(World world) {
         return provideWorld(world);
@@ -70,7 +70,7 @@ public class Subscription {
      * Adds all worlds from a datacenter as a filter. Already set filters persist.
      *
      * @param datacenter datacenter to add
-     * @return subcription instance for chaining.
+     * @return subscription instance for chaining.
      */
     public Subscription restrict(DataCenter datacenter) {
         return provideWorld(datacenter);
@@ -80,7 +80,7 @@ public class Subscription {
      * Adds all worlds from a region as a filter. Already set filters persist.
      *
      * @param region region to add
-     * @return subcription instance for chaining.
+     * @return subscription instance for chaining.
      */
     public Subscription forRegion(Region region) {
         return provideWorld(region);

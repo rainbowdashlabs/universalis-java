@@ -45,7 +45,7 @@ public interface UniversalisWs {
      *
      * @return websocket factory builder
      */
-    public static WebsocketFactoryBuilder websocketBuilder() {
+    static WebsocketFactoryBuilder websocketBuilder() {
         return new WebsocketFactoryBuilder();
     }
 
@@ -54,7 +54,7 @@ public interface UniversalisWs {
      *
      * @return universalis websocket builder
      */
-    public static UniversalisWsBuilder getDefault() {
+    static UniversalisWsBuilder getDefault() {
         return new WebsocketFactoryBuilder().setConnectionTimeout(10000).build();
     }
 }

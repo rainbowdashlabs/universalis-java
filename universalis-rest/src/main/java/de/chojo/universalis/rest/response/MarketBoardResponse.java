@@ -51,6 +51,6 @@ public record MarketBoardResponse(Item item,
                                   QualityIndicator<Integer> minPrice,
                                   QualityIndicator<Integer> maxPrice,
                                   QualityIndicator<Map<Integer, Integer>> stackSizeHistogram,
-                                  @Nullable Map<World, LocalDateTime> worldUploadTimes
+                                  Map<World, LocalDateTime> worldUploadTimes
 ) {
 }

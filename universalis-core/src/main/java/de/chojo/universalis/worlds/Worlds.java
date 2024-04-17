@@ -655,7 +655,7 @@ public class Worlds {
         /**
          * The elemental data center
          *
-         * @return elementaldata center
+         * @return elemental data center
          */
         public Elemental elemental() {
             return elemental;

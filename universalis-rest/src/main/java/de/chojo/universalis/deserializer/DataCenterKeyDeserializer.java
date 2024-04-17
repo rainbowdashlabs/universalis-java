@@ -17,7 +17,7 @@ import java.io.IOException;
  */
 public class DataCenterKeyDeserializer extends KeyDeserializer {
     @Override
-    public Object deserializeKey(String key, DeserializationContext ctxt) throws IOException {
+    public Object deserializeKey(String key, DeserializationContext ctxt) {
         try {
             return Worlds.datacenterById(Integer.parseInt(key));
         } catch (NumberFormatException e) {

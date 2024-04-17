@@ -56,7 +56,7 @@ public final class Mapper {
     }
 
     /**
-     * A mapper able to map items and everything used in rest responsed
+     * A mapper able to map items and everything used in rest response
      *
      * @param itemNameSupplier item name supplier
      * @return object mapper

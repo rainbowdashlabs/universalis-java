@@ -11,7 +11,6 @@ import de.chojo.universalis.entities.Item;
 import de.chojo.universalis.websocket.events.concrete.sales.WsSalesEvent;
 import de.chojo.universalis.websocket.events.concrete.sales.views.SaleView;
 import de.chojo.universalis.events.sales.impl.SalesRemoveEvent;
-import de.chojo.universalis.provider.NameSupplier;
 import de.chojo.universalis.worlds.World;
 
 import java.util.List;

@@ -19,7 +19,7 @@ import org.jetbrains.annotations.CheckReturnValue;
  */
 public class MostRecentlyUpdatedRequestImpl extends RequestBuilder<MostRecentlyUpdatedResponse> implements MostRecentlyUpdatedRequest {
     /**
-     * Create a new most restently updated request
+     * Create a new most recently updated request
      *
      * @param rest rest client
      */

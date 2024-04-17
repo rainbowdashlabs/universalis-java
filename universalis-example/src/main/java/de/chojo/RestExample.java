@@ -29,13 +29,9 @@ public class RestExample {
             .itemsIds(36113)
             // only retrieve high quality prices
             .highQuality()
-            // exclude taxes
-            .noGst()
             // send the request async
             .queue()
             // handle the result
-            .whenComplete((res, err) -> {
-                System.out.println("Min hq price is" + res.minPrice().highQuality());
-            });
+            .whenComplete((res, err) -> System.out.println("Min hq price is" + res.minPrice().highQuality()));
     }
 }

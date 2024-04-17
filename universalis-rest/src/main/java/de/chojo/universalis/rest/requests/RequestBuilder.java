@@ -6,6 +6,7 @@
 
 package de.chojo.universalis.rest.requests;
 
+import de.chojo.universalis.exceptions.RequestException;
 import de.chojo.universalis.rest.UniversalisRestImpl;
 import org.apache.hc.core5.net.URIBuilder;
 import org.slf4j.Logger;
@@ -93,13 +94,13 @@ public class RequestBuilder<T> implements Request<T> {
         try {
             return uriBuilder.build();
         } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
+            throw new RequestException("Could not build URI", e);
         }
     }
 
     @Override
     public CompletableFuture<T> queue() {
-        return rest.getAsyncAndMap(uri(), this.result)
+        return rest.getAsyncAndMap(uriBuilder, this.result)
                    .thenApply(res -> {
                        postRetrievalHook.accept(res);
                        return res;
@@ -108,7 +109,7 @@ public class RequestBuilder<T> implements Request<T> {
 
     @Override
     public T complete() {
-        T result = rest.getAndMap(uri(), this.result);
+        T result = rest.getAndMap(uriBuilder, this.result);
         postRetrievalHook.accept(result);
         return result;
     }

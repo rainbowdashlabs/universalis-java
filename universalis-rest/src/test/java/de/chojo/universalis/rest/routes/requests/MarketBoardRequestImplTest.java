@@ -36,7 +36,7 @@ class MarketBoardRequestImplTest {
         MarketBoardResponse complete = request
                 .listingsLimit(3)
                 .complete();
-        Assertions.assertTrue(complete.listings().size() > 0);
+        Assertions.assertFalse(complete.listings().isEmpty());
         Assertions.assertTrue(complete.listings().size() <= 3);
     }
 

@@ -16,7 +16,7 @@ public interface Region extends WorldProvider {
     /**
      * Gets a list of all datacenters in this region.
      *
-     * @return unmodifiable datecenter list
+     * @return unmodifiable datacenter list
      */
     List<DataCenter> datacenters();
 

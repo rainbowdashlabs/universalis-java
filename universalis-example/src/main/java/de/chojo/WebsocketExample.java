@@ -30,7 +30,7 @@ public class WebsocketExample {
                      // Subscribe to listing add for all worlds on light and the one world on chaos
                      .subscribe(Subscriptions.listingAdd().restrict(Worlds.europe().light())
                                              .restrict(Worlds.europe().chaos().omega))
-                     // subcribe to the remove channel on all worlds
+                     // subscribe to the remove channel on all worlds
                      .subscribe(Subscriptions.listingRemove())
                      // Register listener to handle evens
                      .registerListener(new ListenerAdapter() {

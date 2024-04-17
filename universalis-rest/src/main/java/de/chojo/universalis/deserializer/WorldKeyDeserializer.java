@@ -17,7 +17,7 @@ import java.io.IOException;
  */
 public class WorldKeyDeserializer extends KeyDeserializer {
     @Override
-    public Object deserializeKey(String key, DeserializationContext ctxt) throws IOException {
+    public Object deserializeKey(String key, DeserializationContext ctxt) {
         try {
             return Worlds.worldById(Integer.parseInt(key));
         } catch (NumberFormatException e) {

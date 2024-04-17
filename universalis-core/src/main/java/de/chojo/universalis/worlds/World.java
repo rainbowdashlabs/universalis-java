@@ -19,6 +19,7 @@ public interface World extends WorldProvider {
      *
      * @param name world name
      * @param id   world id
+     * @param dataCenter datacenter of world
      * @return new world instance
      */
     static World of(String name, int id, DataCenter dataCenter) {
@@ -59,7 +60,7 @@ public interface World extends WorldProvider {
     /**
      * Name of the world.
      * <p>
-     * The name might be empty if the world was unkown.
+     * The name might be empty if the world was unknown.
      *
      * @return name
      */
@@ -68,7 +69,7 @@ public interface World extends WorldProvider {
     /**
      * ID of the world.
      * <p>
-     * This id might be -1 if the world was unkown
+     * This id might be -1 if the world was unknown
      *
      * @return id
      */

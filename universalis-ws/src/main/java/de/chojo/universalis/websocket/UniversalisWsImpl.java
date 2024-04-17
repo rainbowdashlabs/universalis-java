@@ -65,8 +65,7 @@ public class UniversalisWsImpl implements UniversalisWs {
         try {
             internalIgnite();
         } catch (Throwable e) {
-            log.error("Failed to create a socket", e);
-            log.info("Trying again in 5 seconds");
+            log.error("Failed to create a socket. Trying again in 5 seconds.", e);
             CompletableFuture.delayedExecutor(5, TimeUnit.SECONDS).execute(this::ignite);
         }
     }
@@ -87,8 +86,7 @@ public class UniversalisWsImpl implements UniversalisWs {
             log.info("Creating a new socket");
             socket = factory.createSocket(WEBSOCKET_URL, 10000);
         } catch (IOException e) {
-            log.error("Failed to create a socket", e);
-            log.info("Trying again in 5 seconds");
+            log.error("Failed to create a socket. Trying again in 5 seconds.", e);
             CompletableFuture.delayedExecutor(5, TimeUnit.SECONDS).execute(this::ignite);
             return;
         }
@@ -104,8 +102,7 @@ public class UniversalisWsImpl implements UniversalisWs {
                 log.info("Attempting to establish socket connection.");
                 socket.connect();
             } catch (WebSocketException e) {
-                log.error("Failed to create a connection", e);
-                log.info("Trying again in 5 seconds");
+                log.error("Failed to create a connection. Trying again in 5 seconds", e);
                 CompletableFuture.delayedExecutor(5, TimeUnit.SECONDS).execute(this::ignite);
             }
         }, websocketWorker);
@@ -114,7 +111,7 @@ public class UniversalisWsImpl implements UniversalisWs {
 
     @Override
     public void subscribe(Subscription subscription) {
-        statusListener.subscibe(subscription);
+        statusListener.subscribe(subscription);
     }
 
     @Override
