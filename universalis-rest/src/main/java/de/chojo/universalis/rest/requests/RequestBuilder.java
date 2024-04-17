@@ -65,6 +65,7 @@ public class RequestBuilder<T> implements Request<T> {
      * @param object parameter value
      */
     public void parameter(String key, Object object) {
+        uriBuilder.removeParameter(key);
         uriBuilder.addParameter(key, String.valueOf(object));
     }
 

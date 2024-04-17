@@ -13,11 +13,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import de.chojo.universalis.deserializer.CityDeserializer;
+import de.chojo.universalis.deserializer.DataCenterDeserializer;
+import de.chojo.universalis.deserializer.DataCenterKeyDeserializer;
 import de.chojo.universalis.deserializer.EmptyStringDeserializer;
 import de.chojo.universalis.deserializer.ItemDeserializer;
 import de.chojo.universalis.deserializer.ListingDeserializer;
 import de.chojo.universalis.deserializer.RegionDeserializer;
-import de.chojo.universalis.deserializer.SecondsDateTimeConverter;
 import de.chojo.universalis.deserializer.WorldDeserializer;
 import de.chojo.universalis.deserializer.WorldKeyDeserializer;
 import de.chojo.universalis.deserializer.response.ContentResponseDeserializer;
@@ -42,10 +43,9 @@ import de.chojo.universalis.rest.response.WorldsResponse;
 import de.chojo.universalis.rest.response.extra.ContentResponse;
 import de.chojo.universalis.rest.response.extra.stats.UploaderUploadCountResponse;
 import de.chojo.universalis.rest.response.extra.stats.WorldUploadCountResponse;
+import de.chojo.universalis.worlds.DataCenter;
 import de.chojo.universalis.worlds.Region;
 import de.chojo.universalis.worlds.World;
-
-import java.time.Instant;
 
 /**
  * Class providing preconfigured {@link ObjectMapper}
@@ -64,23 +64,25 @@ public final class Mapper {
     public static ObjectMapper create(NameSupplier itemNameSupplier) {
         SimpleModule module = new SimpleModule();
         module.addDeserializer(City.class, new CityDeserializer())
-              .addDeserializer(ContentResponse.class, new ContentResponseDeserializer())
-              //.addDeserializer(Datacenter.class, new DataCenterDeserializer())
-              .addDeserializer(DataCentersResponse.class, new DataCenterResponseDeserializer())
-              .addDeserializer(String.class, new EmptyStringDeserializer())
-              .addDeserializer(HistoryResponse.class, new HistoryResponseDeserializer())
-              //.addDeserializer(Instant.class, new SecondsDateTimeConverter())
-              .addDeserializer(Item.class, new ItemDeserializer(itemNameSupplier))
-              .addDeserializer(Listing.class, new ListingDeserializer())
-              .addDeserializer(MarketableResponse.class, new MarketableResponseDeserializer())
-              .addDeserializer(MarketBoardResponse.class, new MarketBoardResponseDeserializer())
-              .addDeserializer(Region.class, new RegionDeserializer())
-              .addDeserializer(TaxRatesResponse.class, new TaxRatesResponseDeserializer())
-              .addDeserializer(UploaderUploadCountResponse.class, new UploaderUploadCountsResponseDeserializer())
-              .addKeyDeserializer(World.class, new WorldKeyDeserializer())
-              .addDeserializer(World.class, new WorldDeserializer())
-              .addDeserializer(WorldsResponse.class, new WorldsResponseDeserializer())
-              .addDeserializer(WorldUploadCountResponse.class, new WorldUploadCountResponseDeserializer());
+                .addDeserializer(ContentResponse.class, new ContentResponseDeserializer())
+                //.addDeserializer(Datacenter.class, new DataCenterDeserializer())
+                .addDeserializer(DataCentersResponse.class, new DataCenterResponseDeserializer())
+                .addDeserializer(String.class, new EmptyStringDeserializer())
+                .addDeserializer(HistoryResponse.class, new HistoryResponseDeserializer())
+                //.addDeserializer(Instant.class, new SecondsDateTimeConverter())
+                .addDeserializer(Item.class, new ItemDeserializer(itemNameSupplier))
+                .addDeserializer(Listing.class, new ListingDeserializer())
+                .addDeserializer(MarketableResponse.class, new MarketableResponseDeserializer())
+                .addDeserializer(MarketBoardResponse.class, new MarketBoardResponseDeserializer())
+                .addDeserializer(Region.class, new RegionDeserializer())
+                .addDeserializer(TaxRatesResponse.class, new TaxRatesResponseDeserializer())
+                .addDeserializer(UploaderUploadCountResponse.class, new UploaderUploadCountsResponseDeserializer())
+                .addKeyDeserializer(World.class, new WorldKeyDeserializer())
+                .addKeyDeserializer(DataCenter.class, new DataCenterKeyDeserializer())
+                .addDeserializer(World.class, new WorldDeserializer())
+                .addDeserializer(DataCenter.class, new DataCenterDeserializer())
+                .addDeserializer(WorldsResponse.class, new WorldsResponseDeserializer())
+                .addDeserializer(WorldUploadCountResponse.class, new WorldUploadCountResponseDeserializer());
         return new JsonMapper()
                 .setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.NONE)
                 .configure(DeserializationFeature.ACCEPT_EMPTY_ARRAY_AS_NULL_OBJECT, true)

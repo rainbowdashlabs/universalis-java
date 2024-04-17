@@ -6,17 +6,17 @@
 
 package de.chojo.universalis.rest.routes.requests;
 
-import de.chojo.universalis.rest.UniversalisRest;
 import de.chojo.universalis.rest.response.MarketableResponse;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static de.chojo.universalis.rest.ClientWrapper.client;
+
 class MarketableRequestImplTest {
-    UniversalisRest rest = UniversalisRest.defaultApi();
 
     @Test
     public void test() {
-        MarketableResponse complete = rest.marketable().complete();
+        MarketableResponse complete = client().marketable().complete();
         Assertions.assertFalse(complete.items().isEmpty());
     }
 

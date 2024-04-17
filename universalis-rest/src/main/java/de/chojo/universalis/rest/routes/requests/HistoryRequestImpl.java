@@ -46,7 +46,7 @@ public class HistoryRequestImpl extends RequestBuilder<HistoryResponse> implemen
     @Override
     @CheckReturnValue
     public HistoryRequest dataCenter(DataCenter dataCenter) {
-        path(dataCenter.id());
+        path(dataCenter.name());
         return this;
     }
 
