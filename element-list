@@ -7,6 +7,7 @@ de.chojo.universalis.events.listings
 de.chojo.universalis.events.listings.impl
 de.chojo.universalis.events.sales
 de.chojo.universalis.events.sales.impl
+de.chojo.universalis.exceptions
 de.chojo.universalis.listener
 de.chojo.universalis.provider
 de.chojo.universalis.provider.items

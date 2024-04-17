@@ -83,7 +83,7 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">UniversalisRestImpl</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
 implements <a href="UniversalisRest.html" title="interface in de.chojo.universalis.rest">UniversalisRest</a></span></div>
-<div class="block">Implementation of a universalis rest client</div>
+<div class="block">Implementation of an universalis rest client</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -229,7 +229,7 @@ implements <a href="UniversalisRest.html" title="interface in de.chojo.universal
 <dt>Parameters:</dt>
 <dd><code>http</code> - http client</dd>
 <dd><code>executorService</code> - executor service</dd>
-<dd><code>itemNameSupplier</code> - item name suppplier</dd>
+<dd><code>itemNameSupplier</code> - item name supplier</dd>
 </dl>
 </section>
 </li>
@@ -277,7 +277,7 @@ implements <a href="UniversalisRest.html" title="interface in de.chojo.universal
 <li>
 <section class="detail" id="marketBoard()">
 <h3>marketBoard</h3>
-<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/com.google.code.findbugs/jsr305/latest/javax/annotation/CheckReturnValue.html" title="class or interface in javax.annotation" class="external-link">@CheckReturnValue</a>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/latest/org/jetbrains/annotations/CheckReturnValue.html" title="class or interface in org.jetbrains.annotations" class="external-link">@CheckReturnValue</a>
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="routes/api/MarketBoardRequest.html" title="interface in de.chojo.universalis.rest.routes.api">MarketBoardRequest</a></span>&nbsp;<span class="element-name">marketBoard</span>()</div>
 <div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="UniversalisRest.html#marketBoard()">UniversalisRest</a></code></span></div>
 <div class="block">Retrieves the data currently shown on the market board for the requested item and world or data center.</div>
@@ -292,7 +292,7 @@ implements <a href="UniversalisRest.html" title="interface in de.chojo.universal
 <li>
 <section class="detail" id="worlds()">
 <h3>worlds</h3>
-<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/com.google.code.findbugs/jsr305/latest/javax/annotation/CheckReturnValue.html" title="class or interface in javax.annotation" class="external-link">@CheckReturnValue</a>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/latest/org/jetbrains/annotations/CheckReturnValue.html" title="class or interface in org.jetbrains.annotations" class="external-link">@CheckReturnValue</a>
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="routes/api/WorldsRequest.html" title="interface in de.chojo.universalis.rest.routes.api">WorldsRequest</a></span>&nbsp;<span class="element-name">worlds</span>()</div>
 <div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="UniversalisRest.html#worlds()">UniversalisRest</a></code></span></div>
 <div class="block">Returns the IDs and names of all worlds supported by the API.</div>
@@ -307,7 +307,7 @@ implements <a href="UniversalisRest.html" title="interface in de.chojo.universal
 <li>
 <section class="detail" id="dataCenters()">
 <h3>dataCenters</h3>
-<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/com.google.code.findbugs/jsr305/latest/javax/annotation/CheckReturnValue.html" title="class or interface in javax.annotation" class="external-link">@CheckReturnValue</a>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/latest/org/jetbrains/annotations/CheckReturnValue.html" title="class or interface in org.jetbrains.annotations" class="external-link">@CheckReturnValue</a>
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="routes/api/DataCentersRequest.html" title="interface in de.chojo.universalis.rest.routes.api">DataCentersRequest</a></span>&nbsp;<span class="element-name">dataCenters</span>()</div>
 <div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="UniversalisRest.html#dataCenters()">UniversalisRest</a></code></span></div>
 <div class="block">Returns all data centers supported by the API.</div>
@@ -322,7 +322,7 @@ implements <a href="UniversalisRest.html" title="interface in de.chojo.universal
 <li>
 <section class="detail" id="history()">
 <h3>history</h3>
-<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/com.google.code.findbugs/jsr305/latest/javax/annotation/CheckReturnValue.html" title="class or interface in javax.annotation" class="external-link">@CheckReturnValue</a>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/latest/org/jetbrains/annotations/CheckReturnValue.html" title="class or interface in org.jetbrains.annotations" class="external-link">@CheckReturnValue</a>
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="routes/api/history/BlankHistoryRequest.html" title="interface in de.chojo.universalis.rest.routes.api.history">BlankHistoryRequest</a></span>&nbsp;<span class="element-name">history</span>()</div>
 <div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="UniversalisRest.html#history()">UniversalisRest</a></code></span></div>
 <div class="block">Retrieves the history data for the requested item and world or data center.</div>
@@ -337,7 +337,7 @@ implements <a href="UniversalisRest.html" title="interface in de.chojo.universal
 <li>
 <section class="detail" id="taxRates()">
 <h3>taxRates</h3>
-<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/com.google.code.findbugs/jsr305/latest/javax/annotation/CheckReturnValue.html" title="class or interface in javax.annotation" class="external-link">@CheckReturnValue</a>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/latest/org/jetbrains/annotations/CheckReturnValue.html" title="class or interface in org.jetbrains.annotations" class="external-link">@CheckReturnValue</a>
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="routes/requests/TaxRatesRequestImpl.html" title="class in de.chojo.universalis.rest.routes.requests">TaxRatesRequestImpl</a></span>&nbsp;<span class="element-name">taxRates</span>()</div>
 <div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="UniversalisRest.html#taxRates()">UniversalisRest</a></code></span></div>
 <div class="block">Retrieves the current tax rate data for the specified world. This data is provided by the Retainer Vocate in each major city.</div>
@@ -352,7 +352,7 @@ implements <a href="UniversalisRest.html" title="interface in de.chojo.universal
 <li>
 <section class="detail" id="marketable()">
 <h3>marketable</h3>
-<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/com.google.code.findbugs/jsr305/latest/javax/annotation/CheckReturnValue.html" title="class or interface in javax.annotation" class="external-link">@CheckReturnValue</a>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/latest/org/jetbrains/annotations/CheckReturnValue.html" title="class or interface in org.jetbrains.annotations" class="external-link">@CheckReturnValue</a>
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="routes/api/MarketableRequest.html" title="interface in de.chojo.universalis.rest.routes.api">MarketableRequest</a></span>&nbsp;<span class="element-name">marketable</span>()</div>
 <div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="UniversalisRest.html#marketable()">UniversalisRest</a></code></span></div>
 <div class="block">Returns the set of marketable item IDs.</div>
@@ -367,7 +367,7 @@ implements <a href="UniversalisRest.html" title="interface in de.chojo.universal
 <li>
 <section class="detail" id="extra()">
 <h3>extra</h3>
-<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/com.google.code.findbugs/jsr305/latest/javax/annotation/CheckReturnValue.html" title="class or interface in javax.annotation" class="external-link">@CheckReturnValue</a>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/latest/org/jetbrains/annotations/CheckReturnValue.html" title="class or interface in org.jetbrains.annotations" class="external-link">@CheckReturnValue</a>
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="routes/requests/extra/Extra.html" title="class in de.chojo.universalis.rest.routes.requests.extra">Extra</a></span>&nbsp;<span class="element-name">extra</span>()</div>
 <div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="UniversalisRest.html#extra()">UniversalisRest</a></code></span></div>
 <div class="block">Allows requests on route of the extra route</div>

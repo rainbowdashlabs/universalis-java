@@ -143,14 +143,14 @@ loadScripts(document, 'script');</script>
  com.neovisionaries.ws.client.WebSocketException&nbsp;cause)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#subscibe(de.chojo.universalis.websocket.subscriber.Subscription)" class="member-name-link">subscibe</a><wbr>(<a href="../subscriber/Subscription.html" title="class in de.chojo.universalis.websocket.subscriber">Subscription</a>&nbsp;subscription)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#subscribe(de.chojo.universalis.websocket.subscriber.Subscription)" class="member-name-link">subscribe</a><wbr>(<a href="../subscriber/Subscription.html" title="class in de.chojo.universalis.websocket.subscriber">Subscription</a>&nbsp;subscription)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Subscripe a route</div>
+<div class="block">Subscribe a route</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#unsubscribe(de.chojo.universalis.websocket.subscriber.Subscription)" class="member-name-link">unsubscribe</a><wbr>(<a href="../subscriber/Subscription.html" title="class in de.chojo.universalis.websocket.subscriber">Subscription</a>&nbsp;subscription)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Unsubscripe a route</div>
+<div class="block">Unsubscribe a route</div>
 </div>
 </div>
 </div>
@@ -197,23 +197,20 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="onConnected(com.neovisionaries.ws.client.WebSocket,java.util.Map)">
 <h3>onConnected</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">onConnected</span><wbr><span class="parameters">(com.neovisionaries.ws.client.WebSocket&nbsp;websocket,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&gt;&nbsp;headers)</span>
-                 throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Exception.html" title="class or interface in java.lang" class="external-link">Exception</a></span></div>
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&gt;&nbsp;headers)</span></div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code>onConnected</code>&nbsp;in interface&nbsp;<code>com.neovisionaries.ws.client.WebSocketListener</code></dd>
 <dt>Overrides:</dt>
 <dd><code>onConnected</code>&nbsp;in class&nbsp;<code>com.neovisionaries.ws.client.WebSocketAdapter</code></dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Exception.html" title="class or interface in java.lang" class="external-link">Exception</a></code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="subscibe(de.chojo.universalis.websocket.subscriber.Subscription)">
-<h3>subscibe</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">subscibe</span><wbr><span class="parameters">(<a href="../subscriber/Subscription.html" title="class in de.chojo.universalis.websocket.subscriber">Subscription</a>&nbsp;subscription)</span></div>
-<div class="block">Subscripe a route</div>
+<section class="detail" id="subscribe(de.chojo.universalis.websocket.subscriber.Subscription)">
+<h3>subscribe</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">subscribe</span><wbr><span class="parameters">(<a href="../subscriber/Subscription.html" title="class in de.chojo.universalis.websocket.subscriber">Subscription</a>&nbsp;subscription)</span></div>
+<div class="block">Subscribe a route</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>subscription</code> - subscription</dd>
@@ -226,7 +223,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="unsubscribe(de.chojo.universalis.websocket.subscriber.Subscription)">
 <h3>unsubscribe</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">unsubscribe</span><wbr><span class="parameters">(<a href="../subscriber/Subscription.html" title="class in de.chojo.universalis.websocket.subscriber">Subscription</a>&nbsp;subscription)</span></div>
-<div class="block">Unsubscripe a route</div>
+<div class="block">Unsubscribe a route</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>subscription</code> - subscription</dd>
@@ -239,15 +236,12 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="handleCallbackError(com.neovisionaries.ws.client.WebSocket,java.lang.Throwable)">
 <h3>handleCallbackError</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">handleCallbackError</span><wbr><span class="parameters">(com.neovisionaries.ws.client.WebSocket&nbsp;websocket,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Throwable.html" title="class or interface in java.lang" class="external-link">Throwable</a>&nbsp;cause)</span>
-                         throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Exception.html" title="class or interface in java.lang" class="external-link">Exception</a></span></div>
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Throwable.html" title="class or interface in java.lang" class="external-link">Throwable</a>&nbsp;cause)</span></div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code>handleCallbackError</code>&nbsp;in interface&nbsp;<code>com.neovisionaries.ws.client.WebSocketListener</code></dd>
 <dt>Overrides:</dt>
 <dd><code>handleCallbackError</code>&nbsp;in class&nbsp;<code>com.neovisionaries.ws.client.WebSocketAdapter</code></dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Exception.html" title="class or interface in java.lang" class="external-link">Exception</a></code></dd>
 </dl>
 </section>
 </li>
@@ -255,15 +249,12 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="onError(com.neovisionaries.ws.client.WebSocket,com.neovisionaries.ws.client.WebSocketException)">
 <h3>onError</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">onError</span><wbr><span class="parameters">(com.neovisionaries.ws.client.WebSocket&nbsp;websocket,
- com.neovisionaries.ws.client.WebSocketException&nbsp;cause)</span>
-             throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Exception.html" title="class or interface in java.lang" class="external-link">Exception</a></span></div>
+ com.neovisionaries.ws.client.WebSocketException&nbsp;cause)</span></div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code>onError</code>&nbsp;in interface&nbsp;<code>com.neovisionaries.ws.client.WebSocketListener</code></dd>
 <dt>Overrides:</dt>
 <dd><code>onError</code>&nbsp;in class&nbsp;<code>com.neovisionaries.ws.client.WebSocketAdapter</code></dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Exception.html" title="class or interface in java.lang" class="external-link">Exception</a></code></dd>
 </dl>
 </section>
 </li>
@@ -273,15 +264,12 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">onDisconnected</span><wbr><span class="parameters">(com.neovisionaries.ws.client.WebSocket&nbsp;websocket,
  com.neovisionaries.ws.client.WebSocketFrame&nbsp;serverCloseFrame,
  com.neovisionaries.ws.client.WebSocketFrame&nbsp;clientCloseFrame,
- boolean&nbsp;closedByServer)</span>
-                    throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Exception.html" title="class or interface in java.lang" class="external-link">Exception</a></span></div>
+ boolean&nbsp;closedByServer)</span></div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code>onDisconnected</code>&nbsp;in interface&nbsp;<code>com.neovisionaries.ws.client.WebSocketListener</code></dd>
 <dt>Overrides:</dt>
 <dd><code>onDisconnected</code>&nbsp;in class&nbsp;<code>com.neovisionaries.ws.client.WebSocketAdapter</code></dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Exception.html" title="class or interface in java.lang" class="external-link">Exception</a></code></dd>
 </dl>
 </section>
 </li>
@@ -289,15 +277,12 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="onUnexpectedError(com.neovisionaries.ws.client.WebSocket,com.neovisionaries.ws.client.WebSocketException)">
 <h3>onUnexpectedError</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">onUnexpectedError</span><wbr><span class="parameters">(com.neovisionaries.ws.client.WebSocket&nbsp;websocket,
- com.neovisionaries.ws.client.WebSocketException&nbsp;cause)</span>
-                       throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Exception.html" title="class or interface in java.lang" class="external-link">Exception</a></span></div>
+ com.neovisionaries.ws.client.WebSocketException&nbsp;cause)</span></div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code>onUnexpectedError</code>&nbsp;in interface&nbsp;<code>com.neovisionaries.ws.client.WebSocketListener</code></dd>
 <dt>Overrides:</dt>
 <dd><code>onUnexpectedError</code>&nbsp;in class&nbsp;<code>com.neovisionaries.ws.client.WebSocketAdapter</code></dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Exception.html" title="class or interface in java.lang" class="external-link">Exception</a></code></dd>
 </dl>
 </section>
 </li>
