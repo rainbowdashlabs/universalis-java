@@ -45,7 +45,7 @@ public class MarketBoardRequestImpl extends RequestBuilder<MarketBoardResponse> 
     @Override
     @CheckReturnValue
     public MarketBoardRequest dataCenter(DataCenter dataCenter) {
-        path(dataCenter.id());
+        path(dataCenter.name());
         return this;
     }
 

@@ -21,5 +21,4 @@ class UploadHistoryRequestImplTest {
         UploadHistoryResponse complete = rest.extra().stats().uploadHistory().complete();
         assertFalse(complete.uploadCountByDay().isEmpty());
     }
-
 }

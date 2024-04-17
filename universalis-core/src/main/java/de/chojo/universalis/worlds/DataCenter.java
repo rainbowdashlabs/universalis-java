@@ -9,7 +9,7 @@ package de.chojo.universalis.worlds;
 import java.util.List;
 
 /**
- * Represetns a data center container multiple worlds
+ * Represents a data center container multiple worlds
  */
 public interface DataCenter extends WorldProvider {
     /**
