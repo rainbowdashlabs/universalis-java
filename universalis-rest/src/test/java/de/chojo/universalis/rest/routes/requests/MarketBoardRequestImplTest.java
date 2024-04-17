@@ -7,7 +7,6 @@
 package de.chojo.universalis.rest.routes.requests;
 
 import de.chojo.universalis.entities.Listing;
-import de.chojo.universalis.rest.UniversalisRest;
 import de.chojo.universalis.rest.response.MarketBoardResponse;
 import de.chojo.universalis.rest.routes.api.MarketBoardRequest;
 import de.chojo.universalis.worlds.Worlds;
@@ -18,9 +17,9 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.time.Duration;
 import java.util.stream.Stream;
 
-class MarketBoardRequestImplTest {
+import static de.chojo.universalis.rest.ClientWrapper.client;
 
-    static UniversalisRest rest = UniversalisRest.defaultApi();
+class MarketBoardRequestImplTest {
 
     @ParameterizedTest
     @MethodSource("inputs")
@@ -82,19 +81,19 @@ class MarketBoardRequestImplTest {
     }
 
     private static MarketBoardRequest worldReq() {
-        return rest.marketBoard()
+        return client().marketBoard()
                 .world(Worlds.europe().light().odin)
                 .itemsIds(33927);
     }
 
     private static MarketBoardRequest dcReq() {
-        return rest.marketBoard()
+        return client().marketBoard()
                 .dataCenter(Worlds.europe().light())
                 .itemsIds(33927);
     }
 
     private static MarketBoardRequest regionReq() {
-        return rest.marketBoard()
+        return client().marketBoard()
                 .region(Worlds.europe())
                 .itemsIds(33927);
     }

@@ -6,7 +6,6 @@
 
 package de.chojo.universalis.rest.routes.requests.extra.stats;
 
-import de.chojo.universalis.rest.UniversalisRest;
 import de.chojo.universalis.rest.response.extra.stats.LeastRecentlyUpdatedResponse;
 import de.chojo.universalis.rest.routes.api.extra.stats.LeastRecentlyUpdatedRequest;
 import de.chojo.universalis.worlds.Worlds;
@@ -16,9 +15,10 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
+import static de.chojo.universalis.rest.ClientWrapper.client;
+
 class LeastRecentlyUpdatedRequestImplTest {
 
-    static UniversalisRest rest = UniversalisRest.defaultApi();
 
     @ParameterizedTest
     @MethodSource("inputs")
@@ -32,12 +32,12 @@ class LeastRecentlyUpdatedRequestImplTest {
     }
 
     private static LeastRecentlyUpdatedRequest worldReq() {
-        return rest.extra().stats().leastRecentlyUpdated()
+        return client().extra().stats().leastRecentlyUpdated()
                 .world(Worlds.europe().light().odin);
     }
 
     private static LeastRecentlyUpdatedRequest dcReq() {
-        return rest.extra().stats().leastRecentlyUpdated()
+        return client().extra().stats().leastRecentlyUpdated()
                 .dataCenter(Worlds.europe().light());
     }
 }

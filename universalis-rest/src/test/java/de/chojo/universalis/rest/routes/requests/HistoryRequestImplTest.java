@@ -6,7 +6,6 @@
 
 package de.chojo.universalis.rest.routes.requests;
 
-import de.chojo.universalis.rest.UniversalisRest;
 import de.chojo.universalis.rest.response.HistoryResponse;
 import de.chojo.universalis.rest.routes.api.HistoryRequest;
 import de.chojo.universalis.worlds.Worlds;
@@ -17,9 +16,9 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.time.Duration;
 import java.util.stream.Stream;
 
-class HistoryRequestImplTest {
+import static de.chojo.universalis.rest.ClientWrapper.client;
 
-    static UniversalisRest rest = UniversalisRest.defaultApi();
+class HistoryRequestImplTest {
 
     @ParameterizedTest
     @MethodSource("inputs")
@@ -52,19 +51,19 @@ class HistoryRequestImplTest {
     }
 
     private static HistoryRequest worldReq() {
-        return rest.history()
+        return client().history()
                 .world(Worlds.europe().light().odin)
                 .itemsIds(33927);
     }
 
     private static HistoryRequest dcReq() {
-        return rest.history()
+        return client().history()
                 .dataCenter(Worlds.europe().light())
                 .itemsIds(33927);
     }
 
     private static HistoryRequest regionReq() {
-        return rest.history()
+        return client().history()
                 .region(Worlds.europe())
                 .itemsIds(33927);
     }
