@@ -28,7 +28,7 @@ dependencyResolutionManagement {
             bundle("jackson-full", listOf("jackson-core", "jackson-databind", "jackson-annotations", "jackson-yaml"))
             bundle("jackson-lite", listOf("jackson-core", "jackson-databind", "jackson-annotations"))
 
-            version("eldoutil", "2.0.1")
+            version("eldoutil", "2.0.6")
             library("eldoutil-items", "de.eldoria.util", "items").versionRef("eldoutil")
             library("eldoutil-entities", "de.eldoria.util", "entities").versionRef("eldoutil")
             library("eldoutil-jackson", "de.eldoria.util", "jackson-configuration").versionRef("eldoutil")
