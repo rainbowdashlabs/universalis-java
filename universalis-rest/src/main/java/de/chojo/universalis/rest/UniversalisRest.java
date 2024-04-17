@@ -69,7 +69,7 @@ public interface UniversalisRest {
      *
      * @return request builder
      */
-    @CheckReturnValue
+    @org.jetbrains.annotations.CheckReturnValue
     BlankHistoryRequest history();
 
     /**
