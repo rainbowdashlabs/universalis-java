@@ -19,6 +19,6 @@ class TaxRatesRequestImplTest {
     @Test
     public void test() {
         TaxRatesResponse complete = client().taxRates().world(Worlds.europe().light().odin).complete();
-        assertEquals(7, complete.rates().size());
+        assertEquals(8, complete.rates().size());
     }
 }
