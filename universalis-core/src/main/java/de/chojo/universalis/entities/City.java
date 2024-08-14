@@ -46,7 +46,11 @@ public enum City {
     /**
      * Old Sharlayan
      */
-    OLD_SHARLAYAN(12, "Old Sharlayan");
+    OLD_SHARLAYAN(12, "Old Sharlayan"),
+    /**
+    * Tuliyollal
+    **/
+    TULIYOLLAL(14, "Tuliyollal");
 
     private static final Logger log = getLogger(City.class);
 
