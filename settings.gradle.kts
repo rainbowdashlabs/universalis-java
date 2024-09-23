@@ -47,7 +47,7 @@ dependencyResolutionManagement {
 
             library("websocketclient", "com.neovisionaries:nv-websocket-client:2.14")
             library("mongodb-bson", "org.mongodb:bson:5.0.1")
-            library("google-guava", "com.google.guava:guava:33.1.0-jre")
+            library("google-guava", "com.google.guava:guava:33.3.1-jre")
 
         }
 
