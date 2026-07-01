@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "de.chojo.universalis"
-version = "1.4.1"
+version = "2.0.0"
 
 repositories {
     maven("https://eldonexus.de/repository/maven-public")
@@ -50,13 +50,14 @@ allprojects {
         withSourcesJar()
         withJavadocJar()
         toolchain {
-            languageVersion.set(JavaLanguageVersion.of(17))
+            languageVersion.set(JavaLanguageVersion.of(25))
         }
     }
 
     dependencies {
         val testlibs = rootProject.testlibs
         testImplementation(testlibs.bundles.junit)
+        testRuntimeOnly(testlibs.junit.platform.launcher)
         testImplementation(testlibs.mockito.core)
         testImplementation(testlibs.slf4j.noop)
     }

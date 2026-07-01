@@ -6,18 +6,16 @@
 
 package de.chojo.universalis.deserializer;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.JsonDeserializer;
+import tools.jackson.core.JsonParser;
+import tools.jackson.databind.DeserializationContext;
+import tools.jackson.databind.ValueDeserializer;
 import de.chojo.universalis.entities.Item;
 import de.chojo.universalis.provider.NameSupplier;
-
-import java.io.IOException;
 
 /**
  * Deserializer for {@link Item}
  */
-public class ItemDeserializer extends JsonDeserializer<Item> {
+public class ItemDeserializer extends ValueDeserializer<Item> {
     private final NameSupplier itemNameSupplier;
 
     /**
@@ -30,7 +28,7 @@ public class ItemDeserializer extends JsonDeserializer<Item> {
     }
 
     @Override
-    public Item deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+    public Item deserialize(JsonParser p, DeserializationContext ctxt) {
         return Item.build(itemNameSupplier, p.getValueAsInt());
     }
 }

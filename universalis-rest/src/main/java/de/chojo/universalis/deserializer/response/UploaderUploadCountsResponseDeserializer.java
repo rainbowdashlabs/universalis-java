@@ -6,21 +6,20 @@
 
 package de.chojo.universalis.deserializer.response;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.JsonDeserializer;
+import tools.jackson.core.JsonParser;
+import tools.jackson.databind.DeserializationContext;
+import tools.jackson.databind.ValueDeserializer;
 import de.chojo.universalis.entities.views.SourceUploadCountView;
 import de.chojo.universalis.rest.response.extra.stats.UploaderUploadCountResponse;
 
-import java.io.IOException;
 import java.util.List;
 
 /**
  * Deserializer for {@link UploaderUploadCountResponse}
  */
-public class UploaderUploadCountsResponseDeserializer extends JsonDeserializer<UploaderUploadCountResponse> {
+public class UploaderUploadCountsResponseDeserializer extends ValueDeserializer<UploaderUploadCountResponse> {
     @Override
-    public UploaderUploadCountResponse deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+    public UploaderUploadCountResponse deserialize(JsonParser p, DeserializationContext ctxt) {
         List<SourceUploadCountView> counts = ctxt.readValue(p, ctxt.getTypeFactory()
                                                                    .constructCollectionType(List.class, SourceUploadCountView.class));
         return new UploaderUploadCountResponse(counts);

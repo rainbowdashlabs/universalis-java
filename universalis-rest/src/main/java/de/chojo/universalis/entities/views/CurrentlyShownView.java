@@ -7,7 +7,7 @@
 package de.chojo.universalis.entities.views;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import tools.jackson.databind.annotation.JsonDeserialize;
 import de.chojo.universalis.deserializer.MillisDateTimeConverter;
 import de.chojo.universalis.entities.Item;
 import de.chojo.universalis.worlds.DataCenter;

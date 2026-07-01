@@ -6,19 +6,17 @@
 
 package de.chojo.universalis.deserializer;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.JsonDeserializer;
+import tools.jackson.core.JsonParser;
+import tools.jackson.databind.DeserializationContext;
+import tools.jackson.databind.ValueDeserializer;
 import de.chojo.universalis.entities.City;
-
-import java.io.IOException;
 
 /**
  * Deserializer for cities from id or names.
  */
-public class CityDeserializer extends JsonDeserializer<City> {
+public class CityDeserializer extends ValueDeserializer<City> {
     @Override
-    public City deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+    public City deserialize(JsonParser p, DeserializationContext ctxt) {
         if (p.isExpectedNumberIntToken()) {
             return City.fromId(p.getValueAsInt());
         }

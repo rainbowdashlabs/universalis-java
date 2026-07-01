@@ -6,9 +6,9 @@
 
 package de.chojo.universalis.deserializer.response;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.JsonDeserializer;
+import tools.jackson.core.JsonParser;
+import tools.jackson.databind.DeserializationContext;
+import tools.jackson.databind.ValueDeserializer;
 import de.chojo.universalis.entities.QualityIndicator;
 import de.chojo.universalis.entities.views.CurrentlyShownView;
 import de.chojo.universalis.entities.views.ListingView;
@@ -17,7 +17,6 @@ import de.chojo.universalis.rest.response.MarketBoardResponse;
 import de.chojo.universalis.worlds.World;
 import de.chojo.universalis.worlds.Worlds;
 
-import java.io.IOException;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -28,9 +27,9 @@ import java.util.stream.Collectors;
 /**
  * Deserializer for {@link MarketBoardResponse}
  */
-public class MarketBoardResponseDeserializer extends JsonDeserializer<MarketBoardResponse> {
+public class MarketBoardResponseDeserializer extends ValueDeserializer<MarketBoardResponse> {
     @Override
-    public MarketBoardResponse deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+    public MarketBoardResponse deserialize(JsonParser p, DeserializationContext ctxt) {
         var view = ctxt.readValue(p, CurrentlyShownView.class);
         var item = view.item();
         var world = view.world();

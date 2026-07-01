@@ -6,13 +6,13 @@
 
 package de.chojo.universalis.websocket.listener;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.json.JsonMapper;
-import com.fasterxml.jackson.databind.module.SimpleModule;
-import com.google.common.cache.Cache;
-import com.google.common.cache.CacheBuilder;
+import com.github.benmanes.caffeine.cache.Cache;
+import com.github.benmanes.caffeine.cache.Caffeine;
 import com.neovisionaries.ws.client.WebSocket;
+import tools.jackson.databind.DeserializationFeature;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.json.JsonMapper;
+import tools.jackson.databind.module.SimpleModule;
 import com.neovisionaries.ws.client.WebSocketAdapter;
 import com.neovisionaries.ws.client.WebSocketException;
 import de.chojo.universalis.deserializer.CityDeserializer;
@@ -53,9 +53,9 @@ public class WebsocketListenerAdapter extends WebSocketAdapter implements EventL
     private final BSONDecoder decoder = new BasicBSONDecoder();
     private final List<EventListener> listeners;
     private final ObjectMapper objectMapper;
-    private final Cache<World, WsListingRemoveEvent> removedListings = CacheBuilder.newBuilder()
-                                                                                   .expireAfterWrite(Duration.ofSeconds(10))
-                                                                                   .build();
+    private final Cache<World, WsListingRemoveEvent> removedListings = Caffeine.newBuilder()
+                                                                               .expireAfterWrite(Duration.ofSeconds(10))
+                                                                               .build();
 
     /**
      * Creates a new websocket listener adapter
@@ -70,8 +70,10 @@ public class WebsocketListenerAdapter extends WebSocketAdapter implements EventL
               .addDeserializer(Item.class, new ItemDeserializer(itemNameSupplier))
 //              .addDeserializer(Instant.class, new SecondsDateTimeConverter())
               .addDeserializer(City.class, new CityDeserializer());
-        objectMapper = new JsonMapper().registerModule(module)
-                                       .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        objectMapper = JsonMapper.builder()
+                                 .addModule(module)
+                                 .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
+                                 .build();
     }
 
     @Override

@@ -6,7 +6,8 @@
 
 package de.chojo.universalis.rest;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.ObjectMapper;
 import de.chojo.universalis.exceptions.ErrorResponseException;
 import de.chojo.universalis.exceptions.RequestException;
 import de.chojo.universalis.exceptions.ResponseException;
@@ -239,7 +240,7 @@ public class UniversalisRestImpl implements UniversalisRest {
             }
             log.trace("Received\n{}", response.body());
             return objectMapper().readValue(response.body(), result);
-        } catch (IOException e) {
+        } catch (JacksonException e) {
             throw new ResponseException("Error during request mapping", e);
         }
     }

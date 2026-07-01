@@ -6,7 +6,7 @@
 
 package de.chojo.universalis.deserializer;
 
-import com.fasterxml.jackson.databind.util.StdConverter;
+import tools.jackson.databind.util.StdConverter;
 
 import java.time.Instant;
 import java.time.LocalDateTime;

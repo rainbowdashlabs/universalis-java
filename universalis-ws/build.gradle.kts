@@ -4,5 +4,5 @@ dependencies {
     // Websockets
     api(libs.websocketclient)
     api(libs.mongodb.bson)
-    api(libs.google.guava)
+    api(libs.caffeine)
 }
