@@ -6,7 +6,8 @@
 
 package de.chojo.universalis.provider.items;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.json.JsonMapper;
 import de.chojo.universalis.entities.Name;
 import de.chojo.universalis.provider.NameSupplier;
 
@@ -53,7 +54,7 @@ public class Items implements NameSupplier {
                 .uri(URI.create("https://raw.githubusercontent.com/ffxiv-teamcraft/ffxiv-teamcraft/staging/libs/data/src/lib/json/items.json"))
                 .GET()
                 .build(), HttpResponse.BodyHandlers.ofString());
-        ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper mapper = JsonMapper.builder().build();
         String body = response.body();
         Map<String, Name> names = mapper.readValue(body, mapper.getTypeFactory()
                 .constructMapType(Map.class, String.class, Name.class));

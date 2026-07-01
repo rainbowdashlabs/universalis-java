@@ -6,22 +6,20 @@
 
 package de.chojo.universalis.deserializer;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.JsonDeserializer;
+import tools.jackson.core.JsonParser;
+import tools.jackson.databind.DeserializationContext;
+import tools.jackson.databind.ValueDeserializer;
 import de.chojo.universalis.worlds.Region;
 import de.chojo.universalis.worlds.Worlds;
-
-import java.io.IOException;
 
 /**
  * Deserializer for {@link Region}
  */
-public class RegionDeserializer extends JsonDeserializer<Region> {
+public class RegionDeserializer extends ValueDeserializer<Region> {
 
 
     @Override
-    public Region deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
-        return Worlds.regionByName(p.getText());
+    public Region deserialize(JsonParser p, DeserializationContext ctxt) {
+        return Worlds.regionByName(p.getString());
     }
 }

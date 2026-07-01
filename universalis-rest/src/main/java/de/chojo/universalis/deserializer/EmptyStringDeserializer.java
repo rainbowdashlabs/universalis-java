@@ -6,19 +6,17 @@
 
 package de.chojo.universalis.deserializer;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.JsonDeserializer;
-import com.fasterxml.jackson.databind.deser.std.StringDeserializer;
-
-import java.io.IOException;
+import tools.jackson.core.JsonParser;
+import tools.jackson.databind.DeserializationContext;
+import tools.jackson.databind.ValueDeserializer;
+import tools.jackson.databind.deser.jdk.StringDeserializer;
 
 /**
  * Serializer to change empty string to null values.
  */
-public class EmptyStringDeserializer extends JsonDeserializer<String> {
+public class EmptyStringDeserializer extends ValueDeserializer<String> {
     @Override
-    public String deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+    public String deserialize(JsonParser p, DeserializationContext ctxt) {
         String deserialize = StringDeserializer.instance.deserialize(p, ctxt);
         if (deserialize == null || deserialize.isBlank()) {
             return null;

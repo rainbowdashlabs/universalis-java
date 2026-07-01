@@ -7,7 +7,7 @@
 package de.chojo.universalis.websocket.events.concrete.sales.views;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import tools.jackson.databind.annotation.JsonDeserialize;
 import de.chojo.universalis.deserializer.SecondsDateTimeConverter;
 import de.chojo.universalis.entities.Price;
 import de.chojo.universalis.entities.Sale;

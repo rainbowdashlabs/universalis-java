@@ -6,23 +6,22 @@
 
 package de.chojo.universalis.deserializer.response;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.JsonDeserializer;
+import tools.jackson.core.JsonParser;
+import tools.jackson.databind.DeserializationContext;
+import tools.jackson.databind.ValueDeserializer;
 import de.chojo.universalis.entities.views.WorldUploadCountView;
 import de.chojo.universalis.rest.response.extra.stats.WorldUploadCountResponse;
 import de.chojo.universalis.worlds.World;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Deserializer for {@link WorldUploadCountResponse}
  */
-public class WorldUploadCountResponseDeserializer extends JsonDeserializer<WorldUploadCountResponse> {
+public class WorldUploadCountResponseDeserializer extends ValueDeserializer<WorldUploadCountResponse> {
     @Override
-    public WorldUploadCountResponse deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+    public WorldUploadCountResponse deserialize(JsonParser p, DeserializationContext ctxt) {
         Map<World, WorldUploadCountView> map = ctxt.readValue(p, ctxt.getTypeFactory()
                                                                      .constructMapType(HashMap.class, World.class, WorldUploadCountView.class));
         return new WorldUploadCountResponse(map);
