@@ -151,11 +151,10 @@ public class WebsocketListenerAdapter extends WebSocketAdapter implements EventL
 
     private <V extends Event, T extends EventSupplier<V>> T map(Map<?, ?> map, Class<T> clazz) {
         try {
-
             return objectMapper.convertValue(map, clazz);
-        } catch (IllegalArgumentException e) {
-            log.error("Failed to map event", e);
-            throw new RuntimeException("Failed to map event", e);
+        } catch (RuntimeException e) {
+            log.error("Failed to map event of type {} — payload {}", clazz.getSimpleName(), map, e);
+            throw e;
         }
     }
 }
