@@ -52,10 +52,10 @@ dependencyResolutionManagement {
         }
 
         create("testlibs") {
-            version("junit", "5.14.4")
+            version("junit", "6.1.1")
             library("junit-jupiter", "org.junit.jupiter", "junit-jupiter").versionRef("junit")
             library("junit-params", "org.junit.jupiter", "junit-jupiter-params").versionRef("junit")
-            library("junit-platform-launcher", "org.junit.platform", "junit-platform-launcher").version("1.14.4")
+            library("junit-platform-launcher", "org.junit.platform", "junit-platform-launcher").version("6.1.1")
             library("junit-pioneer", "org.junit-pioneer", "junit-pioneer").version("2.3.0")
             bundle("junit", listOf("junit-jupiter", "junit-params"))
 
