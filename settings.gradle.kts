@@ -32,7 +32,7 @@ dependencyResolutionManagement {
 
             library("jetbrains-annotations", "org.jetbrains:annotations:26.1.0")
 
-            version("slf4j", "2.0.17")
+            version("slf4j", "2.0.18")
             library("slf4j-api", "org.slf4j", "slf4j-api").versionRef("slf4j")
 
             version("log4j", "2.26.0")
@@ -43,10 +43,10 @@ dependencyResolutionManagement {
 
 
             library("bucket4j", "com.bucket4j:bucket4j-core:8.10.1")
-            library("apache-httpclient", "org.apache.httpcomponents.client5:httpclient5:5.6.1")
+            library("apache-httpclient", "org.apache.httpcomponents.client5:httpclient5:5.6.2")
 
             library("websocketclient", "com.neovisionaries:nv-websocket-client:2.14")
-            library("mongodb-bson", "org.mongodb:bson:5.7.0")
+            library("mongodb-bson", "org.mongodb:bson:5.8.0")
             library("caffeine", "com.github.ben-manes.caffeine:caffeine:3.2.4")
 
         }
