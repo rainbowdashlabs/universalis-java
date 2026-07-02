@@ -43,7 +43,7 @@ dependencyResolutionManagement {
 
 
             library("bucket4j", "com.bucket4j:bucket4j-core:8.10.1")
-            library("apache-httpclient", "org.apache.httpcomponents.client5:httpclient5:5.6.1")
+            library("apache-httpclient", "org.apache.httpcomponents.client5:httpclient5:5.6.2")
 
             library("websocketclient", "com.neovisionaries:nv-websocket-client:2.14")
             library("mongodb-bson", "org.mongodb:bson:5.7.0")
