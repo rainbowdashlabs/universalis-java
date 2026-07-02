@@ -35,7 +35,7 @@ dependencyResolutionManagement {
             version("slf4j", "2.0.18")
             library("slf4j-api", "org.slf4j", "slf4j-api").versionRef("slf4j")
 
-            version("log4j", "2.26.0")
+            version("log4j", "2.26.1")
             // "org.apache.logging.log4j", "log4j-core", "2.26.0"
             library("apache-log4j-core", "org.apache.logging.log4j", "log4j-core").versionRef("log4j")
             library("apache-log4j-slf4j", "org.apache.logging.log4j", "log4j-slf4j2-impl").versionRef("log4j")
