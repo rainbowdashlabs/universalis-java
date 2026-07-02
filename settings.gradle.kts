@@ -20,7 +20,7 @@ pluginManagement {
 dependencyResolutionManagement {
     versionCatalogs {
         create("libs") {
-            plugin("spotless", "com.diffplug.spotless").version("8.4.0")
+            plugin("spotless", "com.diffplug.spotless").version("8.8.0")
 
             version("jackson", "3.2.0")
             library("jackson-core", "tools.jackson.core", "jackson-core").versionRef("jackson")
