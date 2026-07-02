@@ -32,7 +32,7 @@ dependencyResolutionManagement {
 
             library("jetbrains-annotations", "org.jetbrains:annotations:26.1.0")
 
-            version("slf4j", "2.0.17")
+            version("slf4j", "2.0.18")
             library("slf4j-api", "org.slf4j", "slf4j-api").versionRef("slf4j")
 
             version("log4j", "2.26.0")
@@ -62,7 +62,7 @@ dependencyResolutionManagement {
             version("mockito", "5.+")
             library("mockito-core", "org.mockito", "mockito-core").versionRef("mockito")
 
-            version("slf4j", "2.0.17")
+            version("slf4j", "2.0.18")
             library("slf4j-noop", "org.slf4j", "slf4j-simple").versionRef("slf4j")
         }
     }
