@@ -76,6 +76,54 @@ public class UniversalisWsImpl implements UniversalisWs {
         }
     }
 
+    @Override
+    public void subscribe(Subscription subscription) {
+        StatusListener listener = statusListener;
+        if (listener == null) {
+            throw new IllegalStateException("Websocket has not been ignited yet.");
+        }
+        listener.subscribe(subscription);
+    }
+
+    @Override
+    public void unsubscribe(Subscription subscription) {
+        StatusListener listener = statusListener;
+        if (listener == null) {
+            throw new IllegalStateException("Websocket has not been ignited yet.");
+        }
+        listener.unsubscribe(subscription);
+    }
+
+    @Override
+    public void disconnect() {
+        active = false;
+        log.info("Attempting to disconnect socket");
+        WebSocket current = socket;
+        if (current != null) {
+            current.clearListeners();
+            current.disconnect(0);
+        }
+        log.info("Socket disconnected");
+    }
+
+    /**
+     * The currently active socket
+     *
+     * @return socket
+     */
+    @Nullable
+    public WebSocket socket() {
+        return socket;
+    }
+
+    @Override
+    public void awaitReady() {
+        StatusListener listener;
+        while ((listener = statusListener) == null || !listener.isConnected()) {
+            Thread.onSpinWait();
+        }
+    }
+
     private void internalIgnite() {
         if (!active) return;
 
@@ -126,53 +174,5 @@ public class UniversalisWsImpl implements UniversalisWs {
             reconnectInFlight.set(false);
             ignite();
         });
-    }
-
-    @Override
-    public void subscribe(Subscription subscription) {
-        StatusListener listener = statusListener;
-        if (listener == null) {
-            throw new IllegalStateException("Websocket has not been ignited yet.");
-        }
-        listener.subscribe(subscription);
-    }
-
-    @Override
-    public void unsubscribe(Subscription subscription) {
-        StatusListener listener = statusListener;
-        if (listener == null) {
-            throw new IllegalStateException("Websocket has not been ignited yet.");
-        }
-        listener.unsubscribe(subscription);
-    }
-
-    @Override
-    public void disconnect() {
-        active = false;
-        log.info("Attempting to disconnect socket");
-        WebSocket current = socket;
-        if (current != null) {
-            current.clearListeners();
-            current.disconnect(0);
-        }
-        log.info("Socket disconnected");
-    }
-
-    /**
-     * The currently active socket
-     *
-     * @return socket
-     */
-    @Nullable
-    public WebSocket socket() {
-        return socket;
-    }
-
-    @Override
-    public void awaitReady() {
-        StatusListener listener;
-        while ((listener = statusListener) == null || !listener.isConnected()) {
-            Thread.onSpinWait();
-        }
     }
 }

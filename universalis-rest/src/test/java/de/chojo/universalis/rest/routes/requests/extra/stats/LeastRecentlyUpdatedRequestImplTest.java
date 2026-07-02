@@ -21,6 +21,20 @@ import static de.chojo.universalis.rest.LiveApiRetry.retry;
 class LeastRecentlyUpdatedRequestImplTest {
 
 
+    public static Stream<LeastRecentlyUpdatedRequest> inputs() {
+        return Stream.of(worldReq(), dcReq());
+    }
+
+    private static LeastRecentlyUpdatedRequest worldReq() {
+        return client().extra().stats().leastRecentlyUpdated()
+                       .world(Worlds.europe().light().odin);
+    }
+
+    private static LeastRecentlyUpdatedRequest dcReq() {
+        return client().extra().stats().leastRecentlyUpdated()
+                       .dataCenter(Worlds.europe().light());
+    }
+
     @ParameterizedTest
     @MethodSource("inputs")
     public void test(LeastRecentlyUpdatedRequest request) {
@@ -28,19 +42,5 @@ class LeastRecentlyUpdatedRequestImplTest {
             LeastRecentlyUpdatedResponse complete = request.complete();
             Assertions.assertFalse(complete.items().isEmpty());
         });
-    }
-
-    public static Stream<LeastRecentlyUpdatedRequest> inputs() {
-        return Stream.of(worldReq(), dcReq());
-    }
-
-    private static LeastRecentlyUpdatedRequest worldReq() {
-        return client().extra().stats().leastRecentlyUpdated()
-                .world(Worlds.europe().light().odin);
-    }
-
-    private static LeastRecentlyUpdatedRequest dcReq() {
-        return client().extra().stats().leastRecentlyUpdated()
-                .dataCenter(Worlds.europe().light());
     }
 }

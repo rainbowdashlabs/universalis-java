@@ -6,11 +6,11 @@
 
 package de.chojo.universalis.deserializer;
 
+import de.chojo.universalis.entities.Listing;
+import de.chojo.universalis.entities.views.ListingView;
 import tools.jackson.core.JsonParser;
 import tools.jackson.databind.DeserializationContext;
 import tools.jackson.databind.ValueDeserializer;
-import de.chojo.universalis.entities.Listing;
-import de.chojo.universalis.entities.views.ListingView;
 
 /**
  * Deserializer for {@link Listing}

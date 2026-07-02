@@ -6,9 +6,6 @@
 
 package de.chojo.universalis.deserializer.response;
 
-import tools.jackson.core.JsonParser;
-import tools.jackson.databind.DeserializationContext;
-import tools.jackson.databind.ValueDeserializer;
 import de.chojo.universalis.entities.QualityIndicator;
 import de.chojo.universalis.entities.views.CurrentlyShownView;
 import de.chojo.universalis.entities.views.ListingView;
@@ -16,10 +13,11 @@ import de.chojo.universalis.entities.views.SaleView;
 import de.chojo.universalis.rest.response.MarketBoardResponse;
 import de.chojo.universalis.worlds.World;
 import de.chojo.universalis.worlds.Worlds;
+import tools.jackson.core.JsonParser;
+import tools.jackson.databind.DeserializationContext;
+import tools.jackson.databind.ValueDeserializer;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 import java.util.Collections;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -44,21 +42,20 @@ public class MarketBoardResponseDeserializer extends ValueDeserializer<MarketBoa
         var minPrice = QualityIndicator.of(view.minPrice(), view.minPriceNQ(), view.minPriceHQ());
         var maxPrice = QualityIndicator.of(view.maxPrice(), view.maxPriceNQ(), view.maxPriceHQ());
         var histogramG = view.stackSizeHistogram().entrySet().stream()
-                                       .collect(Collectors.toMap(e -> Integer.valueOf(e.getKey()), Map.Entry::getValue));
+                             .collect(Collectors.toMap(e -> Integer.valueOf(e.getKey()), Map.Entry::getValue));
         var histogramNQ = view.stackSizeHistogramNQ().entrySet().stream()
-                                        .collect(Collectors.toMap(e -> Integer.valueOf(e.getKey()), Map.Entry::getValue));
+                              .collect(Collectors.toMap(e -> Integer.valueOf(e.getKey()), Map.Entry::getValue));
         var histogramHQ = view.stackSizeHistogramHQ().entrySet().stream()
-                                        .collect(Collectors.toMap(e -> Integer.valueOf(e.getKey()), Map.Entry::getValue));
+                              .collect(Collectors.toMap(e -> Integer.valueOf(e.getKey()), Map.Entry::getValue));
         var stackSizeHistogram = QualityIndicator.of(histogramG, histogramNQ, histogramHQ);
-        Map<World, LocalDateTime> worldUploadTimes = Collections.emptyMap();
+        Map<World, Instant> worldUploadTimes = Collections.emptyMap();
         if (view.worldUploadTimes() != null) {
             worldUploadTimes = view.worldUploadTimes()
                                    .entrySet()
                                    .stream()
                                    .collect(Collectors.toMap(
                                            e -> Worlds.worldById(Integer.parseInt(e.getKey())),
-                                           e -> Instant.ofEpochMilli(e.getValue()).atOffset(ZoneOffset.UTC)
-                                                       .toLocalDateTime())
+                                           e -> Instant.ofEpochMilli(e.getValue()))
                                    );
         }
         return new MarketBoardResponse(item, world, datacenter, region, lastUploadTime, listings, sales, currentAveragePrice, saleVelocity,

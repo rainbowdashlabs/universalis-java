@@ -6,10 +6,10 @@
 
 package de.chojo.universalis.events.sales.impl;
 
-import de.chojo.universalis.entities.Sale;
 import de.chojo.universalis.entities.Item;
-import de.chojo.universalis.worlds.World;
+import de.chojo.universalis.entities.Sale;
 import de.chojo.universalis.events.sales.SalesEvent;
+import de.chojo.universalis.worlds.World;
 
 import java.util.List;
 
@@ -21,8 +21,9 @@ import java.util.List;
 public class SalesAddEvent extends SalesEvent {
     /**
      * Create a new sales add event.
+     *
      * @param world world
-     * @param item item
+     * @param item  item
      * @param sales sales
      */
     public SalesAddEvent(World world, Item item, List<Sale> sales) {

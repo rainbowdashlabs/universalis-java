@@ -21,8 +21,9 @@ public abstract class SalesEvent extends Event {
 
     /**
      * Creates a new sales event
+     *
      * @param world world
-     * @param item item
+     * @param item  item
      * @param sales sales
      */
     public SalesEvent(World world, Item item, List<Sale> sales) {
@@ -32,6 +33,7 @@ public abstract class SalesEvent extends Event {
 
     /**
      * Sales of this event
+     *
      * @return unmodifiable list
      */
     public List<Sale> sales() {

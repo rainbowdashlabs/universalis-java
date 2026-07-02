@@ -6,10 +6,10 @@
 
 package de.chojo.universalis.events.listings.impl;
 
-import de.chojo.universalis.entities.Listing;
 import de.chojo.universalis.entities.Item;
-import de.chojo.universalis.worlds.World;
+import de.chojo.universalis.entities.Listing;
 import de.chojo.universalis.events.listings.ListingEvent;
+import de.chojo.universalis.worlds.World;
 
 import java.util.List;
 
@@ -21,8 +21,9 @@ import java.util.List;
 public class ListingRemoveEvent extends ListingEvent {
     /**
      * Create a new listing remove event
-     * @param item item
-     * @param world world
+     *
+     * @param item     item
+     * @param world    world
      * @param listings listings
      */
     public ListingRemoveEvent(Item item, World world, List<Listing> listings) {

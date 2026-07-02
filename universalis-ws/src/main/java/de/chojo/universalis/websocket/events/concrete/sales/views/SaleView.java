@@ -7,30 +7,31 @@
 package de.chojo.universalis.websocket.events.concrete.sales.views;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import tools.jackson.databind.annotation.JsonDeserialize;
 import de.chojo.universalis.deserializer.SecondsDateTimeConverter;
 import de.chojo.universalis.entities.Price;
 import de.chojo.universalis.entities.Sale;
 import de.chojo.universalis.worlds.World;
+import tools.jackson.databind.annotation.JsonDeserialize;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 /**
  * <a href="https://docs.universalis.app/#schema-saleview">See on universalis</a>
- * @param hq  Whether the item was high-quality.
+ *
+ * @param hq           Whether the item was high-quality.
  * @param pricePerUnit The price per unit sold.
- * @param quantity The stack size sold.
- * @param timestamp The sale time, in seconds since the UNIX epoch.
- * @param onMannequin Whether this was purchased from a mannequin.
- * @param worldName The world name, if applicable.
- * @param worldId The world ID, if applicable.
- * @param buyerName The buyer name.
- * @param total The total price.
+ * @param quantity     The stack size sold.
+ * @param timestamp    The sale time, in seconds since the UNIX epoch.
+ * @param onMannequin  Whether this was purchased from a mannequin.
+ * @param worldName    The world name, if applicable.
+ * @param worldId      The world ID, if applicable.
+ * @param buyerName    The buyer name.
+ * @param total        The total price.
  */
 public record SaleView(@JsonProperty("hq") boolean hq,
                        @JsonProperty("pricePerUnit") int pricePerUnit,
                        @JsonProperty("quantity") int quantity,
-                       @JsonProperty("timestamp")  @JsonDeserialize(converter = SecondsDateTimeConverter.class) LocalDateTime timestamp,
+                       @JsonProperty("timestamp") @JsonDeserialize(converter = SecondsDateTimeConverter.class) Instant timestamp,
                        @JsonProperty("onMannequin") boolean onMannequin,
                        @JsonProperty("worldName") String worldName,
                        @JsonProperty("worldID") int worldId,

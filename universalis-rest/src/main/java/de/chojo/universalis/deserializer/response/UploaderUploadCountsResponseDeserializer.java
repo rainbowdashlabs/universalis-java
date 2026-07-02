@@ -6,11 +6,11 @@
 
 package de.chojo.universalis.deserializer.response;
 
+import de.chojo.universalis.entities.views.SourceUploadCountView;
+import de.chojo.universalis.rest.response.extra.stats.UploaderUploadCountResponse;
 import tools.jackson.core.JsonParser;
 import tools.jackson.databind.DeserializationContext;
 import tools.jackson.databind.ValueDeserializer;
-import de.chojo.universalis.entities.views.SourceUploadCountView;
-import de.chojo.universalis.rest.response.extra.stats.UploaderUploadCountResponse;
 
 import java.util.List;
 

@@ -10,6 +10,7 @@ import de.chojo.universalis.provider.NameSupplier;
 import de.chojo.universalis.provider.items.Items;
 
 import org.jetbrains.annotations.CheckReturnValue;
+
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.util.concurrent.Executors;

@@ -6,10 +6,10 @@
 
 package de.chojo.universalis.deserializer;
 
+import de.chojo.universalis.entities.City;
 import tools.jackson.core.JsonParser;
 import tools.jackson.databind.DeserializationContext;
 import tools.jackson.databind.ValueDeserializer;
-import de.chojo.universalis.entities.City;
 
 /**
  * Deserializer for cities from id or names.

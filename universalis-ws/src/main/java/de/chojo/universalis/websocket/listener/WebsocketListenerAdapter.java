@@ -9,10 +9,6 @@ package de.chojo.universalis.websocket.listener;
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import com.neovisionaries.ws.client.WebSocket;
-import tools.jackson.databind.DeserializationFeature;
-import tools.jackson.databind.ObjectMapper;
-import tools.jackson.databind.json.JsonMapper;
-import tools.jackson.databind.module.SimpleModule;
 import com.neovisionaries.ws.client.WebSocketAdapter;
 import com.neovisionaries.ws.client.WebSocketException;
 import de.chojo.universalis.deserializer.CityDeserializer;
@@ -38,6 +34,10 @@ import de.chojo.universalis.worlds.World;
 import org.bson.BSONDecoder;
 import org.bson.BasicBSONDecoder;
 import org.slf4j.Logger;
+import tools.jackson.databind.DeserializationFeature;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.json.JsonMapper;
+import tools.jackson.databind.module.SimpleModule;
 
 import java.time.Duration;
 import java.util.List;
@@ -102,27 +102,6 @@ public class WebsocketListenerAdapter extends WebSocketAdapter implements EventL
         }
     }
 
-    private void handleAdd(WsListingAddEvent wsAdd) {
-        WsListingRemoveEvent removed = removedListings.getIfPresent(wsAdd.world());
-        if (removed == null) return;
-        removedListings.invalidate(wsAdd.world());
-        onListingUpdate(removed.toUpdate(wsAdd).toEvent());
-    }
-
-    private <V extends Event, T extends EventSupplier<V>> V mapToEvent(Map<?, ?> map, Class<T> clazz) {
-        return map(map, clazz).toEvent();
-    }
-
-    private <V extends Event, T extends EventSupplier<V>> T map(Map<?, ?> map, Class<T> clazz) {
-        try {
-
-            return objectMapper.convertValue(map, clazz);
-        } catch (IllegalArgumentException e) {
-            log.error("Failed to map event", e);
-            throw new RuntimeException("Failed to map event", e);
-        }
-    }
-
     @Override
     public void onError(WebSocket websocket, WebSocketException cause) {
         log.error("Error in websocket. Reason: {}", cause.getError(), cause);
@@ -151,5 +130,26 @@ public class WebsocketListenerAdapter extends WebSocketAdapter implements EventL
     @Override
     public void onSalesRemove(SalesRemoveEvent event) {
         listeners.forEach(listener -> listener.onSalesRemove(event));
+    }
+
+    private void handleAdd(WsListingAddEvent wsAdd) {
+        WsListingRemoveEvent removed = removedListings.getIfPresent(wsAdd.world());
+        if (removed == null) return;
+        removedListings.invalidate(wsAdd.world());
+        onListingUpdate(removed.toUpdate(wsAdd).toEvent());
+    }
+
+    private <V extends Event, T extends EventSupplier<V>> V mapToEvent(Map<?, ?> map, Class<T> clazz) {
+        return map(map, clazz).toEvent();
+    }
+
+    private <V extends Event, T extends EventSupplier<V>> T map(Map<?, ?> map, Class<T> clazz) {
+        try {
+
+            return objectMapper.convertValue(map, clazz);
+        } catch (IllegalArgumentException e) {
+            log.error("Failed to map event", e);
+            throw new RuntimeException("Failed to map event", e);
+        }
     }
 }

@@ -9,15 +9,13 @@ package de.chojo.universalis.deserializer;
 import tools.jackson.databind.util.StdConverter;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
-import java.util.TimeZone;
 
 /**
  * Deserializer for instant
  */
-public class MillisDateTimeConverter extends StdConverter<Long, LocalDateTime> {
+public class MillisDateTimeConverter extends StdConverter<Long, Instant> {
     @Override
-    public LocalDateTime convert(Long value) {
-        return Instant.ofEpochMilli(value).atZone(TimeZone.getDefault().toZoneId()).toLocalDateTime();
+    public Instant convert(Long value) {
+        return Instant.ofEpochMilli(value);
     }
 }

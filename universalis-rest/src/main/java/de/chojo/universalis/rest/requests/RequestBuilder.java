@@ -32,18 +32,6 @@ public class RequestBuilder<T> implements Request<T> {
     private boolean hasScope;
 
     /**
-     * Records that a top-level scope (world/dataCenter/region) has been chosen.
-     * Throws if a scope is already set — request scopes are mutually exclusive.
-     */
-    public void markScope(String name) {
-        if (hasScope) {
-            throw new IllegalStateException(
-                    "A scope has already been set on this request; scopes are mutually exclusive. Attempted to add: " + name);
-        }
-        hasScope = true;
-    }
-
-    /**
      * Create a new request builder
      *
      * @param rest   rest client
@@ -68,8 +56,16 @@ public class RequestBuilder<T> implements Request<T> {
         this.postRetrievalHook = postRetrievalHook;
     }
 
-    private URIBuilder uriBuilder() {
-        return uriBuilder;
+    /**
+     * Records that a top-level scope (world/dataCenter/region) has been chosen.
+     * Throws if a scope is already set — request scopes are mutually exclusive.
+     */
+    public void markScope(String name) {
+        if (hasScope) {
+            throw new IllegalStateException(
+                    "A scope has already been set on this request; scopes are mutually exclusive. Attempted to add: " + name);
+        }
+        hasScope = true;
     }
 
     /**
@@ -103,14 +99,6 @@ public class RequestBuilder<T> implements Request<T> {
         }
     }
 
-    private URI uri() {
-        try {
-            return uriBuilder.build();
-        } catch (URISyntaxException e) {
-            throw new RequestException("Could not build URI", e);
-        }
-    }
-
     @Override
     public CompletableFuture<T> queue() {
         return rest.getAsyncAndMap(uriBuilder, this.result)
@@ -130,5 +118,17 @@ public class RequestBuilder<T> implements Request<T> {
     @Override
     public String toString() {
         return "%s: %s".formatted(getClass().getSimpleName(), uri());
+    }
+
+    private URIBuilder uriBuilder() {
+        return uriBuilder;
+    }
+
+    private URI uri() {
+        try {
+            return uriBuilder.build();
+        } catch (URISyntaxException e) {
+            throw new RequestException("Could not build URI", e);
+        }
     }
 }

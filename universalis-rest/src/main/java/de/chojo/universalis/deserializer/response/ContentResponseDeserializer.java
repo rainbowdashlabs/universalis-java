@@ -6,10 +6,10 @@
 
 package de.chojo.universalis.deserializer.response;
 
+import de.chojo.universalis.rest.response.extra.ContentResponse;
 import tools.jackson.core.JsonParser;
 import tools.jackson.databind.DeserializationContext;
 import tools.jackson.databind.ValueDeserializer;
-import de.chojo.universalis.rest.response.extra.ContentResponse;
 
 import java.util.HashMap;
 import java.util.Map;

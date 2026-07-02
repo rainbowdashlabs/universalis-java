@@ -42,27 +42,27 @@ public class CreateWorlds {
             StringJoiner worldJoiner = new StringJoiner(",");
             for (World world : dataCenter.worlds()) {
                 String worldCode = """
-                                   /**
-                                    * The world %s
-                                    */
-                                   public final World %s = World.of("%s", %s);
-                                   """.formatted(world.name(), world.name()
-                                                                                .toUpperCase(Locale.ROOT), world.name(), world.id())
-                                                  .stripIndent();
+                        /**
+                         * The world %s
+                         */
+                        public final World %s = World.of("%s", %s);
+                        """.formatted(world.name(), world.name()
+                                                         .toUpperCase(Locale.ROOT), world.name(), world.id())
+                           .stripIndent();
                 System.out.printf(worldCode);
                 worldJoiner.add(world.name().toUpperCase());
             }
             String end = """
-                                     @Override
-                                     public List<World> worlds() {
-                                         return List.of(%s);
-                                     }
-                         
-                                     @Override
-                                     public int id() {
-                                         return %d;
-                                     }
-                         """.formatted(worldJoiner.toString(), -1);
+                                @Override
+                                public List<World> worlds() {
+                                    return List.of(%s);
+                                }
+                    
+                                @Override
+                                public int id() {
+                                    return %d;
+                                }
+                    """.formatted(worldJoiner.toString(), -1);
             System.out.println(end);
             System.out.println("}");
         }

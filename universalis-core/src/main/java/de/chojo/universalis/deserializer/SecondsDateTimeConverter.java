@@ -9,15 +9,17 @@ package de.chojo.universalis.deserializer;
 import tools.jackson.databind.util.StdConverter;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
-import java.util.TimeZone;
 
 /**
- * Deserializer for instant
+ * Deserializer for a Unix-epoch seconds value into a UTC-anchored
+ * {@link Instant}.
+ *
+ * <p>Universalis sends timestamps as seconds since the UNIX epoch,
+ * which is UTC by definition.
  */
-public class SecondsDateTimeConverter extends StdConverter<Long, LocalDateTime> {
+public class SecondsDateTimeConverter extends StdConverter<Long, Instant> {
     @Override
-    public LocalDateTime convert(Long value) {
-        return Instant.ofEpochSecond(value).atZone(TimeZone.getDefault().toZoneId()).toLocalDateTime();
+    public Instant convert(Long value) {
+        return Instant.ofEpochSecond(value);
     }
 }

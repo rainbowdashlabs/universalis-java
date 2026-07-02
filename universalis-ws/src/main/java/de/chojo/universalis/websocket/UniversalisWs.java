@@ -6,14 +6,34 @@
 
 package de.chojo.universalis.websocket;
 
-import de.chojo.universalis.websocket.subscriber.Subscription;
 import de.chojo.universalis.websocket.builder.UniversalisWsBuilder;
 import de.chojo.universalis.websocket.builder.WebsocketFactoryBuilder;
+import de.chojo.universalis.websocket.subscriber.Subscription;
 
 /**
  * Interface for universalis websocket implementation.
  */
 public interface UniversalisWs {
+    /**
+     * Get a websocket builder. Use this if you want more control about the socket itself.
+     * <p>
+     * Use {@link #getDefault()} if your don't know that this means.
+     *
+     * @return websocket factory builder
+     */
+    static WebsocketFactoryBuilder websocketBuilder() {
+        return new WebsocketFactoryBuilder();
+    }
+
+    /**
+     * Get a universalis builder for websockets.
+     *
+     * @return universalis websocket builder
+     */
+    static UniversalisWsBuilder getDefault() {
+        return new WebsocketFactoryBuilder().setConnectionTimeout(10000).build();
+    }
+
     /**
      * Add a subscription.
      *
@@ -37,24 +57,4 @@ public interface UniversalisWs {
      * Suspends the thread until the websocket is connected.
      */
     void awaitReady();
-
-    /**
-     * Get a websocket builder. Use this if you want more control about the socket itself.
-     * <p>
-     * Use {@link #getDefault()} if your don't know that this means.
-     *
-     * @return websocket factory builder
-     */
-    static WebsocketFactoryBuilder websocketBuilder() {
-        return new WebsocketFactoryBuilder();
-    }
-
-    /**
-     * Get a universalis builder for websockets.
-     *
-     * @return universalis websocket builder
-     */
-    static UniversalisWsBuilder getDefault() {
-        return new WebsocketFactoryBuilder().setConnectionTimeout(10000).build();
-    }
 }

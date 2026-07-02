@@ -22,6 +22,28 @@ import static de.chojo.universalis.rest.LiveApiRetry.retry;
 
 class MarketBoardRequestImplTest {
 
+    public static Stream<MarketBoardRequest> inputs() {
+        return Stream.of(worldReq(), dcReq(), regionReq());
+    }
+
+    private static MarketBoardRequest worldReq() {
+        return client().marketBoard()
+                       .world(Worlds.europe().light().odin)
+                       .itemsIds(33927);
+    }
+
+    private static MarketBoardRequest dcReq() {
+        return client().marketBoard()
+                       .dataCenter(Worlds.europe().light())
+                       .itemsIds(33927);
+    }
+
+    private static MarketBoardRequest regionReq() {
+        return client().marketBoard()
+                       .region(Worlds.europe())
+                       .itemsIds(33927);
+    }
+
     @ParameterizedTest
     @MethodSource("inputs")
     void historyLimit(MarketBoardRequest request) {
@@ -89,27 +111,5 @@ class MarketBoardRequestImplTest {
             MarketBoardResponse hours = request.statsTime(Duration.ofHours(1)).complete();
             Assertions.assertNotEquals(days.saleVelocity(), hours.saleVelocity());
         });
-    }
-
-    public static Stream<MarketBoardRequest> inputs() {
-        return Stream.of(worldReq(), dcReq(), regionReq());
-    }
-
-    private static MarketBoardRequest worldReq() {
-        return client().marketBoard()
-                .world(Worlds.europe().light().odin)
-                .itemsIds(33927);
-    }
-
-    private static MarketBoardRequest dcReq() {
-        return client().marketBoard()
-                .dataCenter(Worlds.europe().light())
-                .itemsIds(33927);
-    }
-
-    private static MarketBoardRequest regionReq() {
-        return client().marketBoard()
-                .region(Worlds.europe())
-                .itemsIds(33927);
     }
 }

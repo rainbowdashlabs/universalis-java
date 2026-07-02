@@ -7,14 +7,14 @@
 package de.chojo.universalis.entities.views;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import tools.jackson.databind.annotation.JsonDeserialize;
 import de.chojo.universalis.deserializer.SecondsDateTimeConverter;
 import de.chojo.universalis.entities.MinimizedPrice;
 import de.chojo.universalis.entities.MinimizedSale;
 import de.chojo.universalis.worlds.World;
-
 import org.jetbrains.annotations.Nullable;
-import java.time.LocalDateTime;
+import tools.jackson.databind.annotation.JsonDeserialize;
+
+import java.time.Instant;
 
 /**
  * <a href="https://docs.universalis.app/#schema-minimizedsaleview">See on universalis</a>
@@ -30,7 +30,7 @@ import java.time.LocalDateTime;
 public record MinimizedSaleView(@JsonProperty("hq") boolean hq,
                                 @JsonProperty("pricePerUnit") int pricePerUnit,
                                 @JsonProperty("quantity") int quantity,
-                                @JsonProperty("timestamp") @JsonDeserialize(converter = SecondsDateTimeConverter.class) LocalDateTime timestamp,
+                                @JsonProperty("timestamp") @JsonDeserialize(converter = SecondsDateTimeConverter.class) Instant timestamp,
                                 @JsonProperty("onMannequin") boolean onMannequin,
                                 @JsonProperty("worldID") World world,
                                 @JsonProperty("buyerName") @Nullable String buyerName) {

@@ -13,9 +13,9 @@ import de.chojo.universalis.rest.routes.api.HistoryRequest;
 import de.chojo.universalis.worlds.DataCenter;
 import de.chojo.universalis.worlds.Region;
 import de.chojo.universalis.worlds.World;
-
 import org.jetbrains.annotations.Nullable;
-import java.time.LocalDateTime;
+
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 
@@ -35,7 +35,7 @@ public record HistoryResponse(Item item,
                               @Nullable World world,
                               @Nullable DataCenter dataCenter,
                               @Nullable Region region,
-                              LocalDateTime lastUploadTime,
+                              Instant lastUploadTime,
                               List<MinimizedSale> sales,
                               QualityIndicator<Float> saleVelocity,
                               QualityIndicator<Map<Integer, Integer>> stackSizeHistogram) {

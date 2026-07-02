@@ -6,13 +6,13 @@
 
 package de.chojo.universalis.listener;
 
-import de.chojo.universalis.websocket.UniversalisWs;
-import de.chojo.universalis.websocket.builder.UniversalisWsBuilder;
 import de.chojo.universalis.events.listings.impl.ListingAddEvent;
 import de.chojo.universalis.events.listings.impl.ListingRemoveEvent;
 import de.chojo.universalis.events.listings.impl.ListingUpdateEvent;
 import de.chojo.universalis.events.sales.impl.SalesAddEvent;
 import de.chojo.universalis.events.sales.impl.SalesRemoveEvent;
+import de.chojo.universalis.websocket.UniversalisWs;
+import de.chojo.universalis.websocket.builder.UniversalisWsBuilder;
 import de.chojo.universalis.websocket.subscriber.Subscriptions;
 
 /**

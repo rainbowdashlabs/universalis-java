@@ -7,15 +7,15 @@
 package de.chojo.universalis.entities.views;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import tools.jackson.databind.annotation.JsonDeserialize;
 import de.chojo.universalis.deserializer.MillisDateTimeConverter;
 import de.chojo.universalis.entities.Item;
 import de.chojo.universalis.worlds.DataCenter;
 import de.chojo.universalis.worlds.Region;
 import de.chojo.universalis.worlds.World;
-
 import org.jetbrains.annotations.Nullable;
-import java.time.LocalDateTime;
+import tools.jackson.databind.annotation.JsonDeserialize;
+
+import java.time.Instant;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -23,7 +23,7 @@ import java.util.Map;
 public record CurrentlyShownView(@JsonProperty("itemID") Item item,
                                  @JsonProperty("worldID") World world,
                                  @JsonProperty("worldUploadTimes") @Nullable Map<String, Long> worldUploadTimes,
-                                 @JsonProperty("lastUploadTime") @JsonDeserialize(converter = MillisDateTimeConverter.class) LocalDateTime lastUploadTime,
+                                 @JsonProperty("lastUploadTime") @JsonDeserialize(converter = MillisDateTimeConverter.class) Instant lastUploadTime,
                                  @JsonProperty("listings") List<ListingView> listingViews,
                                  @JsonProperty("recentHistory") List<SaleView> recentHistory,
                                  @JsonProperty("dcName") DataCenter datacenter,

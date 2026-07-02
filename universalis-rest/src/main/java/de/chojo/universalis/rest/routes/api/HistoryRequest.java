@@ -14,6 +14,7 @@ import de.chojo.universalis.rest.routes.api.history.RegionHistoryRequest;
 import de.chojo.universalis.rest.routes.requests.HistoryRequestImpl;
 
 import org.jetbrains.annotations.CheckReturnValue;
+
 import java.time.Duration;
 
 /**

@@ -6,14 +6,14 @@
 
 package de.chojo.universalis.deserializer.response;
 
-import tools.jackson.core.JsonParser;
-import tools.jackson.databind.DeserializationContext;
-import tools.jackson.databind.ValueDeserializer;
 import de.chojo.universalis.entities.MinimizedSale;
 import de.chojo.universalis.entities.QualityIndicator;
 import de.chojo.universalis.entities.views.HistoryView;
 import de.chojo.universalis.entities.views.MinimizedSaleView;
 import de.chojo.universalis.rest.response.HistoryResponse;
+import tools.jackson.core.JsonParser;
+import tools.jackson.databind.DeserializationContext;
+import tools.jackson.databind.ValueDeserializer;
 
 import java.util.Collections;
 import java.util.List;
@@ -38,11 +38,11 @@ public class HistoryResponseDeserializer extends ValueDeserializer<HistoryRespon
         }
         var saleVelocity = QualityIndicator.of(view.regularSaleVelocity(), view.nqSaleVelocity(), view.hqSaleVelocity());
         var histogramG = view.stackSizeHistogram().entrySet().stream()
-                                       .collect(Collectors.toMap(e -> Integer.valueOf(e.getKey()), Map.Entry::getValue));
+                             .collect(Collectors.toMap(e -> Integer.valueOf(e.getKey()), Map.Entry::getValue));
         var histogramNQ = view.stackSizeHistogramNQ().entrySet().stream()
-                                        .collect(Collectors.toMap(e -> Integer.valueOf(e.getKey()), Map.Entry::getValue));
+                              .collect(Collectors.toMap(e -> Integer.valueOf(e.getKey()), Map.Entry::getValue));
         var histogramHQ = view.stackSizeHistogramHQ().entrySet().stream()
-                                        .collect(Collectors.toMap(e -> Integer.valueOf(e.getKey()), Map.Entry::getValue));
+                              .collect(Collectors.toMap(e -> Integer.valueOf(e.getKey()), Map.Entry::getValue));
         var histogram = QualityIndicator.of(histogramG, histogramNQ, histogramHQ);
         return new HistoryResponse(item, world, datacenter, region, lastUploadTime, sales, saleVelocity,
                 histogram);

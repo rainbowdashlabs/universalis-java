@@ -6,10 +6,10 @@
 
 package de.chojo.universalis.provider.items;
 
-import tools.jackson.databind.ObjectMapper;
-import tools.jackson.databind.json.JsonMapper;
 import de.chojo.universalis.entities.Name;
 import de.chojo.universalis.provider.NameSupplier;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.json.JsonMapper;
 
 import java.io.IOException;
 import java.net.URI;
@@ -51,11 +51,6 @@ public class Items implements NameSupplier {
         }
     }
 
-    private static void putLower(Map<String, Integer> target, String key, Integer id) {
-        if (key == null || key.isBlank()) return;
-        target.put(key.toLowerCase(Locale.ROOT), id);
-    }
-
     /**
      * Create a new items instance which will load the items from the {@link #DEFAULT_SOURCE_URI default source}.
      *
@@ -78,17 +73,17 @@ public class Items implements NameSupplier {
     public static Items create(URI source) throws IOException, InterruptedException {
         try (HttpClient client = HttpClient.newBuilder().connectTimeout(DEFAULT_TIMEOUT).build()) {
             HttpResponse<String> response = client.send(HttpRequest.newBuilder()
-                    .uri(source)
-                    .timeout(DEFAULT_TIMEOUT)
-                    .GET()
-                    .build(), HttpResponse.BodyHandlers.ofString());
+                                                                   .uri(source)
+                                                                   .timeout(DEFAULT_TIMEOUT)
+                                                                   .GET()
+                                                                   .build(), HttpResponse.BodyHandlers.ofString());
             if (response.statusCode() / 100 != 2) {
                 throw new IOException("Failed to load items from " + source
                         + " — status " + response.statusCode());
             }
             ObjectMapper mapper = JsonMapper.builder().build();
             Map<String, Name> names = mapper.readValue(response.body(), mapper.getTypeFactory()
-                    .constructMapType(Map.class, String.class, Name.class));
+                                                                              .constructMapType(Map.class, String.class, Name.class));
 
             Map<Integer, Name> idNames = new HashMap<>();
             for (Map.Entry<String, Name> entry : names.entrySet()) {
@@ -100,6 +95,11 @@ public class Items implements NameSupplier {
             }
             return new Items(idNames);
         }
+    }
+
+    private static void putLower(Map<String, Integer> target, String key, Integer id) {
+        if (key == null || key.isBlank()) return;
+        target.put(key.toLowerCase(Locale.ROOT), id);
     }
 
     @Override

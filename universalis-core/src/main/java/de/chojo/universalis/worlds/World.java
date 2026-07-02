@@ -17,8 +17,8 @@ public interface World extends WorldProvider {
     /**
      * Creates a new world based on a name and an id
      *
-     * @param name world name
-     * @param id   world id
+     * @param name       world name
+     * @param id         world id
      * @param dataCenter datacenter of world
      * @return new world instance
      */

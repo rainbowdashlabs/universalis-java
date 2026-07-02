@@ -20,6 +20,20 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 class MostRecentlyUpdatedRequestImplTest {
 
 
+    public static Stream<MostRecentlyUpdatedRequest> inputs() {
+        return Stream.of(worldReq(), dcReq());
+    }
+
+    private static MostRecentlyUpdatedRequest worldReq() {
+        return client().extra().stats().mostRecentlyUpdated()
+                       .world(Worlds.europe().light().odin);
+    }
+
+    private static MostRecentlyUpdatedRequest dcReq() {
+        return client().extra().stats().mostRecentlyUpdated()
+                       .dataCenter(Worlds.europe().light());
+    }
+
     @ParameterizedTest
     @MethodSource("inputs")
     public void test(MostRecentlyUpdatedRequest request) {
@@ -27,19 +41,5 @@ class MostRecentlyUpdatedRequestImplTest {
             var complete = request.complete();
             assertFalse(complete.items().isEmpty());
         });
-    }
-
-    public static Stream<MostRecentlyUpdatedRequest> inputs() {
-        return Stream.of(worldReq(), dcReq());
-    }
-
-    private static MostRecentlyUpdatedRequest worldReq() {
-        return client().extra().stats().mostRecentlyUpdated()
-                .world(Worlds.europe().light().odin);
-    }
-
-    private static MostRecentlyUpdatedRequest dcReq() {
-        return client().extra().stats().mostRecentlyUpdated()
-                .dataCenter(Worlds.europe().light());
     }
 }

@@ -8,7 +8,7 @@ package de.chojo.universalis.entities;
 
 import de.chojo.universalis.worlds.World;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 /**
  * A listing.
@@ -24,7 +24,7 @@ import java.time.LocalDateTime;
  * @param sellerId       A SHA256 hash of the seller's ID.
  * @param tax            The tax that will be added on top of the price.
  */
-public record Listing(LocalDateTime lastReviewTime,
+public record Listing(Instant lastReviewTime,
                       World world,
                       Creator creator,
                       ItemMeta meta,

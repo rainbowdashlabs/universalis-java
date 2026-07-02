@@ -6,11 +6,11 @@
 
 package de.chojo.universalis.entities;
 
-import tools.jackson.databind.annotation.JsonDeserialize;
 import de.chojo.universalis.deserializer.SecondsDateTimeConverter;
 import de.chojo.universalis.worlds.World;
+import tools.jackson.databind.annotation.JsonDeserialize;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 /**
  * A minimized sale object
@@ -24,7 +24,7 @@ import java.time.LocalDateTime;
  */
 public record MinimizedSale(boolean hq,
                             MinimizedPrice price,
-                            @JsonDeserialize(converter = SecondsDateTimeConverter.class) LocalDateTime timestamp,
+                            @JsonDeserialize(converter = SecondsDateTimeConverter.class) Instant timestamp,
                             boolean onMannequin,
                             World world,
                             String buyerName) {

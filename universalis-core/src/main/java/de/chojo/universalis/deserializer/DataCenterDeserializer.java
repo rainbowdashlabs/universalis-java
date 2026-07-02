@@ -6,11 +6,11 @@
 
 package de.chojo.universalis.deserializer;
 
+import de.chojo.universalis.worlds.DataCenter;
+import de.chojo.universalis.worlds.Worlds;
 import tools.jackson.core.JsonParser;
 import tools.jackson.databind.DeserializationContext;
 import tools.jackson.databind.ValueDeserializer;
-import de.chojo.universalis.worlds.DataCenter;
-import de.chojo.universalis.worlds.Worlds;
 
 /**
  * Deserializer for data center

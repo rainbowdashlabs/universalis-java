@@ -7,13 +7,13 @@
 package de.chojo.universalis.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import tools.jackson.databind.annotation.JsonDeserialize;
 import de.chojo.universalis.deserializer.SecondsDateTimeConverter;
 import de.chojo.universalis.rest.response.extra.stats.LeastRecentlyUpdatedResponse;
 import de.chojo.universalis.rest.response.extra.stats.MostRecentlyUpdatedResponse;
 import de.chojo.universalis.worlds.World;
+import tools.jackson.databind.annotation.JsonDeserialize;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 /**
  * Items used in {@link LeastRecentlyUpdatedResponse} and {@link MostRecentlyUpdatedResponse}
@@ -23,6 +23,6 @@ import java.time.LocalDateTime;
  * @param world   world
  */
 public record WorldItemRecently(@JsonProperty("itemID") Item item,
-                                @JsonProperty("lastUploadTime") @JsonDeserialize(converter = SecondsDateTimeConverter.class) LocalDateTime updated,
+                                @JsonProperty("lastUploadTime") @JsonDeserialize(converter = SecondsDateTimeConverter.class) Instant updated,
                                 @JsonProperty("worldID") World world) {
 }

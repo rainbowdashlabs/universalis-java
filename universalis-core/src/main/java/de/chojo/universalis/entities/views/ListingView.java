@@ -7,7 +7,6 @@
 package de.chojo.universalis.entities.views;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import tools.jackson.databind.annotation.JsonDeserialize;
 import de.chojo.universalis.deserializer.SecondsDateTimeConverter;
 import de.chojo.universalis.entities.City;
 import de.chojo.universalis.entities.Creator;
@@ -17,8 +16,9 @@ import de.chojo.universalis.entities.Price;
 import de.chojo.universalis.entities.Retainer;
 import de.chojo.universalis.worlds.World;
 import de.chojo.universalis.worlds.Worlds;
+import tools.jackson.databind.annotation.JsonDeserialize;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.List;
 import java.util.Objects;
 
@@ -47,7 +47,7 @@ import java.util.Objects;
  * @param tax            The Gil sales tax (GST) to be added to the total price during purchase.
  */
 public record ListingView(
-        @JsonProperty("lastReviewTime") @JsonDeserialize(converter = SecondsDateTimeConverter.class) LocalDateTime lastReviewTime,
+        @JsonProperty("lastReviewTime") @JsonDeserialize(converter = SecondsDateTimeConverter.class) Instant lastReviewTime,
         @JsonProperty("pricePerUnit") int pricePerUnit,
         @JsonProperty("quantity") int quantity,
         @JsonProperty("stainID") int stainId,

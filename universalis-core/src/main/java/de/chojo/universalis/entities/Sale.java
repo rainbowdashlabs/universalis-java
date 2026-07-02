@@ -7,9 +7,9 @@
 package de.chojo.universalis.entities;
 
 import de.chojo.universalis.worlds.World;
-
 import org.jetbrains.annotations.Nullable;
-import java.time.LocalDateTime;
+
+import java.time.Instant;
 
 /**
  * A sale object
@@ -23,7 +23,7 @@ import java.time.LocalDateTime;
  */
 public record Sale(boolean hq,
                    Price price,
-                   LocalDateTime timestamp,
+                   Instant timestamp,
                    boolean onMannequin,
                    World world,
                    @Nullable String buyerName) {

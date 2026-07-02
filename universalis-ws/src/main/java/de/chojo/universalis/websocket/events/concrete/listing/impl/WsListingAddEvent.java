@@ -8,9 +8,9 @@ package de.chojo.universalis.websocket.events.concrete.listing.impl;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import de.chojo.universalis.entities.Item;
-import de.chojo.universalis.websocket.events.concrete.listing.WsListingEvent;
 import de.chojo.universalis.entities.views.ListingView;
 import de.chojo.universalis.events.listings.impl.ListingAddEvent;
+import de.chojo.universalis.websocket.events.concrete.listing.WsListingEvent;
 import de.chojo.universalis.worlds.World;
 
 import java.util.List;
@@ -21,8 +21,9 @@ import java.util.List;
 public class WsListingAddEvent extends WsListingEvent<ListingAddEvent> {
     /**
      * Create a new websocket listing add event
-     * @param item item
-     * @param world world
+     *
+     * @param item     item
+     * @param world    world
      * @param listings listings
      */
     public WsListingAddEvent(@JsonProperty("item") Item item,

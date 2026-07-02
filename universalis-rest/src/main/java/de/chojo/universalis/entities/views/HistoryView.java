@@ -7,15 +7,15 @@
 package de.chojo.universalis.entities.views;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import tools.jackson.databind.annotation.JsonDeserialize;
 import de.chojo.universalis.deserializer.MillisDateTimeConverter;
 import de.chojo.universalis.entities.Item;
 import de.chojo.universalis.worlds.DataCenter;
 import de.chojo.universalis.worlds.Region;
 import de.chojo.universalis.worlds.World;
 import org.jetbrains.annotations.Nullable;
+import tools.jackson.databind.annotation.JsonDeserialize;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -38,7 +38,7 @@ import java.util.Map;
  */
 public record HistoryView(@JsonProperty("itemID") Item item,
                           @JsonProperty("worldID") @Nullable World world,
-                          @JsonProperty("lastUploadTime") @JsonDeserialize(converter = MillisDateTimeConverter.class) LocalDateTime lastUploadTime,
+                          @JsonProperty("lastUploadTime") @JsonDeserialize(converter = MillisDateTimeConverter.class) Instant lastUploadTime,
                           @JsonProperty("entries") @Nullable List<MinimizedSaleView> entries,
                           @JsonProperty("dcName") @Nullable DataCenter datacenter,
                           @JsonProperty("region") @Nullable Region region,

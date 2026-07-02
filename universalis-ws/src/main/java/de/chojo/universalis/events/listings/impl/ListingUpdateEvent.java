@@ -23,9 +23,10 @@ public final class ListingUpdateEvent extends Event {
 
     /**
      * Create a new listing update event
-     * @param item item
-     * @param world world
-     * @param added added listings
+     *
+     * @param item    item
+     * @param world   world
+     * @param added   added listings
      * @param removed removed listings
      */
     public ListingUpdateEvent(Item item, World world, List<Listing> added, List<Listing> removed) {

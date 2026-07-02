@@ -7,13 +7,12 @@
 package de.chojo.universalis.websocket.builder;
 
 import com.neovisionaries.ws.client.WebSocketFactory;
-import de.chojo.universalis.websocket.UniversalisWs;
-import de.chojo.universalis.websocket.UniversalisWsImpl;
 import de.chojo.universalis.listener.EventListener;
 import de.chojo.universalis.provider.NameSupplier;
+import de.chojo.universalis.websocket.UniversalisWs;
+import de.chojo.universalis.websocket.UniversalisWsImpl;
 import de.chojo.universalis.websocket.subscriber.Subscription;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -42,6 +41,7 @@ public class UniversalisWsBuilder {
 
     /**
      * Create a new universalis websocket builder
+     *
      * @param factory factory to create a websocket
      */
     public UniversalisWsBuilder(WebSocketFactory factory) {

@@ -12,6 +12,7 @@ import de.chojo.universalis.rest.routes.api.marketboard.RegionMarketBoardRequest
 import de.chojo.universalis.rest.routes.requests.MarketBoardRequestImpl;
 
 import org.jetbrains.annotations.CheckReturnValue;
+
 import java.time.Duration;
 
 /**

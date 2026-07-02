@@ -34,6 +34,7 @@ public class StatusListener extends WebSocketAdapter {
 
     /**
      * Creates a new status listener
+     *
      * @param universalisWs socket
      * @param subscriptions subscriptions
      */
@@ -87,20 +88,6 @@ public class StatusListener extends WebSocketAdapter {
         }
     }
 
-    private byte[] unsubscribeChannel(String channel) {
-        return subscriptionChange(channel, "unsubscribe");
-    }
-
-    private byte[] subscribeChannel(String channel) {
-        return subscriptionChange(channel, "subscribe");
-    }
-
-    private byte[] subscriptionChange(String channel, String event) {
-        BasicBSONObject payload = new BasicBSONObject().append("event", event)
-                                                       .append("channel", channel);
-        return encoder.encode(payload);
-    }
-
     @Override
     public void handleCallbackError(WebSocket websocket, Throwable cause) {
         log.error("Callback error", cause);
@@ -137,5 +124,19 @@ public class StatusListener extends WebSocketAdapter {
      */
     public boolean isConnected() {
         return connected;
+    }
+
+    private byte[] unsubscribeChannel(String channel) {
+        return subscriptionChange(channel, "unsubscribe");
+    }
+
+    private byte[] subscribeChannel(String channel) {
+        return subscriptionChange(channel, "subscribe");
+    }
+
+    private byte[] subscriptionChange(String channel, String event) {
+        BasicBSONObject payload = new BasicBSONObject().append("event", event)
+                                                       .append("channel", channel);
+        return encoder.encode(payload);
     }
 }

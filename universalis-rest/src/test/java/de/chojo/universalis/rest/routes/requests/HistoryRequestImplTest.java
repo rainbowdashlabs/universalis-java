@@ -21,6 +21,28 @@ import static de.chojo.universalis.rest.LiveApiRetry.retry;
 
 class HistoryRequestImplTest {
 
+    public static Stream<HistoryRequest> inputs() {
+        return Stream.of(worldReq(), dcReq(), regionReq());
+    }
+
+    private static HistoryRequest worldReq() {
+        return client().history()
+                       .world(Worlds.europe().light().odin)
+                       .itemsIds(33927);
+    }
+
+    private static HistoryRequest dcReq() {
+        return client().history()
+                       .dataCenter(Worlds.europe().light())
+                       .itemsIds(33927);
+    }
+
+    private static HistoryRequest regionReq() {
+        return client().history()
+                       .region(Worlds.europe())
+                       .itemsIds(33927);
+    }
+
     @ParameterizedTest
     @MethodSource("inputs")
     void limit(HistoryRequest request) {
@@ -50,28 +72,5 @@ class HistoryRequestImplTest {
             HistoryResponse gst = request.statsTime(Duration.ofHours(1)).complete();
             Assertions.assertNotEquals(noGst.saleVelocity(), gst.saleVelocity());
         });
-    }
-
-
-    public static Stream<HistoryRequest> inputs() {
-        return Stream.of(worldReq(), dcReq(), regionReq());
-    }
-
-    private static HistoryRequest worldReq() {
-        return client().history()
-                .world(Worlds.europe().light().odin)
-                .itemsIds(33927);
-    }
-
-    private static HistoryRequest dcReq() {
-        return client().history()
-                .dataCenter(Worlds.europe().light())
-                .itemsIds(33927);
-    }
-
-    private static HistoryRequest regionReq() {
-        return client().history()
-                .region(Worlds.europe())
-                .itemsIds(33927);
     }
 }

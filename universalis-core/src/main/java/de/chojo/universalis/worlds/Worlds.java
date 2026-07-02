@@ -140,18 +140,6 @@ public class Worlds {
         return null;
     }
 
-    private static World findWorldById(int id) {
-        for (Region region : regions()) {
-            for (World world : region.worlds()) {
-                if (world.id() == id) return world;
-            }
-        }
-        for (World value : names.values()) {
-            if (value.id() == id) return value;
-        }
-        return World.of("", id, null);
-    }
-
     /**
      * Retrieve a world by its name
      *
@@ -163,18 +151,6 @@ public class Worlds {
     public static World worldByName(@Nullable String name) {
         if (name == null) return null;
         return names.computeIfAbsent(name.toLowerCase(), Worlds::findWorldByName);
-    }
-
-    private static World findWorldByName(String name) {
-        for (Region region : regions()) {
-            for (World world : region.worlds()) {
-                if (world.name().equalsIgnoreCase(name)) return world;
-            }
-        }
-        for (World world : ids.values()) {
-            if (world.name().equalsIgnoreCase(name)) return world;
-        }
-        return World.of(name, -1, null);
     }
 
     /**
@@ -204,6 +180,30 @@ public class Worlds {
         }
 
         return iWorld;
+    }
+
+    private static World findWorldById(int id) {
+        for (Region region : regions()) {
+            for (World world : region.worlds()) {
+                if (world.id() == id) return world;
+            }
+        }
+        for (World value : names.values()) {
+            if (value.id() == id) return value;
+        }
+        return World.of("", id, null);
+    }
+
+    private static World findWorldByName(String name) {
+        for (Region region : regions()) {
+            for (World world : region.worlds()) {
+                if (world.name().equalsIgnoreCase(name)) return world;
+            }
+        }
+        for (World world : ids.values()) {
+            if (world.name().equalsIgnoreCase(name)) return world;
+        }
+        return World.of(name, -1, null);
     }
 
     /**

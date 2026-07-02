@@ -6,8 +6,6 @@
 
 package de.chojo.universalis.rest;
 
-import tools.jackson.core.JacksonException;
-import tools.jackson.databind.ObjectMapper;
 import de.chojo.universalis.exceptions.ErrorResponseException;
 import de.chojo.universalis.exceptions.RequestException;
 import de.chojo.universalis.exceptions.ResponseException;
@@ -31,6 +29,8 @@ import io.github.bucket4j.Bucket;
 import org.apache.hc.core5.net.URIBuilder;
 import org.jetbrains.annotations.CheckReturnValue;
 import org.slf4j.Logger;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.net.URI;
@@ -208,7 +208,7 @@ public class UniversalisRestImpl implements UniversalisRest {
      */
     public <T> CompletableFuture<T> getAsyncAndMap(HttpRequest request, Class<T> result) {
         return xivapi.asScheduler().consume(1, executorService)
-                .thenApplyAsync(v -> getAndMapInternal(request, result), executorService);
+                     .thenApplyAsync(v -> getAndMapInternal(request, result), executorService);
     }
 
     /**
@@ -226,6 +226,13 @@ public class UniversalisRestImpl implements UniversalisRest {
             throw new RequestException("Interrupted while waiting for token", e);
         }
         return getAndMapInternal(request, result);
+    }
+
+    @Override
+    public void close() {
+        log.debug("Shutting down universalis rest client");
+        executorService.shutdown();
+        http.close();
     }
 
     private <T> T getAndMapInternal(HttpRequest request, Class<T> result) {
@@ -250,12 +257,5 @@ public class UniversalisRestImpl implements UniversalisRest {
         } catch (JacksonException e) {
             throw new ResponseException("Error during request mapping", e);
         }
-    }
-
-    @Override
-    public void close() {
-        log.debug("Shutting down universalis rest client");
-        executorService.shutdown();
-        http.close();
     }
 }

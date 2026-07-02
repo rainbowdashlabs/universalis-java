@@ -8,9 +8,9 @@ package de.chojo.universalis.websocket.events.concrete.sales.impl;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import de.chojo.universalis.entities.Item;
+import de.chojo.universalis.events.sales.impl.SalesRemoveEvent;
 import de.chojo.universalis.websocket.events.concrete.sales.WsSalesEvent;
 import de.chojo.universalis.websocket.events.concrete.sales.views.SaleView;
-import de.chojo.universalis.events.sales.impl.SalesRemoveEvent;
 import de.chojo.universalis.worlds.World;
 
 import java.util.List;
@@ -21,8 +21,9 @@ import java.util.List;
 public class WsSalesRemoveEvent extends WsSalesEvent<SalesRemoveEvent> {
     /**
      * Creates a new websocket sales remove event
-     * @param item item id
-     * @param world world
+     *
+     * @param item      item id
+     * @param world     world
      * @param saleViews sale views
      */
     public WsSalesRemoveEvent(@JsonProperty("item") Item item,
