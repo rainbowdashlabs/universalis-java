@@ -19,7 +19,7 @@ import org.jetbrains.annotations.CheckReturnValue;
 /**
  * Class to access the universalis api.
  */
-public interface UniversalisRest {
+public interface UniversalisRest extends AutoCloseable {
     /**
      * Get a api with default settings.
      *
@@ -95,4 +95,11 @@ public interface UniversalisRest {
      */
     @CheckReturnValue
     Extra extra();
+
+    /**
+     * Shuts down the underlying HTTP client and executor. Any in-flight or queued
+     * asynchronous requests will be cancelled.
+     */
+    @Override
+    void close();
 }

@@ -10,17 +10,34 @@ import de.chojo.universalis.provider.NameSupplier;
 import de.chojo.universalis.provider.items.Items;
 
 import org.jetbrains.annotations.CheckReturnValue;
+import java.net.URI;
 import java.net.http.HttpClient;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Class to build an universalis rest client
  */
 public class UniversalisRestBuilder {
+    /**
+     * Default base URI of the universalis API.
+     */
+    public static final URI DEFAULT_BASE_URI = URI.create("https://universalis.app/api/v2");
+
     private HttpClient http = HttpClient.newBuilder().version(HttpClient.Version.HTTP_2).build();
-    private ScheduledExecutorService executorService = Executors.newScheduledThreadPool(2);
+    private ScheduledExecutorService executorService = defaultExecutor();
     private NameSupplier nameSupplier = NameSupplier.EMPTY;
+    private URI baseUri = DEFAULT_BASE_URI;
+
+    private static ScheduledExecutorService defaultExecutor() {
+        AtomicInteger counter = new AtomicInteger();
+        return Executors.newScheduledThreadPool(2, r -> {
+            Thread t = new Thread(r, "universalis-rest-" + counter.incrementAndGet());
+            t.setDaemon(true);
+            return t;
+        });
+    }
 
     /**
      * Set the http client used to send requests to universalis
@@ -59,12 +76,24 @@ public class UniversalisRestBuilder {
     }
 
     /**
+     * Override the base URI of the universalis API. Defaults to {@link #DEFAULT_BASE_URI}.
+     *
+     * @param baseUri base URI
+     * @return builder
+     */
+    @CheckReturnValue
+    public UniversalisRestBuilder setBaseUri(URI baseUri) {
+        this.baseUri = baseUri;
+        return this;
+    }
+
+    /**
      * Build the api. The instance is ready to use.
      *
      * @return api instance
      */
     @CheckReturnValue
     public UniversalisRest build() {
-        return new UniversalisRestImpl(http, executorService, nameSupplier);
+        return new UniversalisRestImpl(http, executorService, nameSupplier, baseUri);
     }
 }

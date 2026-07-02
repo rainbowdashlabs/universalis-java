@@ -16,6 +16,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.time.Duration;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Locale;
@@ -25,6 +26,13 @@ import java.util.Map;
  * A class which is able to act as a {@link NameSupplier} for items
  */
 public class Items implements NameSupplier {
+    /**
+     * Default source URL for the item name dump.
+     */
+    public static final URI DEFAULT_SOURCE_URI =
+            URI.create("https://raw.githubusercontent.com/ffxiv-teamcraft/ffxiv-teamcraft/staging/libs/data/src/lib/json/items.json");
+    private static final Duration DEFAULT_TIMEOUT = Duration.ofSeconds(30);
+
     private final Map<Integer, Name> ids;
     private final Map<String, Integer> en = new HashMap<>();
     private final Map<String, Integer> de = new HashMap<>();
@@ -34,37 +42,64 @@ public class Items implements NameSupplier {
     private Items(Map<Integer, Name> ids) {
         this.ids = ids;
         for (var entry : ids.entrySet()) {
-            en.put(entry.getValue().english().toLowerCase(Locale.ROOT), entry.getKey());
-            de.put(entry.getValue().german().toLowerCase(Locale.ROOT), entry.getKey());
-            fr.put(entry.getValue().french().toLowerCase(Locale.ROOT), entry.getKey());
-            jp.put(entry.getValue().japanese().toLowerCase(Locale.ROOT), entry.getKey());
+            Name name = entry.getValue();
+            Integer id = entry.getKey();
+            putLower(en, name.english(), id);
+            putLower(de, name.german(), id);
+            putLower(fr, name.french(), id);
+            putLower(jp, name.japanese(), id);
         }
     }
 
+    private static void putLower(Map<String, Integer> target, String key, Integer id) {
+        if (key == null || key.isBlank()) return;
+        target.put(key.toLowerCase(Locale.ROOT), id);
+    }
+
     /**
-     * Create a new items instance which will load the items from a GitHub dump.
+     * Create a new items instance which will load the items from the {@link #DEFAULT_SOURCE_URI default source}.
      *
      * @return item instance
      * @throws IOException          if the response could not be read
      * @throws InterruptedException if the current thread gets interrupted
      */
     public static Items create() throws IOException, InterruptedException {
-        HttpClient client = HttpClient.newBuilder().build();
-        HttpResponse<String> response = client.send(HttpRequest.newBuilder()
-                .uri(URI.create("https://raw.githubusercontent.com/ffxiv-teamcraft/ffxiv-teamcraft/staging/libs/data/src/lib/json/items.json"))
-                .GET()
-                .build(), HttpResponse.BodyHandlers.ofString());
-        ObjectMapper mapper = JsonMapper.builder().build();
-        String body = response.body();
-        Map<String, Name> names = mapper.readValue(body, mapper.getTypeFactory()
-                .constructMapType(Map.class, String.class, Name.class));
+        return create(DEFAULT_SOURCE_URI);
+    }
 
-        Map<Integer, Name> idNames = new HashMap<>();
+    /**
+     * Create a new items instance which will load the items from the given URL.
+     *
+     * @param source source URI
+     * @return item instance
+     * @throws IOException          if the response could not be read or is not 2xx
+     * @throws InterruptedException if the current thread gets interrupted
+     */
+    public static Items create(URI source) throws IOException, InterruptedException {
+        try (HttpClient client = HttpClient.newBuilder().connectTimeout(DEFAULT_TIMEOUT).build()) {
+            HttpResponse<String> response = client.send(HttpRequest.newBuilder()
+                    .uri(source)
+                    .timeout(DEFAULT_TIMEOUT)
+                    .GET()
+                    .build(), HttpResponse.BodyHandlers.ofString());
+            if (response.statusCode() / 100 != 2) {
+                throw new IOException("Failed to load items from " + source
+                        + " — status " + response.statusCode());
+            }
+            ObjectMapper mapper = JsonMapper.builder().build();
+            Map<String, Name> names = mapper.readValue(response.body(), mapper.getTypeFactory()
+                    .constructMapType(Map.class, String.class, Name.class));
 
-        for (Map.Entry<String, Name> entry : names.entrySet()) {
-            idNames.put(Integer.parseInt(entry.getKey()), entry.getValue());
+            Map<Integer, Name> idNames = new HashMap<>();
+            for (Map.Entry<String, Name> entry : names.entrySet()) {
+                try {
+                    idNames.put(Integer.parseInt(entry.getKey()), entry.getValue());
+                } catch (NumberFormatException e) {
+                    throw new IOException("Item id '" + entry.getKey() + "' from " + source + " is not an integer", e);
+                }
+            }
+            return new Items(idNames);
         }
-        return new Items(idNames);
     }
 
     @Override

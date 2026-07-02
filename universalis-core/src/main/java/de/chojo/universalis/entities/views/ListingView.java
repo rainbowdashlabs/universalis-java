@@ -107,11 +107,11 @@ public record ListingView(
         if (onMannequin != that.onMannequin) return false;
         if (retainerCity != that.retainerCity) return false;
         if (total != that.total) return false;
+        if (tax != that.tax) return false;
         if (!Objects.equals(creatorId, that.creatorId)) return false;
         if (!Objects.equals(materia, that.materia)) return false;
         if (!Objects.equals(retainerId, that.retainerId)) return false;
         if (!Objects.equals(retainerName, that.retainerName)) return false;
-        if (!Objects.equals(tax, that.tax)) return false;
         return Objects.equals(sellerId, that.sellerId);
     }
 
@@ -125,7 +125,7 @@ public record ListingView(
         result = 31 * result + (isCrafted() ? 1 : 0);
         result = 31 * result + (materia != null ? materia.hashCode() : 0);
         result = 31 * result + (onMannequin ? 1 : 0);
-        result = 31 * result + retainerCity.ordinal();
+        result = 31 * result + (retainerCity == null ? 0 : retainerCity.ordinal());
         result = 31 * result + (retainerId != null ? retainerId.hashCode() : 0);
         result = 31 * result + (retainerName != null ? retainerName.hashCode() : 0);
         result = 31 * result + (sellerId != null ? sellerId.hashCode() : 0);

@@ -8,13 +8,13 @@ package de.chojo.universalis.rest.routes.requests;
 
 import de.chojo.universalis.rest.response.MarketableResponse;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junitpioneer.jupiter.RetryingTest;
 
 import static de.chojo.universalis.rest.ClientWrapper.client;
 
 class MarketableRequestImplTest {
 
-    @Test
+    @RetryingTest(3)
     public void test() {
         MarketableResponse complete = client().marketable().complete();
         Assertions.assertFalse(complete.items().isEmpty());

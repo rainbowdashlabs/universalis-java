@@ -7,14 +7,14 @@
 package de.chojo.universalis;
 
 import de.chojo.universalis.rest.response.WorldsResponse;
-import org.junit.jupiter.api.Test;
+import org.junitpioneer.jupiter.RetryingTest;
 
 import static de.chojo.universalis.rest.ClientWrapper.client;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class WorldsRequestImplTest {
 
-    @Test
+    @RetryingTest(3)
     public void test() {
         WorldsResponse complete = client().worlds().complete();
         assertFalse(complete.worlds().isEmpty());

@@ -68,7 +68,6 @@ public class WebsocketListenerAdapter extends WebSocketAdapter implements EventL
         SimpleModule module = new SimpleModule();
         module.addDeserializer(World.class, new WorldDeserializer())
               .addDeserializer(Item.class, new ItemDeserializer(itemNameSupplier))
-//              .addDeserializer(Instant.class, new SecondsDateTimeConverter())
               .addDeserializer(City.class, new CityDeserializer());
         objectMapper = JsonMapper.builder()
                                  .addModule(module)
@@ -82,6 +81,10 @@ public class WebsocketListenerAdapter extends WebSocketAdapter implements EventL
         String event = (String) map.remove("event");
         log.trace("Received event {}", event);
         log.trace("{}", objectMapper.writeValueAsString(map));
+        if (event == null) {
+            log.warn("Received binary message with no 'event' field: {}", map);
+            return;
+        }
         switch (event) {
             case "sales/add" -> onSalesAdd(mapToEvent(map, WsSalesAddEvent.class));
             case "sales/remove" -> onSalesRemove(mapToEvent(map, WsSalesRemoveEvent.class));
@@ -95,6 +98,7 @@ public class WebsocketListenerAdapter extends WebSocketAdapter implements EventL
                 onListingRemove(wsRemove.toEvent());
                 removedListings.put(wsRemove.world(), wsRemove);
             }
+            default -> log.warn("Received unknown event '{}' with payload {}", event, map);
         }
     }
 

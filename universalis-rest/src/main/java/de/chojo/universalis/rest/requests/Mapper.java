@@ -65,11 +65,9 @@ public final class Mapper {
         SimpleModule module = new SimpleModule();
         module.addDeserializer(City.class, new CityDeserializer())
                 .addDeserializer(ContentResponse.class, new ContentResponseDeserializer())
-                //.addDeserializer(Datacenter.class, new DataCenterDeserializer())
                 .addDeserializer(DataCentersResponse.class, new DataCenterResponseDeserializer())
                 .addDeserializer(String.class, new EmptyStringDeserializer())
                 .addDeserializer(HistoryResponse.class, new HistoryResponseDeserializer())
-                //.addDeserializer(Instant.class, new SecondsDateTimeConverter())
                 .addDeserializer(Item.class, new ItemDeserializer(itemNameSupplier))
                 .addDeserializer(Listing.class, new ListingDeserializer())
                 .addDeserializer(MarketableResponse.class, new MarketableResponseDeserializer())

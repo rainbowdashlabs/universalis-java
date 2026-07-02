@@ -24,11 +24,21 @@ import java.util.concurrent.Executors;
  * Builder to create a {@link UniversalisWs} instance.
  */
 public class UniversalisWsBuilder {
+    /**
+     * Default websocket URL for the universalis service.
+     */
+    public static final String DEFAULT_WEBSOCKET_URL = "wss://universalis.app/api/ws";
+
     private final WebSocketFactory factory;
     private final List<Subscription> subscriptions = new ArrayList<>();
     private final List<EventListener> listeners = new ArrayList<>();
-    private ExecutorService executorService = Executors.newCachedThreadPool();
+    private ExecutorService executorService = Executors.newCachedThreadPool(r -> {
+        Thread t = new Thread(r, "universalis-ws-worker");
+        t.setDaemon(true);
+        return t;
+    });
     private NameSupplier nameSupplier = NameSupplier.EMPTY;
+    private String websocketUrl = DEFAULT_WEBSOCKET_URL;
 
     /**
      * Create a new universalis websocket builder
@@ -83,6 +93,17 @@ public class UniversalisWsBuilder {
     }
 
     /**
+     * Override the websocket URL. Defaults to {@link #DEFAULT_WEBSOCKET_URL}.
+     *
+     * @param websocketUrl websocket url
+     * @return builder instance
+     */
+    public UniversalisWsBuilder websocketUrl(String websocketUrl) {
+        this.websocketUrl = websocketUrl;
+        return this;
+    }
+
+    /**
      * Builds and attempts to connect the websocket.
      * <p>
      * Use {@link UniversalisWs#awaitReady()} to wait until the socket is connected.
@@ -90,7 +111,7 @@ public class UniversalisWsBuilder {
      * @return Universalis websocket instance
      */
     public UniversalisWs build() {
-        UniversalisWsImpl universalisWs = new UniversalisWsImpl(factory, executorService, subscriptions, listeners, nameSupplier);
+        UniversalisWsImpl universalisWs = new UniversalisWsImpl(factory, executorService, subscriptions, listeners, nameSupplier, websocketUrl);
         universalisWs.ignite();
         return universalisWs;
     }

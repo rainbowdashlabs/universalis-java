@@ -52,16 +52,16 @@ public record CurrentlyShownView(@JsonProperty("itemID") Item item,
 ) {
     @Override
     public Map<String, Integer> stackSizeHistogramHQ() {
-        return stackSizeHistogramHQ == null? Collections.emptyMap() : stackSizeHistogramHQ;
+        return stackSizeHistogramHQ == null ? Collections.emptyMap() : stackSizeHistogramHQ;
     }
 
     @Override
     public Map<String, Integer> stackSizeHistogramNQ() {
-        return stackSizeHistogramHQ == null? Collections.emptyMap() : stackSizeHistogramNQ;
+        return stackSizeHistogramNQ == null ? Collections.emptyMap() : stackSizeHistogramNQ;
     }
 
     @Override
     public Map<String, Integer> stackSizeHistogram() {
-        return stackSizeHistogramHQ == null? Collections.emptyMap() : stackSizeHistogram;
+        return stackSizeHistogram == null ? Collections.emptyMap() : stackSizeHistogram;
     }
 }
