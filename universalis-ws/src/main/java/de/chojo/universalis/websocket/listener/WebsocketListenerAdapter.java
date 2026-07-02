@@ -69,9 +69,15 @@ public class WebsocketListenerAdapter extends WebSocketAdapter implements EventL
         module.addDeserializer(World.class, new WorldDeserializer())
               .addDeserializer(Item.class, new ItemDeserializer(itemNameSupplier))
               .addDeserializer(City.class, new CityDeserializer());
+        // FAIL_ON_NULL_FOR_PRIMITIVES defaults to TRUE in Jackson 3, which
+        // makes any `null → int` in a Universalis payload throw and drop
+        // the entire event silently. Their WS ships `null` for optional
+        // integer fields (stainId, materia counts, tax under some conditions),
+        // so tolerate it and let those fields default to 0.
         objectMapper = JsonMapper.builder()
                                  .addModule(module)
                                  .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
+                                 .disable(DeserializationFeature.FAIL_ON_NULL_FOR_PRIMITIVES)
                                  .build();
     }
 
