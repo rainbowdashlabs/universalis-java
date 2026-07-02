@@ -6,16 +6,15 @@
 
 package de.chojo.universalis.deserializer.response;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.JsonDeserializer;
+import tools.jackson.core.JsonParser;
+import tools.jackson.databind.DeserializationContext;
+import tools.jackson.databind.ValueDeserializer;
 import de.chojo.universalis.entities.MinimizedSale;
 import de.chojo.universalis.entities.QualityIndicator;
 import de.chojo.universalis.entities.views.HistoryView;
 import de.chojo.universalis.entities.views.MinimizedSaleView;
 import de.chojo.universalis.rest.response.HistoryResponse;
 
-import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -24,9 +23,9 @@ import java.util.stream.Collectors;
 /**
  * Deserializer for {@link HistoryResponse}
  */
-public class HistoryResponseDeserializer extends JsonDeserializer<HistoryResponse> {
+public class HistoryResponseDeserializer extends ValueDeserializer<HistoryResponse> {
     @Override
-    public HistoryResponse deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+    public HistoryResponse deserialize(JsonParser p, DeserializationContext ctxt) {
         var view = ctxt.readValue(p, HistoryView.class);
         var item = view.item();
         var world = view.world();
@@ -40,9 +39,9 @@ public class HistoryResponseDeserializer extends JsonDeserializer<HistoryRespons
         var saleVelocity = QualityIndicator.of(view.regularSaleVelocity(), view.nqSaleVelocity(), view.hqSaleVelocity());
         var histogramG = view.stackSizeHistogram().entrySet().stream()
                                        .collect(Collectors.toMap(e -> Integer.valueOf(e.getKey()), Map.Entry::getValue));
-        var histogramNQ = view.stackSizeHistogram().entrySet().stream()
+        var histogramNQ = view.stackSizeHistogramNQ().entrySet().stream()
                                         .collect(Collectors.toMap(e -> Integer.valueOf(e.getKey()), Map.Entry::getValue));
-        var histogramHQ = view.stackSizeHistogram().entrySet().stream()
+        var histogramHQ = view.stackSizeHistogramHQ().entrySet().stream()
                                         .collect(Collectors.toMap(e -> Integer.valueOf(e.getKey()), Map.Entry::getValue));
         var histogram = QualityIndicator.of(histogramG, histogramNQ, histogramHQ);
         return new HistoryResponse(item, world, datacenter, region, lastUploadTime, sales, saleVelocity,

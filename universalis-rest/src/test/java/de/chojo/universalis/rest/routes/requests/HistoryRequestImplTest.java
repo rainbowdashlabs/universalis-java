@@ -17,32 +17,39 @@ import java.time.Duration;
 import java.util.stream.Stream;
 
 import static de.chojo.universalis.rest.ClientWrapper.client;
+import static de.chojo.universalis.rest.LiveApiRetry.retry;
 
 class HistoryRequestImplTest {
 
     @ParameterizedTest
     @MethodSource("inputs")
     void limit(HistoryRequest request) {
-        HistoryResponse complete = request
-                .limit(3)
-                .complete();
-        Assertions.assertEquals(3, complete.sales().size());
+        retry(() -> {
+            HistoryResponse complete = request
+                    .limit(3)
+                    .complete();
+            Assertions.assertEquals(3, complete.sales().size());
+        });
     }
 
     @ParameterizedTest
     @MethodSource("inputs")
     void historyTime(HistoryRequest request) {
-        HistoryResponse noGst = request.historyTime(Duration.ofDays(7)).complete();
-        HistoryResponse gst = request.historyTime(Duration.ofHours(1)).complete();
-        Assertions.assertNotEquals(noGst.sales().size(), gst.sales().size());
+        retry(() -> {
+            HistoryResponse noGst = request.historyTime(Duration.ofDays(7)).complete();
+            HistoryResponse gst = request.historyTime(Duration.ofHours(1)).complete();
+            Assertions.assertNotEquals(noGst.sales().size(), gst.sales().size());
+        });
     }
 
     @ParameterizedTest
     @MethodSource("inputs")
     void statsTime(HistoryRequest request) {
-        HistoryResponse noGst = request.statsTime(Duration.ofDays(7)).complete();
-        HistoryResponse gst = request.statsTime(Duration.ofHours(1)).complete();
-        Assertions.assertNotEquals(noGst.saleVelocity(), gst.saleVelocity());
+        retry(() -> {
+            HistoryResponse noGst = request.statsTime(Duration.ofDays(7)).complete();
+            HistoryResponse gst = request.statsTime(Duration.ofHours(1)).complete();
+            Assertions.assertNotEquals(noGst.saleVelocity(), gst.saleVelocity());
+        });
     }
 
 

@@ -39,6 +39,7 @@ public class HistoryRequestImpl extends RequestBuilder<HistoryResponse> implemen
     @Override
     @CheckReturnValue
     public HistoryRequest region(Region region) {
+        markScope("region");
         path(region.name());
         return this;
     }
@@ -46,6 +47,7 @@ public class HistoryRequestImpl extends RequestBuilder<HistoryResponse> implemen
     @Override
     @CheckReturnValue
     public HistoryRequest dataCenter(DataCenter dataCenter) {
+        markScope("dataCenter");
         path(dataCenter.name());
         return this;
     }
@@ -53,6 +55,7 @@ public class HistoryRequestImpl extends RequestBuilder<HistoryResponse> implemen
     @Override
     @CheckReturnValue
     public HistoryRequest world(World world) {
+        markScope("world");
         path(world.id());
         return this;
     }
@@ -95,13 +98,19 @@ public class HistoryRequestImpl extends RequestBuilder<HistoryResponse> implemen
     @Override
     @CheckReturnValue
     public HistoryRequest historyTime(Duration duration) {
-        parameter("entriesWithin", Math.abs(duration.getSeconds()));
+        if (duration.isNegative()) {
+            throw new IllegalArgumentException("historyTime duration must not be negative: " + duration);
+        }
+        parameter("entriesWithin", duration.toSeconds());
         return this;
     }
 
     @Override
     @CheckReturnValue
     public HistoryRequest statsTime(Duration duration) {
+        if (duration.isNegative()) {
+            throw new IllegalArgumentException("statsTime duration must not be negative: " + duration);
+        }
         parameter("statsWithin", duration.toMillis());
         return this;
     }

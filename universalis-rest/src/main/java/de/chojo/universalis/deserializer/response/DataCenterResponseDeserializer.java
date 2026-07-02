@@ -6,21 +6,20 @@
 
 package de.chojo.universalis.deserializer.response;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.JsonDeserializer;
+import tools.jackson.core.JsonParser;
+import tools.jackson.databind.DeserializationContext;
+import tools.jackson.databind.ValueDeserializer;
 import de.chojo.universalis.entities.DataCenter;
 import de.chojo.universalis.rest.response.DataCentersResponse;
 
-import java.io.IOException;
 import java.util.List;
 
 /**
  * Deserializer for {@link DataCentersResponse}
  */
-public class DataCenterResponseDeserializer extends JsonDeserializer<DataCentersResponse> {
+public class DataCenterResponseDeserializer extends ValueDeserializer<DataCentersResponse> {
     @Override
-    public DataCentersResponse deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+    public DataCentersResponse deserialize(JsonParser p, DeserializationContext ctxt) {
         List<DataCenter> contentType = ctxt.readValue(p, ctxt.getTypeFactory()
                                                              .constructCollectionType(List.class, DataCenter.class));
         return new DataCentersResponse(contentType);

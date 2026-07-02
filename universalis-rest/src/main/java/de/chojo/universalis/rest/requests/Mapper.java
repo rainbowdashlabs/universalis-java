@@ -8,10 +8,10 @@ package de.chojo.universalis.rest.requests;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.json.JsonMapper;
-import com.fasterxml.jackson.databind.module.SimpleModule;
+import tools.jackson.databind.DeserializationFeature;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.json.JsonMapper;
+import tools.jackson.databind.module.SimpleModule;
 import de.chojo.universalis.deserializer.CityDeserializer;
 import de.chojo.universalis.deserializer.DataCenterDeserializer;
 import de.chojo.universalis.deserializer.DataCenterKeyDeserializer;
@@ -65,11 +65,9 @@ public final class Mapper {
         SimpleModule module = new SimpleModule();
         module.addDeserializer(City.class, new CityDeserializer())
                 .addDeserializer(ContentResponse.class, new ContentResponseDeserializer())
-                //.addDeserializer(Datacenter.class, new DataCenterDeserializer())
                 .addDeserializer(DataCentersResponse.class, new DataCenterResponseDeserializer())
                 .addDeserializer(String.class, new EmptyStringDeserializer())
                 .addDeserializer(HistoryResponse.class, new HistoryResponseDeserializer())
-                //.addDeserializer(Instant.class, new SecondsDateTimeConverter())
                 .addDeserializer(Item.class, new ItemDeserializer(itemNameSupplier))
                 .addDeserializer(Listing.class, new ListingDeserializer())
                 .addDeserializer(MarketableResponse.class, new MarketableResponseDeserializer())
@@ -83,10 +81,11 @@ public final class Mapper {
                 .addDeserializer(DataCenter.class, new DataCenterDeserializer())
                 .addDeserializer(WorldsResponse.class, new WorldsResponseDeserializer())
                 .addDeserializer(WorldUploadCountResponse.class, new WorldUploadCountResponseDeserializer());
-        return new JsonMapper()
-                .setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.NONE)
-                .configure(DeserializationFeature.ACCEPT_EMPTY_ARRAY_AS_NULL_OBJECT, true)
-                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-                .registerModule(module);
+        return JsonMapper.builder()
+                .changeDefaultVisibility(v -> v.withVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.NONE))
+                .enable(DeserializationFeature.ACCEPT_EMPTY_ARRAY_AS_NULL_OBJECT)
+                .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
+                .addModule(module)
+                .build();
     }
 }

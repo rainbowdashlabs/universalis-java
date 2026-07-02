@@ -16,6 +16,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 import static de.chojo.universalis.rest.ClientWrapper.client;
+import static de.chojo.universalis.rest.LiveApiRetry.retry;
 
 class LeastRecentlyUpdatedRequestImplTest {
 
@@ -23,8 +24,10 @@ class LeastRecentlyUpdatedRequestImplTest {
     @ParameterizedTest
     @MethodSource("inputs")
     public void test(LeastRecentlyUpdatedRequest request) {
-        LeastRecentlyUpdatedResponse complete = request.complete();
-        Assertions.assertFalse(complete.items().isEmpty());
+        retry(() -> {
+            LeastRecentlyUpdatedResponse complete = request.complete();
+            Assertions.assertFalse(complete.items().isEmpty());
+        });
     }
 
     public static Stream<LeastRecentlyUpdatedRequest> inputs() {

@@ -46,6 +46,11 @@ public interface World extends WorldProvider {
             }
 
             @Override
+            public int hashCode() {
+                return Integer.hashCode(id);
+            }
+
+            @Override
             public DataCenter dataCenter() {
                 return dataCenter;
             }

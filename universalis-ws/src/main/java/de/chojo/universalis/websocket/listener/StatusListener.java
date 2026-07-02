@@ -30,7 +30,7 @@ public class StatusListener extends WebSocketAdapter {
     private final BSONEncoder encoder = new BasicBSONEncoder();
     private final UniversalisWsImpl universalisWs;
     private final List<Subscription> subscriptions;
-    private boolean connected;
+    private volatile boolean connected;
 
     /**
      * Creates a new status listener

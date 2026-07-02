@@ -6,7 +6,7 @@
 
 package de.chojo.universalis.entities;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import tools.jackson.databind.annotation.JsonDeserialize;
 import de.chojo.universalis.deserializer.SecondsDateTimeConverter;
 import de.chojo.universalis.worlds.World;
 

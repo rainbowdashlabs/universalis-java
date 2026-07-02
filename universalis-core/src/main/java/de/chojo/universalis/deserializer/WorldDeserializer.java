@@ -6,20 +6,18 @@
 
 package de.chojo.universalis.deserializer;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.JsonDeserializer;
+import tools.jackson.core.JsonParser;
+import tools.jackson.databind.DeserializationContext;
+import tools.jackson.databind.ValueDeserializer;
 import de.chojo.universalis.worlds.World;
 import de.chojo.universalis.worlds.Worlds;
-
-import java.io.IOException;
 
 /**
  * Deserializer to deserialize world ids and names.
  */
-public class WorldDeserializer extends JsonDeserializer<World> {
+public class WorldDeserializer extends ValueDeserializer<World> {
     @Override
-    public World deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+    public World deserialize(JsonParser p, DeserializationContext ctxt) {
         if (p.isExpectedNumberIntToken()) {
             return Worlds.worldById(p.getValueAsInt());
         }

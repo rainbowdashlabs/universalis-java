@@ -10,18 +10,18 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Class containing the currently valid regions, datacenters and worlds.
  */
 @SuppressWarnings("unused")
 public class Worlds {
-    private static final Map<Integer, World> ids = new HashMap<>();
-    private static final Map<String, World> names = new HashMap<>();
+    private static final Map<Integer, World> ids = new ConcurrentHashMap<>();
+    private static final Map<String, World> names = new ConcurrentHashMap<>();
     private static final Europe europe = new Europe();
     private static final NorthAmerica northAmerica = new NorthAmerica();
     private static final Oceania oceania = new Oceania();
@@ -1000,7 +1000,7 @@ public class Worlds {
 
             @Override
             public int id() {
-                return 0;
+                return 11;
             }
 
             @Override
@@ -1053,7 +1053,7 @@ public class Worlds {
 
             @Override
             public int id() {
-                return 0;
+                return 12;
             }
 
             @Override
@@ -1102,7 +1102,7 @@ public class Worlds {
 
             @Override
             public int id() {
-                return 0;
+                return 13;
             }
 
             @Override
@@ -1155,7 +1155,7 @@ public class Worlds {
 
             @Override
             public int id() {
-                return 0;
+                return 14;
             }
 
             @Override
