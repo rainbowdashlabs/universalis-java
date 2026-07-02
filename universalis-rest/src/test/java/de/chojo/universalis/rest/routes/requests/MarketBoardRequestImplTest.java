@@ -18,67 +18,77 @@ import java.time.Duration;
 import java.util.stream.Stream;
 
 import static de.chojo.universalis.rest.ClientWrapper.client;
+import static de.chojo.universalis.rest.LiveApiRetry.retry;
 
 class MarketBoardRequestImplTest {
 
     @ParameterizedTest
     @MethodSource("inputs")
     void historyLimit(MarketBoardRequest request) {
-        MarketBoardResponse complete = request
-                .historyLimit(3)
-                .complete();
-        Assertions.assertEquals(3, complete.recentHistory().size());
+        retry(() -> {
+            MarketBoardResponse complete = request
+                    .historyLimit(3)
+                    .complete();
+            Assertions.assertEquals(3, complete.recentHistory().size());
+        });
     }
 
     @ParameterizedTest
     @MethodSource("inputs")
     void listingLimit(MarketBoardRequest request) {
-        MarketBoardResponse complete = request
-                .listingsLimit(3)
-                .complete();
-        Assertions.assertFalse(complete.listings().isEmpty());
-        Assertions.assertTrue(complete.listings().size() <= 3);
+        retry(() -> {
+            MarketBoardResponse complete = request
+                    .listingsLimit(3)
+                    .complete();
+            Assertions.assertFalse(complete.listings().isEmpty());
+            Assertions.assertTrue(complete.listings().size() <= 3);
+        });
     }
 
     @ParameterizedTest
     @MethodSource("inputs")
     void highQuality(MarketBoardRequest request) {
-        var complete = request.highQuality().complete();
-        for (Listing listing : complete.listings()) {
-            Assertions.assertTrue(listing.meta().hq());
-        }
-
+        retry(() -> {
+            var complete = request.highQuality().complete();
+            for (Listing listing : complete.listings()) {
+                Assertions.assertTrue(listing.meta().hq());
+            }
+        });
     }
 
     @ParameterizedTest
     @MethodSource("inputs")
     void normalQuality(MarketBoardRequest request) {
-        var complete = request.normalQuality().complete();
-        for (Listing listing : complete.listings()) {
-            Assertions.assertFalse(listing.meta().hq());
-        }
-
+        retry(() -> {
+            var complete = request.normalQuality().complete();
+            for (Listing listing : complete.listings()) {
+                Assertions.assertFalse(listing.meta().hq());
+            }
+        });
     }
 
     @ParameterizedTest
     @MethodSource("inputs")
     void historyTime(MarketBoardRequest request) {
-        request.historyLimit(100);
-        request.historyTime(Duration.ofDays(7));
-        System.out.println(request);
-        MarketBoardResponse days = request.complete();
-        request.historyTime(Duration.ofHours(1));
-        System.out.println(request);
-        MarketBoardResponse hours = request.complete();
-        Assertions.assertNotEquals(days.recentHistory().size(), hours.recentHistory().size(), "Received same results for %s and %s".formatted(days, hours));
+        retry(() -> {
+            request.historyLimit(100);
+            request.historyTime(Duration.ofDays(7));
+            MarketBoardResponse days = request.complete();
+            request.historyTime(Duration.ofHours(1));
+            MarketBoardResponse hours = request.complete();
+            Assertions.assertNotEquals(days.recentHistory().size(), hours.recentHistory().size(),
+                    "Received same results for %s and %s".formatted(days, hours));
+        });
     }
 
     @ParameterizedTest
     @MethodSource("inputs")
     void statsTime(MarketBoardRequest request) {
-        MarketBoardResponse days = request.statsTime(Duration.ofDays(7)).complete();
-        MarketBoardResponse hours = request.statsTime(Duration.ofHours(1)).complete();
-        Assertions.assertNotEquals(days.saleVelocity(), hours.saleVelocity());
+        retry(() -> {
+            MarketBoardResponse days = request.statsTime(Duration.ofDays(7)).complete();
+            MarketBoardResponse hours = request.statsTime(Duration.ofHours(1)).complete();
+            Assertions.assertNotEquals(days.saleVelocity(), hours.saleVelocity());
+        });
     }
 
     public static Stream<MarketBoardRequest> inputs() {

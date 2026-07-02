@@ -17,9 +17,8 @@ import org.jetbrains.annotations.CheckReturnValue;
  */
 public interface WorldScope<T> {
     /**
-     * World scope of the request.
-     * <p>
-     * Calling this again will remove other scopes.
+     * World scope of the request. Scopes are mutually exclusive — calling this
+     * after another scope method throws an {@link IllegalStateException}.
      *
      * @param world world
      * @return request builder

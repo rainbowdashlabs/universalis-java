@@ -15,10 +15,11 @@ import de.chojo.universalis.provider.NameSupplier;
 import de.chojo.universalis.rest.requests.Buckets;
 import de.chojo.universalis.rest.requests.Mapper;
 import de.chojo.universalis.rest.routes.api.DataCentersRequest;
-import de.chojo.universalis.rest.routes.api.MarketBoardRequest;
 import de.chojo.universalis.rest.routes.api.MarketableRequest;
 import de.chojo.universalis.rest.routes.api.WorldsRequest;
 import de.chojo.universalis.rest.routes.api.history.BlankHistoryRequest;
+import de.chojo.universalis.rest.routes.api.marketboard.BlankMarketBoardRequest;
+import de.chojo.universalis.rest.routes.api.taxrates.BlankTaxRatesRequest;
 import de.chojo.universalis.rest.routes.requests.DataCentersRequestImpl;
 import de.chojo.universalis.rest.routes.requests.HistoryRequestImpl;
 import de.chojo.universalis.rest.routes.requests.MarketBoardRequestImpl;
@@ -48,10 +49,11 @@ import static org.slf4j.LoggerFactory.getLogger;
 public class UniversalisRestImpl implements UniversalisRest {
     private static final Logger log = getLogger(UniversalisRestImpl.class);
     private final Bucket xivapi = Buckets.newUniversalisBucket();
-    private final HttpClient http;// = HttpClient.newBuilder().version(HttpClient.Version.HTTP_2).build();
+    private final HttpClient http;
     private final ObjectMapper objectMapper;
-    private final ScheduledExecutorService executorService;// = Executors.newScheduledThreadPool(2);
+    private final ScheduledExecutorService executorService;
     private final Extra extra;
+    private final URI baseUri;
 
     /**
      * Create a new universalis rest client
@@ -59,12 +61,14 @@ public class UniversalisRestImpl implements UniversalisRest {
      * @param http             http client
      * @param executorService  executor service
      * @param itemNameSupplier item name supplier
+     * @param baseUri          base URI of the universalis API (e.g. {@code https://universalis.app/api/v2})
      */
-    public UniversalisRestImpl(HttpClient http, ScheduledExecutorService executorService, NameSupplier itemNameSupplier) {
+    public UniversalisRestImpl(HttpClient http, ScheduledExecutorService executorService, NameSupplier itemNameSupplier, URI baseUri) {
         this.http = http;
         this.executorService = executorService;
         this.objectMapper = Mapper.create(itemNameSupplier);
         this.extra = new Extra(this);
+        this.baseUri = baseUri;
     }
 
     /**
@@ -82,7 +86,7 @@ public class UniversalisRestImpl implements UniversalisRest {
      * @return new uri builder
      */
     public URIBuilder uri() {
-        return new URIBuilder().setScheme("https").setHost("universalis.app").appendPathSegments("api", "v2");
+        return new URIBuilder(baseUri);
     }
 
     /**
@@ -96,7 +100,7 @@ public class UniversalisRestImpl implements UniversalisRest {
 
     @Override
     @CheckReturnValue
-    public MarketBoardRequest marketBoard() {
+    public BlankMarketBoardRequest marketBoard() {
         return new MarketBoardRequestImpl(this);
     }
 
@@ -120,7 +124,7 @@ public class UniversalisRestImpl implements UniversalisRest {
 
     @Override
     @CheckReturnValue
-    public TaxRatesRequestImpl taxRates() {
+    public BlankTaxRatesRequest taxRates() {
         return new TaxRatesRequestImpl(this);
     }
 
@@ -229,7 +233,10 @@ public class UniversalisRestImpl implements UniversalisRest {
         try {
             log.trace("Requesting {}", request.uri());
             response = http().send(request, HttpResponse.BodyHandlers.ofString());
-        } catch (InterruptedException | IOException e) {
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new ResponseException("Interrupted while reading the request", e);
+        } catch (IOException e) {
             throw new ResponseException("Error during reading the request", e);
         }
 
@@ -243,5 +250,12 @@ public class UniversalisRestImpl implements UniversalisRest {
         } catch (JacksonException e) {
             throw new ResponseException("Error during request mapping", e);
         }
+    }
+
+    @Override
+    public void close() {
+        log.debug("Shutting down universalis rest client");
+        executorService.shutdown();
+        http.close();
     }
 }

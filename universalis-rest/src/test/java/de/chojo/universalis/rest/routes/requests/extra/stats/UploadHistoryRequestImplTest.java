@@ -7,15 +7,14 @@
 package de.chojo.universalis.rest.routes.requests.extra.stats;
 
 import de.chojo.universalis.rest.response.extra.stats.UploadHistoryResponse;
-import org.junit.jupiter.api.Test;
+import org.junitpioneer.jupiter.RetryingTest;
 
 import static de.chojo.universalis.rest.ClientWrapper.client;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class UploadHistoryRequestImplTest {
 
-
-    @Test
+    @RetryingTest(3)
     public void test() {
         UploadHistoryResponse complete = client().extra().stats().uploadHistory().complete();
         assertFalse(complete.uploadCountByDay().isEmpty());

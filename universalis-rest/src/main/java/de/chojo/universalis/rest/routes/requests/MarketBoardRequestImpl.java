@@ -38,6 +38,7 @@ public class MarketBoardRequestImpl extends RequestBuilder<MarketBoardResponse> 
     @Override
     @CheckReturnValue
     public MarketBoardRequest region(Region region) {
+        markScope("region");
         path(region.name());
         return this;
     }
@@ -45,6 +46,7 @@ public class MarketBoardRequestImpl extends RequestBuilder<MarketBoardResponse> 
     @Override
     @CheckReturnValue
     public MarketBoardRequest dataCenter(DataCenter dataCenter) {
+        markScope("dataCenter");
         path(dataCenter.name());
         return this;
     }
@@ -52,6 +54,7 @@ public class MarketBoardRequestImpl extends RequestBuilder<MarketBoardResponse> 
     @Override
     @CheckReturnValue
     public MarketBoardRequest world(World world) {
+        markScope("world");
         path(world.id());
         return this;
     }
@@ -100,21 +103,6 @@ public class MarketBoardRequestImpl extends RequestBuilder<MarketBoardResponse> 
 
     @Override
     @CheckReturnValue
-    @Deprecated(forRemoval = true)
-    public MarketBoardRequest noGst() {
-        return noGst(true);
-    }
-
-    @Override
-    @CheckReturnValue
-    @Deprecated(forRemoval = true)
-    public MarketBoardRequest noGst(boolean noGst) {
-        parameter("noGst", noGst);
-        return this;
-    }
-
-    @Override
-    @CheckReturnValue
     public MarketBoardRequest highQuality() {
         return highQuality(true);
     }
@@ -129,13 +117,19 @@ public class MarketBoardRequestImpl extends RequestBuilder<MarketBoardResponse> 
     @Override
     @CheckReturnValue
     public MarketBoardRequest historyTime(Duration duration) {
-        parameter("entriesWithin", Math.abs(duration.getSeconds()));
+        if (duration.isNegative()) {
+            throw new IllegalArgumentException("historyTime duration must not be negative: " + duration);
+        }
+        parameter("entriesWithin", duration.toSeconds());
         return this;
     }
 
     @Override
     @CheckReturnValue
     public MarketBoardRequest statsTime(Duration duration) {
+        if (duration.isNegative()) {
+            throw new IllegalArgumentException("statsTime duration must not be negative: " + duration);
+        }
         parameter("statsWithin", duration.toMillis());
         return this;
     }

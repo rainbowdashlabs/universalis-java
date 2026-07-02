@@ -56,6 +56,7 @@ dependencyResolutionManagement {
             library("junit-jupiter", "org.junit.jupiter", "junit-jupiter").versionRef("junit")
             library("junit-params", "org.junit.jupiter", "junit-jupiter-params").versionRef("junit")
             library("junit-platform-launcher", "org.junit.platform", "junit-platform-launcher").version("1.14.4")
+            library("junit-pioneer", "org.junit-pioneer", "junit-pioneer").version("2.3.0")
             bundle("junit", listOf("junit-jupiter", "junit-params"))
 
             version("mockito", "5.+")

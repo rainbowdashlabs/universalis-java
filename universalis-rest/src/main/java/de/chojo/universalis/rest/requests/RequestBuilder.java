@@ -29,6 +29,19 @@ public class RequestBuilder<T> implements Request<T> {
     private final URIBuilder uriBuilder;
     private final Class<T> result;
     private final Consumer<T> postRetrievalHook;
+    private boolean hasScope;
+
+    /**
+     * Records that a top-level scope (world/dataCenter/region) has been chosen.
+     * Throws if a scope is already set — request scopes are mutually exclusive.
+     */
+    public void markScope(String name) {
+        if (hasScope) {
+            throw new IllegalStateException(
+                    "A scope has already been set on this request; scopes are mutually exclusive. Attempted to add: " + name);
+        }
+        hasScope = true;
+    }
 
     /**
      * Create a new request builder

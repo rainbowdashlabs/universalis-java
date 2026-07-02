@@ -7,15 +7,14 @@
 package de.chojo.universalis.rest.routes.requests.extra.stats;
 
 import de.chojo.universalis.rest.response.extra.stats.UploaderUploadCountResponse;
-import org.junit.jupiter.api.Test;
+import org.junitpioneer.jupiter.RetryingTest;
 
 import static de.chojo.universalis.rest.ClientWrapper.client;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class UploaderUploadCountsRequestImplTest {
 
-
-    @Test
+    @RetryingTest(3)
     public void test() {
         UploaderUploadCountResponse complete = client().extra().stats().uploaderUploadCounts().complete();
         assertFalse(complete.uploader().isEmpty());

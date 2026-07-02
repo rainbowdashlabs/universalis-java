@@ -39,9 +39,9 @@ public class HistoryResponseDeserializer extends ValueDeserializer<HistoryRespon
         var saleVelocity = QualityIndicator.of(view.regularSaleVelocity(), view.nqSaleVelocity(), view.hqSaleVelocity());
         var histogramG = view.stackSizeHistogram().entrySet().stream()
                                        .collect(Collectors.toMap(e -> Integer.valueOf(e.getKey()), Map.Entry::getValue));
-        var histogramNQ = view.stackSizeHistogram().entrySet().stream()
+        var histogramNQ = view.stackSizeHistogramNQ().entrySet().stream()
                                         .collect(Collectors.toMap(e -> Integer.valueOf(e.getKey()), Map.Entry::getValue));
-        var histogramHQ = view.stackSizeHistogram().entrySet().stream()
+        var histogramHQ = view.stackSizeHistogramHQ().entrySet().stream()
                                         .collect(Collectors.toMap(e -> Integer.valueOf(e.getKey()), Map.Entry::getValue));
         var histogram = QualityIndicator.of(histogramG, histogramNQ, histogramHQ);
         return new HistoryResponse(item, world, datacenter, region, lastUploadTime, sales, saleVelocity,

@@ -3,4 +3,5 @@ dependencies {
     // Rest
     api(libs.bucket4j)
     api(libs.apache.httpclient)
+    testImplementation(rootProject.testlibs.junit.pioneer)
 }
