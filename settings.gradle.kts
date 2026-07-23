@@ -46,7 +46,7 @@ dependencyResolutionManagement {
             library("apache-httpclient", "org.apache.httpcomponents.client5:httpclient5:5.6.2")
 
             library("websocketclient", "com.neovisionaries:nv-websocket-client:2.14")
-            library("mongodb-bson", "org.mongodb:bson:5.9.0")
+            library("mongodb-bson", "org.mongodb:bson:5.9.1")
             library("caffeine", "com.github.ben-manes.caffeine:caffeine:3.2.4")
 
         }
