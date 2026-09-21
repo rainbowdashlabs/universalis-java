@@ -47,7 +47,7 @@ dependencyResolutionManagement {
 
             library("websocketclient", "com.neovisionaries:nv-websocket-client:2.14")
             library("mongodb-bson", "org.mongodb:bson:5.12.0")
-            library("caffeine", "com.github.ben-manes.caffeine:caffeine:3.2.4")
+            library("caffeine", "com.github.ben-manes.caffeine:caffeine:3.3.0")
 
         }
 
