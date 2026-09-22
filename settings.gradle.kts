@@ -22,7 +22,7 @@ dependencyResolutionManagement {
         create("libs") {
             plugin("spotless", "com.diffplug.spotless").version("8.10.2")
 
-            version("jackson", "3.2.2")
+            version("jackson", "3.2.3")
             library("jackson-core", "tools.jackson.core", "jackson-core").versionRef("jackson")
             library("jackson-databind", "tools.jackson.core", "jackson-databind").versionRef("jackson")
             library("jackson-annotations", "com.fasterxml.jackson.core", "jackson-annotations").version("2.22")
