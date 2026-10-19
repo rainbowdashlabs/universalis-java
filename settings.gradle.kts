@@ -22,7 +22,7 @@ dependencyResolutionManagement {
         create("libs") {
             plugin("spotless", "com.diffplug.spotless").version("8.10.4")
 
-            version("jackson", "3.2.3")
+            version("jackson", "3.2.4")
             library("jackson-core", "tools.jackson.core", "jackson-core").versionRef("jackson")
             library("jackson-databind", "tools.jackson.core", "jackson-databind").versionRef("jackson")
             library("jackson-annotations", "com.fasterxml.jackson.core", "jackson-annotations").version("2.22")
@@ -47,7 +47,7 @@ dependencyResolutionManagement {
 
             library("websocketclient", "com.neovisionaries:nv-websocket-client:2.14")
             library("mongodb-bson", "org.mongodb:bson:5.13.0")
-            library("caffeine", "com.github.ben-manes.caffeine:caffeine:3.3.0")
+            library("caffeine", "com.github.ben-manes.caffeine:caffeine:3.3.1")
 
         }
 
