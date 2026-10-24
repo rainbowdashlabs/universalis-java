@@ -25,6 +25,11 @@ public final class Buckets {
      * @return bucket
      */
     public static Bucket newUniversalisBucket() {
-        return Bucket.builder().addLimit(Bandwidth.builder().capacity(50).refillIntervally(50, Duration.ofSeconds(2)).build()).build();
+        return Bucket.builder()
+                .addLimit(Bandwidth.builder()
+                        .capacity(50)
+                        .refillIntervally(50, Duration.ofSeconds(2))
+                        .build())
+                .build();
     }
 }

@@ -13,5 +13,5 @@ import de.chojo.universalis.rest.routes.api.extra.stats.LeastRecentlyUpdatedRequ
 /**
  * Base implementation for a {@link LeastRecentlyUpdatedRequest}
  */
-public interface BlankLeastRecentlyUpdatedRequest extends DataCenterScope<LeastRecentlyUpdatedRequest>, WorldScope<LeastRecentlyUpdatedRequest> {
-}
+public interface BlankLeastRecentlyUpdatedRequest
+        extends DataCenterScope<LeastRecentlyUpdatedRequest>, WorldScope<LeastRecentlyUpdatedRequest> {}

@@ -13,7 +13,4 @@ package de.chojo.universalis.entities;
  * @param quantity     quantity
  * @param total        total
  */
-public record Price(int pricePerUnit,
-                    int quantity,
-                    int total) {
-}
+public record Price(int pricePerUnit, int quantity, int total) {}

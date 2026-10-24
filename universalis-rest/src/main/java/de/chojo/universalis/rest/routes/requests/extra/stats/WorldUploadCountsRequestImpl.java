@@ -14,7 +14,8 @@ import de.chojo.universalis.rest.routes.api.extra.WorldUploadCountsRequest;
 /**
  * Implementation for a {@link WorldUploadCountsRequest}
  */
-public class WorldUploadCountsRequestImpl extends RequestBuilder<WorldUploadCountResponse> implements WorldUploadCountsRequest {
+public class WorldUploadCountsRequestImpl extends RequestBuilder<WorldUploadCountResponse>
+        implements WorldUploadCountsRequest {
     /**
      * Create a new world upload count request
      *

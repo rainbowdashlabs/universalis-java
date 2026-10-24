@@ -10,7 +10,6 @@ import de.chojo.universalis.rest.UniversalisRestImpl;
 import de.chojo.universalis.rest.requests.RequestBuilder;
 import de.chojo.universalis.rest.response.extra.ContentResponse;
 import de.chojo.universalis.rest.routes.api.extra.ContentRequest;
-
 import org.jetbrains.annotations.CheckReturnValue;
 
 /**

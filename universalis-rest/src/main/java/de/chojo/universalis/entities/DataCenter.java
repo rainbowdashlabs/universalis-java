@@ -18,8 +18,7 @@ import java.util.List;
  * @param region region
  * @param worlds worlds
  */
-public record DataCenter(@JsonProperty("name") String name,
-                         @JsonProperty("region") String region,
-                         @JsonProperty("worlds") List<World> worlds) {
-
-}
+public record DataCenter(
+        @JsonProperty("name") String name,
+        @JsonProperty("region") String region,
+        @JsonProperty("worlds") List<World> worlds) {}

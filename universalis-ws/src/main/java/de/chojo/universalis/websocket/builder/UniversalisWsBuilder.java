@@ -111,7 +111,8 @@ public class UniversalisWsBuilder {
      * @return Universalis websocket instance
      */
     public UniversalisWs build() {
-        UniversalisWsImpl universalisWs = new UniversalisWsImpl(factory, executorService, subscriptions, listeners, nameSupplier, websocketUrl);
+        UniversalisWsImpl universalisWs =
+                new UniversalisWsImpl(factory, executorService, subscriptions, listeners, nameSupplier, websocketUrl);
         universalisWs.ignite();
         return universalisWs;
     }

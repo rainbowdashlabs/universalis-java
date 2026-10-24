@@ -57,8 +57,10 @@ public class WsListingUpdateEvent extends WsEvent<ListingUpdateEvent> {
     @Override
     public ListingUpdateEvent toEvent() {
         World world = world();
-        List<Listing> added = this.added.stream().map(view -> view.toListing(world)).toList();
-        List<Listing> removed = this.removed.stream().map(view -> view.toListing(world)).toList();
+        List<Listing> added =
+                this.added.stream().map(view -> view.toListing(world)).toList();
+        List<Listing> removed =
+                this.removed.stream().map(view -> view.toListing(world)).toList();
         return new ListingUpdateEvent(item(), world, added, removed);
     }
 }

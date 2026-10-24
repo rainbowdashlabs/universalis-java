@@ -1,3 +1,7 @@
+plugins {
+    id("universalis.java-conventions")
+}
+
 dependencies {
     implementation(project(":universalis-rest"))
     implementation(project(":universalis-ws"))

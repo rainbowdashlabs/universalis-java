@@ -51,7 +51,9 @@ public class Subscription {
      */
     public List<String> channel() {
         if (hasWorlds()) {
-            return worlds.stream().map(w -> "%s{world=%d}".formatted(channel, w.id())).toList();
+            return worlds.stream()
+                    .map(w -> "%s{world=%d}".formatted(channel, w.id()))
+                    .toList();
         }
         return Collections.singletonList(channel);
     }

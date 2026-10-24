@@ -22,10 +22,13 @@ import java.time.Instant;
  * @param world       world
  * @param buyerName   The buyer's character name. This may be null.
  */
-public record MinimizedSale(boolean hq,
-                            MinimizedPrice price,
-                            @JsonDeserialize(converter = SecondsDateTimeConverter.class) Instant timestamp,
-                            boolean onMannequin,
-                            World world,
-                            String buyerName) {
-}
+public record MinimizedSale(
+        boolean hq,
+        MinimizedPrice price,
+
+        @JsonDeserialize(converter = SecondsDateTimeConverter.class)
+        Instant timestamp,
+
+        boolean onMannequin,
+        World world,
+        String buyerName) {}

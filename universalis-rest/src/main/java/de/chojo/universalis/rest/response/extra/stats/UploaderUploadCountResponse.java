@@ -18,8 +18,8 @@ import java.util.List;
  *
  * @param uploader uploader count
  */
-public record UploaderUploadCountResponse(
-        List<SourceUploadCountView> uploader) implements Iterable<SourceUploadCountView> {
+public record UploaderUploadCountResponse(List<SourceUploadCountView> uploader)
+        implements Iterable<SourceUploadCountView> {
     @NotNull
     @Override
     public Iterator<SourceUploadCountView> iterator() {

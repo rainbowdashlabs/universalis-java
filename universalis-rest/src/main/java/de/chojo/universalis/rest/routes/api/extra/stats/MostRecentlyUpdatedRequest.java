@@ -15,5 +15,7 @@ import de.chojo.universalis.rest.routes.requests.extra.stats.MostRecentlyUpdated
 /**
  * Base implementation for a {@link MostRecentlyUpdatedRequestImpl}
  */
-public interface MostRecentlyUpdatedRequest extends Request<MostRecentlyUpdatedResponse>, BlankMostRecentlyUpdatedRequest, LimitedRequest<MostRecentlyUpdatedRequest> {
-}
+public interface MostRecentlyUpdatedRequest
+        extends Request<MostRecentlyUpdatedResponse>,
+                BlankMostRecentlyUpdatedRequest,
+                LimitedRequest<MostRecentlyUpdatedRequest> {}

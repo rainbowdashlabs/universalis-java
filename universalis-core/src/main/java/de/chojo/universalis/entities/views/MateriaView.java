@@ -16,6 +16,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @param slotId    The materia slot.
  * @param materiaId The materia item ID.
  */
-public record MateriaView(@JsonProperty("slotID") int slotId,
-                          @JsonProperty("materiaID") int materiaId) {
-}
+public record MateriaView(
+        @JsonProperty("slotID") int slotId,
+        @JsonProperty("materiaID") int materiaId) {}

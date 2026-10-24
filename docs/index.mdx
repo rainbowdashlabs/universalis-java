@@ -1,0 +1,120 @@
+---
+title: Universalis Java
+sidebar_position: 1
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Universalis Java
+
+Universalis Java is a Java client for [Universalis](https://universalis.app), the crowd-sourced market board data of
+Final Fantasy XIV. It gives you:
+
+- a [REST client](./rest/index.md) for prices, sale history, tax rates and statistics,
+- a [WebSocket client](./websocket.md) that tells you about new listings and sales as they happen,
+- [worlds, data centers and regions](./worlds.md) as Java objects,
+- optional [item names](./items.md) in English, German, French and Japanese.
+
+The [API coverage](./coverage.md) page lists which parts of the Universalis API the client wraps.
+
+## Requirements
+
+| What | Version |
+|---|---|
+| Java | 21 or newer. The library is compiled for Java 21. |
+| SLF4J | The library logs through `slf4j-api` and brings it. Add an SLF4J binding (for example `slf4j-simple` or Logback) to see the log output. |
+
+## Modules
+
+| Module | What it does |
+|---|---|
+| `universalis-rest` | The REST client. |
+| `universalis-ws` | The WebSocket client. |
+| `universalis-core` | Worlds, item names and the shared data types. Both clients bring it. |
+| `universalis` | Both clients in one artifact. |
+
+## Add the dependency
+
+Universalis Java is published to EldoNexus. Releases are in `maven-releases`, builds of the `main` branch in
+`maven-snapshots`. The `maven-public` repository holds both.
+
+<Tabs groupId="build-tool">
+<TabItem value="gradle" label="Gradle (Kotlin DSL)">
+
+```kotlin
+repositories {
+    maven("https://eldonexus.de/repository/maven-public/")
+}
+
+dependencies {
+    implementation("de.chojo.universalis:universalis:2.1.0")
+}
+```
+
+</TabItem>
+<TabItem value="gradle-groovy" label="Gradle (Groovy)">
+
+```groovy
+repositories {
+    maven { url 'https://eldonexus.de/repository/maven-public/' }
+}
+
+dependencies {
+    implementation 'de.chojo.universalis:universalis:2.1.0'
+}
+```
+
+</TabItem>
+<TabItem value="maven" label="Maven">
+
+```xml
+<repositories>
+    <repository>
+        <id>eldonexus</id>
+        <url>https://eldonexus.de/repository/maven-public/</url>
+    </repository>
+</repositories>
+
+<dependencies>
+    <dependency>
+        <groupId>de.chojo.universalis</groupId>
+        <artifactId>universalis</artifactId>
+        <version>2.1.0</version>
+    </dependency>
+</dependencies>
+```
+
+</TabItem>
+</Tabs>
+
+Only need one client? Use `universalis-rest` or `universalis-ws` as the artifact instead.
+
+## Quick start
+
+Ask for the cheapest high quality listing of an item in a data center:
+
+```java
+try (UniversalisRest rest = UniversalisRest.defaultApi()) {
+    MarketBoardResponse response = rest.marketBoard()
+            .dataCenter(Worlds.europe().light())
+            .itemsIds(36113)
+            .highQuality()
+            .complete();
+    System.out.println("Cheapest HQ price: " + response.minPrice().highQuality());
+}
+```
+
+Listen to new sales on one world:
+
+```java
+UniversalisWs ws = UniversalisWs.getDefault()
+        .subscribe(Subscriptions.salesAdd().restrict(Worlds.europe().light().odin))
+        .registerListener(new ListenerAdapter() {
+            @Override
+            public void onSalesAdd(SalesAddEvent event) {
+                System.out.println(event.sales().size() + " sales of item " + event.item().id());
+            }
+        })
+        .build();
+```

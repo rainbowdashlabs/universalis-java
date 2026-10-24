@@ -22,10 +22,13 @@ import java.util.Objects;
 public class WorldsResponseDeserializer extends ValueDeserializer<WorldsResponse> {
     @Override
     public WorldsResponse deserialize(JsonParser p, DeserializationContext ctxt) {
-        List<World> worlds = ctxt.readValue(p,
-                ctxt.getTypeFactory().constructCollectionType(List.class, World.class));
-        worlds = worlds.stream().filter(Objects::nonNull).filter(w -> w.id() != 0).toList();
-        List<de.chojo.universalis.worlds.World> iWorlds = worlds.stream().map(Worlds::toWorld).toList();
+        List<World> worlds = ctxt.readValue(p, ctxt.getTypeFactory().constructCollectionType(List.class, World.class));
+        worlds = worlds.stream()
+                .filter(Objects::nonNull)
+                .filter(w -> w.id() != 0)
+                .toList();
+        List<de.chojo.universalis.worlds.World> iWorlds =
+                worlds.stream().map(Worlds::toWorld).toList();
         return new WorldsResponse(iWorlds);
     }
 }

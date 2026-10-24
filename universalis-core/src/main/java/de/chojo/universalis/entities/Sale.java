@@ -21,10 +21,10 @@ import java.time.Instant;
  * @param world       world
  * @param buyerName   The buyer's character name. This may be null.
  */
-public record Sale(boolean hq,
-                   Price price,
-                   Instant timestamp,
-                   boolean onMannequin,
-                   World world,
-                   @Nullable String buyerName) {
-}
+public record Sale(
+        boolean hq,
+        Price price,
+        Instant timestamp,
+        boolean onMannequin,
+        World world,
+        @Nullable String buyerName) {}

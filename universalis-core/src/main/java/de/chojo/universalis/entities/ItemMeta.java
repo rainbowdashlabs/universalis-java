@@ -19,6 +19,5 @@ import java.util.List;
  * @param stainId stain id
  * @param materia materia views
  */
-public record ItemMeta(boolean hq, @JsonProperty("isCrafted") boolean crafted,
-                       int stainId, List<MateriaView> materia) {
-}
+public record ItemMeta(
+        boolean hq, @JsonProperty("isCrafted") boolean crafted, int stainId, List<MateriaView> materia) {}

@@ -13,5 +13,4 @@ import de.chojo.universalis.rest.routes.requests.extra.stats.UploadHistoryReques
 /**
  * Base implementation for a {@link UploadHistoryRequestImpl}
  */
-public interface UploadHistoryRequest extends Request<UploadHistoryResponse> {
-}
+public interface UploadHistoryRequest extends Request<UploadHistoryResponse> {}

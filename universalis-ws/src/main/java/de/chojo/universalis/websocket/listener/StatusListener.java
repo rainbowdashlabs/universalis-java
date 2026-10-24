@@ -100,7 +100,11 @@ public class StatusListener extends WebSocketAdapter {
     }
 
     @Override
-    public void onDisconnected(WebSocket websocket, WebSocketFrame serverCloseFrame, WebSocketFrame clientCloseFrame, boolean closedByServer) {
+    public void onDisconnected(
+            WebSocket websocket,
+            WebSocketFrame serverCloseFrame,
+            WebSocketFrame clientCloseFrame,
+            boolean closedByServer) {
         connected = false;
         if (closedByServer) {
             log.info("Remote host closed the connection");
@@ -135,8 +139,7 @@ public class StatusListener extends WebSocketAdapter {
     }
 
     private byte[] subscriptionChange(String channel, String event) {
-        BasicBSONObject payload = new BasicBSONObject().append("event", event)
-                                                       .append("channel", channel);
+        BasicBSONObject payload = new BasicBSONObject().append("event", event).append("channel", channel);
         return encoder.encode(payload);
     }
 }

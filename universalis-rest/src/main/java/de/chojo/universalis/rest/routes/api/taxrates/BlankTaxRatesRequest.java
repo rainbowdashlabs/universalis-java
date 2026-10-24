@@ -12,5 +12,4 @@ import de.chojo.universalis.rest.routes.api.base.WorldScope;
 /**
  * Base implementation for a {@link TaxRatesRequest}
  */
-public interface BlankTaxRatesRequest extends WorldScope<TaxRatesRequest> {
-}
+public interface BlankTaxRatesRequest extends WorldScope<TaxRatesRequest> {}

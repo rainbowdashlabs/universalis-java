@@ -38,8 +38,7 @@ public class RequestBuilder<T> implements Request<T> {
      * @param result result of the request
      */
     public RequestBuilder(UniversalisRestImpl rest, Class<T> result) {
-        this(rest, result, r -> {
-        });
+        this(rest, result, r -> {});
     }
 
     /**
@@ -63,7 +62,8 @@ public class RequestBuilder<T> implements Request<T> {
     public void markScope(String name) {
         if (hasScope) {
             throw new IllegalStateException(
-                    "A scope has already been set on this request; scopes are mutually exclusive. Attempted to add: " + name);
+                    "A scope has already been set on this request; scopes are mutually exclusive. Attempted to add: "
+                            + name);
         }
         hasScope = true;
     }
@@ -101,11 +101,10 @@ public class RequestBuilder<T> implements Request<T> {
 
     @Override
     public CompletableFuture<T> queue() {
-        return rest.getAsyncAndMap(uriBuilder, this.result)
-                   .thenApply(res -> {
-                       postRetrievalHook.accept(res);
-                       return res;
-                   });
+        return rest.getAsyncAndMap(uriBuilder, this.result).thenApply(res -> {
+            postRetrievalHook.accept(res);
+            return res;
+        });
     }
 
     @Override

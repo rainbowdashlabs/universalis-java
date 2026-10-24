@@ -20,8 +20,8 @@ import java.util.List;
 public class DataCenterResponseDeserializer extends ValueDeserializer<DataCentersResponse> {
     @Override
     public DataCentersResponse deserialize(JsonParser p, DeserializationContext ctxt) {
-        List<DataCenter> contentType = ctxt.readValue(p, ctxt.getTypeFactory()
-                                                             .constructCollectionType(List.class, DataCenter.class));
+        List<DataCenter> contentType =
+                ctxt.readValue(p, ctxt.getTypeFactory().constructCollectionType(List.class, DataCenter.class));
         return new DataCentersResponse(contentType);
     }
 }

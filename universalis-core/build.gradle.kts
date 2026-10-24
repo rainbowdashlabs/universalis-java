@@ -1,8 +1,13 @@
+plugins {
+    id("universalis.java-conventions")
+    id("universalis.publishing-conventions")
+}
+
+description = "Models, worlds and item names shared by the Universalis clients."
+
 dependencies {
     api(libs.jackson.databind)
-    // Logging
+    api(libs.jackson.annotations)
     api(libs.slf4j.api)
-
-    // code
     api(libs.jetbrains.annotations)
 }

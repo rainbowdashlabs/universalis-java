@@ -213,8 +213,7 @@ public class Worlds {
         private final Chaos chaos = new Chaos();
         private final Light light = new Light();
 
-        private Europe() {
-        }
+        private Europe() {}
 
         /**
          * The chaos data center
@@ -359,8 +358,7 @@ public class Worlds {
         private final Crystal crystal = new Crystal();
         private final Primal primal = new Primal();
 
-        private NorthAmerica() {
-        }
+        private NorthAmerica() {}
 
         /**
          * The aether data center
@@ -565,8 +563,7 @@ public class Worlds {
     public static final class Oceania implements Region {
         private final Materia materia = new Materia();
 
-        private Oceania() {
-        }
+        private Oceania() {}
 
         /**
          * The materia data center
@@ -638,8 +635,7 @@ public class Worlds {
         private final Mana mana = new Mana();
         private final Meteor meteor = new Meteor();
 
-        private Japan() {
-        }
+        private Japan() {}
 
         @Override
         public List<DataCenter> datacenters() {
@@ -650,7 +646,6 @@ public class Worlds {
         public String name() {
             return "Japan";
         }
-
 
         /**
          * The elemental data center
@@ -995,7 +990,15 @@ public class Worlds {
 
             @Override
             public List<World> worlds() {
-                return List.of(hongYuHai, shenYiZhiDi, laNuoXiYa, huanYingQunDao, mengYaChi, yuZhouHeYin, woXianXiRan, chenXiWangZuo);
+                return List.of(
+                        hongYuHai,
+                        shenYiZhiDi,
+                        laNuoXiYa,
+                        huanYingQunDao,
+                        mengYaChi,
+                        yuZhouHeYin,
+                        woXianXiRan,
+                        chenXiWangZuo);
             }
 
             @Override
@@ -1048,7 +1051,15 @@ public class Worlds {
 
             @Override
             public List<World> worlds() {
-                return List.of(baiYinXiang, baiJinHuanXiang, shenQuanHen, chaoFengTing, lvRenZhanQiao, fuXiaoZhiJian, longchaoshendian, mengYuBaoJing);
+                return List.of(
+                        baiYinXiang,
+                        baiJinHuanXiang,
+                        shenQuanHen,
+                        chaoFengTing,
+                        lvRenZhanQiao,
+                        fuXiaoZhiJian,
+                        longchaoshendian,
+                        mengYuBaoJing);
             }
 
             @Override
@@ -1150,7 +1161,15 @@ public class Worlds {
 
             @Override
             public List<World> worlds() {
-                return List.of(shuiJingTa2, yinLeiHu, taiYangHaiAn2, yiXiuJiaDe2, hongChaChuan2, huangJinGu, YueYaWan, XueSongYuan);
+                return List.of(
+                        shuiJingTa2,
+                        yinLeiHu,
+                        taiYangHaiAn2,
+                        yiXiuJiaDe2,
+                        hongChaChuan2,
+                        huangJinGu,
+                        YueYaWan,
+                        XueSongYuan);
             }
 
             @Override

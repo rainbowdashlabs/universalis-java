@@ -12,8 +12,7 @@ package de.chojo.universalis.entities;
  * @param pricePerUnit unit price
  * @param quantity     quantity
  */
-public record MinimizedPrice(int pricePerUnit,
-                             int quantity) {
+public record MinimizedPrice(int pricePerUnit, int quantity) {
     /**
      * The total price. Manually calculated.
      *

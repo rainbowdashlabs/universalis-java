@@ -9,7 +9,6 @@ package de.chojo.universalis.rest.routes.requests.extra;
 import de.chojo.universalis.rest.UniversalisRestImpl;
 import de.chojo.universalis.rest.routes.api.extra.stats.content.BlankContentRequest;
 import de.chojo.universalis.rest.routes.requests.extra.stats.Stats;
-
 import org.jetbrains.annotations.CheckReturnValue;
 
 /**

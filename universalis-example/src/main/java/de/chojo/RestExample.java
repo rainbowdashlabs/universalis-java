@@ -23,15 +23,16 @@ public class RestExample {
         }
         // create a market board request.
         rest.marketBoard()
-            // Restrict prices to the european datacenters
-            .region(Worlds.europe())
-            // Get data for only one item
-            .itemsIds(36113)
-            // only retrieve high quality prices
-            .highQuality()
-            // send the request async
-            .queue()
-            // handle the result
-            .whenComplete((res, err) -> System.out.println("Min hq price is" + res.minPrice().highQuality()));
+                // Restrict prices to the european datacenters
+                .region(Worlds.europe())
+                // Get data for only one item
+                .itemsIds(36113)
+                // only retrieve high quality prices
+                .highQuality()
+                // send the request async
+                .queue()
+                // handle the result
+                .whenComplete((res, err) ->
+                        System.out.println("Min hq price is" + res.minPrice().highQuality()));
     }
 }

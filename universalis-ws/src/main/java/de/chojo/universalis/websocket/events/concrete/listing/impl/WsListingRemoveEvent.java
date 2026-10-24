@@ -27,9 +27,10 @@ public class WsListingRemoveEvent extends WsListingEvent<ListingRemoveEvent> {
      * @param world    world
      * @param listings listings
      */
-    public WsListingRemoveEvent(@JsonProperty("item") Item item,
-                                @JsonProperty("world") World world,
-                                @JsonProperty("listings") List<ListingView> listings) {
+    public WsListingRemoveEvent(
+            @JsonProperty("item") Item item,
+            @JsonProperty("world") World world,
+            @JsonProperty("listings") List<ListingView> listings) {
         super(item, world, listings);
     }
 

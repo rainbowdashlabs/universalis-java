@@ -15,6 +15,5 @@ import java.util.Map;
  *
  * @param content content
  */
-//TODO: Probably a no fix. Dunno what it does and I dont need the data as it seems ¯\_(ツ)_/¯
-public record ContentResponse(Map<String, Object> content) {
-}
+// TODO: Probably a no fix. Dunno what it does and I dont need the data as it seems ¯\_(ツ)_/¯
+public record ContentResponse(Map<String, Object> content) {}

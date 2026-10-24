@@ -17,27 +17,17 @@ import de.chojo.universalis.events.sales.impl.SalesRemoveEvent;
  */
 public class ListenerAdapter implements EventListener {
     @Override
-    public void onListingAdd(ListingAddEvent event) {
-
-    }
+    public void onListingAdd(ListingAddEvent event) {}
 
     @Override
-    public void onListingRemove(ListingRemoveEvent event) {
-
-    }
+    public void onListingRemove(ListingRemoveEvent event) {}
 
     @Override
-    public void onListingUpdate(ListingUpdateEvent event) {
-
-    }
+    public void onListingUpdate(ListingUpdateEvent event) {}
 
     @Override
-    public void onSalesAdd(SalesAddEvent event) {
-
-    }
+    public void onSalesAdd(SalesAddEvent event) {}
 
     @Override
-    public void onSalesRemove(SalesRemoveEvent event) {
-
-    }
+    public void onSalesRemove(SalesRemoveEvent event) {}
 }

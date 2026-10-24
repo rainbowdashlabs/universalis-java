@@ -31,8 +31,7 @@ class WorldsTest {
         Set<Integer> seen = new HashSet<>();
         for (Region region : Worlds.regions()) {
             for (DataCenter dc : region.datacenters()) {
-                assertTrue(seen.add(dc.id()),
-                        "duplicate datacenter id " + dc.id() + " on " + dc.name());
+                assertTrue(seen.add(dc.id()), "duplicate datacenter id " + dc.id() + " on " + dc.name());
             }
         }
     }
@@ -43,8 +42,7 @@ class WorldsTest {
             for (DataCenter dc : region.datacenters()) {
                 DataCenter looked = Worlds.datacenterById(dc.id());
                 assertNotNull(looked, "datacenter " + dc.name() + " not found by id " + dc.id());
-                assertEquals(dc.name(), looked.name(),
-                        "datacenter id " + dc.id() + " resolved to wrong datacenter");
+                assertEquals(dc.name(), looked.name(), "datacenter id " + dc.id() + " resolved to wrong datacenter");
             }
         }
     }

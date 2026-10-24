@@ -36,29 +36,41 @@ public class MarketBoardResponseDeserializer extends ValueDeserializer<MarketBoa
         var lastUploadTime = view.lastUploadTime();
         var listings = view.listingViews().stream().map(ListingView::toListing).toList();
         var sales = view.recentHistory().stream().map(SaleView::toSale).toList();
-        var currentAveragePrice = QualityIndicator.of(view.currentAveragePrice(), view.currentAveragePriceNQ(), view.currentAveragePriceHQ());
-        var saleVelocity = QualityIndicator.of(view.regularSaleVelocity(), view.nqSaleVelocity(), view.hqSaleVelocity());
+        var currentAveragePrice = QualityIndicator.of(
+                view.currentAveragePrice(), view.currentAveragePriceNQ(), view.currentAveragePriceHQ());
+        var saleVelocity =
+                QualityIndicator.of(view.regularSaleVelocity(), view.nqSaleVelocity(), view.hqSaleVelocity());
         var averagePrice = QualityIndicator.of(view.averagePrice(), view.averagePriceNQ(), view.averagePriceHQ());
         var minPrice = QualityIndicator.of(view.minPrice(), view.minPriceNQ(), view.minPriceHQ());
         var maxPrice = QualityIndicator.of(view.maxPrice(), view.maxPriceNQ(), view.maxPriceHQ());
         var histogramG = view.stackSizeHistogram().entrySet().stream()
-                             .collect(Collectors.toMap(e -> Integer.valueOf(e.getKey()), Map.Entry::getValue));
+                .collect(Collectors.toMap(e -> Integer.valueOf(e.getKey()), Map.Entry::getValue));
         var histogramNQ = view.stackSizeHistogramNQ().entrySet().stream()
-                              .collect(Collectors.toMap(e -> Integer.valueOf(e.getKey()), Map.Entry::getValue));
+                .collect(Collectors.toMap(e -> Integer.valueOf(e.getKey()), Map.Entry::getValue));
         var histogramHQ = view.stackSizeHistogramHQ().entrySet().stream()
-                              .collect(Collectors.toMap(e -> Integer.valueOf(e.getKey()), Map.Entry::getValue));
+                .collect(Collectors.toMap(e -> Integer.valueOf(e.getKey()), Map.Entry::getValue));
         var stackSizeHistogram = QualityIndicator.of(histogramG, histogramNQ, histogramHQ);
         Map<World, Instant> worldUploadTimes = Collections.emptyMap();
         if (view.worldUploadTimes() != null) {
-            worldUploadTimes = view.worldUploadTimes()
-                                   .entrySet()
-                                   .stream()
-                                   .collect(Collectors.toMap(
-                                           e -> Worlds.worldById(Integer.parseInt(e.getKey())),
-                                           e -> Instant.ofEpochMilli(e.getValue()))
-                                   );
+            worldUploadTimes = view.worldUploadTimes().entrySet().stream()
+                    .collect(Collectors.toMap(
+                            e -> Worlds.worldById(Integer.parseInt(e.getKey())),
+                            e -> Instant.ofEpochMilli(e.getValue())));
         }
-        return new MarketBoardResponse(item, world, datacenter, region, lastUploadTime, listings, sales, currentAveragePrice, saleVelocity,
-                averagePrice, minPrice, maxPrice, stackSizeHistogram, worldUploadTimes);
+        return new MarketBoardResponse(
+                item,
+                world,
+                datacenter,
+                region,
+                lastUploadTime,
+                listings,
+                sales,
+                currentAveragePrice,
+                saleVelocity,
+                averagePrice,
+                minPrice,
+                maxPrice,
+                stackSizeHistogram,
+                worldUploadTimes);
     }
 }

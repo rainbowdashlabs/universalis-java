@@ -20,8 +20,8 @@ import java.util.Map;
 public class ContentResponseDeserializer extends ValueDeserializer<ContentResponse> {
     @Override
     public ContentResponse deserialize(JsonParser p, DeserializationContext ctxt) {
-        Map<String, Object> map = ctxt.readValue(p, ctxt.getTypeFactory()
-                                                        .constructMapType(HashMap.class, String.class, Object.class));
+        Map<String, Object> map =
+                ctxt.readValue(p, ctxt.getTypeFactory().constructMapType(HashMap.class, String.class, Object.class));
         return new ContentResponse(map);
     }
 }

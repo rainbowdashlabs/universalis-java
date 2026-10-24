@@ -14,5 +14,4 @@ import org.jetbrains.annotations.Nullable;
  * @param name name of creator
  * @param id   hashed id of the creator
  */
-public record Creator(@Nullable String name, String id) {
-}
+public record Creator(@Nullable String name, String id) {}

@@ -17,8 +17,7 @@ import de.chojo.universalis.worlds.World;
  * @param updated The last upload time for the item on the listed world.
  * @param world   The world ID.
  */
-public record WorldItemRecentlyView(@JsonProperty("itemID") Item id,
-                                    @JsonProperty("lastUploadTime") long updated,
-                                    @JsonProperty("worldID") World world) {
-
-}
+public record WorldItemRecentlyView(
+        @JsonProperty("itemID") Item id,
+        @JsonProperty("lastUploadTime") long updated,
+        @JsonProperty("worldID") World world) {}

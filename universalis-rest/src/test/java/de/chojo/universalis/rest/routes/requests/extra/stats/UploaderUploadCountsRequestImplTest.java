@@ -7,17 +7,19 @@
 package de.chojo.universalis.rest.routes.requests.extra.stats;
 
 import de.chojo.universalis.rest.response.extra.stats.UploaderUploadCountResponse;
+import org.junit.jupiter.api.Tag;
 import org.junitpioneer.jupiter.RetryingTest;
 
 import static de.chojo.universalis.rest.ClientWrapper.client;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
+@Tag("live")
 class UploaderUploadCountsRequestImplTest {
 
     @RetryingTest(3)
     public void test() {
-        UploaderUploadCountResponse complete = client().extra().stats().uploaderUploadCounts().complete();
+        UploaderUploadCountResponse complete =
+                client().extra().stats().uploaderUploadCounts().complete();
         assertFalse(complete.uploader().isEmpty());
     }
-
 }

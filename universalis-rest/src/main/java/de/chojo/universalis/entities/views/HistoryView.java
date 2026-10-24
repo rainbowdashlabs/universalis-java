@@ -36,19 +36,22 @@ import java.util.Map;
  * @param nqSaleVelocity       The average number of NQ sales per day, over the past seven days (or the entirety of the shown sales, whichever comes first).
  * @param hqSaleVelocity       The average number of HQ sales per day, over the past seven days (or the entirety of the shown sales, whichever comes first).
  */
-public record HistoryView(@JsonProperty("itemID") Item item,
-                          @JsonProperty("worldID") @Nullable World world,
-                          @JsonProperty("lastUploadTime") @JsonDeserialize(converter = MillisDateTimeConverter.class) Instant lastUploadTime,
-                          @JsonProperty("entries") @Nullable List<MinimizedSaleView> entries,
-                          @JsonProperty("dcName") @Nullable DataCenter datacenter,
-                          @JsonProperty("region") @Nullable Region region,
-                          @JsonProperty("stackSizeHistogram") @Nullable Map<String, Integer> stackSizeHistogram,
-                          @JsonProperty("stackSizeHistogramNQ") @Nullable Map<String, Integer> stackSizeHistogramNQ,
-                          @JsonProperty("stackSizeHistogramHQ") @Nullable Map<String, Integer> stackSizeHistogramHQ,
-                          @JsonProperty("regularSaleVelocity") float regularSaleVelocity,
-                          @JsonProperty("nqSaleVelocity") float nqSaleVelocity,
-                          @JsonProperty("hqSaleVelocity") float hqSaleVelocity
-) {
+public record HistoryView(
+        @JsonProperty("itemID") Item item,
+        @JsonProperty("worldID") @Nullable World world,
+
+        @JsonProperty("lastUploadTime") @JsonDeserialize(converter = MillisDateTimeConverter.class)
+        Instant lastUploadTime,
+
+        @JsonProperty("entries") @Nullable List<MinimizedSaleView> entries,
+        @JsonProperty("dcName") @Nullable DataCenter datacenter,
+        @JsonProperty("region") @Nullable Region region,
+        @JsonProperty("stackSizeHistogram") @Nullable Map<String, Integer> stackSizeHistogram,
+        @JsonProperty("stackSizeHistogramNQ") @Nullable Map<String, Integer> stackSizeHistogramNQ,
+        @JsonProperty("stackSizeHistogramHQ") @Nullable Map<String, Integer> stackSizeHistogramHQ,
+        @JsonProperty("regularSaleVelocity") float regularSaleVelocity,
+        @JsonProperty("nqSaleVelocity") float nqSaleVelocity,
+        @JsonProperty("hqSaleVelocity") float hqSaleVelocity) {
 
     @Override
     public Map<String, Integer> stackSizeHistogram() {

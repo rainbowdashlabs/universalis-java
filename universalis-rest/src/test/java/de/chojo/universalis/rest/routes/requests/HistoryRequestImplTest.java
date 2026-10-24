@@ -10,6 +10,7 @@ import de.chojo.universalis.rest.response.HistoryResponse;
 import de.chojo.universalis.rest.routes.api.HistoryRequest;
 import de.chojo.universalis.worlds.Worlds;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -19,6 +20,7 @@ import java.util.stream.Stream;
 import static de.chojo.universalis.rest.ClientWrapper.client;
 import static de.chojo.universalis.rest.LiveApiRetry.retry;
 
+@Tag("live")
 class HistoryRequestImplTest {
 
     public static Stream<HistoryRequest> inputs() {
@@ -26,30 +28,22 @@ class HistoryRequestImplTest {
     }
 
     private static HistoryRequest worldReq() {
-        return client().history()
-                       .world(Worlds.europe().light().odin)
-                       .itemsIds(33927);
+        return client().history().world(Worlds.europe().light().odin).itemsIds(33927);
     }
 
     private static HistoryRequest dcReq() {
-        return client().history()
-                       .dataCenter(Worlds.europe().light())
-                       .itemsIds(33927);
+        return client().history().dataCenter(Worlds.europe().light()).itemsIds(33927);
     }
 
     private static HistoryRequest regionReq() {
-        return client().history()
-                       .region(Worlds.europe())
-                       .itemsIds(33927);
+        return client().history().region(Worlds.europe()).itemsIds(33927);
     }
 
     @ParameterizedTest
     @MethodSource("inputs")
     void limit(HistoryRequest request) {
         retry(() -> {
-            HistoryResponse complete = request
-                    .limit(3)
-                    .complete();
+            HistoryResponse complete = request.limit(3).complete();
             Assertions.assertEquals(3, complete.sales().size());
         });
     }

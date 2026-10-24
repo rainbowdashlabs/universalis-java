@@ -27,9 +27,10 @@ public class WsSalesAddEvent extends WsSalesEvent<SalesAddEvent> {
      * @param world     world id
      * @param saleViews sale views
      */
-    public WsSalesAddEvent(@JsonProperty("item") Item item,
-                           @JsonProperty("world") World world,
-                           @JsonProperty("sales") List<SaleView> saleViews) {
+    public WsSalesAddEvent(
+            @JsonProperty("item") Item item,
+            @JsonProperty("world") World world,
+            @JsonProperty("sales") List<SaleView> saleViews) {
         super(item, world, saleViews);
     }
 

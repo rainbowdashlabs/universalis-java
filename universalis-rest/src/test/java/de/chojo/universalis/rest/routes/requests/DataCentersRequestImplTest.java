@@ -8,10 +8,12 @@ package de.chojo.universalis.rest.routes.requests;
 
 import de.chojo.universalis.rest.response.DataCentersResponse;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junitpioneer.jupiter.RetryingTest;
 
 import static de.chojo.universalis.rest.ClientWrapper.client;
 
+@Tag("live")
 class DataCentersRequestImplTest {
 
     @RetryingTest(3)
@@ -19,5 +21,4 @@ class DataCentersRequestImplTest {
         DataCentersResponse complete = client().dataCenters().complete();
         Assertions.assertFalse(complete.dataCenters().isEmpty());
     }
-
 }

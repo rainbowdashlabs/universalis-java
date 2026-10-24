@@ -26,9 +26,10 @@ public class WsListingAddEvent extends WsListingEvent<ListingAddEvent> {
      * @param world    world
      * @param listings listings
      */
-    public WsListingAddEvent(@JsonProperty("item") Item item,
-                             @JsonProperty("world") World world,
-                             @JsonProperty("listings") List<ListingView> listings) {
+    public WsListingAddEvent(
+            @JsonProperty("item") Item item,
+            @JsonProperty("world") World world,
+            @JsonProperty("listings") List<ListingView> listings) {
         super(item, world, listings);
     }
 

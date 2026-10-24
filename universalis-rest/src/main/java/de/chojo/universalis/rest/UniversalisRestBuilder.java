@@ -8,7 +8,6 @@ package de.chojo.universalis.rest;
 
 import de.chojo.universalis.provider.NameSupplier;
 import de.chojo.universalis.provider.items.Items;
-
 import org.jetbrains.annotations.CheckReturnValue;
 
 import java.net.URI;
@@ -26,7 +25,8 @@ public class UniversalisRestBuilder {
      */
     public static final URI DEFAULT_BASE_URI = URI.create("https://universalis.app/api/v2");
 
-    private HttpClient http = HttpClient.newBuilder().version(HttpClient.Version.HTTP_2).build();
+    private HttpClient http =
+            HttpClient.newBuilder().version(HttpClient.Version.HTTP_2).build();
     private ScheduledExecutorService executorService = defaultExecutor();
     private NameSupplier nameSupplier = NameSupplier.EMPTY;
     private URI baseUri = DEFAULT_BASE_URI;

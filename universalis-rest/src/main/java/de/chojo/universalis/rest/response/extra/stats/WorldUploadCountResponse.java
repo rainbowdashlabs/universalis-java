@@ -19,8 +19,8 @@ import java.util.Map;
  *
  * @param worlds worlds
  */
-public record WorldUploadCountResponse(
-        Map<World, WorldUploadCountView> worlds) implements Iterable<Map.Entry<World, WorldUploadCountView>> {
+public record WorldUploadCountResponse(Map<World, WorldUploadCountView> worlds)
+        implements Iterable<Map.Entry<World, WorldUploadCountView>> {
     /**
      * Counts for a world
      *

@@ -46,9 +46,8 @@ public class CreateWorlds {
                          * The world %s
                          */
                         public final World %s = World.of("%s", %s);
-                        """.formatted(world.name(), world.name()
-                                                         .toUpperCase(Locale.ROOT), world.name(), world.id())
-                           .stripIndent();
+                        """.formatted(
+                        world.name(), world.name().toUpperCase(Locale.ROOT), world.name(), world.id()).stripIndent();
                 System.out.printf(worldCode);
                 worldJoiner.add(world.name().toUpperCase());
             }
@@ -57,7 +56,7 @@ public class CreateWorlds {
                                 public List<World> worlds() {
                                     return List.of(%s);
                                 }
-                    
+
                                 @Override
                                 public int id() {
                                     return %d;
