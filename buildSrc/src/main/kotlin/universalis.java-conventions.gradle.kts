@@ -37,7 +37,17 @@ dependencies {
 }
 
 tasks.test {
-    useJUnitPlatform()
+    useJUnitPlatform { excludeTags("live") }
+    testLogging { events("passed", "skipped", "failed") }
+}
+
+val liveTest by tasks.registering(Test::class) {
+    description = "Runs the tests that call the live Universalis API."
+    group = "verification"
+    testClassesDirs = sourceSets.test.get().output.classesDirs
+    classpath = sourceSets.test.get().runtimeClasspath
+    useJUnitPlatform { includeTags("live") }
+    failOnNoDiscoveredTests = false
     testLogging { events("passed", "skipped", "failed") }
 }
 

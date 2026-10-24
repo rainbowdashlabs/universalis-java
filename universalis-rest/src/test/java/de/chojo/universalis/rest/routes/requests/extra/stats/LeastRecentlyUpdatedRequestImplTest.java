@@ -10,6 +10,7 @@ import de.chojo.universalis.rest.response.extra.stats.LeastRecentlyUpdatedRespon
 import de.chojo.universalis.rest.routes.api.extra.stats.LeastRecentlyUpdatedRequest;
 import de.chojo.universalis.worlds.Worlds;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -18,6 +19,7 @@ import java.util.stream.Stream;
 import static de.chojo.universalis.rest.ClientWrapper.client;
 import static de.chojo.universalis.rest.LiveApiRetry.retry;
 
+@Tag("live")
 class LeastRecentlyUpdatedRequestImplTest {
 
     public static Stream<LeastRecentlyUpdatedRequest> inputs() {

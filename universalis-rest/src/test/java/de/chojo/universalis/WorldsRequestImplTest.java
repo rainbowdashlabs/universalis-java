@@ -7,11 +7,13 @@
 package de.chojo.universalis;
 
 import de.chojo.universalis.rest.response.WorldsResponse;
+import org.junit.jupiter.api.Tag;
 import org.junitpioneer.jupiter.RetryingTest;
 
 import static de.chojo.universalis.rest.ClientWrapper.client;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
+@Tag("live")
 class WorldsRequestImplTest {
 
     @RetryingTest(3)

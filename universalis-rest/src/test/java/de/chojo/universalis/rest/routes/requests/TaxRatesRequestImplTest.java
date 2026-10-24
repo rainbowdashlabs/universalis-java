@@ -8,11 +8,13 @@ package de.chojo.universalis.rest.routes.requests;
 
 import de.chojo.universalis.rest.response.TaxRatesResponse;
 import de.chojo.universalis.worlds.Worlds;
+import org.junit.jupiter.api.Tag;
 import org.junitpioneer.jupiter.RetryingTest;
 
 import static de.chojo.universalis.rest.ClientWrapper.client;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@Tag("live")
 class TaxRatesRequestImplTest {
 
     @RetryingTest(3)

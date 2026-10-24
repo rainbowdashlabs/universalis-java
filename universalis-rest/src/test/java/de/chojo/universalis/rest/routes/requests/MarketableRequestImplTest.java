@@ -8,10 +8,12 @@ package de.chojo.universalis.rest.routes.requests;
 
 import de.chojo.universalis.rest.response.MarketableResponse;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junitpioneer.jupiter.RetryingTest;
 
 import static de.chojo.universalis.rest.ClientWrapper.client;
 
+@Tag("live")
 class MarketableRequestImplTest {
 
     @RetryingTest(3)
