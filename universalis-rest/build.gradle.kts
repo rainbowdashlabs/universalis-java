@@ -3,6 +3,8 @@ plugins {
     id("universalis.publishing-conventions")
 }
 
+description = "A client for the Universalis REST API."
+
 dependencies {
     api(project(":universalis-core"))
     api(libs.bucket4j)

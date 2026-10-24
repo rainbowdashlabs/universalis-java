@@ -1,7 +1,6 @@
 [versions]
 palantir = "2.102.0"
-publishdata = "1.4.0"
-vanniktech = "0.37.0"
+publishdata = "2.2.0"
 spotless = "8.10.4"
 freefair = "9.8.2"
 jackson = "3.2.4"
@@ -38,7 +37,6 @@ junit-pioneer = { module = "org.junit-pioneer:junit-pioneer", version.ref = "jun
 
 # buildSrc classpath only
 gradle-publishdata = { module = "de.chojo:publishdata", version.ref = "publishdata" }
-gradle-vanniktech = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "vanniktech" }
 gradle-spotless = { module = "com.diffplug.spotless:spotless-plugin-gradle", version.ref = "spotless" }
 
 [bundles]

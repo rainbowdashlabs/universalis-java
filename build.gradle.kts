@@ -4,13 +4,7 @@ plugins {
     id("universalis.publishing-conventions")
 }
 
-group = "de.chojo.universalis"
-version = "2.0.2"
-
-subprojects {
-    group = rootProject.group
-    version = rootProject.version
-}
+description = "The Universalis REST and WebSocket clients. Its Javadoc covers all modules."
 
 dependencies {
     api(project(":universalis-rest"))
