@@ -210,13 +210,24 @@ public class UniversalisWsImpl implements UniversalisWs {
                 websocketWorker);
     }
 
+    /**
+     * Connects again after the reconnect delay, unless the websocket was disconnected on purpose.
+     */
+    public void reconnect() {
+        scheduleReconnect(() -> log.info("Connecting again in {}s.", RECONNECT_DELAY.toSeconds()));
+    }
+
     private void scheduleReconnect(String reason, Throwable cause) {
+        scheduleReconnect(() -> log.error("{}. Trying again in {}s.", reason, RECONNECT_DELAY.toSeconds(), cause));
+    }
+
+    private void scheduleReconnect(Runnable announce) {
         if (!active) return;
         if (!reconnectInFlight.compareAndSet(false, true)) {
-            log.debug("Reconnect already in flight, skipping ({})", reason);
+            log.debug("Reconnect already in flight");
             return;
         }
-        log.error("{}. Trying again in {}s.", reason, RECONNECT_DELAY.toSeconds(), cause);
+        announce.run();
         CompletableFuture.delayedExecutor(RECONNECT_DELAY.toSeconds(), TimeUnit.SECONDS)
                 .execute(() -> {
                     reconnectInFlight.set(false);

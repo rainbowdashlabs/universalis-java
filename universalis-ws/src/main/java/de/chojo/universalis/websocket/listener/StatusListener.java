@@ -115,7 +115,7 @@ public class StatusListener extends WebSocketAdapter {
             String reason = clientCloseFrame != null ? clientCloseFrame.getCloseReason() : "none";
             log.info("Closed connection to remote host\nCode: {}\nReason: {}", code, reason);
         }
-        universalisWs.ignite();
+        universalisWs.reconnect();
     }
 
     @Override
