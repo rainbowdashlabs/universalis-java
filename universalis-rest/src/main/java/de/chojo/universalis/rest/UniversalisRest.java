@@ -96,8 +96,8 @@ public interface UniversalisRest extends AutoCloseable {
     Extra extra();
 
     /**
-     * Shuts down the underlying HTTP client and executor. Any in-flight or queued
-     * asynchronous requests will be cancelled.
+     * Shuts down the HTTP client and the executor, also when they were passed to the builder. Requests that are already
+     * running finish. Requests that have not started yet fail, and the client can not send new requests.
      */
     @Override
     void close();
