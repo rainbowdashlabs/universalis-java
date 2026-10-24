@@ -34,6 +34,7 @@ import static org.slf4j.LoggerFactory.getLogger;
 public class UniversalisWsImpl implements UniversalisWs {
     private static final Logger log = getLogger(UniversalisWsImpl.class);
     private static final Duration RECONNECT_DELAY = Duration.ofSeconds(5);
+    private static final Duration PING_INTERVAL = Duration.ofSeconds(5);
     private final String websocketUrl;
     private final WebSocketFactory factory;
     private final ExecutorService websocketWorker;
@@ -190,7 +191,7 @@ public class UniversalisWsImpl implements UniversalisWs {
             return;
         }
 
-        newSocket.setPingInterval(5);
+        newSocket.setPingInterval(PING_INTERVAL.toMillis());
         newSocket.addListener(new WebsocketListenerAdapter(listeners, itemNameSupplier));
         StatusListener listener = new StatusListener(this, subscribers);
         newSocket.addListener(listener);
