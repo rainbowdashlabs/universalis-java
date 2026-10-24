@@ -12,7 +12,7 @@ What the client wraps of the [Universalis API](https://docs.universalis.app), ve
 | Universalis endpoint | Client | Notes |
 |---|---|---|
 | `/{worldDcRegion}/{itemIds}` | `marketBoard()` | One item per request. |
-| `/history/{worldDcRegion}/{itemIds}` | `history()` | One item per request. `entriesUntil`, `minSalePrice` and `maxSalePrice` are not supported. |
+| `/history/{worldDcRegion}/{itemIds}` | `history()` | One item per request. |
 | `/aggregated/{worldDcRegion}/{itemIds}` | none | |
 | `/worlds` | `worlds()` | |
 | `/data-centers` | `dataCenters()` | |

@@ -11,6 +11,8 @@ import de.chojo.universalis.worlds.Worlds;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 
+import java.time.Instant;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RequestUriTest {
@@ -29,6 +31,20 @@ class RequestUriTest {
                 .fields("listings.pricePerUnit", "minPriceHQ");
         assertEquals(
                 "MarketBoardRequestImpl: https://universalis.app/api/v2/66/5057?fields=listings.pricePerUnit%2CminPriceHQ",
+                request.toString());
+    }
+
+    @Test
+    void historyFilters() {
+        var request = rest.history()
+                .dataCenter(Worlds.europe().light())
+                .itemsIds(5057)
+                .entriesUntil(Instant.ofEpochSecond(1700000000))
+                .minSalePrice(10)
+                .maxSalePrice(500);
+        assertEquals(
+                "HistoryRequestImpl: https://universalis.app/api/v2/history/Light/5057"
+                        + "?entriesUntil=1700000000&minSalePrice=10&maxSalePrice=500",
                 request.toString());
     }
 }
