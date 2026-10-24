@@ -14,5 +14,4 @@ import de.chojo.universalis.rest.routes.requests.TaxRatesRequestImpl;
 /**
  * Base implementation for a {@link TaxRatesRequestImpl}
  */
-public interface TaxRatesRequest extends Request<TaxRatesResponse>, BlankTaxRatesRequest {
-}
+public interface TaxRatesRequest extends Request<TaxRatesResponse>, BlankTaxRatesRequest {}

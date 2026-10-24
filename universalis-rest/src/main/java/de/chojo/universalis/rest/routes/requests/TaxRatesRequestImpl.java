@@ -11,7 +11,6 @@ import de.chojo.universalis.rest.requests.RequestBuilder;
 import de.chojo.universalis.rest.response.TaxRatesResponse;
 import de.chojo.universalis.rest.routes.api.TaxRatesRequest;
 import de.chojo.universalis.worlds.World;
-
 import org.jetbrains.annotations.CheckReturnValue;
 
 /**

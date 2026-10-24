@@ -63,7 +63,8 @@ public class UniversalisRestImpl implements UniversalisRest {
      * @param itemNameSupplier item name supplier
      * @param baseUri          base URI of the universalis API (e.g. {@code https://universalis.app/api/v2})
      */
-    public UniversalisRestImpl(HttpClient http, ScheduledExecutorService executorService, NameSupplier itemNameSupplier, URI baseUri) {
+    public UniversalisRestImpl(
+            HttpClient http, ScheduledExecutorService executorService, NameSupplier itemNameSupplier, URI baseUri) {
         this.http = http;
         this.executorService = executorService;
         this.objectMapper = Mapper.create(itemNameSupplier);
@@ -207,8 +208,9 @@ public class UniversalisRestImpl implements UniversalisRest {
      * @return future with result
      */
     public <T> CompletableFuture<T> getAsyncAndMap(HttpRequest request, Class<T> result) {
-        return xivapi.asScheduler().consume(1, executorService)
-                     .thenApplyAsync(v -> getAndMapInternal(request, result), executorService);
+        return xivapi.asScheduler()
+                .consume(1, executorService)
+                .thenApplyAsync(v -> getAndMapInternal(request, result), executorService);
     }
 
     /**

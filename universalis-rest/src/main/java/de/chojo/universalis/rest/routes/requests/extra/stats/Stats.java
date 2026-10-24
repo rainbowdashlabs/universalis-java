@@ -12,7 +12,6 @@ import de.chojo.universalis.rest.routes.api.extra.stats.UploadHistoryRequest;
 import de.chojo.universalis.rest.routes.api.extra.stats.UploaderUploadCountsRequest;
 import de.chojo.universalis.rest.routes.api.extra.stats.leastrecentlyupdated.BlankLeastRecentlyUpdatedRequest;
 import de.chojo.universalis.rest.routes.api.extra.stats.mostrecentlyupdated.BlankMostRecentlyUpdatedRequest;
-
 import org.jetbrains.annotations.CheckReturnValue;
 
 /**

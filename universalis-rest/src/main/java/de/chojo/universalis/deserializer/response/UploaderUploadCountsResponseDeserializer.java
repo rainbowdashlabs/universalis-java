@@ -20,8 +20,8 @@ import java.util.List;
 public class UploaderUploadCountsResponseDeserializer extends ValueDeserializer<UploaderUploadCountResponse> {
     @Override
     public UploaderUploadCountResponse deserialize(JsonParser p, DeserializationContext ctxt) {
-        List<SourceUploadCountView> counts = ctxt.readValue(p, ctxt.getTypeFactory()
-                                                                   .constructCollectionType(List.class, SourceUploadCountView.class));
+        List<SourceUploadCountView> counts = ctxt.readValue(
+                p, ctxt.getTypeFactory().constructCollectionType(List.class, SourceUploadCountView.class));
         return new UploaderUploadCountResponse(counts);
     }
 }

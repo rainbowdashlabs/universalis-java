@@ -13,5 +13,4 @@ import de.chojo.universalis.rest.routes.requests.DataCentersRequestImpl;
 /**
  * Base implementation for a {@link DataCentersRequestImpl}
  */
-public interface DataCentersRequest extends Request<DataCentersResponse> {
-}
+public interface DataCentersRequest extends Request<DataCentersResponse> {}

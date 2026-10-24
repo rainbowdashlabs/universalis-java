@@ -16,8 +16,8 @@ class WorldUploadCountsRequestImplTest {
 
     @RetryingTest(3)
     public void test() {
-        WorldUploadCountResponse complete = client().extra().stats().worldUploadCounts().complete();
+        WorldUploadCountResponse complete =
+                client().extra().stats().worldUploadCounts().complete();
         Assertions.assertFalse(complete.worlds().isEmpty());
     }
-
 }

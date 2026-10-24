@@ -22,8 +22,8 @@ import java.util.Map;
 public class WorldUploadCountResponseDeserializer extends ValueDeserializer<WorldUploadCountResponse> {
     @Override
     public WorldUploadCountResponse deserialize(JsonParser p, DeserializationContext ctxt) {
-        Map<World, WorldUploadCountView> map = ctxt.readValue(p, ctxt.getTypeFactory()
-                                                                     .constructMapType(HashMap.class, World.class, WorldUploadCountView.class));
+        Map<World, WorldUploadCountView> map = ctxt.readValue(
+                p, ctxt.getTypeFactory().constructMapType(HashMap.class, World.class, WorldUploadCountView.class));
         return new WorldUploadCountResponse(map);
     }
 }

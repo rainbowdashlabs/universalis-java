@@ -47,7 +47,9 @@ import java.util.Objects;
  * @param tax            The Gil sales tax (GST) to be added to the total price during purchase.
  */
 public record ListingView(
-        @JsonProperty("lastReviewTime") @JsonDeserialize(converter = SecondsDateTimeConverter.class) Instant lastReviewTime,
+        @JsonProperty("lastReviewTime") @JsonDeserialize(converter = SecondsDateTimeConverter.class)
+        Instant lastReviewTime,
+
         @JsonProperty("pricePerUnit") int pricePerUnit,
         @JsonProperty("quantity") int quantity,
         @JsonProperty("stainID") int stainId,
@@ -82,7 +84,8 @@ public record ListingView(
      * @return list of sales
      */
     public Listing toListing(World world) {
-        return new Listing(lastReviewTime,
+        return new Listing(
+                lastReviewTime,
                 world,
                 new Creator(creatorName, creatorId),
                 new ItemMeta(hq, isCrafted, stainId, materia),

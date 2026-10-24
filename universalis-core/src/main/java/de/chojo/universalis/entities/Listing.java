@@ -24,15 +24,14 @@ import java.time.Instant;
  * @param sellerId       A SHA256 hash of the seller's ID.
  * @param tax            The tax that will be added on top of the price.
  */
-public record Listing(Instant lastReviewTime,
-                      World world,
-                      Creator creator,
-                      ItemMeta meta,
-                      String listingId,
-                      boolean onMannequin,
-                      Retainer retainer,
-                      String sellerId,
-                      Price price,
-                      int tax
-) {
-}
+public record Listing(
+        Instant lastReviewTime,
+        World world,
+        Creator creator,
+        ItemMeta meta,
+        String listingId,
+        boolean onMannequin,
+        Retainer retainer,
+        String sellerId,
+        Price price,
+        int tax) {}

@@ -12,5 +12,4 @@ import de.chojo.universalis.rest.response.extra.stats.WorldUploadCountResponse;
 /**
  *
  */
-public interface WorldUploadCountsRequest extends Request<WorldUploadCountResponse> {
-}
+public interface WorldUploadCountsRequest extends Request<WorldUploadCountResponse> {}

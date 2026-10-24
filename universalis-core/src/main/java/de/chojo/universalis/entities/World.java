@@ -12,5 +12,4 @@ package de.chojo.universalis.entities;
  * @param name world name
  * @param id   world id
  */
-public record World(String name, int id) {
-}
+public record World(String name, int id) {}

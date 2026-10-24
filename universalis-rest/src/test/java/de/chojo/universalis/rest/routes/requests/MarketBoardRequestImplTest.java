@@ -27,30 +27,22 @@ class MarketBoardRequestImplTest {
     }
 
     private static MarketBoardRequest worldReq() {
-        return client().marketBoard()
-                       .world(Worlds.europe().light().odin)
-                       .itemsIds(33927);
+        return client().marketBoard().world(Worlds.europe().light().odin).itemsIds(33927);
     }
 
     private static MarketBoardRequest dcReq() {
-        return client().marketBoard()
-                       .dataCenter(Worlds.europe().light())
-                       .itemsIds(33927);
+        return client().marketBoard().dataCenter(Worlds.europe().light()).itemsIds(33927);
     }
 
     private static MarketBoardRequest regionReq() {
-        return client().marketBoard()
-                       .region(Worlds.europe())
-                       .itemsIds(33927);
+        return client().marketBoard().region(Worlds.europe()).itemsIds(33927);
     }
 
     @ParameterizedTest
     @MethodSource("inputs")
     void historyLimit(MarketBoardRequest request) {
         retry(() -> {
-            MarketBoardResponse complete = request
-                    .historyLimit(3)
-                    .complete();
+            MarketBoardResponse complete = request.historyLimit(3).complete();
             Assertions.assertEquals(3, complete.recentHistory().size());
         });
     }
@@ -59,9 +51,7 @@ class MarketBoardRequestImplTest {
     @MethodSource("inputs")
     void listingLimit(MarketBoardRequest request) {
         retry(() -> {
-            MarketBoardResponse complete = request
-                    .listingsLimit(3)
-                    .complete();
+            MarketBoardResponse complete = request.listingsLimit(3).complete();
             Assertions.assertFalse(complete.listings().isEmpty());
             Assertions.assertTrue(complete.listings().size() <= 3);
         });
@@ -98,7 +88,9 @@ class MarketBoardRequestImplTest {
             MarketBoardResponse days = request.complete();
             request.historyTime(Duration.ofHours(1));
             MarketBoardResponse hours = request.complete();
-            Assertions.assertNotEquals(days.recentHistory().size(), hours.recentHistory().size(),
+            Assertions.assertNotEquals(
+                    days.recentHistory().size(),
+                    hours.recentHistory().size(),
                     "Received same results for %s and %s".formatted(days, hours));
         });
     }

@@ -20,19 +20,22 @@ import static de.chojo.universalis.rest.LiveApiRetry.retry;
 
 class LeastRecentlyUpdatedRequestImplTest {
 
-
     public static Stream<LeastRecentlyUpdatedRequest> inputs() {
         return Stream.of(worldReq(), dcReq());
     }
 
     private static LeastRecentlyUpdatedRequest worldReq() {
-        return client().extra().stats().leastRecentlyUpdated()
-                       .world(Worlds.europe().light().odin);
+        return client().extra()
+                .stats()
+                .leastRecentlyUpdated()
+                .world(Worlds.europe().light().odin);
     }
 
     private static LeastRecentlyUpdatedRequest dcReq() {
-        return client().extra().stats().leastRecentlyUpdated()
-                       .dataCenter(Worlds.europe().light());
+        return client().extra()
+                .stats()
+                .leastRecentlyUpdated()
+                .dataCenter(Worlds.europe().light());
     }
 
     @ParameterizedTest

@@ -13,5 +13,4 @@ package de.chojo.universalis.entities;
  * @param name retainer name
  * @param city retainer city
  */
-public record Retainer(String id, String name, City city) {
-}
+public record Retainer(String id, String name, City city) {}

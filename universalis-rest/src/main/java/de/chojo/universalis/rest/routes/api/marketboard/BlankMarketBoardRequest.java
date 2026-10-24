@@ -13,5 +13,7 @@ import de.chojo.universalis.rest.routes.api.base.WorldScope;
 /**
  * Base for a {@link RegionMarketBoardRequest}
  */
-public interface BlankMarketBoardRequest extends RegionScope<RegionMarketBoardRequest>, DataCenterScope<RegionMarketBoardRequest>, WorldScope<RegionMarketBoardRequest> {
-}
+public interface BlankMarketBoardRequest
+        extends RegionScope<RegionMarketBoardRequest>,
+                DataCenterScope<RegionMarketBoardRequest>,
+                WorldScope<RegionMarketBoardRequest> {}

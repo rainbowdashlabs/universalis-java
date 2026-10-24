@@ -28,15 +28,19 @@ import java.time.Instant;
  * @param buyerName    The buyer name.
  * @param total        The total price.
  */
-public record SaleView(@JsonProperty("hq") boolean hq,
-                       @JsonProperty("pricePerUnit") int pricePerUnit,
-                       @JsonProperty("quantity") int quantity,
-                       @JsonProperty("timestamp") @JsonDeserialize(converter = SecondsDateTimeConverter.class) Instant timestamp,
-                       @JsonProperty("onMannequin") boolean onMannequin,
-                       @JsonProperty("worldName") String worldName,
-                       @JsonProperty("worldID") int worldId,
-                       @JsonProperty("buyerName") String buyerName,
-                       @JsonProperty("total") int total) {
+public record SaleView(
+        @JsonProperty("hq") boolean hq,
+        @JsonProperty("pricePerUnit") int pricePerUnit,
+        @JsonProperty("quantity") int quantity,
+
+        @JsonProperty("timestamp") @JsonDeserialize(converter = SecondsDateTimeConverter.class)
+        Instant timestamp,
+
+        @JsonProperty("onMannequin") boolean onMannequin,
+        @JsonProperty("worldName") String worldName,
+        @JsonProperty("worldID") int worldId,
+        @JsonProperty("buyerName") String buyerName,
+        @JsonProperty("total") int total) {
 
     /**
      * Converts the {@link SaleView} to a {@link Sale} object.
@@ -45,11 +49,6 @@ public record SaleView(@JsonProperty("hq") boolean hq,
      * @return list of sales
      */
     public Sale toSale(World world) {
-        return new Sale(hq,
-                new Price(pricePerUnit, quantity, total),
-                timestamp,
-                onMannequin,
-                world,
-                buyerName);
+        return new Sale(hq, new Price(pricePerUnit, quantity, total), timestamp, onMannequin, world, buyerName);
     }
 }

@@ -19,5 +19,4 @@ class WorldsRequestImplTest {
         WorldsResponse complete = client().worlds().complete();
         assertFalse(complete.worlds().isEmpty());
     }
-
 }

@@ -27,19 +27,24 @@ import java.time.Instant;
  * @param world        world
  * @param buyerName    The buyer's character name.
  */
-public record MinimizedSaleView(@JsonProperty("hq") boolean hq,
-                                @JsonProperty("pricePerUnit") int pricePerUnit,
-                                @JsonProperty("quantity") int quantity,
-                                @JsonProperty("timestamp") @JsonDeserialize(converter = SecondsDateTimeConverter.class) Instant timestamp,
-                                @JsonProperty("onMannequin") boolean onMannequin,
-                                @JsonProperty("worldID") World world,
-                                @JsonProperty("buyerName") @Nullable String buyerName) {
+public record MinimizedSaleView(
+        @JsonProperty("hq") boolean hq,
+        @JsonProperty("pricePerUnit") int pricePerUnit,
+        @JsonProperty("quantity") int quantity,
+
+        @JsonProperty("timestamp") @JsonDeserialize(converter = SecondsDateTimeConverter.class)
+        Instant timestamp,
+
+        @JsonProperty("onMannequin") boolean onMannequin,
+        @JsonProperty("worldID") World world,
+        @JsonProperty("buyerName") @Nullable String buyerName) {
     /**
      * Converts to a minimized sale object
      *
      * @return new minimized sale object
      */
     public MinimizedSale toSale() {
-        return new MinimizedSale(hq, new MinimizedPrice(pricePerUnit, quantity), timestamp, onMannequin, world, buyerName);
+        return new MinimizedSale(
+                hq, new MinimizedPrice(pricePerUnit, quantity), timestamp, onMannequin, world, buyerName);
     }
 }

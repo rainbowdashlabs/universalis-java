@@ -54,7 +54,13 @@ public class UniversalisWsImpl implements UniversalisWs {
      * @param itemNameSupplier item name supplier
      * @param websocketUrl     websocket url
      */
-    public UniversalisWsImpl(WebSocketFactory factory, ExecutorService websocketWorker, List<Subscription> subscribers, List<EventListener> listeners, NameSupplier itemNameSupplier, String websocketUrl) {
+    public UniversalisWsImpl(
+            WebSocketFactory factory,
+            ExecutorService websocketWorker,
+            List<Subscription> subscribers,
+            List<EventListener> listeners,
+            NameSupplier itemNameSupplier,
+            String websocketUrl) {
         this.factory = factory;
         this.websocketWorker = websocketWorker;
         this.subscribers = subscribers;
@@ -62,7 +68,6 @@ public class UniversalisWsImpl implements UniversalisWs {
         this.itemNameSupplier = itemNameSupplier;
         this.websocketUrl = websocketUrl;
     }
-
 
     /**
      * Attempts to create the socket and connect it
@@ -153,14 +158,16 @@ public class UniversalisWsImpl implements UniversalisWs {
         socket = newSocket;
         statusListener = listener;
 
-        CompletableFuture.runAsync(() -> {
-            try {
-                log.info("Attempting to establish socket connection.");
-                newSocket.connect();
-            } catch (WebSocketException e) {
-                scheduleReconnect("Failed to establish socket connection", e);
-            }
-        }, websocketWorker);
+        CompletableFuture.runAsync(
+                () -> {
+                    try {
+                        log.info("Attempting to establish socket connection.");
+                        newSocket.connect();
+                    } catch (WebSocketException e) {
+                        scheduleReconnect("Failed to establish socket connection", e);
+                    }
+                },
+                websocketWorker);
     }
 
     private void scheduleReconnect(String reason, Throwable cause) {
@@ -170,9 +177,10 @@ public class UniversalisWsImpl implements UniversalisWs {
             return;
         }
         log.error("{}. Trying again in {}s.", reason, RECONNECT_DELAY.toSeconds(), cause);
-        CompletableFuture.delayedExecutor(RECONNECT_DELAY.toSeconds(), TimeUnit.SECONDS).execute(() -> {
-            reconnectInFlight.set(false);
-            ignite();
-        });
+        CompletableFuture.delayedExecutor(RECONNECT_DELAY.toSeconds(), TimeUnit.SECONDS)
+                .execute(() -> {
+                    reconnectInFlight.set(false);
+                    ignite();
+                });
     }
 }

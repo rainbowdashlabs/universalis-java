@@ -13,5 +13,4 @@ import de.chojo.universalis.rest.routes.requests.MarketBoardRequestImpl;
 /**
  * Base implementation for a {@link MarketBoardRequestImpl}
  */
-public interface MarketableRequest extends Request<MarketableResponse> {
-}
+public interface MarketableRequest extends Request<MarketableResponse> {}

@@ -25,8 +25,7 @@ public final class LiveApiRetry {
     private static final int DEFAULT_ATTEMPTS = 3;
     private static final Duration DEFAULT_DELAY = Duration.ofSeconds(2);
 
-    private LiveApiRetry() {
-    }
+    private LiveApiRetry() {}
 
     /**
      * Runs {@code action}, retrying up to {@value #DEFAULT_ATTEMPTS} times if it throws.
@@ -48,8 +47,12 @@ public final class LiveApiRetry {
             } catch (Throwable t) {
                 last = t;
                 if (attempt < attempts) {
-                    log.warn("Live API attempt {}/{} failed ({}), retrying in {}s",
-                            attempt, attempts, t.getClass().getSimpleName(), delay.toSeconds());
+                    log.warn(
+                            "Live API attempt {}/{} failed ({}), retrying in {}s",
+                            attempt,
+                            attempts,
+                            t.getClass().getSimpleName(),
+                            delay.toSeconds());
                     try {
                         Thread.sleep(delay.toMillis());
                     } catch (InterruptedException e) {

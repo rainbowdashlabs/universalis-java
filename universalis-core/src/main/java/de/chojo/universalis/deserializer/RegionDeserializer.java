@@ -17,7 +17,6 @@ import tools.jackson.databind.ValueDeserializer;
  */
 public class RegionDeserializer extends ValueDeserializer<Region> {
 
-
     @Override
     public Region deserialize(JsonParser p, DeserializationContext ctxt) {
         return Worlds.regionByName(p.getString());

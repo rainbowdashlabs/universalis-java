@@ -22,7 +22,10 @@ import java.time.Instant;
  * @param updated updated
  * @param world   world
  */
-public record WorldItemRecently(@JsonProperty("itemID") Item item,
-                                @JsonProperty("lastUploadTime") @JsonDeserialize(converter = SecondsDateTimeConverter.class) Instant updated,
-                                @JsonProperty("worldID") World world) {
-}
+public record WorldItemRecently(
+        @JsonProperty("itemID") Item item,
+
+        @JsonProperty("lastUploadTime") @JsonDeserialize(converter = SecondsDateTimeConverter.class)
+        Instant updated,
+
+        @JsonProperty("worldID") World world) {}

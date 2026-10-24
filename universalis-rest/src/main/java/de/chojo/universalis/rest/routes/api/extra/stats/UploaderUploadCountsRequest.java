@@ -13,5 +13,4 @@ import de.chojo.universalis.rest.routes.requests.extra.stats.UploaderUploadCount
 /**
  * Base implementation for a {@link UploaderUploadCountsRequestImpl}
  */
-public interface UploaderUploadCountsRequest extends Request<UploaderUploadCountResponse> {
-}
+public interface UploaderUploadCountsRequest extends Request<UploaderUploadCountResponse> {}

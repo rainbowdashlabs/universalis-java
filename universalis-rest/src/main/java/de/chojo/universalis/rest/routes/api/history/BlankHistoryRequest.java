@@ -13,5 +13,7 @@ import de.chojo.universalis.rest.routes.api.base.WorldScope;
 /**
  * Base for a {@link RegionHistoryRequest}
  */
-public interface BlankHistoryRequest extends RegionScope<RegionHistoryRequest>, DataCenterScope<RegionHistoryRequest>, WorldScope<RegionHistoryRequest> {
-}
+public interface BlankHistoryRequest
+        extends RegionScope<RegionHistoryRequest>,
+                DataCenterScope<RegionHistoryRequest>,
+                WorldScope<RegionHistoryRequest> {}

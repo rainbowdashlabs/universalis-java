@@ -28,14 +28,18 @@ import java.time.Instant;
  * @param buyerName    The buyer name.
  * @param total        The total price.
  */
-public record SaleView(@JsonProperty("hq") boolean hq,
-                       @JsonProperty("pricePerUnit") int pricePerUnit,
-                       @JsonProperty("quantity") int quantity,
-                       @JsonProperty("timestamp") @JsonDeserialize(converter = SecondsDateTimeConverter.class) Instant timestamp,
-                       @JsonProperty("onMannequin") boolean onMannequin,
-                       @JsonProperty("worldID") World world,
-                       @JsonProperty("buyerName") @Nullable String buyerName,
-                       @JsonProperty("total") int total) {
+public record SaleView(
+        @JsonProperty("hq") boolean hq,
+        @JsonProperty("pricePerUnit") int pricePerUnit,
+        @JsonProperty("quantity") int quantity,
+
+        @JsonProperty("timestamp") @JsonDeserialize(converter = SecondsDateTimeConverter.class)
+        Instant timestamp,
+
+        @JsonProperty("onMannequin") boolean onMannequin,
+        @JsonProperty("worldID") World world,
+        @JsonProperty("buyerName") @Nullable String buyerName,
+        @JsonProperty("total") int total) {
     /**
      * Converts the view to a sale object
      *

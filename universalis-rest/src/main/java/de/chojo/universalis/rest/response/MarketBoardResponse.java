@@ -38,19 +38,18 @@ import java.util.Map;
  * @param stackSizeHistogram  stack size histogram
  * @param worldUploadTimes    world upload times
  */
-public record MarketBoardResponse(Item item,
-                                  @Nullable World world,
-                                  @Nullable DataCenter dataCenter,
-                                  @Nullable Region region,
-                                  Instant lastUploadTime,
-                                  List<Listing> listings,
-                                  List<Sale> recentHistory,
-                                  QualityIndicator<Float> currentAveragePrice,
-                                  QualityIndicator<Float> saleVelocity,
-                                  QualityIndicator<Float> averagePrice,
-                                  QualityIndicator<Integer> minPrice,
-                                  QualityIndicator<Integer> maxPrice,
-                                  QualityIndicator<Map<Integer, Integer>> stackSizeHistogram,
-                                  Map<World, Instant> worldUploadTimes
-) {
-}
+public record MarketBoardResponse(
+        Item item,
+        @Nullable World world,
+        @Nullable DataCenter dataCenter,
+        @Nullable Region region,
+        Instant lastUploadTime,
+        List<Listing> listings,
+        List<Sale> recentHistory,
+        QualityIndicator<Float> currentAveragePrice,
+        QualityIndicator<Float> saleVelocity,
+        QualityIndicator<Float> averagePrice,
+        QualityIndicator<Integer> minPrice,
+        QualityIndicator<Integer> maxPrice,
+        QualityIndicator<Map<Integer, Integer>> stackSizeHistogram,
+        Map<World, Instant> worldUploadTimes) {}

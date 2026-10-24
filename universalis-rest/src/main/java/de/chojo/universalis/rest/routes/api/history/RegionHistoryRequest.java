@@ -12,5 +12,4 @@ import de.chojo.universalis.rest.routes.api.base.ItemScope;
 /**
  *
  */
-public interface RegionHistoryRequest extends BlankHistoryRequest, ItemScope<HistoryRequest> {
-}
+public interface RegionHistoryRequest extends BlankHistoryRequest, ItemScope<HistoryRequest> {}

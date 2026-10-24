@@ -16,10 +16,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @param french   french name
  * @param japanese japanese name
  */
-public record Name(@JsonProperty("en") String english,
-                   @JsonProperty("de") String german,
-                   @JsonProperty("fr") String french,
-                   @JsonProperty("ja") String japanese) {
+public record Name(
+        @JsonProperty("en") String english,
+        @JsonProperty("de") String german,
+        @JsonProperty("fr") String french,
+        @JsonProperty("ja") String japanese) {
     private static final Name EMPTY = new Name("", "", "", "");
 
     /**

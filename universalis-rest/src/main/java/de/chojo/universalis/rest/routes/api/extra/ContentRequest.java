@@ -14,5 +14,4 @@ import de.chojo.universalis.rest.routes.requests.extra.ContentRequestImpl;
 /**
  * Base implementation for a {@link ContentRequestImpl}
  */
-public interface ContentRequest extends Request<ContentResponse>, BlankContentRequest {
-}
+public interface ContentRequest extends Request<ContentResponse>, BlankContentRequest {}

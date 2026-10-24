@@ -19,5 +19,4 @@ class DataCentersRequestImplTest {
         DataCentersResponse complete = client().dataCenters().complete();
         Assertions.assertFalse(complete.dataCenters().isEmpty());
     }
-
 }

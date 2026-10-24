@@ -14,7 +14,8 @@ import de.chojo.universalis.rest.routes.api.extra.stats.UploaderUploadCountsRequ
 /**
  * Implementation for a {@link UploaderUploadCountsRequest}
  */
-public class UploaderUploadCountsRequestImpl extends RequestBuilder<UploaderUploadCountResponse> implements UploaderUploadCountsRequest {
+public class UploaderUploadCountsRequestImpl extends RequestBuilder<UploaderUploadCountResponse>
+        implements UploaderUploadCountsRequest {
     /**
      * Create a new uploader upload count request
      *

@@ -21,8 +21,8 @@ import java.util.Map;
 public class TaxRatesResponseDeserializer extends ValueDeserializer<TaxRatesResponse> {
     @Override
     public TaxRatesResponse deserialize(JsonParser p, DeserializationContext ctxt) {
-        Map<City, Integer> taxRates = ctxt.readValue(p, ctxt.getTypeFactory()
-                                                            .constructMapType(EnumMap.class, City.class, Integer.class));
+        Map<City, Integer> taxRates =
+                ctxt.readValue(p, ctxt.getTypeFactory().constructMapType(EnumMap.class, City.class, Integer.class));
         return new TaxRatesResponse(taxRates);
     }
 }

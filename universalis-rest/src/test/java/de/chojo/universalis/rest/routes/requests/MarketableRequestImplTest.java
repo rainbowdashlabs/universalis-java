@@ -19,5 +19,4 @@ class MarketableRequestImplTest {
         MarketableResponse complete = client().marketable().complete();
         Assertions.assertFalse(complete.items().isEmpty());
     }
-
 }

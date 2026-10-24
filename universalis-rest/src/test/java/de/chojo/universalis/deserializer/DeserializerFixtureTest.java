@@ -86,13 +86,13 @@ class DeserializerFixtureTest {
 
         MarketBoardResponse response = mapper.readValue(json, MarketBoardResponse.class);
 
-        assertEquals(7, response.stackSizeHistogram().general().get(1),
-                "general histogram must survive missing HQ");
-        assertEquals(3, response.stackSizeHistogram().normalQuality().get(1),
-                "NQ histogram must survive missing HQ");
-        assertNotNull(response.stackSizeHistogram().highQuality(),
+        assertEquals(7, response.stackSizeHistogram().general().get(1), "general histogram must survive missing HQ");
+        assertEquals(3, response.stackSizeHistogram().normalQuality().get(1), "NQ histogram must survive missing HQ");
+        assertNotNull(
+                response.stackSizeHistogram().highQuality(),
                 "HQ histogram must be non-null (empty map) when missing from payload");
-        assertTrue(response.stackSizeHistogram().highQuality().isEmpty(),
+        assertTrue(
+                response.stackSizeHistogram().highQuality().isEmpty(),
                 "missing HQ histogram should deserialize as empty");
     }
 }

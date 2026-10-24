@@ -14,7 +14,6 @@ import de.chojo.universalis.rest.routes.api.HistoryRequest;
 import de.chojo.universalis.worlds.DataCenter;
 import de.chojo.universalis.worlds.Region;
 import de.chojo.universalis.worlds.World;
-
 import org.jetbrains.annotations.CheckReturnValue;
 
 import java.time.Duration;

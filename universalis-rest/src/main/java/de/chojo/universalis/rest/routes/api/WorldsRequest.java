@@ -13,5 +13,4 @@ import de.chojo.universalis.rest.routes.requests.WorldsRequestImpl;
 /**
  * Base implementation for a {@link WorldsRequestImpl}
  */
-public interface WorldsRequest extends Request<WorldsResponse> {
-}
+public interface WorldsRequest extends Request<WorldsResponse> {}

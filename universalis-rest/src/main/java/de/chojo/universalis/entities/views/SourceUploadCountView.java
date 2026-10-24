@@ -12,5 +12,4 @@ package de.chojo.universalis.entities.views;
  * @param sourceName  The name of the client application.
  * @param uploadCount The number of uploads originating from the client application.
  */
-public record SourceUploadCountView(String sourceName, String uploadCount) {
-}
+public record SourceUploadCountView(String sourceName, String uploadCount) {}

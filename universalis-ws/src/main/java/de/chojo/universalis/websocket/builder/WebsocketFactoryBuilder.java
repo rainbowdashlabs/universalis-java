@@ -9,12 +9,13 @@ package de.chojo.universalis.websocket.builder;
 import com.neovisionaries.ws.client.DualStackMode;
 import com.neovisionaries.ws.client.WebSocketFactory;
 
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLParameters;
-import javax.net.ssl.SSLSocketFactory;
 import java.net.Socket;
 import java.net.SocketAddress;
 import java.net.URI;
+
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLParameters;
+import javax.net.ssl.SSLSocketFactory;
 
 /**
  * Class to build a {@link WebSocketFactory}. Results in a {@link UniversalisWsBuilder}

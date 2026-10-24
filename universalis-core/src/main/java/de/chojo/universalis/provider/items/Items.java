@@ -29,8 +29,9 @@ public class Items implements NameSupplier {
     /**
      * Default source URL for the item name dump.
      */
-    public static final URI DEFAULT_SOURCE_URI =
-            URI.create("https://raw.githubusercontent.com/ffxiv-teamcraft/ffxiv-teamcraft/staging/libs/data/src/lib/json/items.json");
+    public static final URI DEFAULT_SOURCE_URI = URI.create(
+            "https://raw.githubusercontent.com/ffxiv-teamcraft/ffxiv-teamcraft/staging/libs/data/src/lib/json/items.json");
+
     private static final Duration DEFAULT_TIMEOUT = Duration.ofSeconds(30);
 
     private final Map<Integer, Name> ids;
@@ -71,19 +72,21 @@ public class Items implements NameSupplier {
      * @throws InterruptedException if the current thread gets interrupted
      */
     public static Items create(URI source) throws IOException, InterruptedException {
-        try (HttpClient client = HttpClient.newBuilder().connectTimeout(DEFAULT_TIMEOUT).build()) {
-            HttpResponse<String> response = client.send(HttpRequest.newBuilder()
-                                                                   .uri(source)
-                                                                   .timeout(DEFAULT_TIMEOUT)
-                                                                   .GET()
-                                                                   .build(), HttpResponse.BodyHandlers.ofString());
+        try (HttpClient client =
+                HttpClient.newBuilder().connectTimeout(DEFAULT_TIMEOUT).build()) {
+            HttpResponse<String> response = client.send(
+                    HttpRequest.newBuilder()
+                            .uri(source)
+                            .timeout(DEFAULT_TIMEOUT)
+                            .GET()
+                            .build(),
+                    HttpResponse.BodyHandlers.ofString());
             if (response.statusCode() / 100 != 2) {
-                throw new IOException("Failed to load items from " + source
-                        + " — status " + response.statusCode());
+                throw new IOException("Failed to load items from " + source + " — status " + response.statusCode());
             }
             ObjectMapper mapper = JsonMapper.builder().build();
-            Map<String, Name> names = mapper.readValue(response.body(), mapper.getTypeFactory()
-                                                                              .constructMapType(Map.class, String.class, Name.class));
+            Map<String, Name> names = mapper.readValue(
+                    response.body(), mapper.getTypeFactory().constructMapType(Map.class, String.class, Name.class));
 
             Map<Integer, Name> idNames = new HashMap<>();
             for (Map.Entry<String, Name> entry : names.entrySet()) {

@@ -7,7 +7,6 @@
 package de.chojo.universalis.rest.routes.api.base;
 
 import de.chojo.universalis.worlds.DataCenter;
-
 import org.jetbrains.annotations.CheckReturnValue;
 
 /**

@@ -31,12 +31,12 @@ import java.util.Map;
  * @param saleVelocity       sale velocity
  * @param stackSizeHistogram stack size histogram
  */
-public record HistoryResponse(Item item,
-                              @Nullable World world,
-                              @Nullable DataCenter dataCenter,
-                              @Nullable Region region,
-                              Instant lastUploadTime,
-                              List<MinimizedSale> sales,
-                              QualityIndicator<Float> saleVelocity,
-                              QualityIndicator<Map<Integer, Integer>> stackSizeHistogram) {
-}
+public record HistoryResponse(
+        Item item,
+        @Nullable World world,
+        @Nullable DataCenter dataCenter,
+        @Nullable Region region,
+        Instant lastUploadTime,
+        List<MinimizedSale> sales,
+        QualityIndicator<Float> saleVelocity,
+        QualityIndicator<Map<Integer, Integer>> stackSizeHistogram) {}

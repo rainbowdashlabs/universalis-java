@@ -16,7 +16,8 @@ class UploadHistoryRequestImplTest {
 
     @RetryingTest(3)
     public void test() {
-        UploadHistoryResponse complete = client().extra().stats().uploadHistory().complete();
+        UploadHistoryResponse complete =
+                client().extra().stats().uploadHistory().complete();
         assertFalse(complete.uploadCountByDay().isEmpty());
     }
 }

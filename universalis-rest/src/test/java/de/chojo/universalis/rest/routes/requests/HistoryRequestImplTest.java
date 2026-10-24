@@ -26,30 +26,22 @@ class HistoryRequestImplTest {
     }
 
     private static HistoryRequest worldReq() {
-        return client().history()
-                       .world(Worlds.europe().light().odin)
-                       .itemsIds(33927);
+        return client().history().world(Worlds.europe().light().odin).itemsIds(33927);
     }
 
     private static HistoryRequest dcReq() {
-        return client().history()
-                       .dataCenter(Worlds.europe().light())
-                       .itemsIds(33927);
+        return client().history().dataCenter(Worlds.europe().light()).itemsIds(33927);
     }
 
     private static HistoryRequest regionReq() {
-        return client().history()
-                       .region(Worlds.europe())
-                       .itemsIds(33927);
+        return client().history().region(Worlds.europe()).itemsIds(33927);
     }
 
     @ParameterizedTest
     @MethodSource("inputs")
     void limit(HistoryRequest request) {
         retry(() -> {
-            HistoryResponse complete = request
-                    .limit(3)
-                    .complete();
+            HistoryResponse complete = request.limit(3).complete();
             Assertions.assertEquals(3, complete.sales().size());
         });
     }

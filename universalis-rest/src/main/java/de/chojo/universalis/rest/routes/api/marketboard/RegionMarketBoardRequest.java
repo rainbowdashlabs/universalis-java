@@ -12,5 +12,4 @@ import de.chojo.universalis.rest.routes.api.base.ItemScope;
 /**
  * Base for a {@link MarketBoardRequest}
  */
-public interface RegionMarketBoardRequest extends BlankMarketBoardRequest, ItemScope<MarketBoardRequest> {
-}
+public interface RegionMarketBoardRequest extends BlankMarketBoardRequest, ItemScope<MarketBoardRequest> {}

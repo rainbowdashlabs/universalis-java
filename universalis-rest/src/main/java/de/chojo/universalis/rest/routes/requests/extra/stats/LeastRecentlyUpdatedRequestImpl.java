@@ -12,13 +12,13 @@ import de.chojo.universalis.rest.response.extra.stats.LeastRecentlyUpdatedRespon
 import de.chojo.universalis.rest.routes.api.extra.stats.LeastRecentlyUpdatedRequest;
 import de.chojo.universalis.worlds.DataCenter;
 import de.chojo.universalis.worlds.World;
-
 import org.jetbrains.annotations.CheckReturnValue;
 
 /**
  * Implementation for a {@link LeastRecentlyUpdatedRequest}
  */
-public class LeastRecentlyUpdatedRequestImpl extends RequestBuilder<LeastRecentlyUpdatedResponse> implements LeastRecentlyUpdatedRequest {
+public class LeastRecentlyUpdatedRequestImpl extends RequestBuilder<LeastRecentlyUpdatedResponse>
+        implements LeastRecentlyUpdatedRequest {
     /**
      * Create a new least recently updated request
      *

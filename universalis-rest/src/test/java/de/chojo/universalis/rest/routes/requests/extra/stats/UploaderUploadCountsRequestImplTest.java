@@ -16,8 +16,8 @@ class UploaderUploadCountsRequestImplTest {
 
     @RetryingTest(3)
     public void test() {
-        UploaderUploadCountResponse complete = client().extra().stats().uploaderUploadCounts().complete();
+        UploaderUploadCountResponse complete =
+                client().extra().stats().uploaderUploadCounts().complete();
         assertFalse(complete.uploader().isEmpty());
     }
-
 }
