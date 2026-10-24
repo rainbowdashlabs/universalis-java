@@ -10,9 +10,11 @@ import de.chojo.universalis.provider.NameSupplier;
 import de.chojo.universalis.rest.requests.Mapper;
 import de.chojo.universalis.rest.response.HistoryResponse;
 import de.chojo.universalis.rest.response.MarketBoardResponse;
+import de.chojo.universalis.rest.response.extra.stats.MostRecentlyUpdatedResponse;
 import org.junit.jupiter.api.Test;
 import tools.jackson.databind.ObjectMapper;
 
+import java.time.Instant;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -94,5 +96,18 @@ class DeserializerFixtureTest {
         assertTrue(
                 response.stackSizeHistogram().highQuality().isEmpty(),
                 "missing HQ histogram should deserialize as empty");
+    }
+
+    @Test
+    void recentlyUpdatedReadsMilliseconds() {
+        String json = """
+                {"items": [{"itemID": 44897, "lastUploadTime": 1792798907574, "worldID": 56, "worldName": "Phoenix"}]}
+                """;
+
+        MostRecentlyUpdatedResponse response = mapper.readValue(json, MostRecentlyUpdatedResponse.class);
+
+        assertEquals(
+                Instant.ofEpochMilli(1792798907574L),
+                response.items().getFirst().updated());
     }
 }

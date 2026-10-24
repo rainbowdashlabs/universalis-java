@@ -68,10 +68,6 @@ for (WorldItemRecently entry : recent) {
 }
 ```
 
-:::warning
-`WorldItemRecently.updated()` reads the upload time with the wrong unit and returns a date far in the future.
-:::
-
 ## Content
 
 `extra().content()` is deprecated. Universalis calls its content endpoint largely untested, and the response is only a

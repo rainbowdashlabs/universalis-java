@@ -26,7 +26,8 @@ class ItemScopeTest {
 
     @Test
     void marketBoardTakesOneItem() {
-        assertDoesNotThrow(() -> rest.marketBoard().world(Worlds.europe().light().odin).itemsIds(5057));
+        assertDoesNotThrow(
+                () -> rest.marketBoard().world(Worlds.europe().light().odin).itemsIds(5057));
     }
 
     @Test
@@ -50,6 +51,9 @@ class ItemScopeTest {
     void itemCanOnlyBeSetOnce() {
         assertThrows(
                 IllegalStateException.class,
-                () -> rest.marketBoard().world(Worlds.europe().light().odin).itemsIds(5057).itemsIds(5058));
+                () -> rest.marketBoard()
+                        .world(Worlds.europe().light().odin)
+                        .itemsIds(5057)
+                        .itemsIds(5058));
     }
 }
