@@ -60,13 +60,9 @@ world.
 Subscription odinSales = Subscriptions.salesAdd().restrict(Worlds.europe().light().odin);
 ```
 
-`subscribe(Subscription)` and `unsubscribe(Subscription)` on the client change subscriptions while it runs. Both throw
-an `IllegalStateException` while the client is not connected.
-
-:::warning
-After a reconnect the client subscribes again to the subscriptions of the builder. Subscriptions you added or removed
-on the running client are lost at that point.
-:::
+`subscribe(Subscription)` and `unsubscribe(Subscription)` on the client change subscriptions while it runs. While
+the client is connected the change is sent right away. The client keeps the list and subscribes to it again after every
+reconnect.
 
 ## Events
 

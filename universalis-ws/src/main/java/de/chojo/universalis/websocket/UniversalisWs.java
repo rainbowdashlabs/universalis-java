@@ -35,14 +35,14 @@ public interface UniversalisWs {
     }
 
     /**
-     * Add a subscription.
+     * Add a subscription. It is sent right away when the websocket is connected, and again after every reconnect.
      *
-     * @param subscription subcription to add
+     * @param subscription subscription to add
      */
     void subscribe(Subscription subscription);
 
     /**
-     * Remove a subscription.
+     * Remove a subscription. It is no longer sent after a reconnect.
      *
      * @param subscription subscription to remove
      */

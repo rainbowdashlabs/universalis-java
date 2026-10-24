@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -63,7 +64,7 @@ public class UniversalisWsImpl implements UniversalisWs {
             String websocketUrl) {
         this.factory = factory;
         this.websocketWorker = websocketWorker;
-        this.subscribers = subscribers;
+        this.subscribers = new CopyOnWriteArrayList<>(subscribers);
         this.listeners = listeners;
         this.itemNameSupplier = itemNameSupplier;
         this.websocketUrl = websocketUrl;
@@ -83,20 +84,20 @@ public class UniversalisWsImpl implements UniversalisWs {
 
     @Override
     public void subscribe(Subscription subscription) {
+        subscribers.add(subscription);
         StatusListener listener = statusListener;
-        if (listener == null) {
-            throw new IllegalStateException("Websocket has not been ignited yet.");
+        if (listener != null && listener.isConnected()) {
+            listener.subscribe(subscription);
         }
-        listener.subscribe(subscription);
     }
 
     @Override
     public void unsubscribe(Subscription subscription) {
+        subscribers.remove(subscription);
         StatusListener listener = statusListener;
-        if (listener == null) {
-            throw new IllegalStateException("Websocket has not been ignited yet.");
+        if (listener != null && listener.isConnected()) {
+            listener.unsubscribe(subscription);
         }
-        listener.unsubscribe(subscription);
     }
 
     @Override
