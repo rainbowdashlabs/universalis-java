@@ -91,4 +91,5 @@ the client keeps up with new messages.
 When the connection drops, the client connects again right away and subscribes again. A failed connection attempt is
 retried every 5 seconds. `disconnect()` closes the connection and stops reconnecting.
 
-`awaitReady()` blocks until the client is connected. It has no timeout and keeps a thread busy while it waits.
+`awaitReady()` blocks until the client is connected. `awaitReady(Duration)` waits at most the given time and returns
+whether the client is connected.

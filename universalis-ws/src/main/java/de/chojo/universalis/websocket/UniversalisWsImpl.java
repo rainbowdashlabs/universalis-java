@@ -41,6 +41,7 @@ public class UniversalisWsImpl implements UniversalisWs {
     private final List<EventListener> listeners;
     private final NameSupplier itemNameSupplier;
     private final AtomicBoolean reconnectInFlight = new AtomicBoolean();
+    private final Object readyLock = new Object();
     private volatile WebSocket socket;
     private volatile StatusListener statusListener;
     private volatile boolean active = true;
@@ -124,10 +125,48 @@ public class UniversalisWsImpl implements UniversalisWs {
 
     @Override
     public void awaitReady() {
-        StatusListener listener;
-        while ((listener = statusListener) == null || !listener.isConnected()) {
-            Thread.onSpinWait();
+        synchronized (readyLock) {
+            while (!isConnected()) {
+                try {
+                    readyLock.wait();
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    return;
+                }
+            }
         }
+    }
+
+    @Override
+    public boolean awaitReady(Duration timeout) {
+        long deadline = System.nanoTime() + timeout.toNanos();
+        synchronized (readyLock) {
+            while (!isConnected()) {
+                long remaining = TimeUnit.NANOSECONDS.toMillis(deadline - System.nanoTime());
+                if (remaining <= 0) return false;
+                try {
+                    readyLock.wait(remaining);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
+
+    /**
+     * Wakes up threads waiting in {@link #awaitReady()} after the connection state changed.
+     */
+    public void connectionChanged() {
+        synchronized (readyLock) {
+            readyLock.notifyAll();
+        }
+    }
+
+    private boolean isConnected() {
+        StatusListener listener = statusListener;
+        return listener != null && listener.isConnected();
     }
 
     private void internalIgnite() {

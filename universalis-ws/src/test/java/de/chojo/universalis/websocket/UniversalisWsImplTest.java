@@ -11,10 +11,12 @@ import de.chojo.universalis.provider.NameSupplier;
 import de.chojo.universalis.websocket.subscriber.Subscriptions;
 import org.junit.jupiter.api.Test;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.Executors;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class UniversalisWsImplTest {
     private final UniversalisWsImpl ws = new UniversalisWsImpl(
@@ -30,5 +32,10 @@ class UniversalisWsImplTest {
         var subscription = Subscriptions.salesAdd();
         assertDoesNotThrow(() -> ws.subscribe(subscription));
         assertDoesNotThrow(() -> ws.unsubscribe(subscription));
+    }
+
+    @Test
+    void awaitReadyTimesOutWithoutConnection() {
+        assertFalse(ws.awaitReady(Duration.ofMillis(50)));
     }
 }
