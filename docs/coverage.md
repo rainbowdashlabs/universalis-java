@@ -25,7 +25,7 @@ What the client wraps of the [Universalis API](https://docs.universalis.app), ve
 | `/extra/stats/world-upload-counts` | `extra().stats().worldUploadCounts()` | |
 | `/extra/stats/upload-history` | `extra().stats().uploadHistory()` | |
 | `/extra/content/{contentId}` | `extra().content()` | Deprecated. |
-| `/lists/{listId}` | none | |
+| `/lists/{listId}` | `list(String)` | |
 
 ## WebSocket
 

@@ -14,6 +14,7 @@ import de.chojo.universalis.rest.requests.Buckets;
 import de.chojo.universalis.rest.requests.Mapper;
 import de.chojo.universalis.rest.routes.api.DataCentersRequest;
 import de.chojo.universalis.rest.routes.api.MarketableRequest;
+import de.chojo.universalis.rest.routes.api.UserListRequest;
 import de.chojo.universalis.rest.routes.api.WorldsRequest;
 import de.chojo.universalis.rest.routes.api.history.BlankHistoryRequest;
 import de.chojo.universalis.rest.routes.api.marketboard.BlankMarketBoardRequest;
@@ -23,6 +24,7 @@ import de.chojo.universalis.rest.routes.requests.HistoryRequestImpl;
 import de.chojo.universalis.rest.routes.requests.MarketBoardRequestImpl;
 import de.chojo.universalis.rest.routes.requests.MarketableRequestImpl;
 import de.chojo.universalis.rest.routes.requests.TaxRatesRequestImpl;
+import de.chojo.universalis.rest.routes.requests.UserListRequestImpl;
 import de.chojo.universalis.rest.routes.requests.WorldsRequestImpl;
 import de.chojo.universalis.rest.routes.requests.extra.Extra;
 import io.github.bucket4j.Bucket;
@@ -133,6 +135,12 @@ public class UniversalisRestImpl implements UniversalisRest {
     @CheckReturnValue
     public MarketableRequest marketable() {
         return new MarketableRequestImpl(this);
+    }
+
+    @Override
+    @CheckReturnValue
+    public UserListRequest list(String listId) {
+        return new UserListRequestImpl(this, listId);
     }
 
     @Override

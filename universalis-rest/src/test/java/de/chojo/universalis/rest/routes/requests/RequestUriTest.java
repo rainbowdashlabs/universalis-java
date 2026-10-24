@@ -47,4 +47,11 @@ class RequestUriTest {
                         + "?entriesUntil=1700000000&minSalePrice=10&maxSalePrice=500",
                 request.toString());
     }
+
+    @Test
+    void userList() {
+        assertEquals(
+                "UserListRequestImpl: https://universalis.app/api/v2/lists/abc",
+                rest.list("abc").toString());
+    }
 }

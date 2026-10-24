@@ -11,6 +11,7 @@ import de.chojo.universalis.provider.NameSupplier;
 import de.chojo.universalis.rest.requests.Mapper;
 import de.chojo.universalis.rest.response.HistoryResponse;
 import de.chojo.universalis.rest.response.MarketBoardResponse;
+import de.chojo.universalis.rest.response.UserListResponse;
 import de.chojo.universalis.rest.response.extra.stats.MostRecentlyUpdatedResponse;
 import de.chojo.universalis.rest.response.extra.stats.RecentlyUpdatedResponse;
 import de.chojo.universalis.worlds.Worlds;
@@ -148,6 +149,22 @@ class DeserializerFixtureTest {
     void recentlyUpdatedReadsItems() {
         RecentlyUpdatedResponse response = mapper.readValue("{\"items\": [5057, 5058]}", RecentlyUpdatedResponse.class);
 
+        assertEquals(
+                List.of(5057, 5058), response.items().stream().map(Item::id).toList());
+    }
+
+    @Test
+    void userListReadsTimesAndItems() {
+        String json = """
+                {"id": "abc", "created": "1700000000000", "updated": "1700000500000", "name": "Ores",
+                 "itemIDs": [5057, 5058]}
+                """;
+
+        UserListResponse response = mapper.readValue(json, UserListResponse.class);
+
+        assertEquals(Instant.ofEpochMilli(1700000000000L), response.created());
+        assertEquals(Instant.ofEpochMilli(1700000500000L), response.updated());
+        assertEquals("Ores", response.name());
         assertEquals(
                 List.of(5057, 5058), response.items().stream().map(Item::id).toList());
     }

@@ -41,6 +41,18 @@ int limsa = taxes.rate(City.LIMSA_LOMINSA);
 
 `TaxRatesResponse` is an `Iterable` of `Map.Entry<City, Integer>`.
 
+## User lists
+
+`list(String)` returns a list that someone created on universalis.app. The id is the last part of the list's address.
+
+```java
+UserListResponse list = rest.list(listId).complete();
+System.out.println(list.name() + " has " + list.items().size() + " items, changed " + list.updated());
+```
+
+`UserListResponse` holds the `id()`, `name()`, `created()`, `updated()` and the `items()`, and is an `Iterable` of
+`Item`. An unknown id fails with an `ErrorResponseException` (status 404).
+
 ## Statistics
 
 `extra().stats()` holds the statistics requests.

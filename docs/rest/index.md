@@ -58,6 +58,7 @@ Responses that hold a list are `Iterable`, so you can loop over them directly.
 | `marketBoard()` | Listings, recent sales and prices of an item | [Market board](./market-board.md) |
 | `history()` | Sale history of an item | [Sale history](./history.md) |
 | `worlds()`, `dataCenters()`, `marketable()`, `taxRates()` | Game data and tax rates | [Other endpoints](./other-endpoints.md) |
+| `list(String)` | A list a user created | [Other endpoints](./other-endpoints.md#user-lists) |
 | `extra().stats()` | Upload statistics | [Other endpoints](./other-endpoints.md#statistics) |
 
 ## Rate limit
