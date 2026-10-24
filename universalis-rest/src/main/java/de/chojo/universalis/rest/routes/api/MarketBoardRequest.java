@@ -84,4 +84,15 @@ public interface MarketBoardRequest extends Request<MarketBoardResponse>, Region
      */
     @CheckReturnValue
     MarketBoardRequest statsTime(Duration duration);
+
+    /**
+     * Restricts the response to these fields, named as Universalis names them, for example {@code listings.pricePerUnit}
+     * or {@code minPriceHQ}. Fields that are left out are empty, zero or null in the response. By default, all fields
+     * are returned.
+     *
+     * @param fields field names
+     * @return request
+     */
+    @CheckReturnValue
+    MarketBoardRequest fields(String... fields);
 }

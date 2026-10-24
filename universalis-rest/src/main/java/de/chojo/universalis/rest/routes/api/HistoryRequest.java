@@ -15,6 +15,7 @@ import de.chojo.universalis.rest.routes.requests.HistoryRequestImpl;
 import org.jetbrains.annotations.CheckReturnValue;
 
 import java.time.Duration;
+import java.time.Instant;
 
 /**
  * Base implementation for a {@link HistoryRequestImpl}
@@ -48,4 +49,32 @@ public interface HistoryRequest extends Request<HistoryResponse>, RegionHistoryR
      */
     @CheckReturnValue
     HistoryRequest statsTime(Duration duration);
+
+    /**
+     * Only return sales up to this point in time. {@link #historyTime(Duration)} then counts back from here instead of
+     * from now. By default, this is now.
+     *
+     * @param until latest sale time
+     * @return request
+     */
+    @CheckReturnValue
+    HistoryRequest entriesUntil(Instant until);
+
+    /**
+     * Only return sales with at least this price per unit.
+     *
+     * @param price inclusive minimum price per unit
+     * @return request
+     */
+    @CheckReturnValue
+    HistoryRequest minSalePrice(int price);
+
+    /**
+     * Only return sales with at most this price per unit.
+     *
+     * @param price inclusive maximum price per unit
+     * @return request
+     */
+    @CheckReturnValue
+    HistoryRequest maxSalePrice(int price);
 }

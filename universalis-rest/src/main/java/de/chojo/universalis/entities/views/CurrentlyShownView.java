@@ -52,7 +52,19 @@ public record CurrentlyShownView(
         @JsonProperty("stackSizeHistogramHQ") Map<String, Integer> stackSizeHistogramHQ,
         @JsonProperty("listingsCount") int listingsCount,
         @JsonProperty("recentHistoryCount") int recentHistoryCount,
-        @JsonProperty("unitsSold") int unitsSold) {
+        @JsonProperty("unitsForSale") int unitsForSale,
+        @JsonProperty("unitsSold") int unitsSold,
+        @JsonProperty("hasData") boolean hasData) {
+    @Override
+    public List<ListingView> listingViews() {
+        return listingViews == null ? Collections.emptyList() : listingViews;
+    }
+
+    @Override
+    public List<SaleView> recentHistory() {
+        return recentHistory == null ? Collections.emptyList() : recentHistory;
+    }
+
     @Override
     public Map<String, Integer> stackSizeHistogramHQ() {
         return stackSizeHistogramHQ == null ? Collections.emptyMap() : stackSizeHistogramHQ;

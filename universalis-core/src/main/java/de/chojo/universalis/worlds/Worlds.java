@@ -27,6 +27,9 @@ public class Worlds {
     private static final Oceania oceania = new Oceania();
     private static final Japan japan = new Japan();
     private static final China china = new China();
+    private static final Korea korea = new Korea();
+    private static final TraditionalChinese traditionalChinese = new TraditionalChinese();
+    private static final NaCloud naCloud = new NaCloud();
 
     /**
      * The european region
@@ -74,12 +77,39 @@ public class Worlds {
     }
 
     /**
+     * The 한국 region
+     *
+     * @return 한국 region
+     */
+    public static Korea korea() {
+        return korea;
+    }
+
+    /**
+     * The 繁中服 region
+     *
+     * @return 繁中服 region
+     */
+    public static TraditionalChinese traditionalChinese() {
+        return traditionalChinese;
+    }
+
+    /**
+     * The NA cloud region
+     *
+     * @return NA cloud region
+     */
+    public static NaCloud naCloud() {
+        return naCloud;
+    }
+
+    /**
      * Returns all valid regions
      *
      * @return unmodifiable list of regions
      */
     public static List<Region> regions() {
-        return List.of(europe, northAmerica, oceania, japan, china);
+        return List.of(europe, northAmerica, oceania, japan, china, korea, traditionalChinese, naCloud);
     }
 
     /**
@@ -357,6 +387,7 @@ public class Worlds {
         private final Aether aether = new Aether();
         private final Crystal crystal = new Crystal();
         private final Primal primal = new Primal();
+        private final Dynamis dynamis = new Dynamis();
 
         private NorthAmerica() {}
 
@@ -387,9 +418,18 @@ public class Worlds {
             return primal;
         }
 
+        /**
+         * The dynamis data center
+         *
+         * @return dynamis data center
+         */
+        public Dynamis dynamis() {
+            return dynamis;
+        }
+
         @Override
         public List<DataCenter> datacenters() {
-            return List.of(aether, crystal, primal);
+            return List.of(aether, crystal, primal, dynamis);
         }
 
         @Override
@@ -555,6 +595,59 @@ public class Worlds {
                 return northAmerica;
             }
         }
+
+        /**
+         * The dynamis data center
+         */
+        public static final class Dynamis implements DataCenter {
+            /**
+             * The world Marilith
+             */
+            public final World marilith = World.of("Marilith", 404, this);
+            /**
+             * The world Seraph
+             */
+            public final World seraph = World.of("Seraph", 405, this);
+            /**
+             * The world Halicarnassus
+             */
+            public final World halicarnassus = World.of("Halicarnassus", 406, this);
+            /**
+             * The world Maduin
+             */
+            public final World maduin = World.of("Maduin", 407, this);
+            /**
+             * The world Cuchulainn
+             */
+            public final World cuchulainn = World.of("Cuchulainn", 408, this);
+            /**
+             * The world Kraken
+             */
+            public final World kraken = World.of("Kraken", 409, this);
+            /**
+             * The world Rafflesia
+             */
+            public final World rafflesia = World.of("Rafflesia", 410, this);
+            /**
+             * The world Golem
+             */
+            public final World golem = World.of("Golem", 411, this);
+
+            @Override
+            public List<World> worlds() {
+                return List.of(marilith, seraph, halicarnassus, maduin, cuchulainn, kraken, rafflesia, golem);
+            }
+
+            @Override
+            public int id() {
+                return 15;
+            }
+
+            @Override
+            public Region region() {
+                return northAmerica;
+            }
+        }
     }
 
     /**
@@ -660,7 +753,10 @@ public class Worlds {
          * The gaia data center
          *
          * @return gaia data center
+         * @deprecated Universalis no longer knows this data center and answers requests for it with 404. It lists
+         *     these worlds under {@link #elemental()}. Request a world or the region instead.
          */
+        @Deprecated
         public Gaia gaia() {
             return gaia;
         }
@@ -669,7 +765,10 @@ public class Worlds {
          * The mana data center
          *
          * @return mana data center
+         * @deprecated Universalis no longer knows this data center and answers requests for it with 404. It lists
+         *     these worlds under {@link #elemental()}. Request a world or the region instead.
          */
+        @Deprecated
         public Mana mana() {
             return mana;
         }
@@ -678,7 +777,10 @@ public class Worlds {
          * The meteor data center
          *
          * @return meteor data center
+         * @deprecated Universalis no longer knows this data center and answers requests for it with 404. It lists
+         *     these worlds under {@link #elemental()}. Request a world or the region instead.
          */
+        @Deprecated
         public Meteor meteor() {
             return meteor;
         }
@@ -738,7 +840,10 @@ public class Worlds {
 
         /**
          * The gaia data center
+         *
+         * @deprecated Universalis no longer knows this data center. Request a world or the region instead.
          */
+        @Deprecated
         public static final class Gaia implements DataCenter {
             /**
              * The world Alexander
@@ -791,7 +896,10 @@ public class Worlds {
 
         /**
          * The mana data center
+         *
+         * @deprecated Universalis no longer knows this data center. Request a world or the region instead.
          */
+        @Deprecated
         public static final class Mana implements DataCenter {
             /**
              * The world Anima
@@ -843,8 +951,11 @@ public class Worlds {
         }
 
         /**
-         * The elemental data center
+         * The meteor data center
+         *
+         * @deprecated Universalis no longer knows this data center. Request a world or the region instead.
          */
+        @Deprecated
         public static final class Meteor implements DataCenter {
             /**
              * The world Belias
@@ -1007,6 +1118,11 @@ public class Worlds {
             }
 
             @Override
+            public String name() {
+                return "陆行鸟";
+            }
+
+            @Override
             public Region region() {
                 return china;
             }
@@ -1068,6 +1184,11 @@ public class Worlds {
             }
 
             @Override
+            public String name() {
+                return "莫古力";
+            }
+
+            @Override
             public Region region() {
                 return china;
             }
@@ -1117,6 +1238,11 @@ public class Worlds {
             }
 
             @Override
+            public String name() {
+                return "猫小胖";
+            }
+
+            @Override
             public Region region() {
                 return china;
             }
@@ -1146,30 +1272,10 @@ public class Worlds {
              * The world 红茶川
              */
             public final World hongChaChuan2 = World.of("红茶川", 1201, this);
-            /**
-             * The world 黄金谷
-             */
-            public final World huangJinGu = World.of("黄金谷", 1068, this);
-            /**
-             * The world 月牙湾
-             */
-            public final World YueYaWan = World.of("月牙湾", 1064, this);
-            /**
-             * The world 雪松原
-             */
-            public final World XueSongYuan = World.of("雪松原", 1187, this);
 
             @Override
             public List<World> worlds() {
-                return List.of(
-                        shuiJingTa2,
-                        yinLeiHu,
-                        taiYangHaiAn2,
-                        yiXiuJiaDe2,
-                        hongChaChuan2,
-                        huangJinGu,
-                        YueYaWan,
-                        XueSongYuan);
+                return List.of(shuiJingTa2, yinLeiHu, taiYangHaiAn2, yiXiuJiaDe2, hongChaChuan2);
             }
 
             @Override
@@ -1178,8 +1284,235 @@ public class Worlds {
             }
 
             @Override
+            public String name() {
+                return "豆豆柴";
+            }
+
+            @Override
             public Region region() {
                 return china;
+            }
+        }
+    }
+
+    /**
+     * The korean region
+     */
+    public static final class Korea implements Region {
+        private final KoreaDc koreaDc = new KoreaDc();
+
+        private Korea() {}
+
+        /**
+         * The 한국 data center
+         *
+         * @return 한국 data center
+         */
+        public KoreaDc koreaDc() {
+            return koreaDc;
+        }
+
+        @Override
+        public List<DataCenter> datacenters() {
+            return List.of(koreaDc);
+        }
+
+        @Override
+        public String name() {
+            return "한국";
+        }
+
+        /**
+         * The 한국 data center
+         */
+        public static final class KoreaDc implements DataCenter {
+            /**
+             * The world 카벙클
+             */
+            public final World carbuncle = World.of("카벙클", 2075, this);
+            /**
+             * The world 초코보
+             */
+            public final World chocobo = World.of("초코보", 2076, this);
+            /**
+             * The world 모그리
+             */
+            public final World moogle = World.of("모그리", 2077, this);
+            /**
+             * The world 톤베리
+             */
+            public final World tonberry = World.of("톤베리", 2078, this);
+            /**
+             * The world 펜리르
+             */
+            public final World fenrir = World.of("펜리르", 2080, this);
+
+            @Override
+            public List<World> worlds() {
+                return List.of(carbuncle, chocobo, moogle, tonberry, fenrir);
+            }
+
+            @Override
+            public int id() {
+                return 16;
+            }
+
+            @Override
+            public String name() {
+                return "한국";
+            }
+
+            @Override
+            public Region region() {
+                return korea;
+            }
+        }
+    }
+
+    /**
+     * The 繁中服 region
+     */
+    public static final class TraditionalChinese implements Region {
+        private final LuXingNiao luXingNiao = new LuXingNiao();
+
+        private TraditionalChinese() {}
+
+        /**
+         * The 陸行鳥 data center
+         *
+         * @return 陸行鳥 data center
+         */
+        public LuXingNiao luXingNiao() {
+            return luXingNiao;
+        }
+
+        @Override
+        public List<DataCenter> datacenters() {
+            return List.of(luXingNiao);
+        }
+
+        @Override
+        public String name() {
+            return "繁中服";
+        }
+
+        /**
+         * The 陸行鳥 data center
+         */
+        public static final class LuXingNiao implements DataCenter {
+            /**
+             * The world 伊弗利特
+             */
+            public final World ifrit = World.of("伊弗利特", 4028, this);
+            /**
+             * The world 迦樓羅
+             */
+            public final World garuda = World.of("迦樓羅", 4029, this);
+            /**
+             * The world 利維坦
+             */
+            public final World leviathan = World.of("利維坦", 4030, this);
+            /**
+             * The world 鳳凰
+             */
+            public final World phoenix = World.of("鳳凰", 4031, this);
+            /**
+             * The world 奧汀
+             */
+            public final World odin = World.of("奧汀", 4032, this);
+            /**
+             * The world 巴哈姆特
+             */
+            public final World bahamut = World.of("巴哈姆特", 4033, this);
+            /**
+             * The world 拉姆
+             */
+            public final World ramuh = World.of("拉姆", 4034, this);
+            /**
+             * The world 泰坦
+             */
+            public final World titan = World.of("泰坦", 4035, this);
+
+            @Override
+            public List<World> worlds() {
+                return List.of(ifrit, garuda, leviathan, phoenix, odin, bahamut, ramuh, titan);
+            }
+
+            @Override
+            public int id() {
+                return 17;
+            }
+
+            @Override
+            public String name() {
+                return "陸行鳥";
+            }
+
+            @Override
+            public Region region() {
+                return traditionalChinese;
+            }
+        }
+    }
+
+    /**
+     * The NA cloud region
+     */
+    public static final class NaCloud implements Region {
+        private final NaCloudDc naCloudDc = new NaCloudDc();
+
+        private NaCloud() {}
+
+        /**
+         * The NA Cloud DC (Beta) data center
+         *
+         * @return NA Cloud DC (Beta) data center
+         */
+        public NaCloudDc naCloudDc() {
+            return naCloudDc;
+        }
+
+        @Override
+        public List<DataCenter> datacenters() {
+            return List.of(naCloudDc);
+        }
+
+        @Override
+        public String name() {
+            return "NA-Cloud-DC";
+        }
+
+        /**
+         * The NA Cloud DC (Beta) data center
+         */
+        public static final class NaCloudDc implements DataCenter {
+            /**
+             * The world Cloudtest01
+             */
+            public final World cloudtest01 = World.of("Cloudtest01", 3000, this);
+            /**
+             * The world Cloudtest02
+             */
+            public final World cloudtest02 = World.of("Cloudtest02", 3001, this);
+
+            @Override
+            public List<World> worlds() {
+                return List.of(cloudtest01, cloudtest02);
+            }
+
+            @Override
+            public int id() {
+                return 18;
+            }
+
+            @Override
+            public String name() {
+                return "NA Cloud DC (Beta)";
+            }
+
+            @Override
+            public Region region() {
+                return naCloud;
             }
         }
     }

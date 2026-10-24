@@ -71,6 +71,11 @@ public class MarketBoardResponseDeserializer extends ValueDeserializer<MarketBoa
                 minPrice,
                 maxPrice,
                 stackSizeHistogram,
-                worldUploadTimes);
+                worldUploadTimes,
+                view.listingsCount(),
+                view.recentHistoryCount(),
+                view.unitsForSale(),
+                view.unitsSold(),
+                view.hasData());
     }
 }

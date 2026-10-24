@@ -8,7 +8,9 @@ package de.chojo.universalis.rest;
 
 import de.chojo.universalis.rest.routes.api.DataCentersRequest;
 import de.chojo.universalis.rest.routes.api.MarketableRequest;
+import de.chojo.universalis.rest.routes.api.UserListRequest;
 import de.chojo.universalis.rest.routes.api.WorldsRequest;
+import de.chojo.universalis.rest.routes.api.aggregated.BlankAggregatedRequest;
 import de.chojo.universalis.rest.routes.api.history.BlankHistoryRequest;
 import de.chojo.universalis.rest.routes.api.marketboard.BlankMarketBoardRequest;
 import de.chojo.universalis.rest.routes.api.taxrates.BlankTaxRatesRequest;
@@ -46,6 +48,16 @@ public interface UniversalisRest extends AutoCloseable {
      */
     @CheckReturnValue
     BlankMarketBoardRequest marketBoard();
+
+    /**
+     * Retrieves aggregated market board data for up to 100 items: cheapest and median listing, most recent sale, average
+     * price and sale velocity. Universalis computes it from cached values only, so prefer it over
+     * {@link #marketBoard()} when single listings and sales are not needed.
+     *
+     * @return request builder
+     */
+    @CheckReturnValue
+    BlankAggregatedRequest aggregated();
 
     /**
      * Returns the IDs and names of all worlds supported by the API.
@@ -86,6 +98,15 @@ public interface UniversalisRest extends AutoCloseable {
      */
     @CheckReturnValue
     MarketableRequest marketable();
+
+    /**
+     * Retrieves a list a user created on Universalis.
+     *
+     * @param listId id of the list, as in the list's address on universalis.app
+     * @return request builder
+     */
+    @CheckReturnValue
+    UserListRequest list(String listId);
 
     /**
      * Allows requests on route of the extra route

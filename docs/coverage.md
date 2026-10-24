@@ -11,21 +11,21 @@ What the client wraps of the [Universalis API](https://docs.universalis.app), ve
 
 | Universalis endpoint | Client | Notes |
 |---|---|---|
-| `/{worldDcRegion}/{itemIds}` | `marketBoard()` | One item per request. The `fields` parameter is not supported. |
-| `/history/{worldDcRegion}/{itemIds}` | `history()` | One item per request. `entriesUntil`, `minSalePrice` and `maxSalePrice` are not supported. |
-| `/aggregated/{worldDcRegion}/{itemIds}` | none | |
+| `/{worldDcRegion}/{itemIds}` | `marketBoard()` | One item per request. |
+| `/history/{worldDcRegion}/{itemIds}` | `history()` | One item per request. |
+| `/aggregated/{worldDcRegion}/{itemIds}` | `aggregated()` | Up to 100 items per request. |
 | `/worlds` | `worlds()` | |
 | `/data-centers` | `dataCenters()` | |
 | `/marketable` | `marketable()` | |
 | `/tax-rates` | `taxRates()` | |
 | `/extra/stats/most-recently-updated` | `extra().stats().mostRecentlyUpdated()` | |
 | `/extra/stats/least-recently-updated` | `extra().stats().leastRecentlyUpdated()` | |
-| `/extra/stats/recently-updated` | none | Legacy endpoint. |
+| `/extra/stats/recently-updated` | `extra().stats().recentlyUpdated()` | Legacy endpoint. |
 | `/extra/stats/uploader-upload-counts` | `extra().stats().uploaderUploadCounts()` | |
 | `/extra/stats/world-upload-counts` | `extra().stats().worldUploadCounts()` | |
 | `/extra/stats/upload-history` | `extra().stats().uploadHistory()` | |
 | `/extra/content/{contentId}` | `extra().content()` | Deprecated. |
-| `/lists/{listId}` | none | |
+| `/lists/{listId}` | `list(String)` | |
 
 ## WebSocket
 

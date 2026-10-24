@@ -6,16 +6,20 @@
 
 package de.chojo.universalis.deserializer;
 
+import de.chojo.universalis.entities.Item;
 import de.chojo.universalis.provider.NameSupplier;
 import de.chojo.universalis.rest.requests.Mapper;
 import de.chojo.universalis.rest.response.HistoryResponse;
 import de.chojo.universalis.rest.response.MarketBoardResponse;
+import de.chojo.universalis.rest.response.UserListResponse;
 import de.chojo.universalis.rest.response.extra.stats.MostRecentlyUpdatedResponse;
+import de.chojo.universalis.rest.response.extra.stats.RecentlyUpdatedResponse;
 import de.chojo.universalis.worlds.Worlds;
 import org.junit.jupiter.api.Test;
 import tools.jackson.databind.ObjectMapper;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -121,5 +125,47 @@ class DeserializerFixtureTest {
         HistoryResponse response = mapper.readValue(json, HistoryResponse.class);
 
         assertEquals(Worlds.europe(), response.region());
+    }
+
+    @Test
+    void marketBoardResponseReadsCountsAndToleratesMissingLists() {
+        String json = """
+                {"itemID": 5057, "worldID": 66, "listingsCount": 12, "recentHistoryCount": 5,
+                 "unitsForSale": 340, "unitsSold": 99, "hasData": true}
+                """;
+
+        MarketBoardResponse response = mapper.readValue(json, MarketBoardResponse.class);
+
+        assertEquals(12, response.listingsCount());
+        assertEquals(5, response.recentHistoryCount());
+        assertEquals(340, response.unitsForSale());
+        assertEquals(99, response.unitsSold());
+        assertTrue(response.hasData());
+        assertTrue(response.listings().isEmpty());
+        assertTrue(response.recentHistory().isEmpty());
+    }
+
+    @Test
+    void recentlyUpdatedReadsItems() {
+        RecentlyUpdatedResponse response = mapper.readValue("{\"items\": [5057, 5058]}", RecentlyUpdatedResponse.class);
+
+        assertEquals(
+                List.of(5057, 5058), response.items().stream().map(Item::id).toList());
+    }
+
+    @Test
+    void userListReadsTimesAndItems() {
+        String json = """
+                {"id": "abc", "created": "1700000000000", "updated": "1700000500000", "name": "Ores",
+                 "itemIDs": [5057, 5058]}
+                """;
+
+        UserListResponse response = mapper.readValue(json, UserListResponse.class);
+
+        assertEquals(Instant.ofEpochMilli(1700000000000L), response.created());
+        assertEquals(Instant.ofEpochMilli(1700000500000L), response.updated());
+        assertEquals("Ores", response.name());
+        assertEquals(
+                List.of(5057, 5058), response.items().stream().map(Item::id).toList());
     }
 }

@@ -17,6 +17,7 @@ import de.chojo.universalis.worlds.World;
 import org.jetbrains.annotations.CheckReturnValue;
 
 import java.time.Duration;
+import java.time.Instant;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -112,6 +113,27 @@ public class HistoryRequestImpl extends RequestBuilder<HistoryResponse> implemen
             throw new IllegalArgumentException("statsTime duration must not be negative: " + duration);
         }
         parameter("statsWithin", duration.toMillis());
+        return this;
+    }
+
+    @Override
+    @CheckReturnValue
+    public HistoryRequest entriesUntil(Instant until) {
+        parameter("entriesUntil", until.getEpochSecond());
+        return this;
+    }
+
+    @Override
+    @CheckReturnValue
+    public HistoryRequest minSalePrice(int price) {
+        parameter("minSalePrice", price);
+        return this;
+    }
+
+    @Override
+    @CheckReturnValue
+    public HistoryRequest maxSalePrice(int price) {
+        parameter("maxSalePrice", price);
         return this;
     }
 }

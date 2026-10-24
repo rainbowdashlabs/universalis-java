@@ -1,6 +1,6 @@
 ---
 title: Sale history
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 # Sale history
@@ -28,8 +28,11 @@ Where and which item work as for the [market board](./market-board.md#where): pi
 | Method | Universalis parameter | Default | What it does |
 |---|---|---|---|
 | `limit(int)` | `entriesToReturn` | 1800 | How many sales to return, at most 99999. |
-| `historyTime(Duration)` | `entriesWithin` | 7 days | Only sales within this time before now. Sent in seconds. |
+| `historyTime(Duration)` | `entriesWithin` | 7 days | Only sales within this time before now, or before `entriesUntil`. Sent in seconds. |
 | `statsTime(Duration)` | `statsWithin` | 7 days | The time the sale velocity is calculated over. Sent in milliseconds. |
+| `entriesUntil(Instant)` | `entriesUntil` | now | Only sales up to this time. `historyTime` then counts back from here. Sent in seconds. |
+| `minSalePrice(int)` | `minSalePrice` | none | Only sales with at least this price per unit. |
+| `maxSalePrice(int)` | `maxSalePrice` | none | Only sales with at most this price per unit. |
 
 `historyTime` and `statsTime` throw an `IllegalArgumentException` for a negative duration.
 
