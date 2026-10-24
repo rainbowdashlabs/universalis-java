@@ -6,16 +6,19 @@
 
 package de.chojo.universalis.deserializer;
 
+import de.chojo.universalis.entities.Item;
 import de.chojo.universalis.provider.NameSupplier;
 import de.chojo.universalis.rest.requests.Mapper;
 import de.chojo.universalis.rest.response.HistoryResponse;
 import de.chojo.universalis.rest.response.MarketBoardResponse;
 import de.chojo.universalis.rest.response.extra.stats.MostRecentlyUpdatedResponse;
+import de.chojo.universalis.rest.response.extra.stats.RecentlyUpdatedResponse;
 import de.chojo.universalis.worlds.Worlds;
 import org.junit.jupiter.api.Test;
 import tools.jackson.databind.ObjectMapper;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -139,5 +142,13 @@ class DeserializerFixtureTest {
         assertTrue(response.hasData());
         assertTrue(response.listings().isEmpty());
         assertTrue(response.recentHistory().isEmpty());
+    }
+
+    @Test
+    void recentlyUpdatedReadsItems() {
+        RecentlyUpdatedResponse response = mapper.readValue("{\"items\": [5057, 5058]}", RecentlyUpdatedResponse.class);
+
+        assertEquals(
+                List.of(5057, 5058), response.items().stream().map(Item::id).toList());
     }
 }

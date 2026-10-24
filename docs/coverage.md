@@ -20,7 +20,7 @@ What the client wraps of the [Universalis API](https://docs.universalis.app), ve
 | `/tax-rates` | `taxRates()` | |
 | `/extra/stats/most-recently-updated` | `extra().stats().mostRecentlyUpdated()` | |
 | `/extra/stats/least-recently-updated` | `extra().stats().leastRecentlyUpdated()` | |
-| `/extra/stats/recently-updated` | none | Legacy endpoint. |
+| `/extra/stats/recently-updated` | `extra().stats().recentlyUpdated()` | Legacy endpoint. |
 | `/extra/stats/uploader-upload-counts` | `extra().stats().uploaderUploadCounts()` | |
 | `/extra/stats/world-upload-counts` | `extra().stats().worldUploadCounts()` | |
 | `/extra/stats/upload-history` | `extra().stats().uploadHistory()` | |

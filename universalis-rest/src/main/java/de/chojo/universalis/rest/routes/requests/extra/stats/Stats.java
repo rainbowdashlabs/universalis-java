@@ -8,6 +8,7 @@ package de.chojo.universalis.rest.routes.requests.extra.stats;
 
 import de.chojo.universalis.rest.UniversalisRestImpl;
 import de.chojo.universalis.rest.routes.api.extra.WorldUploadCountsRequest;
+import de.chojo.universalis.rest.routes.api.extra.stats.RecentlyUpdatedRequest;
 import de.chojo.universalis.rest.routes.api.extra.stats.UploadHistoryRequest;
 import de.chojo.universalis.rest.routes.api.extra.stats.UploaderUploadCountsRequest;
 import de.chojo.universalis.rest.routes.api.extra.stats.leastrecentlyupdated.BlankLeastRecentlyUpdatedRequest;
@@ -67,6 +68,17 @@ public class Stats {
     @CheckReturnValue
     public WorldUploadCountsRequest worldUploadCounts() {
         return new WorldUploadCountsRequestImpl(rest);
+    }
+
+    /**
+     * Returns some of the items updated most recently, without the world or time of the update. Universalis calls this
+     * a legacy endpoint; prefer {@link #mostRecentlyUpdated()}.
+     *
+     * @return request builder
+     */
+    @CheckReturnValue
+    public RecentlyUpdatedRequest recentlyUpdated() {
+        return new RecentlyUpdatedRequestImpl(rest);
     }
 
     /**

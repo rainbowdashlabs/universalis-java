@@ -49,6 +49,7 @@ int limsa = taxes.rate(City.LIMSA_LOMINSA);
 |---|---|---|
 | `mostRecentlyUpdated()` | `MostRecentlyUpdatedResponse` | The items updated most recently. |
 | `leastRecentlyUpdated()` | `LeastRecentlyUpdatedResponse` | The items not updated for the longest time. |
+| `recentlyUpdated()` | `RecentlyUpdatedResponse` | Some recently updated items, without world or time. Universalis calls it a legacy endpoint. |
 | `uploaderUploadCounts()` | `UploaderUploadCountResponse` | Uploads per uploading application. |
 | `worldUploadCounts()` | `WorldUploadCountResponse` | Uploads per world, with their share of all uploads. |
 | `uploadHistory()` | `UploadHistoryResponse` | Uploads per day for the last 30 days. |
