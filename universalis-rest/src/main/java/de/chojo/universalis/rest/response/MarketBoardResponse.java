@@ -37,6 +37,11 @@ import java.util.Map;
  * @param maxPrice            max price
  * @param stackSizeHistogram  stack size histogram
  * @param worldUploadTimes    world upload times
+ * @param listingsCount       number of listings Universalis has for the request, also beyond the listings limit
+ * @param recentHistoryCount  number of sales Universalis has for the request, also beyond the history limit
+ * @param unitsForSale        number of units in all listings
+ * @param unitsSold           number of units in all sales
+ * @param hasData             whether Universalis has any data for the item
  */
 public record MarketBoardResponse(
         Item item,
@@ -52,4 +57,9 @@ public record MarketBoardResponse(
         QualityIndicator<Integer> minPrice,
         QualityIndicator<Integer> maxPrice,
         QualityIndicator<Map<Integer, Integer>> stackSizeHistogram,
-        Map<World, Instant> worldUploadTimes) {}
+        Map<World, Instant> worldUploadTimes,
+        int listingsCount,
+        int recentHistoryCount,
+        int unitsForSale,
+        int unitsSold,
+        boolean hasData) {}

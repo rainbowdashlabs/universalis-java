@@ -122,4 +122,22 @@ class DeserializerFixtureTest {
 
         assertEquals(Worlds.europe(), response.region());
     }
+
+    @Test
+    void marketBoardResponseReadsCountsAndToleratesMissingLists() {
+        String json = """
+                {"itemID": 5057, "worldID": 66, "listingsCount": 12, "recentHistoryCount": 5,
+                 "unitsForSale": 340, "unitsSold": 99, "hasData": true}
+                """;
+
+        MarketBoardResponse response = mapper.readValue(json, MarketBoardResponse.class);
+
+        assertEquals(12, response.listingsCount());
+        assertEquals(5, response.recentHistoryCount());
+        assertEquals(340, response.unitsForSale());
+        assertEquals(99, response.unitsSold());
+        assertTrue(response.hasData());
+        assertTrue(response.listings().isEmpty());
+        assertTrue(response.recentHistory().isEmpty());
+    }
 }
