@@ -54,6 +54,7 @@ All options are optional.
 | `highQuality(boolean)` | `hq` | both qualities | `true` is `highQuality()`, `false` is `normalQuality()`. |
 | `historyTime(Duration)` | `entriesWithin` | no limit | Only sales within this time before now. Sent in seconds. |
 | `statsTime(Duration)` | `statsWithin` | 7 days | The time before now that prices and sale velocity are calculated over. Sent in milliseconds. |
+| `fields(String...)` | `fields` | all fields | Only these fields, named as Universalis names them, for example `listings.pricePerUnit`. Fields left out are empty, zero or `null` in the response. |
 
 `historyTime` and `statsTime` throw an `IllegalArgumentException` for a negative duration.
 

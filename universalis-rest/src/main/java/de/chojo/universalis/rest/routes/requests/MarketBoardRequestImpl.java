@@ -133,4 +133,11 @@ public class MarketBoardRequestImpl extends RequestBuilder<MarketBoardResponse> 
         parameter("statsWithin", duration.toMillis());
         return this;
     }
+
+    @Override
+    @CheckReturnValue
+    public MarketBoardRequest fields(String... fields) {
+        parameter("fields", String.join(",", fields));
+        return this;
+    }
 }
