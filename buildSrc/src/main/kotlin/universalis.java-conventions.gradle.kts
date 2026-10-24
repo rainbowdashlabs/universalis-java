@@ -17,13 +17,14 @@ java {
 }
 
 tasks.withType<JavaCompile>().configureEach {
+    options.release = 21
     options.encoding = "UTF-8"
 }
 
 tasks.withType<Javadoc>().configureEach {
     options.encoding = "UTF-8"
     (options as StandardJavadocDocletOptions).links(
-        "https://docs.oracle.com/en/java/javase/25/docs/api/",
+        "https://docs.oracle.com/en/java/javase/21/docs/api/",
         "https://javadoc.io/doc/org.jetbrains/annotations/${libs.findVersion("annotations").get().requiredVersion}/",
     )
 }
