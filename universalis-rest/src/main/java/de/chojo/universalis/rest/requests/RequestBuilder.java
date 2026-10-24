@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Collection;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
@@ -30,6 +31,7 @@ public class RequestBuilder<T> implements Request<T> {
     private final Class<T> result;
     private final Consumer<T> postRetrievalHook;
     private boolean hasScope;
+    private boolean hasItem;
 
     /**
      * Create a new request builder
@@ -66,6 +68,26 @@ public class RequestBuilder<T> implements Request<T> {
                             + name);
         }
         hasScope = true;
+    }
+
+    /**
+     * Adds the item to the path. Universalis answers a request for several items with a different response, which the
+     * response types of this library do not cover, so a request takes exactly one item.
+     *
+     * @param itemIds ids of the items to request
+     * @throws IllegalArgumentException if not exactly one id is given
+     * @throws IllegalStateException    if the item has already been set on this request
+     */
+    public void itemPath(Collection<Integer> itemIds) {
+        if (itemIds.size() != 1) {
+            throw new IllegalArgumentException(
+                    "A request takes exactly one item, but " + itemIds.size() + " were given: " + itemIds);
+        }
+        if (hasItem) {
+            throw new IllegalStateException("The item has already been set on this request.");
+        }
+        hasItem = true;
+        path(itemIds.iterator().next());
     }
 
     /**

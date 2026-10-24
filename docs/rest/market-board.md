@@ -37,9 +37,9 @@ Get the objects from `Worlds`, for example `Worlds.europe().light().odin`. See [
 `itemsIds(Integer...)` and `itemsIds(Collection<Integer>)` take item ids. `items(Item...)` and
 `items(Collection<Item>)` take `Item` objects, for example from an earlier response.
 
-:::warning
-Ask for one item per request. A request with more than one item fails while the response is read.
-:::
+A request takes exactly one item. More than one item, or none, throws an `IllegalArgumentException`; setting the
+item a second time throws an `IllegalStateException`. Universalis answers requests for several items with a different
+response, which this version does not cover.
 
 ## Options
 

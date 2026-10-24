@@ -19,7 +19,7 @@ import org.jetbrains.annotations.CheckReturnValue;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.stream.Collectors;
+import java.util.List;
 
 /**
  * Implementation for a {@link HistoryRequest}
@@ -63,28 +63,28 @@ public class HistoryRequestImpl extends RequestBuilder<HistoryResponse> implemen
     @Override
     @CheckReturnValue
     public HistoryRequest items(Item... items) {
-        path(Arrays.stream(items).map(Item::id).map(String::valueOf).collect(Collectors.joining(",")));
+        itemPath(Arrays.stream(items).map(Item::id).toList());
         return this;
     }
 
     @Override
     @CheckReturnValue
     public HistoryRequest items(Collection<Item> items) {
-        path(items.stream().map(Item::id).map(String::valueOf).collect(Collectors.joining(",")));
+        itemPath(items.stream().map(Item::id).toList());
         return this;
     }
 
     @Override
     @CheckReturnValue
     public HistoryRequest itemsIds(Integer... itemIds) {
-        path(Arrays.stream(itemIds).map(String::valueOf).collect(Collectors.joining(",")));
+        itemPath(Arrays.asList(itemIds));
         return this;
     }
 
     @Override
     @CheckReturnValue
     public HistoryRequest itemsIds(Collection<Integer> itemIds) {
-        path(itemIds.stream().map(String::valueOf).collect(Collectors.joining(",")));
+        itemPath(List.copyOf(itemIds));
         return this;
     }
 
