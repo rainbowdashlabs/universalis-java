@@ -53,7 +53,7 @@ public class WebsocketListenerAdapter extends WebSocketAdapter implements EventL
     private final BSONDecoder decoder = new BasicBSONDecoder();
     private final List<EventListener> listeners;
     private final ObjectMapper objectMapper;
-    private final Cache<World, WsListingRemoveEvent> removedListings =
+    private final Cache<ListingKey, WsListingRemoveEvent> removedListings =
             Caffeine.newBuilder().expireAfterWrite(Duration.ofSeconds(10)).build();
 
     /**
@@ -101,7 +101,7 @@ public class WebsocketListenerAdapter extends WebSocketAdapter implements EventL
             case "listings/remove" -> {
                 WsListingRemoveEvent wsRemove = map(map, WsListingRemoveEvent.class);
                 onListingRemove(wsRemove.toEvent());
-                removedListings.put(wsRemove.world(), wsRemove);
+                removedListings.put(new ListingKey(wsRemove.world(), wsRemove.item()), wsRemove);
             }
             default -> log.warn("Received unknown event '{}' with payload {}", event, map);
         }
@@ -138,9 +138,10 @@ public class WebsocketListenerAdapter extends WebSocketAdapter implements EventL
     }
 
     private void handleAdd(WsListingAddEvent wsAdd) {
-        WsListingRemoveEvent removed = removedListings.getIfPresent(wsAdd.world());
+        ListingKey key = new ListingKey(wsAdd.world(), wsAdd.item());
+        WsListingRemoveEvent removed = removedListings.getIfPresent(key);
         if (removed == null) return;
-        removedListings.invalidate(wsAdd.world());
+        removedListings.invalidate(key);
         onListingUpdate(removed.toUpdate(wsAdd).toEvent());
     }
 
@@ -156,4 +157,6 @@ public class WebsocketListenerAdapter extends WebSocketAdapter implements EventL
             throw e;
         }
     }
+
+    private record ListingKey(World world, Item item) {}
 }

@@ -81,14 +81,9 @@ Implement `EventListener`, or extend `ListenerAdapter` and override only what yo
 | `onSalesRemove` | `SalesRemoveEvent` (deprecated) | `item()`, `world()`, `sales()` |
 
 Universalis has no update event. When someone uploads the market board, Universalis removes the old listings and adds
-the new ones. The client keeps each remove event for 10 seconds. When an add event for the same world follows, it
-calls `onListingUpdate` with the listings that were added and removed. The add and remove events are still delivered
-on their own.
-
-:::warning
-The client pairs remove and add events by world only, not by item. Two different items uploaded on the same world
-within 10 seconds can end up in one update event.
-:::
+the new ones. The client keeps each remove event for 10 seconds. When an add event for the same item on the same world
+follows, it calls `onListingUpdate` with the listings that were added and removed. The add and remove events are still
+delivered on their own.
 
 Listings and sales are the same types as in the [REST client](./rest/market-board.md#the-response).
 
