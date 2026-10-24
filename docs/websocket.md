@@ -60,13 +60,9 @@ world.
 Subscription odinSales = Subscriptions.salesAdd().restrict(Worlds.europe().light().odin);
 ```
 
-`subscribe(Subscription)` and `unsubscribe(Subscription)` on the client change subscriptions while it runs. Both throw
-an `IllegalStateException` while the client is not connected.
-
-:::warning
-After a reconnect the client subscribes again to the subscriptions of the builder. Subscriptions you added or removed
-on the running client are lost at that point.
-:::
+`subscribe(Subscription)` and `unsubscribe(Subscription)` on the client change subscriptions while it runs. While
+the client is connected the change is sent right away. The client keeps the list and subscribes to it again after every
+reconnect.
 
 ## Events
 
@@ -81,14 +77,9 @@ Implement `EventListener`, or extend `ListenerAdapter` and override only what yo
 | `onSalesRemove` | `SalesRemoveEvent` (deprecated) | `item()`, `world()`, `sales()` |
 
 Universalis has no update event. When someone uploads the market board, Universalis removes the old listings and adds
-the new ones. The client keeps each remove event for 10 seconds. When an add event for the same world follows, it
-calls `onListingUpdate` with the listings that were added and removed. The add and remove events are still delivered
-on their own.
-
-:::warning
-The client pairs remove and add events by world only, not by item. Two different items uploaded on the same world
-within 10 seconds can end up in one update event.
-:::
+the new ones. The client keeps each remove event for 10 seconds. When an add event for the same item on the same world
+follows, it calls `onListingUpdate` with the listings that were added and removed. The add and remove events are still
+delivered on their own.
 
 Listings and sales are the same types as in the [REST client](./rest/market-board.md#the-response).
 
@@ -97,7 +88,8 @@ the client keeps up with new messages.
 
 ## Connection
 
-When the connection drops, the client connects again right away and subscribes again. A failed connection attempt is
-retried every 5 seconds. `disconnect()` closes the connection and stops reconnecting.
+When the connection drops, the client connects again after 5 seconds and subscribes again. A failed connection
+attempt is retried every 5 seconds as well. `disconnect()` closes the connection and stops reconnecting.
 
-`awaitReady()` blocks until the client is connected. It has no timeout and keeps a thread busy while it waits.
+`awaitReady()` blocks until the client is connected. `awaitReady(Duration)` waits at most the given time and returns
+whether the client is connected.

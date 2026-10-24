@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -33,6 +34,7 @@ import static org.slf4j.LoggerFactory.getLogger;
 public class UniversalisWsImpl implements UniversalisWs {
     private static final Logger log = getLogger(UniversalisWsImpl.class);
     private static final Duration RECONNECT_DELAY = Duration.ofSeconds(5);
+    private static final Duration PING_INTERVAL = Duration.ofSeconds(5);
     private final String websocketUrl;
     private final WebSocketFactory factory;
     private final ExecutorService websocketWorker;
@@ -40,6 +42,7 @@ public class UniversalisWsImpl implements UniversalisWs {
     private final List<EventListener> listeners;
     private final NameSupplier itemNameSupplier;
     private final AtomicBoolean reconnectInFlight = new AtomicBoolean();
+    private final Object readyLock = new Object();
     private volatile WebSocket socket;
     private volatile StatusListener statusListener;
     private volatile boolean active = true;
@@ -63,7 +66,7 @@ public class UniversalisWsImpl implements UniversalisWs {
             String websocketUrl) {
         this.factory = factory;
         this.websocketWorker = websocketWorker;
-        this.subscribers = subscribers;
+        this.subscribers = new CopyOnWriteArrayList<>(subscribers);
         this.listeners = listeners;
         this.itemNameSupplier = itemNameSupplier;
         this.websocketUrl = websocketUrl;
@@ -83,20 +86,20 @@ public class UniversalisWsImpl implements UniversalisWs {
 
     @Override
     public void subscribe(Subscription subscription) {
+        subscribers.add(subscription);
         StatusListener listener = statusListener;
-        if (listener == null) {
-            throw new IllegalStateException("Websocket has not been ignited yet.");
+        if (listener != null && listener.isConnected()) {
+            listener.subscribe(subscription);
         }
-        listener.subscribe(subscription);
     }
 
     @Override
     public void unsubscribe(Subscription subscription) {
+        subscribers.remove(subscription);
         StatusListener listener = statusListener;
-        if (listener == null) {
-            throw new IllegalStateException("Websocket has not been ignited yet.");
+        if (listener != null && listener.isConnected()) {
+            listener.unsubscribe(subscription);
         }
-        listener.unsubscribe(subscription);
     }
 
     @Override
@@ -123,10 +126,48 @@ public class UniversalisWsImpl implements UniversalisWs {
 
     @Override
     public void awaitReady() {
-        StatusListener listener;
-        while ((listener = statusListener) == null || !listener.isConnected()) {
-            Thread.onSpinWait();
+        synchronized (readyLock) {
+            while (!isConnected()) {
+                try {
+                    readyLock.wait();
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    return;
+                }
+            }
         }
+    }
+
+    @Override
+    public boolean awaitReady(Duration timeout) {
+        long deadline = System.nanoTime() + timeout.toNanos();
+        synchronized (readyLock) {
+            while (!isConnected()) {
+                long remaining = TimeUnit.NANOSECONDS.toMillis(deadline - System.nanoTime());
+                if (remaining <= 0) return false;
+                try {
+                    readyLock.wait(remaining);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
+
+    /**
+     * Wakes up threads waiting in {@link #awaitReady()} after the connection state changed.
+     */
+    public void connectionChanged() {
+        synchronized (readyLock) {
+            readyLock.notifyAll();
+        }
+    }
+
+    private boolean isConnected() {
+        StatusListener listener = statusListener;
+        return listener != null && listener.isConnected();
     }
 
     private void internalIgnite() {
@@ -150,7 +191,7 @@ public class UniversalisWsImpl implements UniversalisWs {
             return;
         }
 
-        newSocket.setPingInterval(5);
+        newSocket.setPingInterval(PING_INTERVAL.toMillis());
         newSocket.addListener(new WebsocketListenerAdapter(listeners, itemNameSupplier));
         StatusListener listener = new StatusListener(this, subscribers);
         newSocket.addListener(listener);
@@ -170,13 +211,24 @@ public class UniversalisWsImpl implements UniversalisWs {
                 websocketWorker);
     }
 
+    /**
+     * Connects again after the reconnect delay, unless the websocket was disconnected on purpose.
+     */
+    public void reconnect() {
+        scheduleReconnect(() -> log.info("Connecting again in {}s.", RECONNECT_DELAY.toSeconds()));
+    }
+
     private void scheduleReconnect(String reason, Throwable cause) {
+        scheduleReconnect(() -> log.error("{}. Trying again in {}s.", reason, RECONNECT_DELAY.toSeconds(), cause));
+    }
+
+    private void scheduleReconnect(Runnable announce) {
         if (!active) return;
         if (!reconnectInFlight.compareAndSet(false, true)) {
-            log.debug("Reconnect already in flight, skipping ({})", reason);
+            log.debug("Reconnect already in flight");
             return;
         }
-        log.error("{}. Trying again in {}s.", reason, RECONNECT_DELAY.toSeconds(), cause);
+        announce.run();
         CompletableFuture.delayedExecutor(RECONNECT_DELAY.toSeconds(), TimeUnit.SECONDS)
                 .execute(() -> {
                     reconnectInFlight.set(false);

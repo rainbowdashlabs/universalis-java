@@ -10,6 +10,8 @@ import de.chojo.universalis.websocket.builder.UniversalisWsBuilder;
 import de.chojo.universalis.websocket.builder.WebsocketFactoryBuilder;
 import de.chojo.universalis.websocket.subscriber.Subscription;
 
+import java.time.Duration;
+
 /**
  * Interface for universalis websocket implementation.
  */
@@ -35,14 +37,14 @@ public interface UniversalisWs {
     }
 
     /**
-     * Add a subscription.
+     * Add a subscription. It is sent right away when the websocket is connected, and again after every reconnect.
      *
-     * @param subscription subcription to add
+     * @param subscription subscription to add
      */
     void subscribe(Subscription subscription);
 
     /**
-     * Remove a subscription.
+     * Remove a subscription. It is no longer sent after a reconnect.
      *
      * @param subscription subscription to remove
      */
@@ -54,7 +56,16 @@ public interface UniversalisWs {
     void disconnect();
 
     /**
-     * Suspends the thread until the websocket is connected.
+     * Blocks until the websocket is connected. Returns early, with the interrupt flag set, when the thread is
+     * interrupted.
      */
     void awaitReady();
+
+    /**
+     * Blocks until the websocket is connected or the timeout has passed.
+     *
+     * @param timeout the longest time to wait
+     * @return true if the websocket is connected, false if the timeout passed or the thread was interrupted
+     */
+    boolean awaitReady(Duration timeout);
 }

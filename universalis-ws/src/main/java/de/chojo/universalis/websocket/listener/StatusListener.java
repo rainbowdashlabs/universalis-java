@@ -47,6 +47,7 @@ public class StatusListener extends WebSocketAdapter {
     public void onConnected(WebSocket websocket, Map<String, List<String>> headers) {
         log.info("WebSocket Connected");
         connected = true;
+        universalisWs.connectionChanged();
         for (var entry : headers.entrySet()) {
             log.trace("{}:{}", entry.getKey(), String.join(", ", entry.getValue()));
         }
@@ -106,6 +107,7 @@ public class StatusListener extends WebSocketAdapter {
             WebSocketFrame clientCloseFrame,
             boolean closedByServer) {
         connected = false;
+        universalisWs.connectionChanged();
         if (closedByServer) {
             log.info("Remote host closed the connection");
         } else {
@@ -113,7 +115,7 @@ public class StatusListener extends WebSocketAdapter {
             String reason = clientCloseFrame != null ? clientCloseFrame.getCloseReason() : "none";
             log.info("Closed connection to remote host\nCode: {}\nReason: {}", code, reason);
         }
-        universalisWs.ignite();
+        universalisWs.reconnect();
     }
 
     @Override

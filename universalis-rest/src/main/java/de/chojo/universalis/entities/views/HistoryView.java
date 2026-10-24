@@ -45,7 +45,7 @@ public record HistoryView(
 
         @JsonProperty("entries") @Nullable List<MinimizedSaleView> entries,
         @JsonProperty("dcName") @Nullable DataCenter datacenter,
-        @JsonProperty("region") @Nullable Region region,
+        @JsonProperty("regionName") @Nullable Region region,
         @JsonProperty("stackSizeHistogram") @Nullable Map<String, Integer> stackSizeHistogram,
         @JsonProperty("stackSizeHistogramNQ") @Nullable Map<String, Integer> stackSizeHistogramNQ,
         @JsonProperty("stackSizeHistogramHQ") @Nullable Map<String, Integer> stackSizeHistogramHQ,

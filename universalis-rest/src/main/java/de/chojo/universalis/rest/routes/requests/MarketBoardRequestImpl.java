@@ -19,7 +19,7 @@ import org.jetbrains.annotations.CheckReturnValue;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.stream.Collectors;
+import java.util.List;
 
 /**
  * Implementation for a {@link MarketBoardRequest}
@@ -62,28 +62,28 @@ public class MarketBoardRequestImpl extends RequestBuilder<MarketBoardResponse> 
     @Override
     @CheckReturnValue
     public MarketBoardRequest items(Item... items) {
-        path(Arrays.stream(items).map(Item::id).map(String::valueOf).collect(Collectors.joining(",")));
+        itemPath(Arrays.stream(items).map(Item::id).toList());
         return this;
     }
 
     @Override
     @CheckReturnValue
     public MarketBoardRequest items(Collection<Item> items) {
-        path(items.stream().map(Item::id).map(String::valueOf).collect(Collectors.joining(",")));
+        itemPath(items.stream().map(Item::id).toList());
         return this;
     }
 
     @Override
     @CheckReturnValue
     public MarketBoardRequest itemsIds(Integer... itemIds) {
-        path(Arrays.stream(itemIds).map(String::valueOf).collect(Collectors.joining(",")));
+        itemPath(Arrays.asList(itemIds));
         return this;
     }
 
     @Override
     @CheckReturnValue
     public MarketBoardRequest itemsIds(Collection<Integer> itemIds) {
-        path(itemIds.stream().map(String::valueOf).collect(Collectors.joining(",")));
+        itemPath(List.copyOf(itemIds));
         return this;
     }
 

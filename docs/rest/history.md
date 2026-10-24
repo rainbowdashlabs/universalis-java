@@ -21,11 +21,7 @@ for (MinimizedSale sale : response.sales()) {
 ```
 
 Where and which item work as for the [market board](./market-board.md#where): pick one of `world`, `dataCenter` or
-`region`, then the item with `itemsIds` or `items`.
-
-:::warning
-Ask for one item per request. With more than one item the response has no item and no sales.
-:::
+`region`, then exactly one item with `itemsIds` or `items`.
 
 ## Options
 
