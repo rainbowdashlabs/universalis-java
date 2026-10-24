@@ -50,8 +50,14 @@ public interface NameSupplier {
         }
     };
 
+    /**
+     * Get the name of an item.
+     *
+     * @param id item id
+     * @return the name, or an empty name if the id is unknown
+     */
     default Name fromId(int id) {
-        return ids().get(id);
+        return ids().getOrDefault(id, Name.empty());
     }
 
     default Optional<Integer> fromName(String name) {

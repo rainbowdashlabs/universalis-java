@@ -33,7 +33,7 @@ Create it once and share it. It holds every item in memory.
 
 | Method | Returns |
 |---|---|
-| `fromId(int)` | The `Name` of an item. |
+| `fromId(int)` | The `Name` of an item, or an empty name for an unknown id. |
 | `fromName(String)` | The id of an item by its name in any language, ignoring case. |
 | `fromName(Language, String)` | The id by its name in one language, ignoring case. |
 
@@ -43,11 +43,6 @@ Create it once and share it. It holds every item in memory.
 Optional<Integer> id = items.fromName(itemName);
 String german = items.fromId(itemId).german();
 ```
-
-:::warning
-For an id that the loaded data does not contain, `Items` returns `null` as the name, while the default supplier returns
-an empty name.
-:::
 
 ## Your own supplier
 
