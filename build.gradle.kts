@@ -5,7 +5,7 @@ plugins {
     `maven-publish`
     `java-library`
     alias(libs.plugins.spotless)
-    id("de.chojo.publishdata") version "1.4.0"
+    id("de.chojo.publishdata") version "2.2.0"
 }
 
 group = "de.chojo.universalis"
