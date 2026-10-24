@@ -56,6 +56,7 @@ Responses that hold a list are `Iterable`, so you can loop over them directly.
 | Method | Request | Page |
 |---|---|---|
 | `marketBoard()` | Listings, recent sales and prices of an item | [Market board](./market-board.md) |
+| `aggregated()` | Price summary of up to 100 items | [Aggregated prices](./aggregated.md) |
 | `history()` | Sale history of an item | [Sale history](./history.md) |
 | `worlds()`, `dataCenters()`, `marketable()`, `taxRates()` | Game data and tax rates | [Other endpoints](./other-endpoints.md) |
 | `list(String)` | A list a user created | [Other endpoints](./other-endpoints.md#user-lists) |

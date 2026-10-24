@@ -13,7 +13,7 @@ What the client wraps of the [Universalis API](https://docs.universalis.app), ve
 |---|---|---|
 | `/{worldDcRegion}/{itemIds}` | `marketBoard()` | One item per request. |
 | `/history/{worldDcRegion}/{itemIds}` | `history()` | One item per request. |
-| `/aggregated/{worldDcRegion}/{itemIds}` | none | |
+| `/aggregated/{worldDcRegion}/{itemIds}` | `aggregated()` | Up to 100 items per request. |
 | `/worlds` | `worlds()` | |
 | `/data-centers` | `dataCenters()` | |
 | `/marketable` | `marketable()` | |

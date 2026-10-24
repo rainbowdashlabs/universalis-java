@@ -16,6 +16,7 @@ import java.net.URISyntaxException;
 import java.util.Collection;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
@@ -88,6 +89,26 @@ public class RequestBuilder<T> implements Request<T> {
         }
         hasItem = true;
         path(itemIds.iterator().next());
+    }
+
+    /**
+     * Adds several items to the path, separated by commas.
+     *
+     * @param itemIds ids of the items to request
+     * @param max     the most items Universalis accepts in one request
+     * @throws IllegalArgumentException if no id or more than {@code max} ids are given
+     * @throws IllegalStateException    if the items have already been set on this request
+     */
+    public void itemsPath(Collection<Integer> itemIds, int max) {
+        if (itemIds.isEmpty() || itemIds.size() > max) {
+            throw new IllegalArgumentException(
+                    "A request takes 1 to " + max + " items, but " + itemIds.size() + " were given.");
+        }
+        if (hasItem) {
+            throw new IllegalStateException("The items have already been set on this request.");
+        }
+        hasItem = true;
+        path(itemIds.stream().map(String::valueOf).collect(Collectors.joining(",")));
     }
 
     /**

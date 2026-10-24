@@ -12,8 +12,10 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 
 import java.time.Instant;
+import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class RequestUriTest {
     private static final UniversalisRest rest = UniversalisRest.defaultApi();
@@ -53,5 +55,23 @@ class RequestUriTest {
         assertEquals(
                 "UserListRequestImpl: https://universalis.app/api/v2/lists/abc",
                 rest.list("abc").toString());
+    }
+
+    @Test
+    void aggregatedTakesSeveralItems() {
+        assertEquals(
+                "AggregatedRequestImpl: https://universalis.app/api/v2/aggregated/Light/5057%2C5058",
+                rest.aggregated()
+                        .dataCenter(Worlds.europe().light())
+                        .itemsIds(5057, 5058)
+                        .toString());
+    }
+
+    @Test
+    void aggregatedTakesAtMostHundredItems() {
+        var ids = IntStream.rangeClosed(1, 101).boxed().toList();
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> rest.aggregated().dataCenter(Worlds.europe().light()).itemsIds(ids));
     }
 }
