@@ -1,8 +1,11 @@
+plugins {
+    id("universalis.java-conventions")
+    id("universalis.publishing-conventions")
+}
+
 dependencies {
     api(project(":universalis-core"))
-
-    // Websockets
-    api(libs.websocketclient)
-    api(libs.mongodb.bson)
+    api(libs.websocket)
+    api(libs.bson)
     api(libs.caffeine)
 }

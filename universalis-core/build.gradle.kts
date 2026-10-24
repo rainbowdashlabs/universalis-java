@@ -1,8 +1,11 @@
+plugins {
+    id("universalis.java-conventions")
+    id("universalis.publishing-conventions")
+}
+
 dependencies {
     api(libs.jackson.databind)
-    // Logging
+    api(libs.jackson.annotations)
     api(libs.slf4j.api)
-
-    // code
     api(libs.jetbrains.annotations)
 }

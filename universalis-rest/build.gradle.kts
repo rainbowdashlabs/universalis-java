@@ -1,7 +1,12 @@
+plugins {
+    id("universalis.java-conventions")
+    id("universalis.publishing-conventions")
+}
+
 dependencies {
     api(project(":universalis-core"))
-    // Rest
     api(libs.bucket4j)
-    api(libs.apache.httpclient)
-    testImplementation(rootProject.testlibs.junit.pioneer)
+    api(libs.httpclient)
+
+    testImplementation(libs.junit.pioneer)
 }
