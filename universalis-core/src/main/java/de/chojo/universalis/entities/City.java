@@ -53,6 +53,7 @@ public enum City {
     TULIYOLLAL(14, "Tuliyollal");
 
     private static final Logger log = getLogger(City.class);
+    private static final int NO_CITY = 0;
 
     private final int id;
     private final String name;
@@ -63,13 +64,16 @@ public enum City {
     }
 
     /**
-     * Get a city by its id
+     * Get a city by its id.
+     * <p>
+     * Universalis reports {@code 0} for listings without a known retainer city. That id resolves to
+     * {@link #UNKNOWN} silently; any other unknown id is logged, since it usually means a new city.
      *
      * @param id id
-     * @return city
-     * @throws IllegalArgumentException when id is invalid
+     * @return city, or {@link #UNKNOWN} when the id is not known
      */
     public static City fromId(int id) {
+        if (id == NO_CITY) return UNKNOWN;
         for (City city : values()) {
             if (city.id() == id) return city;
         }
